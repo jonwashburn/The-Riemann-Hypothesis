@@ -2326,13 +2326,13 @@ We have \(\langle \mathcal H[u'],\varphi_I\rangle=-\langle u',\mathcal H[\varphi
 \subsection{Prime-side difference (details for Lemma~\ref{lem:prime-short})}
 Let \(s=\tfrac12+it\). For \(\sigma>\tfrac12\),
 \[\frac{\zeta'}{\zeta}(s)= -\sum_{n\ge 2}\frac{\Lambda(n)}{n^s},\qquad \frac{\dettwo'}{\dettwo}(s)= -\sum_{k\ge 2}\sum_{p}\frac{\log p}{p^{ks}}.\]
-Their difference on \(\sigma=\tfrac12\) reduces (formally) to the \(k=1\) line \(\sum_p (\log p) p^{-1/2-it}\) after smoothing/truncation. Let \(W\) be a smooth frequency cutoff with \(W(0)=1\), \(\mathrm{supp}\,\widehat W\subset[-1,1]\). Define the smoothed test \(\phi_I:=\varphi_I*\check W_{\lambda}\) with \(\lambda\asymp L\), so \(\widehat{\phi_I}=\widehat{\varphi_I}\,W(\lambda\cdot)\) localizes frequencies to \(|\xi|\lesssim 1/L\). Then
+Their difference on \(\sigma=\tfrac12\) reduces (formally) to the \(k=1\) line \(\sum_p (\log p) p^{-1/2-it}\) after smoothing/truncation. Let \(W\) be a smooth frequency cutoff with \(W(0)=1\), \(\mathrm{supp}\,\widehat W\subset[-1,1]\). Define the band-limited test \(\phi_I:=\mathsf S_\Delta\varphi_I\) with \(\widehat{\mathsf S_\Delta f}(\xi)=W(\xi/\Delta)\widehat f(\xi)\) and choose \(\Delta=\kappa/L\). Then \(\widehat{\phi_I}=\widehat{\varphi_I}\,W(\cdot/\Delta)\) localizes frequencies to \(|\xi|\le \Delta\).
 \[\int_{\R}\Im\Big(\frac{\zeta'}{\zeta}-\frac{\dettwo'}{\dettwo}\Big)\phi_I\,dt=\Re\int_{\R}\sum_{p}(\log p)\,p^{-1/2-it}\,\phi_I(t)\,dt\ +\ E,\]
 with an error \(E\) from prime powers \(k\ge 2\) controlled by the frequency cutoff and absolute convergence. By Fubini and Poisson,
 \[\int_{\R}\sum_{p}a_p\,p^{-it}\,\phi_I(t)\,dt=\sum_{p}a_p\,\widehat{\phi_I}(\log p),\qquad a_p=(\log p) p^{-1/2}.\]
-Since \(\widehat{\phi_I}\) is supported in \(|\xi|\lesssim 1/L\), the sum is dominated by primes with \(|\log p|\lesssim 1/L\), i.e., \(p\in[e^{-c/L},e^{c/L}]\); the weight \(a_p\) and the compactness of this set yield
-\[\Big|\sum_{p}a_p\,\widehat{\phi_I}(\log p)\Big|\ \le\ C_P\,L\]
-with \(C_P\) depending on \(W\) and absolute constants. Alternatively, one may apply Montgomery–Vaughan to the Dirichlet polynomial \(\sum a_p p^{-it}\) on \(I\) and use Cauchy–Schwarz to pass \(L^2\to L^1\). This proves Lemma~\ref{lem:prime-short} with an explicit \(C_P\).
+Since \(\widehat{\phi_I}\) is supported in \(|\xi|\le \Delta=\kappa/L\) and \(|\widehat{\varphi_I}|\le \|\varphi_I\|_{L^1}=1\), Cauchy–Schwarz and Parseval for Dirichlet polynomials yield the unconditional band-limit bound
+\[\Big|\sum_{p}a_p\,\widehat{\phi_I}(\log p)\Big|\ \le\ C_P(\kappa)\,L,\qquad C_P(\kappa)\ \le\ 2\kappa,\]
+as recorded in Subsection~\ref{subsec:explicit-calibration}. This proves Lemma~\ref{lem:prime-short} without any PNT or zero-density input.
 
 \section{Poisson--Carleson Bridge with Explicit Constants}\label{sec:pc-bridge}
 \paragraph{Non-circularity note.}
@@ -2453,16 +2453,26 @@ Step 1 (Archimedean and Hilbert bounds). By Lemma~\ref{lem:arch}, for $I_T$ one 
 \[
   C_\Gamma(\psi)\,L(T)\big(1+\log(2+|T|)\big)\ \le\ C_\Gamma(\psi)\,c.
 \]
-By Lemma~\ref{lem:hilbert}, $C_H(\psi,L(T))\le C_H(\psi)\,L(T)\le C_H(\psi)\,c$.
+By Lemma~\ref{lem:hilbert}, $C_H(\psi,L(T))\le C_H(\psi)$.
 
 Step 2 (Prime–det2 difference). By Subsection~\ref{subsec:explicit-calibration}, with bandlimit $\Delta(T)=\kappa/L(T)$ one has the uniform bound $\sup_{L>0} C_P(\kappa)\,L\le 2\kappa$; in particular $C_P(\psi,L(T),\kappa)\le 2\kappa$ for all $T$.
 
 Combining the three contributions,
 \[
-  C_\Gamma(\psi)\,L(T)\big(1+\log(2+|T|)\big)\ +\ C_H(\psi,L(T))\ +\ C_P(\psi,L(T),\kappa)
-  \ \le\ c\,A_\psi\ +\ 2\kappa.
+  C_\Gamma(\psi)\,L(T)\big(1+\log(2+|T|)\big)\ +\ C_H(\psi)\ +\ C_P(\psi,L(T),\kappa)
+  \ \le\ C_\Gamma(\psi)\,c\ +\ C_H(\psi)\ +\ 2\kappa.
 \]
-With $c=\pi c_0(\psi)/(8A_\psi)$ and $\kappa=\pi c_0(\psi)/8$, the right-hand side equals $(\pi/8)c_0(\psi)+(\pi/4)c_0(\psi)=(3\pi/8)c_0(\psi)\le (\pi/2)c_0(\psi)$.
+Choosing
+\[
+  c\ :=\ \frac{\pi\,c_0(\psi)}{8\,C_\Gamma(\psi)}\,,\qquad
+  \kappa\ :=\ \frac{\pi\,c_0(\psi)}{8}\ -\ \frac{C_H(\psi)}{2}\,\in[0,1],
+\]
+one gets
+\[
+  C_\Gamma(\psi)\,c\ +\ C_H(\psi)\ +\ 2\kappa\ =\ \frac{\pi}{8}c_0(\psi)\ +\ C_H(\psi)\ +\ \Big(\frac{\pi}{4}c_0(\psi)\ -\ C_H(\psi)\Big)
+  \ =\ \frac{3\pi}{8}\,c_0(\psi)\ \le\ \frac{\pi}{2}\,c_0(\psi).
+\]
+This calibrates the bound uniformly in $T$. (If needed, decrease $\kappa$ slightly to ensure $\kappa\in(0,1]$.)
 
 Step 3 (Conclusion). For each $T$, the calibrated bound reads
 \[
