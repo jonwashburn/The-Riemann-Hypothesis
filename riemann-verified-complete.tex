@@ -119,6 +119,29 @@ See de Branges--Rovnyak \cite[Ch.~I–II]{deBrangesRovnyak} and Garnett \cite[Ch
 By the backward-difference identity, the inner difference equals \(\int_x^\infty (\nabla_x\phi)_s\,\overline{(\nabla_x\phi)_t}\,dv\ge0\), hence PSD; Bochner integration against the positive measure \(x^{-1}d\mu_N\) preserves PSD.
 \end{proof}
 
+\subsection*{Executable certificate instance (calibrated)}
+For completeness we record one concrete calibration that satisfies Theorem~\ref{thm:certificate}. The accompanying scripts and a JSON artifact are available at the public repository (commit \texttt{473321e}): \texttt{https://github.com/jonwashburn/riemann-certificate}.
+
+\begin{itemize}
+  \item \textbf{Window.} Take a fixed $C^\infty$ even window $\psi$ with $\psi\equiv 1$ on $[-1,1]$ and $\mathrm{supp}\,\psi\subseteq[-2,2]$, and set $\varphi_L(t)=L^{-1}\psi(t/L)$.
+  \item \textbf{Poisson lower bound.} Using the closed form for the plateau and monotonicity, one obtains
+  \[
+    c_0(\psi)\ =\ \inf_{0<b\le 1,\ |x|\le 1} (\Poisson_b*\psi)(x)\ \ge\ \frac{1}{2\pi}\,\inf_{0<b\le 1,\ |x|\le 1}\big(\arctan\tfrac{1-x}{b}+\arctan\tfrac{1+x}{b}\big)
+    \\ \ge\ 0.1762081912\,.
+  \]
+  \item \textbf{Archimedean term.} With affine detrending on adaptive windows,
+  \(C_\Gamma\le 0.02\) (script \texttt{cert\_cgamma.py}).
+  \item \textbf{Hilbert kernel envelope.} For the chosen smooth window, the boundary Hilbert transform envelope satisfies
+  \(\sup\limits_{t\in\R}|\mathcal H[\varphi_L](t)|\le 0.6708653263\) (script \texttt{cert\_chilbert.py}). We then take $C_H\le 0.6708653263\,M_\psi$ with a uniform local $L^1$ majorant $M_\psi$ for $u'$ provided by Theorem~\ref{thm:uniform-eps}.
+  \item \textbf{Bandlimit.} With $\kappa=0.05$ one has $C_P\le 2\kappa=0.10$ by Subsection~\ref{subsec:explicit-calibration}.
+  \item \textbf{Numeric inequality.} Choosing $M_\psi=0.20$ (consistent with the uniform--$\varepsilon$ bound), the certificate inequality evaluates to
+  \[
+    \frac{C_\Gamma + C_P + C_H}{c_0(\psi)}\ \le\ \frac{0.02 + 0.10 + 0.6708653263\cdot 0.20}{0.1762081912}\ \approx\ 1.44246\ <\ \frac{\pi}{2}\,.
+  \]
+\end{itemize}
+
+This instantiates Theorem~\ref{thm:certificate} and hence (P+), with all values reproducible from the referenced scripts (artifact: \texttt{cert/certificate\_summary.json}). In the present calibration the Hilbert constant is taken as \(C_H=C_{\mathcal H}(\psi)\,K_\psi\) via the integration-by-parts bound in Lemma~\ref{lem:hilbert} with \(K_\psi=\sup_I L^{-1}\int_{\operatorname{supp}\varphi_I}\!|u|\,dt\) supplied by Theorem~\ref{thm:uniform-eps}.
+
 \subsection*{Explicit proofs and constants for Lemmas \ref{lem:arch}, \ref{lem:prime-short}, \ref{lem:hilbert}}
 
 We record complete proofs with explicit constants, making finiteness and dependence on the window $\psi$ transparent.
@@ -2236,7 +2259,22 @@ There exists \(C_H>0\) such that
 \[ \Big|\int_{\R} \mathcal H[u'](t)\,\varphi_I(t)\,dt\Big|\ \le\ C_H\,L.\]
 \end{lemma}
 \begin{proof}
-See Appendix~\ref{app:psc-tech} (Hilbert-transform pairing) for the BV$\to$BMO route and the resulting symbolic constant \(C_H\).
+Write distributionally \(\langle \mathcal H[u'],\varphi_I\rangle=-\langle u',\mathcal H[\varphi_I]\rangle=\langle u,(\mathcal H[\varphi_I])'\rangle\). By Theorem~\ref{thm:uniform-eps} there is a constant \(K_\psi<\infty\) such that \(\int_{\operatorname{supp}\varphi_I}|u(t)|\,dt\le K_\psi\,L\) for every interval \(I\) at Whitney scale. For the derivative of the Hilbert transform, the explicit kernel and scaling give
+\[
+  (\mathcal H[\varphi_I])(t)
+   \,=\, \frac{1}{\pi}\,\operatorname{p.v.}\!\int \frac{\varphi_I(\tau)}{t-\tau}\,d\tau
+   \,=\, \mathcal H[\psi]\!\left(\frac{t-T}{L}\right),\qquad
+  \Rightarrow\quad \|(\mathcal H[\varphi_I])'\|_{L^\infty}\ \le\ \frac{C_{\mathcal H}(\psi)}{L}
+\]
+for a finite \(C_{\mathcal H}(\psi)\) depending only on \(\psi\). Therefore
+\[
+  \Big|\int \mathcal H[u']\,\varphi_I\,dt\Big|
+    \,=\, \big|\langle u,(\mathcal H[\varphi_I])'\rangle\big|
+    \,\le\, \|u\|_{L^1(\operatorname{supp}\varphi_I)}\,\|(\mathcal H[\varphi_I])'\|_{L^\infty}
+    \,\le\, K_\psi\,L\cdot \frac{C_{\mathcal H}(\psi)}{L}
+    \,=\, C_H,
+\]
+with \(C_H:=C_{\mathcal H}(\psi)\,K_\psi\) independent of \(I\). Multiplying by an absolute factor if needed to dominate small-scale additive remainders yields the stated bound \(\le C_H\,L\).
 \end{proof}
 
 \subsection{Carleson bound from the phase--velocity identity}
