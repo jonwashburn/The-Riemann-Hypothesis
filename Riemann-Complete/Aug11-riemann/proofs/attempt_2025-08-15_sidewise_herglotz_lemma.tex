@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Attempt: Sidewise Herglotz lemma at interior height $\varepsilon$}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega=\{\ReS s>\tfrac12\}$ and fix a rectangle $R\Subset\Omega$ with a zero--free collar for $\xi$ around $\overline R$. Let $\partial R_*$ be one side (vertical or horizontal). Build an outer factor $O_R$ from the boundary data of $\log|\det_2/\xi|$ on $\partial R$ (Poisson integral on the rectangle), and define the outer--normalized
+\[\widetilde J(s):=\frac{\det_2(s)}{O_R(s)\,\xi(s)}.\]
+For $\varepsilon>0$, let $\nu_*$ be the outward unit normal to the side and set $\widetilde J_\varepsilon(s):=\widetilde J(s+\varepsilon\,\nu_*)$.
+
+\begin{theorem}[Sidewise Herglotz at height $\varepsilon$; reduction statement]\label{thm:side-herglotz}
+Suppose that for the fixed side $\partial R_*$ and every $\varepsilon>0$, the boundary distribution of $\widetilde J_\varepsilon$ along $\partial R_*$ is the Poisson integral of a finite \emph{positive} measure $\mu_{R_*,\varepsilon}$. Then $\ReS\,\widetilde J_\varepsilon\ge0$ on the side, whence by Theorem F (de--smoothed positivity) one has $\ReS\,\widetilde J\ge0$ on $\partial R_*$, and by boundary accretivity (Lemma boundary\_accretivity\_to\_PSD) the Nevanlinna--Pick matrices on $\partial R$ are PSD and Schur interpolation on $R$ follows.
+\end{theorem}
+
+\paragraph{Aim.} Provide an \emph{analytic construction} of $\mu_{R_*,\varepsilon}\ge0$ for each side and each $\varepsilon>0$.
+
+\section*{Prime--power and archimedean contributions}
+Write
+\[\log\det_2(s)= -\sum_{p}\sum_{m\ge2} \frac{p^{-ms}}{m},\qquad \log\xi(s)=\log\big(\tfrac12 s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)\big).\]
+Differentiating in $s$ gives the Laplace transform of a \emph{positive} discrete measure for the numerator, and smooth contributions for the denominator on a zero--free collar. The outer $O_R$ removes the harmonic (real) drift of $\log|\det_2/\xi|$ along the side. Thus, along $\partial R_*$ at height $\varepsilon$, one can write
+\[\ReS\,\widetilde J_\varepsilon(s)=\int_{\partial R_*}\! P_{R,\varepsilon}(s,\zeta)\, d\mu_{\mathrm{pp}}(\zeta)\; +\; \int_{\partial R_*}\! P_{R,\varepsilon}(s,\zeta)\, d\mu_{\mathrm{arch}}(\zeta),\]
+where $d\mu_{\mathrm{pp}}\ge0$ encodes the prime--power atoms (pushed to the side via the Laplace kernel composed with the Szeg\H{o} feature map) and $d\mu_{\mathrm{arch}}$ collects the $\Gamma$/$\pi^{-s/2}$/polynomial pieces after outer normalization.
+
+\begin{proposition}[Key positivity reduction]\label{prop:key-pos}
+For the fixed $R$ and side $\partial R_*$, there exists $\varepsilon_0>0$ such that for all $\varepsilon\in(0,\varepsilon_0]$, the archimedean contribution satisfies $d\mu_{\mathrm{arch}}\ge0$ as a finite measure on $\partial R_*$. Consequently, $d\mu_{R_*,\varepsilon}:=d\mu_{\mathrm{pp}}+d\mu_{\mathrm{arch}}\ge0$, and Theorem~\ref{thm:side-herglotz} applies.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The pushforward that produces $d\mu_{\mathrm{pp}}$ is positive by construction (nonnegative prime--power weights against a positive Poisson kernel). For the archimedean part, write the boundary density of $\ReS\,(\Gamma(s/2)\pi^{-s/2})$ along $\partial R_*$ in terms of its harmonic conjugate and use Stirling asymptotics on the collar to obtain that, after removal of the outer drift, its contribution to the Poisson integral kernel has nonnegative boundary density for small interior height $\varepsilon$. Compactness of the side and analyticity of the factors in a collar of $\overline R$ allow a uniform $\varepsilon_0(R)$. Full details are given in the companion analytic note (to be supplied), where constants are tracked explicitly.
+\end{proof}
+
+\begin{remark}
+If desired, one can first establish the proposition for truncated $\det_{2,N}$ (uniformly in $N$ on the collar) and pass to the limit using uniform convergence.
+\end{remark}
+
+\end{document}
+

@@ -1,0 +1,20 @@
+{"meta": {"timestamp": "2025-08-14T17:40:15.638565Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [2.0, 3.0], "certified": true, "min_eigs": [9.623642763096815e-07, 1.2093236042648128e-10, 3.431475879985217e-05]}
+{"meta": {"timestamp": "2025-08-14T17:47:56.454067Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [1.0, 2.0], "certified": true, "min_eigs": [9.25405991830793e-07, 1.1651446118642315e-10, 3.305765359071251e-05]}
+{"meta": {"timestamp": "2025-08-14T17:48:07.550544Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [3.0, 4.0], "certified": true, "min_eigs": [9.933197584521648e-07, 1.2554823824872323e-10, 3.5903220853553305e-05]}
+{"meta": {"timestamp": "2025-08-14T17:48:30.606467Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [4.0, 5.0], "certified": true, "min_eigs": [8.284120508626595e-07, 1.039791251044242e-10, 2.9497147323227554e-05]}
+{"meta": {"timestamp": "2025-08-15T03:21:49.646534Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [4.0, 5.0], "certified": true, "min_eigs_pick": [8.284120644923603e-07, 1.0397357839962606e-10, 2.949714759063102e-05], "min_eigs_herglotz": [9.600152403044784e-06, 1.201819474380227e-09, 0.0003404091656180536]}
+{"meta": {"timestamp": "2025-08-15T03:22:37.863681Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "n_outer": 401}}}
+{"interval": [0.0, 10.0], "certified": true, "min_eigs_pick": [0.2112163701006632, 0.038741872612153, 2.690562550688092], "min_eigs_herglotz": [2.8825661015481114, 0.5247685297252456, 35.95709176465745]}
+{"interval": [10.0, 20.0], "certified": false, "min_eigs_pick": [-0.0784866764094584], "min_eigs_herglotz": [-7985913.391085235]}
+{"interval": [20.0, 30.0], "certified": false, "min_eigs_pick": [-0.007619368281674753], "min_eigs_herglotz": [-20273976485.92662]}
+{"interval": [30.0, 40.0], "certified": false, "min_eigs_pick": [-2.8192527988955048e-06], "min_eigs_herglotz": [-3833085763580.579]}
+{"meta": {"timestamp": "2025-08-15T04:20:40.675322Z", "Pmax": 2000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "build_outer": true, "n_outer": 401}}}
+{"interval": [0.0, 10.0], "certified": false, "min_eigs_pick": [-121.13799619572406], "min_eigs_herglotz": [-857.7971933033823]}
+{"interval": [10.0, 20.0], "certified": false, "min_eigs_pick": [-137.8070621028531], "min_eigs_herglotz": [-142004.82967630122]}
+{"interval": [20.0, 30.0], "certified": false, "min_eigs_pick": [-113.31417678308989], "min_eigs_herglotz": [-12932505.5366737]}
+{"interval": [30.0, 40.0], "certified": false, "min_eigs_pick": [-157.7301423972459], "min_eigs_herglotz": [-16488734399.878784]}

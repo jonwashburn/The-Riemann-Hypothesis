@@ -1,0 +1,44 @@
+﻿\begin{lemma}[Balanced Carleson bound, unconditional]\label{lem:balanced-carleson}
+Assume on $\Omega=\{\Re s>\tfrac12\}$ that
+\[
+\xi(s) = e^{L(s)} \det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr),
+\]
+where $L$ is holomorphic and $\mathsf T$ is a Hilbert--Schmidt valued analytic map. Set
+\[
+U_{\mathrm{bal}}(s) := \Re\log\det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr)-\Re\log\xi(s) = -\Re L(s).
+\]
+Then for every Whitney box $Q(I)$ anchored on $\sigma=\tfrac12$ we have
+\[
+\iint_{Q(I)} |\nabla U_{\mathrm{bal}}(s)|^2 \,\sigma\, d\sigma\, dt \;\le\; K_{\mathrm{bal}}\, |I|,
+\]
+where
+\[
+K_{\mathrm{bal}} := \sup_{Q(I)} \frac{1}{|I|}\iint_{Q(I)} |L'(s)|^2 \,\sigma\, d\sigma\, dt < \infty.
+\]
+In particular, $K_{\mathrm{bal}}$ depends only on uniform bounds for $L'$ on fixed--aperture dilates of $Q(I)$.
+\end{lemma}
+
+
+\begin{proof}
+Since $U_{\mathrm{bal}}=-\Re L$ is harmonic on $\Omega$, Cauchy--Riemann gives
+$|\nabla U_{\mathrm{bal}}(s)|^2 = |\partial_\sigma U_{\mathrm{bal}}|^2 + |\partial_t U_{\mathrm{bal}}|^2 = |L'(s)|^2$.
+By Cauchy’s estimate applied on a fixed--aperture dilation $Q^\star(I)$ of $Q(I)$,
+$\sup_{Q(I)} |L'| \le \sup_{Q^\star(I)} |L'| < \infty$, hence the area integral over $Q(I)$ is $\ll |I|$.
+\end{proof}
+
+
+\begin{proposition}[Boundary wedge via balanced certificate]\label{prop:wedge-balanced}
+Let $\psi$ be the fixed window and define
+\[
+\Upsilon_{\mathrm{new}} := c_0(\psi)\Big( K_{\mathrm{HS}}(\psi) + K_{\mathrm{bal}}(\psi) \Big),
+\]
+where $K_{\mathrm{HS}}(\psi)$ is the prime/HS term from Section~\ref{sec:prime-bounds} and
+$K_{\mathrm{bal}}(\psi)$ is the balanced term from Lemma~\ref{lem:balanced-carleson} with the same window functional.
+If $\Upsilon_{\mathrm{new}}<\tfrac12$, then $\Re\{2\mathcal J(\tfrac12+it)\}\ge 0$ for a.e.~$t$,
+so $2\mathcal J$ is Herglotz on $\Omega$ and $\Theta$ is Schur on $\Omega\setminus Z(\xi)$.
+Consequently, the globalization/pinch argument of Section~\ref{sec:globalization} yields the Riemann Hypothesis.
+\end{proposition}
+
+
+% If you keep a "constants" appendix, add:
+% BLOCKER: insert explicit uniform bound for \sup_{Q^\star(I)} |L'| derived from the trace-locked formula for L(s).

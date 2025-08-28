@@ -1,0 +1,73 @@
+% Half–plane: outer normalization and boundary behavior (snippet)
+% Ready to \input into the manuscript; assumes theorem/proof environments exist.
+
+\section*{Half–plane framework: outer normalization and boundary behavior}
+
+We work on the right half–plane
+\[
+\Omega\ :=\ \{\,s\in\mathbb{C}:\ \Re s>\tfrac12\,\},\qquad \partial\Omega=\{\tfrac12+it:\ t\in\mathbb{R}\}.
+\]
+For a bounded interval $I\subset\mathbb{R}$ and $\alpha\ge1$, write
+\[
+Q(\alpha I)=\bigl\{\tfrac12+x+iy:\ 0<x<\alpha|I|,\ y\in I\bigr\}.
+\]
+For $g\in L^1_{\rm loc}(\mathbb{R})$, denote by $\mathcal P[g]$ its Poisson extension to $\Omega$.
+
+\subsection*{Local outer construction}
+
+\begin{definition}[Local outer from boundary modulus]\label{hp:def:outer}
+Fix a bounded interval $I$ and let $b\in L^1(I)\cap \mathrm{BMO}(I)$.
+Extend $b$ by $0$ to $\mathbb{R}$ and set $U:=\mathcal P[b]$ on $\Omega$.
+Let $\widetilde U$ be a harmonic conjugate of $U$, normalized at a fixed interior point.
+Define the outer on $\Omega$ by
+\[ \mathcal O_I(s)\ :=\ \exp\big(U(s)+i\,\widetilde U(s)\big). \]
+\end{definition}
+
+\begin{proposition}[Basic properties of $\mathcal O_I$]\label{hp:prop:outer-props}
+With $b$ and $\mathcal O_I$ as above:
+\begin{enumerate}
+\item $\mathcal O_I$ is analytic and zero–free on $\Omega$.
+\item For a.e. $t\in I$, the nontangential boundary limit satisfies $|\mathcal O_I^*(t)|=e^{b(t)}$; for a.e. $t\notin I$, $|\mathcal O_I^*(t)|=1$.
+\item On every bounded $I'\subset\mathbb{R}$, $\log|\mathcal O_I^*|\in L^1(I')$ and $\log|\mathcal O_I^*|\in \mathrm{BMO}(I'\cap I)$ with
+\[ \|\log|\mathcal O_I^*|\|_{\mathrm{BMO}(I'\cap I)}\ \le\ C\,\|b\|_{\mathrm{BMO}(I)}. \]
+\item For each fixed aperture $\alpha\ge1$, the Carleson area of $\nabla\log|\mathcal O_I|$ over $Q(\alpha I)$ obeys
+\[ \frac{1}{|I|}\iint_{Q(\alpha I)} x\,|\nabla U|^2\,dx\,dy\ \le\ C(\alpha)\,\|b\|_{\mathrm{BMO}(I)}^{\,2}. \]
+\end{enumerate}
+\end{proposition}
+
+\begin{lemma}[Smooth approximation]\label{hp:lem:smooth-approx}
+Let $\{\eta_\varepsilon\}_{\varepsilon\downarrow0}$ be an approximate identity and set $b_\varepsilon:=\eta_\varepsilon\ast b$.
+Let $\mathcal O_{I,\varepsilon}:=\exp(\mathcal P[b_\varepsilon]+i\,\widetilde{\mathcal P[b_\varepsilon]})$.
+Then $\mathcal O_{I,\varepsilon}\to \mathcal O_I$ locally uniformly on $\Omega$ and a.e. on $\partial\Omega$ (in modulus).
+\end{lemma}
+
+\subsection*{Outer normalization for a given analytic field}
+
+\begin{definition}[Local outer normalization for $\mathcal J$]\label{hp:def:J}
+Let $R$ be analytic on $\Omega$ and let $b_I\in L^1(I)\cap \mathrm{BMO}(I)$ satisfy $b_I\ge \log|R^*|$ a.e. on $I$.
+Define $\mathcal O_I$ from $b_I$ as above and set
+\[ \mathcal J_I(s)\ :=\ \frac{R(s)}{\mathcal O_I(s)}. \]
+\end{definition}
+
+\begin{theorem}[Boundary values and control for $\mathcal J_I$]\label{hp:thm:boundary-J}
+Assume $R\in N^+_{\mathrm{loc}}(\Omega)$ and $\log|R^*|\in L^1_{\mathrm{loc}}(\mathbb{R})$.
+Then $\mathcal J_I$ has a.e. nontangential boundary limits on $I$ and
+\[ |\mathcal J_I^*(t)|\ =\ \exp\big(\log|R^*(t)|-b_I(t)\big)\ \le\ 1 \quad \text{for a.e. } t\in I. \]
+Moreover $\log|\mathcal J_I^*|\in L^1(I)\cap \mathrm{BMO}(I)$ with
+\[ \|\log|\mathcal J_I^*|\|_{\mathrm{BMO}(I)}\ \le\ C\,\big(\|\log|R^*|\|_{\mathrm{BMO}(I)}+\|b_I\|_{\mathrm{BMO}(I)}\big). \]
+\end{theorem}
+
+\begin{proposition}[Stability under smoothing]\label{hp:prop:stability}
+With $b_{I,\varepsilon}$ and $\mathcal O_{I,\varepsilon}$ as in Lemma~\ref{hp:lem:smooth-approx}, set $\mathcal J_{I,\varepsilon}:=R/\mathcal O_{I,\varepsilon}$.
+Then $\mathcal J_{I,\varepsilon}\to \mathcal J_I$ locally uniformly on $\Omega$, and $\log|\mathcal J_{I,\varepsilon}^*|\to\log|\mathcal J_I^*|$ a.e. on $I$.
+\end{proposition}
+
+\subsection*{Global outer normalization (local hypotheses)}
+
+\begin{theorem}[Global boundary behavior of $\mathcal J$]\label{hp:thm:J-global}
+Assume $R\in N^+_{\mathrm{loc}}(\Omega)$ and $\log|R^*|\in L^1_{\mathrm{loc}}$.
+Let $b\in L^1_{\mathrm{loc}}(\mathbb{R})\cap \mathrm{BMO}_{\mathrm{loc}}(\mathbb{R})$ dominate $\log|R^*|$ a.e., and set $\mathcal O:=\exp(\mathcal P[b]+i\,\widetilde{\mathcal P[b]})$, $\mathcal J:=R/\mathcal O$.
+Then $\mathcal J$ has a.e. nontangential boundary limits on $\partial\Omega$ with $|\mathcal J^*|\le1$ a.e., and on each bounded $I$ one has $\log|\mathcal J^*|\in L^1(I)\cap \mathrm{BMO}(I)$.
+\end{theorem}
+
+

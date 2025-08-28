@@ -1,0 +1,85 @@
+% Uniformity in height and pinch/exhaustion to \Omega
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Uniformity in height and pinch/exhaustion to $\Omega$}
+
+\paragraph{Domain and objects.}
+Let $\Omega=\{s=\sigma+it:\sigma>1/2\}$. Set $F:=2\mathcal J$ and $\Theta:=\dfrac{F-1}{F+1}$ so that $\Re F\ge 0$ is equivalent to $|\Theta|\le 1$. Work via the upper half–plane model $z=x+iy$ after $z=-i(s-\tfrac12)$. For an interval $I$ and aperture $\alpha\ge1$ denote $Q_\alpha(I)=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha|I|\}$. The box–energy is
+\[
+C_{\rm box}(U;\alpha):=\sup_I \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,dx\,dy,\qquad U=\Re\log F.
+\]
+
+\subsection*{Height–uniform constants under Whitney scaling}
+
+For $T\in\mathbb{R}$ write $\langle T\rangle:=2+|T|$. Boxes centered at height $T$ are taken at Whitney scale
+\[|I|=L(T)\ \le\ \frac{1}{\Lambda\,\log\langle T\rangle}\qquad(\Lambda\ge 1\ \text{fixed}).\]
+
+\begin{proposition}[Height–uniform constants]\label{prop:uniform-unif}
+Fix $\alpha\ge 1$ and $\Lambda\ge 1$. Then the following hold with constants independent of $T$:
+\begin{itemize}
+\item[(i)] (Window/geometry) $c_0(\psi)>0$, $C_H(\psi)<\infty$, $C_\psi^{(H^1)}<\infty$ depend only on $\psi,\alpha$.
+\item[(ii)] (Box energy) With the neutralization described in the $\xi$–block analysis, there exist absolute $K_\xi, K_0, K_\Gamma<\infty$ such that
+\[C_{\rm box}(U;\alpha)\ \le\ K_\xi+K_0+K_\Gamma\ =:\ K_{\rm box},\]
+uniformly for all boxes $Q_\alpha(I)$ with $|I|\le 1/(\Lambda\log\langle T\rangle)$.
+\item[(iii)] (Certificate) For every such box one has the a.e. boundary wedge on its base interval $I$:
+\[w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\quad\text{for a.e. }t\in I,\]
+hence $\Re F(1/2+it)\ge 0$ for a.e. $t\in I$, with constants (and the inequality $\Upsilon\le \tfrac12$) independent of $T$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(i) is purely geometric. (ii) follows from the unconditional far–field $\xi$–block bound (cubic decay + horizontal annuli) combined with the prime–power tail and the archimedean part; each piece is independent of $T$ under the scale law. (iii) follows from the certificate $\Rightarrow$ wedge via the fixed–aperture embedding $M_\psi\le \tfrac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}}$ and the plateau $c_0(\psi)$.
+\end{proof}
+
+\begin{lemma}[Global boundary wedge (a.e.)]\label{lem:globalwedge-unif}
+There exists a countable cover of $\mathbb{R}$ by intervals $\{I_k\}_{k\ge 1}$ with $|I_k|\le 1/(\Lambda\log\langle T_k\rangle)$ such that
+\[w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\quad\text{for a.e. }t\in \bigcup_k I_k.\]
+Consequently $w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ for a.e. $t\in\mathbb{R}$.
+\end{lemma}
+
+\begin{proof}
+Tile $\mathbb{R}$ by disjoint base intervals at Whitney scale in $|t|$; the union has full measure, and each $I_k$ satisfies the certificate hypotheses by Proposition~\ref{prop:uniform-unif}(ii), giving the wedge on $I_k$. Countable union preserves “a.e.”
+\end{proof}
+
+\subsection*{Pinch in rectangles: harmonic measure and two–constants}
+
+Let $R=R(L,H,T)$ denote the axis–parallel rectangle $R:=\{\sigma+it:\ 1/2<\sigma<1/2+L,\ |t-T|<H\}$, $L,H>0$. Write $E_L$ for its left side $\{\sigma=1/2,\ |t-T|<H\}$. Let $u:=\log|\Theta|$ (subharmonic on $\Omega$ since $\Theta$ is holomorphic in $\Omega$). For $z\in R$ let $\omega_R(z,\cdot)$ denote harmonic measure on $\partial R$.
+
+\begin{lemma}[Harmonic measure of the left side]\label{lem:hm-rect-unif}
+For $R=R(L,H,T)$ and $z=\sigma+it\in R$,
+\[\omega_R\big(z,E_L\big)\ \ge\ 1-\exp\!\Big(-\frac{\pi(\sigma-1/2)}{2H}\Big).\]
+In particular, on the vertical midline $\sigma=1/2+\theta L$ with $0<\theta<1$,
+\[\omega_R\big(z,E_L\big)\ \ge\ 1-\exp\!\Big(-\frac{\pi\theta L}{2H}\Big).\]
+\end{lemma}
+
+\begin{lemma}[Two–constants inequality (pinch form)]\label{lem:two-const-unif}
+Suppose $u=\log|\Theta|$ is subharmonic on a neighborhood of $\overline R$ and $u^*\le 0$ a.e. on $E_L$. Let $M_R:=\sup_{\partial R\setminus E_L} u^+<\infty$. Then for every $z\in R$,
+\[u(z)\ \le\ (1-\omega_R(z,E_L))\,M_R,\]
+hence $|\Theta(z)|\le \exp\!\big((1-\omega_R(z,E_L))\,M_R\big)$.
+\end{lemma}
+
+\begin{lemma}[Analyticity of $\Theta$ on $\Omega$]\label{lem:Theta-hol-unif}
+$\Theta$ extends holomorphically to all of $\Omega$; at a pole of $\mathcal J$ (zero of $\xi$) one has $\Theta\to 1$, hence the singularity is removable.
+\end{lemma}
+
+\begin{theorem}[Pinch/exhaustion to compacts]\label{thm:pinch-unif}
+For every compact $K\subset\Omega$, $|\Theta(s)|\le 1$ for all $s\in K$.
+\end{theorem}
+
+\begin{proof}
+Fix $K$ and rectangles $R_n:=R(L_n,H_n,0)$ with $L_n:=d_K/n$ and $H_n:=n H_K$ so that $K\subset R_n$ for $n\gg1$. Lemmas~\ref{lem:globalwedge-unif}, \ref{lem:two-const-unif}, \ref{lem:Theta-hol-unif} give
+\[\log|\Theta(z)|\ \le\ (1-\omega_{R_n}(z,E_L^{(n)}))\,M_{R_n}.\]
+The harmonic–measure deficit tends to 0 uniformly on $K$ (Lemma~\ref{lem:hm-rect-unif}); with $M_{R_n}<\infty$ fixed for each $n$, the bound tends to 0, proving $|\Theta|\le 1$ on $K$.
+\end{proof}
+
+\subsection*{Normal families and global consequence}
+
+\begin{proposition}[Compactness formulation]\label{prop:compact-unif}
+Let $\{R_n\}$ be as above and, for $\delta>0$, set $\Theta_{n,\delta}(s):=\Theta(s)\,\chi_{n,\delta}(s)$ with a holomorphic cutoff $\chi_{n,\delta}$ on a neighborhood of $\overline{R_n}$ such that $|\chi_{n,\delta}|\le 1$, $\chi_{n,\delta}\equiv 1$ on $R_{n-1}$, and $\sup_{\partial R_n\setminus E_L^{(n)}}\log|\Theta_{n,\delta}|\le \delta$. Then $\{\Theta_{n,\delta}\}_n$ is normal on $K$ and
+\[\limsup_{n\to\infty}\ \sup_{z\in K}|\Theta_{n,\delta}(z)|\ \le\ \exp\!\big(\sup_{z\in K}(1-\omega_{R_n}(z,E_L^{(n)}))\,\delta\big)\ \to\ 1.\]
+Letting $\delta\downarrow 0$ and using local uniform convergence gives $\sup_K|\Theta|\le 1$.
+\end{proposition}
+
+\begin{theorem}[Global Schur bound and removability]\label{thm:global-unif}
+For all $s\in\Omega$, $|\Theta(s)|\le 1$ and $\Re F(s)\ge 0$. Consequently every would–be singularity of $\mathcal J$ in $\Omega$ is removable, so $\mathcal J$ has no pole in $\Omega$.
+\end{theorem}

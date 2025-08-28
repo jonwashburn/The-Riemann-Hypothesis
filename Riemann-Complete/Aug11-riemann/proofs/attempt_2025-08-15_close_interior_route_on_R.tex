@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Closing the interior route on a fixed rectangle $R$ via smoothed positivity and Theorem F}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Fix the rectangle
+\[
+R=\{ s=\sigma+it:\ \sigma\in[0.55,0.62],\ t\in[0,10]\}\ \Subset\ \Omega=\{\ReS s>\tfrac12\},
+\]
+and assume a zero--free collar for $\xi$ around $\overline R$. Let $O_R$ be the outer built from boundary $\log|\det_2/\xi|$ on $\partial R$.
+
+\begin{theorem}[Interior completion on $R$]
+For each side $\partial R_*$ and each $\varepsilon>0$, suppose the outer--normalized $\widetilde J_\varepsilon(s):=\det_2(s+\varepsilon\nu_*)/(O_R(s+\varepsilon\nu_*)\,\xi(s+\varepsilon\nu_*))$ admits a positive boundary measure on $\partial R_*$ (sidewise Herglotz). Then:
+\begin{enumerate}
+  \item (Smoothed \(\Rightarrow\) unsmoothed) Theorem F yields $\ReS\,\widetilde J\ge0$ on $\partial R$.
+  \item (Accretivity \(\Rightarrow\) PSD) By boundary accretivity (Lemma boundary\_accretivity\_to\_PSD), the Herglotz kernel of $\widetilde J$ is PSD on $\partial R$; hence the Pick matrices of $\widetilde g=(2\widetilde J-1)/(2\widetilde J+1)$ are PSD on $\partial R$ for arbitrary nodes.
+  \item (Schur interpolation on $R$) The NP theorem produces Schur interpolants on $\Omega$ approximating $\widetilde g$ on $R$. Combining with the already established local uniform convergence of the interior approximants yields a diagonal Schur sequence converging to $\Theta$ on compacta of $R$.
+\end{enumerate}
+Therefore the interior route closes on $R$.
+\end{theorem}
+
+\paragraph{Note.} The only input still to be provided is the sidewise Herglotz positivity at height $\varepsilon$ for each side; see the companion file \texttt{attempt\_2025-08-15\_sidewise\_herglotz\_lemma.tex} for the explicit reduction to prime--power (positive) and archimedean (smooth, collar--controlled) contributions.
+
+\end{document}
+

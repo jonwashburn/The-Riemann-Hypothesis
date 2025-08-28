@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{Closure lemma: kernel domination via backward differences}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega=\{\Re s>\tfrac12\}$ and define $\phi_s(u):=e^{-(s-\frac12)u}$ for $u\ge0$ so that
+\[B(s,\overline t)=\int_0^\infty \phi_s(u)\,\overline{\phi_t(u)}\,du=\frac{1}{s+\overline t-1}.
+\]
+Fix $x>0$ and write forward and backward differences
+\[ (\Delta_x\phi)_s(u):=\phi_s(u)-\phi_s(u+x),\qquad (\nabla_x\phi)_s(v):=\phi_s(v)-\phi_s(v-x)\ (v\ge x),\]
+with the convention $\phi_s(v-x)=0$ for $v<x$.
+
+\begin{lemma}[Exact kernel identity and positivity]\label{lem:backward-diff}
+For all $s,t\in\Omega$ and all $x>0$,
+\begin{align*}
+\int_0^\infty (\Delta_x\phi)_s(u)\,\overline{(\Delta_x\phi)_t(u)}\,du\; -\; \int_0^x \phi_s(u)\,\overline{\phi_t(u)}\,du
+\;=\; \int_x^\infty (\nabla_x\phi)_s(v)\,\overline{(\nabla_x\phi)_t(v)}\,dv\ \ge\ 0.
+\end{align*}
+In particular, the kernel
+\[K_x(s,\overline t):=\int_0^\infty (\Delta_x\phi)_s\,\overline{(\Delta_x\phi)_t}\,du - \int_0^x \phi_s\,\overline{\phi_t}\,du\]
+is positive semidefinite on $\Omega$.
+\end{lemma}
+
+\begin{proof}
+Expand the left integral and perform the changes of variables $v=u+x$ where appropriate:
+\begin{align*}
+&\int_0^\infty \phi_s(u)\overline{\phi_t(u)}\,du - \int_0^\infty \phi_s(u)\overline{\phi_t(u+x)}\,du\\
+&\quad-\int_0^\infty \phi_s(u+x)\overline{\phi_t(u)}\,du + \int_0^\infty \phi_s(u+x)\overline{\phi_t(u+x)}\,du - \int_0^x \phi_s(u)\overline{\phi_t(u)}\,du\\
+&= \int_x^\infty \phi_s(v)\overline{\phi_t(v)}\,dv - \int_x^\infty \phi_s(v-x)\overline{\phi_t(v)}\,dv \\
+&\quad - \int_x^\infty \phi_s(v)\overline{\phi_t(v-x)}\,dv + \int_x^\infty \phi_s(v)\overline{\phi_t(v)}\,dv \\
+&= \int_x^\infty \bigl(\phi_s(v)-\phi_s(v-x)\bigr)\,\overline{\bigl(\phi_t(v)-\phi_t(v-x)\bigr)}\,dv.
+\end{align*}
+This is precisely the right-hand side. Positivity follows because the right-hand side is the $L^2((x,\infty))$ inner product of the backward differences.
+\end{proof}
+
+\begin{theorem}[Positivity for the log--det$_2$ kernel]\label{thm:H_g_pos}
+Let $d\mu_N(x)=\sum_{p\le P_N}\sum_{k\ge2}(\log p)\,\delta_{k\log p}(dx)$ and $\mathfrak g_N(s):= -\int_0^\infty \tfrac{e^{-sx}}{x}\,d\mu_N(x)=\log\det{}_2^N(s)$. Then the kernel
+\[ H_{\mathfrak g_N}(s,\overline t):=\int_0^\infty \frac{1}{x}\,K_x(s,\overline t)\,d\mu_N(x)\]
+is positive semidefinite on $\Omega$ (hence on $\partial R$ for every rectangle $R\Subset\Omega$).
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:backward-diff}, for each $x>0$ the kernel $K_x$ is PSD. The measure $d\mu_N$ is positive, so the Bochner integral preserves PSD.
+\end{proof}
+
+\begin{remark}
+This establishes the additive (logarithmic) positivity part of the Gram route unconditionally. Lifting from $\mathfrak g_N$ to the multiplicative numerator $\det{}_2^N= e^{\mathfrak g_N}$ and then to $J_N=\det{}_2^N/\xi$ on $\partial R$ requires additional structure (e.g. a Fock/exponential realization aligned with the Szeg\H{o} kernel together with an outer Schur multiplier from $\xi^{-1}$). This is addressed elsewhere in the notes.
+\end{remark}
+
+\end{document}
+

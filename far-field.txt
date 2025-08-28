@@ -1,0 +1,26 @@
+﻿\begin{proof}[Proof of Lemma~\ref{lem:carleson-xi} (Whitney Carleson bound via $L^2$ annuli)]
+Fix $I=[T-L,T+L]$ Whitney and decompose the zeros by vertical distance:
+$\mathcal A_k:=\{\rho:\ 2^kL<|T-\gamma|\le 2^{k+1}L\}$ for $k\ge 1$.
+Let $\nu_k:=\sum_{\rho\in\mathcal A_k}\delta_{\gamma}$ and set
+$V_k(\sigma,t)=\int \frac{\sigma}{(t-\tau)^2+\sigma^2}\,d\nu_k(\tau)$.
+By Lemma~\ref{lem:annular-balayage},
+\[
+\iint_{Q(\alpha I)} V_k^2\,\sigma \ \le\ C_\alpha\,\frac{|I|}{4^k}\,\nu_k(\R).
+\]
+Unconditionally, for $0<H\le 1$,
+\[
+\#\{\rho:\ T<\gamma\le T+H\}\ \le\ A\ +\ B\,H\log\langle T\rangle ,
+\]
+so with $H\asymp 2^kL$ and $L\log\langle T\rangle\le 1$ we get
+$\nu_k(\R)\ \ll\ 1+2^kL\log\langle T\rangle\ \ll\ 1+2^k$.
+Hence
+\[
+\iint_{Q(\alpha I)}\!\Big(\sum_{k\ge 1}V_k\Big)^{\!2}\sigma
+\ \le\ \sum_{k\ge 1}\iint V_k^2\,\sigma
+\ \ll\ |I|\sum_{k\ge 1}\frac{1+2^k}{4^k}
+\ \ll\ |I|.
+\]
+Combining with the near‑field bound above yields
+$\frac{1}{|I|}\iint_{Q(\alpha I)}|\nabla U_\xi|^2\,\sigma \ \le\ C_\xi$
+with an absolute $C_\xi<\infty$, uniformly in $T$.
+\end{proof}

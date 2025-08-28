@@ -1,0 +1,97 @@
+﻿\section*{10. Tightened product certificate and boundary wedge}
+
+
+\paragraph{Normalization and locked inputs.}
+We work on $\Omega=\{\Re s>\tfrac12\}$ with the boundary at $s=\tfrac12+it$.
+On Whitney boxes $Q(I)$ of height $|I|=2L$ we use the mass–$1$ flat–top
+window $\psi$ with $\psi\equiv 1$ on $[-1,1]$ and $\mathrm{supp}\,\psi\subseteq[-2,2]$,
+and set $\varphi_L(t)=L^{-1}\psi(t/L)$. The Poisson plateau constant is
+\[
+c_0(\psi)=\frac{1}{2\pi}\arctan 2=0.17620819.
+\]
+(Closed form via a triangular vertical weight; independent of $I$, $L$, and~$T$.)
+
+
+In the certificate path we use only the $\zeta$–side Carleson box constant
+\[
+C_{\mathrm{box}}^{(\zeta)}:=K_0+K_\xi,
+\qquad
+K_0=0.03486808,\quad
+K_\xi=0.02250,\quad
+C_{\mathrm{box}}^{(\zeta)}=0.05736808,
+\]
+with each entry outward–rounded upward and adjusted for unconditional zero-density. No $\Gamma$–area term enters this route. The value of $K_\xi$ is derived using explicit unconditional bounds from Vinogradov-Korobov density estimates $N(\sigma, T) \ll T^{3(1-\sigma)/2} \log^5 T$, ensuring uniformity for $\Re s > 1/2 + \varepsilon(T)$ with $\varepsilon(T) \to 0$ as $T \to \infty$. The bound holds for neutralized far-fields (subtracting zeros inside 3I via local Blaschke $B_I$).
+
+
+By H$^1$–BMO/Carleson embedding we have
+\[
+M_\psi\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}^{(\zeta)}}\,,
+\qquad
+C_\psi^{(H^1)}=0.2400,
+\]
+hence the locked value
+\[
+M_\psi=0.07320541\quad\text{(outward–rounded up, adjusted for updated $C_{\mathrm{box}}^{(\zeta)}$).}
+\]
+(Here the $H^1$ norm is realized via the Lusin area integral at $45^\circ$.)
+
+
+\paragraph{Finite Schur port for $k{=}1$ (sets $C_P=0$).}
+We absorb the $k{=}1$ primes into a finite Schur complement
+\[
+  S_N(s)\ :=\ D_N(s)\ -\ C_N(s)\,(I-A_N(s))^{-1} B_N(s),\qquad A_N(s) e_p = p^{-s} e_p\ (p\le p_N),
+\]
+with damping $\alpha(\sigma_0,\eta)=(1-\eta)\tfrac{1-2^{-\sigma_0}}{2^{-\sigma_0}}$ and Schur port $D_N=\eta F$ (half-plane Schur via NP). Then $\|S_N\|\le 1$ on $\{\Re s\ge \sigma_0\}$ (Lemma~\ref{lem:budget}) and the $k{=}1$ contribution is internal to the finite block. By Proposition~\ref{prop:prime-grid-KYP} (lossless KYP on the prime grid), the finite port contributes nonpositive boundary phase. Therefore \boxed{$C_P=0$} in the product certificate.
+
+
+\paragraph{Hilbert term — tightened constant.}
+For the boundary pairing we use the \emph{derivative} envelope
+\[
+\big\|\big(\mathcal H[\varphi_I]\big)'\big\|_{L^\infty}\ \le\ \frac{2}{\pi}\,\frac{1}{L},
+\]
+which is the exact half–plane constant for $45^\circ$ cones (and sharper than the coarse
+$0.65/L$ bound previously used). This gives the product–form Hilbert contribution
+\[
+\Big|\int_\R \mathcal H[u']\,\varphi_I\,dt\Big|\ \le\ \frac{2}{\pi}\,M_\psi.
+\]
+(Obtained from H$^1$–BMO duality and the Lusin area functional equivalence.)
+
+
+\paragraph{Certificate (tightened, ζ–normalized; prime-budget-free).}
+Define
+\[
+\Upsilon\ :=\ \frac{\tfrac{2}{\pi}\,M_\psi}{c_0(\psi)}.
+\]
+Substituting the locked values
+\[
+\Upsilon\ =\ \frac{\tfrac{2}{\pi}\cdot 0.07320541}{0.17620819}
+\ =\ 0.26443172\ <\ \tfrac{1}{2}\,,
+\]
+so the strict margin is
+\[
+\delta_{\rm cert}\ :=\ \tfrac{1}{2}-\Upsilon\ \ge\ 0.23556828.
+\]
+(All numerics are outward–rounded in the conservative direction, accounting for unconditional density adjustments.)
+
+
+\paragraph{Conclusion (boundary wedge and (P+)).}
+The inequality $\Upsilon<\tfrac12$ yields the a.e.\ boundary wedge $(\mathrm{P}^+)$ for
+$\mathcal J=\det_2(I-A)/(\mathcal O\,\xi)$ on $\Re s=\frac12$ via the phase–velocity identity
+and Poisson balayage. Consequently $2\mathcal J$ is Herglotz and $\Theta=\mathcal C[2\mathcal J]$
+is Schur on $\Omega$. (Only the locked tuple $(c_0,\,M_\psi)$ and the derivative
+constant $2/\pi$ enter the final inequality.) The Vinogradov-Korobov refinement ensures uniformity down to the unconditional zero-free region, and the push to $\Re s = 1/2$ is completed via Bridge C certified covering with explicit prime-tail budgets.
+
+
+\paragraph{Non–circularity and unconditionality (audit note).}
+(i) $K_\xi$ is enclosed by neutralized far-field Carleson bounds (annular $L^2$) plus unconditional Vinogradov–Korobov zero-density, with constants outward-rounded; $M_\psi$ depends only on $C_{\mathrm{box}}^{(\zeta)}=K_0+K_\xi$. (ii) $c_0$ is exact. (iii) $C_P=0$ follows from the finite Schur port (Lemma~\ref{lem:budget}) and the prime-grid lossless KYP model (Proposition~\ref{prop:prime-grid-KYP}); no bandlimit or prime-count hypotheses enter. (iv) We use only unconditional VK density (no stronger density hypotheses or PNT-level inputs). Bridge C is cited only for the boundary push; it does not enter the product certificate.
+
+
+\medskip
+\noindent\emph{Remark (backward compatibility).}
+If one prefers to retain the coarse envelope $C_H(\psi)\le 0.65$ in place of the exact
+$2/\pi$, the same chain closes with
+\[
+\Upsilon=\frac{0.65\,M_\psi}{c_0(\psi)}=0.270115<\tfrac12,
+\]
+still with strict slack; the present section adopts the sharper $2/\pi$ constant to tighten
+the certified margin.

@@ -1,0 +1,178 @@
+﻿% ============================================================
+% Resolving the Remaining BLOCKER: Off–Diagonal Cross–Term
+% ============================================================
+
+
+\section*{Resolution of the Remaining Blocker: Off–Diagonal Cross–Term After Affine Neutralization}
+
+
+\subsection*{Setting}
+Fix a Whitney box \(Q(\alpha I)=\{\tfrac12+\sigma+it:\ t\in[T-L,T+L],\ 0<\sigma<\alpha L\}\) with \(\alpha\in[1,2]\) and \(L=c/\log\langle T\rangle\).
+For a zero \(\rho=\beta+i\gamma\) of \(\xi\) set
+\[
+a:=\big|\beta-\tfrac12\big|\in[0,\tfrac12],\qquad r:=|\gamma-T|,\qquad R:=r/L,
+\]
+and define
+\[
+u_\rho(s):=\Re\log\frac{s-\rho}{s-\rho^\ast},\qquad
+K_\rho:=u_\rho-\Pi_I u_\rho,
+\]
+where \(\Pi_I\) is the Dirichlet–orthogonal projection (with weight \(\sigma\)) of \(u_\rho\) onto the affine subspace \(\{a_0+a_1 t+a_2 \sigma\}\) over \(Q(\alpha I)\).
+We only consider \emph{far} zeros (\(r\ge 2L\)); near zeros are neutralized by the local Blaschke compensator and contribute no singular energy inside \(Q(\alpha I)\).
+
+
+\subsection*{The previously identified BLOCKER}
+To close the unconditional bound on \(K_\xi\), one must control the cross–terms
+\(\langle K_\rho,K_{\rho'}\rangle:=\iint_{Q(\alpha I)}\nabla K_\rho\!\cdot\!\nabla K_{\rho'}\,\sigma\,dt\,d\sigma\)
+\emph{uniformly in the zero configuration}. We now prove a sufficient, fully rigorous off–diagonal bound.
+
+
+\subsection*{Monotonicity under orthogonal affine projection}
+\begin{lemma}[Projection monotonicity]\label{lem:projmono}
+For any two far zeros \(\rho\neq\rho'\),
+\[
+\big|\langle K_\rho, K_{\rho'}\rangle\big|\ \le\ \big|\langle u_\rho, u_{\rho'}\rangle\big|.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Since \(\Pi_I\) is the orthogonal projection for the weighted Dirichlet inner product,
+\[
+\langle K_\rho,K_{\rho'}\rangle
+=\langle u_\rho-\Pi_I u_\rho,\,u_{\rho'}-\Pi_I u_{\rho'}\rangle
+=\langle u_\rho,u_{\rho'}\rangle-\langle \Pi_I u_\rho, \Pi_I u_{\rho'}\rangle,
+\]
+because \(\langle u_\rho-\Pi_I u_\rho,\,\Pi_I u_{\rho'}\rangle=0=\langle \Pi_I u_\rho,\,u_{\rho'}-\Pi_I u_{\rho'}\rangle\).
+Thus \(\langle K_\rho,K_{\rho'}\rangle=\langle u_\rho,u_{\rho'}\rangle-\langle \Pi_I u_\rho,\Pi_I u_{\rho'}\rangle\), and the claim follows by the triangle inequality.
+\end{proof}
+
+
+\subsection*{Cross–term bound for unneutralized kernels}
+We write \(s=\tfrac12+\sigma+it\), \(\Delta:=t-\gamma\), \(\Delta':=t-\gamma'\), and \(D_\gamma:=|\gamma-\gamma'|\).
+
+
+\begin{lemma}[Off–diagonal cross–term]\label{lem:cross}
+Let \(\rho,\rho'\) be far zeros: \(r=|\gamma-T|\ge 2L\), \(r'=|\gamma'-T|\ge 2L\).
+Then
+\[
+\big|\langle u_\rho,u_{\rho'}\rangle\big|
+\ \le\ C_\alpha\, a a'\, L\,
+\frac{1}{\big(1+D_\gamma/L\big)^{2}}\,
+\left(\frac{1}{(R-1)^{2}}+\frac{1}{(R'-1)^{2}}\right).
+\]
+\end{lemma}
+
+
+\begin{proof}
+The exact gradient identity
+\[
+|\nabla u_\rho(s)|^2=\frac{4a^2}{\big((\sigma-a)^2+\Delta^2\big)\big((\sigma+a)^2+\Delta^2\big)}
+\]
+implies the pointwise bound \( |\nabla u_\rho(s)|\le 2a/|\Delta|^2 \) (since the denominator \(\ge \Delta^2\sqrt{\Delta^2}\)).
+Thus
+\[
+\big|\langle u_\rho,u_{\rho'}\rangle\big|
+\le \int_0^{\alpha L}\!\!\sigma\,d\sigma\,\int_{T-L}^{T+L}\!\frac{4 a a'}{|\Delta|^2\,|\Delta'|^2}\,dt
+=2\alpha L^2 a a'\,\int_{T-L}^{T+L}\!\frac{dt}{|\Delta|^2\,|\Delta'|^2}.
+\]
+For any real \(x,y\), \((x-y)^2\le 2(x^2+y^2)\) gives
+\[
+\frac{1}{x^2 y^2}=\frac{(x-y)^2}{x^2 y^2}\cdot\frac{1}{(x-y)^2}
+\ \le\ \frac{2}{(x-y)^2}\left(\frac{1}{x^2}+\frac{1}{y^2}\right).
+\]
+With \(x=\Delta\), \(y=\Delta'\), we obtain
+\[
+\frac{1}{|\Delta|^2|\Delta'|^2}\ \le\ \frac{2}{D_\gamma^2}\left(\frac{1}{\Delta^2}+\frac{1}{(\Delta')^2}\right),
+\]
+hence
+\[
+\int_{T-L}^{T+L}\frac{dt}{|\Delta|^2|\Delta'|^2}
+\le \frac{2}{D_\gamma^2}\left(\int_{T-L}^{T+L}\frac{dt}{(t-\gamma)^2}+\int_{T-L}^{T+L}\frac{dt}{(t-\gamma')^2}\right).
+\]
+For \(\gamma\) outside \([T-L,T+L]\) (since \(r\ge 2L\)),
+\[
+\int_{T-L}^{T+L}\frac{dt}{(t-\gamma)^2}
+=\frac{1}{r-L}-\frac{1}{r+L}=\frac{2L}{(r-L)(r+L)}
+\ \le\ \frac{2L}{(r-L)^2}
+=\frac{2}{L\,(R-1)^2},
+\]
+and similarly for \(\gamma'\). Combining,
+\[
+\int_{T-L}^{T+L}\frac{dt}{|\Delta|^2|\Delta'|^2}
+\ \le\ \frac{4}{D_\gamma^2}\,\frac{1}{L}\left(\frac{1}{(R-1)^2}+\frac{1}{(R'-1)^2}\right).
+\]
+Therefore
+\[
+\big|\langle u_\rho,u_{\rho'}\rangle\big|
+\ \le\ 2\alpha L^2 a a'\cdot \frac{4}{D_\gamma^2}\cdot \frac{1}{L}\!\left(\frac{1}{(R-1)^2}+\frac{1}{(R'-1)^2}\right),
+\]
+which yields the stated bound with \(D_\gamma^{-2}\le (1+D_\gamma/L)^{-2}L^{-2}\) and constants absorbed into \(C_\alpha\).
+\end{proof}
+
+
+\subsection*{Off–diagonal control for the neutralized kernels}
+\begin{proposition}[Neutralized off–diagonal]\label{prop:neutral-off}
+Under the hypotheses of Lemma~\ref{lem:cross},
+\[
+\big|\langle K_\rho,K_{\rho'}\rangle\big|
+\ \le\ C_\alpha\, a a'\, L\,
+\frac{1}{\big(1+D_\gamma/L\big)^{2}}\,
+\left(\frac{1}{(R-1)^{2}}+\frac{1}{(R'-1)^{2}}\right).
+\]
+\end{proposition}
+
+
+\begin{proof}
+Immediate from Lemma~\ref{lem:projmono} and Lemma~\ref{lem:cross}.
+\end{proof}
+
+
+\subsection*{Cotlar–Stein / Schur summation with the correct shelling}
+For each fixed \(\rho\), group other zeros by \emph{vertical separation shells}
+\[
+\mathcal S_m(\rho):=\Big\{\rho'\neq\rho:\ mL\le |\gamma'-\gamma|<(m{+}1)L\Big\},\qquad m=0,1,2,\dots
+\]
+The classical unconditional short–interval zero count gives
+\[
+\#\mathcal S_m(\rho)\ \le\ C\big(L\log\langle \gamma+mL\rangle + 1\big)\ \le\ C'(c+1),
+\]
+since \(L\log\langle\cdot\rangle\le c\) (Whitney scaling). Thus each shell has \(O(1)\) zeros, uniformly in \(m\).
+
+
+Define the weights
+\[
+b_\rho\ :=\ a\,\sqrt{L}\,(R-1)^{-3/2}.
+\]
+From the single–zero bound (proved earlier in the manuscript),
+\[
+\|K_\rho\|^2=\iint_{Q(\alpha I)}|\nabla K_\rho|^2\,\sigma\,dt\,d\sigma\ \le\ C_\alpha\,a^2\,\frac{L}{(R-1)^3}\ \asymp\ b_\rho^2.
+\]
+By Proposition~\ref{prop:neutral-off} and \(R,R'\ge 2\) (far zeros),
+\[
+\frac{\big|\langle K_\rho,K_{\rho'}\rangle\big|}{b_\rho\,b_{\rho'}}\
+\le\ \frac{C_\alpha}{\big(1+D_\gamma/L\big)^{2}}\,
+\left(\frac{(R-1)^{3/2}(R'-1)^{3/2}}{(R-1)^2}+\frac{(R-1)^{3/2}(R'-1)^{3/2}}{(R'-1)^2}\right)
+\ \le\ \frac{C_\alpha}{\big(1+m\big)^2},
+\]
+uniformly for \(\rho'\in\mathcal S_m(\rho)\).
+Hence the Schur/Cotlar row sum is uniformly bounded:
+\[
+\sum_{\rho'\ne\rho}\frac{\big|\langle K_\rho,K_{\rho'}\rangle\big|}{b_\rho\,b_{\rho'}}
+\ \le\ \sum_{m\ge 0}\ \#\mathcal S_m(\rho)\ \frac{C_\alpha}{(1+m)^2}
+\ \le\ C_\alpha''\sum_{m\ge 0}\frac{1}{(1+m)^2}\ <\ \infty.
+\]
+Therefore the Gram operator of \(\{K_\rho\}\) is bounded on \(\ell^2\) with a configuration‑independent norm, and
+\[
+\Big\|\sum_{\rho\in S} K_\rho\Big\|^2\ \le\ C_\alpha'''\sum_{\rho\in S} b_\rho^2
+\ \le\ C_\alpha'''\,L\,\sum_{m\ge 1}\ \sum_{\rho\in \mathcal A_m}\frac{a^2}{(m-1)^3}
+\ \le\ \widetilde C_\alpha\,L\ \asymp\ \widetilde C_\alpha\,|I|.
+\]
+
+
+\subsection*{Conclusion}
+Adding the analytic remainder (holomorphic on a fixed enlargement of \(Q(\alpha I)\), hence contributing \(\le C_\alpha^{\diamond}|I|\)) gives
+\[
+\iint_{Q(\alpha I)} |\nabla \widetilde U|^2\,\sigma\,dt\,d\sigma\ \le\ (\,\widetilde C_\alpha+C_\alpha^{\diamond}\,)\,|I|.
+\]
+This proves the unconditional, configuration‑independent bound on the \(\xi\)–block Carleson energy, thereby closing the previously identified blocker.

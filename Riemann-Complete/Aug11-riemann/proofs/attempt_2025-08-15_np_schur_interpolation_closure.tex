@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{NP--PSD on $\partial R$ $\Rightarrow$ Schur interpolation on $R$ and interior closure}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $R\Subset\{\Re s>\tfrac12\}$ be a rectangle and write $\Sigma_R:=\{\xi=0\}\cap\partial R$. For the truncated models $J_N=\det{}_2^N/\xi$ and $g_N=(2J_N-1)/(2J_N+1)$, suppose we have established $H_{J_N}\succeq0$ on $\partial R\setminus\Sigma_R$ (hence $K_{g_N}\succeq0$ there), and by limits on $\partial R$.
+
+\begin{lemma}[Boundary modulus bound]
+For every $s\in\partial R$, $|g_N(s)|\le 1$.
+\end{lemma}
+\begin{proof}
+The diagonal of the Pick kernel is $K_{g_N}(s,\overline s)=(1-|g_N(s)|^2)/(2\Re s-1)\ge0$, so $|g_N(s)|\le1$ on $\partial R$.
+\end{proof}
+
+\begin{lemma}[Biholomorphic pullbacks preserve Schur]
+Let $\psi:R\to\mathbb D$ be a biholomorphism onto the unit disk. If $h\in H^\infty(\mathbb D)$ with $\|h\|_\infty\le1$, then $h\circ\psi\in H^\infty(R)$ with $\|h\circ\psi\|_\infty\le1$. If $S$ is Schur on $\mathbb D$, then $S\circ\psi$ is Schur on $R$ (and extends to a Schur function on $\Omega$ by composition with the Riemann map from $\Omega$ to $\mathbb H$ if desired).
+\end{lemma}
+
+\begin{theorem}[Schur approximation on $R$ from NP--PSD]
+Fix a compact $K\Subset R$ and $\varepsilon>0$. Then there exists a Schur function $\Phi_{N,\varepsilon}$ on $\Omega$ such that
+\[\sup_{s\in K} |\Phi_{N,\varepsilon}(s)-g_N(s)|<\varepsilon.\]
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+By the previous lemma, $|g_N|\le1$ on $\partial R$. By the maximum modulus principle, $g_N\in H^\infty(R)$ with $\|g_N\|_\infty\le1$. Choose a biholomorphism $\psi:R\to\mathbb D$ and set $h_N:=g_N\circ\psi^{-1}\in H^\infty(\mathbb D)$ with $\|h_N\|_\infty\le1$. Classical Nevanlinna--Pick/Carath\'eodory--Fej\'er approximation on the disk (with increasing boundary/interior node sets) yields a sequence of Schur functions $S_m$ on $\mathbb D$ with $\sup_{z\in \psi(K)}|S_m(z)-h_N(z)|\to0$. Then $\Phi_{N,\varepsilon}:=S_m\circ\psi$ for $m$ large is Schur on $R$ (and extends to $\Omega$ by precomposition with a half--plane map) and $\sup_K|\Phi_{N,\varepsilon}-g_N|<\varepsilon$.
+\end{proof}
+
+\begin{theorem}[Interior route closure on $R$]
+Let $(K_j)_j$ exhaust $R$ by compacts. For each $j$ pick $N(j)$ large so that $\sup_{K_j}|g_{N(j)}-\Theta|<\varepsilon_j$ with $\varepsilon_j\downarrow0$ (from the established local uniform convergence). For each $j$, pick a Schur $\Phi_j$ on $\Omega$ with $\sup_{K_j}|\Phi_j-g_{N(j)}|<\varepsilon_j$. Then $\Phi_j\to\Theta$ locally uniformly on $R$.
+\end{theorem}
+
+\begin{proof}
+On each $K_j$, $\sup|\Phi_j-\Theta|\le \sup|\Phi_j-g_{N(j)}|+\sup|g_{N(j)}-\Theta|<2\varepsilon_j\to0$. A diagonal subsequence argument yields local uniform convergence on $R$.
+\end{proof}
+
+\paragraph{Interior poles and Blaschke compensation.} If $\xi$ has zeros \emph{inside} $R$, the ratio $J=\det_2/\xi$ is meromorphic on $R$. Introduce the half-plane Blaschke product $B_{\xi,R}$ over those zeros and work with the compensated ratio $J^{\mathrm{comp}}:=J\,B_{\xi,R}$ (holomorphic on $R$). The steps above (PSD on $\partial R\setminus\Sigma_R$, NP--Schur on $R$) apply verbatim to $J^{\mathrm{comp}}$ and $g^{\mathrm{comp}}=(2J^{\mathrm{comp}}-1)/(2J^{\mathrm{comp}}+1)$. After constructing Schur approximants for $g^{\mathrm{comp}}$ and passing to the limit, undo the compensation by the inverse Blaschke to recover Schur approximants for $g$.
+
+\paragraph{Conclusion.} Since $R\Subset\Omega$ was arbitrary, a standard diagonal extraction over a cover of $\Omega\setminus Z(\xi)$ produces a sequence of Schur functions on $\Omega$ converging locally uniformly to $\Theta$ on $\Omega\setminus Z(\xi)$. Removable singularities across $Z(\xi)$ then give holomorphy and $|\Theta|\le 1$ on $\Omega$.
+
+\end{document}
+

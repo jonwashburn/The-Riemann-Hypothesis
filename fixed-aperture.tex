@@ -1,0 +1,41 @@
+% Fixed–aperture normalizations and constants
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Fixed–aperture normalizations and constants}
+
+\paragraph{Poisson and Hilbert transforms.}
+We normalize the Poisson kernel and Hilbert transform on $\mathbb{R}$ by
+\[P_y(x):=\frac{1}{\pi}\,\frac{y}{x^2+y^2},\qquad \mathcal H[f](t):=\frac{1}{\pi}\,\mathrm{p.v.}\int_{\mathbb{R}} \frac{f(s)}{t-s}\,ds.\]
+For $\varphi\in L^1_{\rm loc}$ we write its Poisson extension $\Phi=\mathcal P[\varphi]$.
+
+\paragraph{Cones and Carleson boxes (aperture $\alpha\ge1$).}
+For an interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})$ define
+\[Q_\alpha(I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\},\qquad
+\Gamma_\alpha(t):=\{(x,y): |x-t|<\alpha y,\ y>0\}.\]
+
+\paragraph{Windows and scaling.}
+Fix $\psi\in C^1_c(-1,1)$ with $\int\psi=0$. For scale $L>0$ and center $t_0$ set
+\[\varphi_{L,t_0}(t):=\frac{1}{L}\,\psi\!\left(\frac{t-t_0}{L}\right),\qquad \Phi_{L,t_0}:=\mathcal P[\varphi_{L,t_0}].\]
+Let $\Psi:=\mathcal P[\psi]$. Then the fixed–aperture scaling identities hold:
+\[\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ =\ \frac{1}{L}\,\iint_{\mathbb{H}} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta,\]
+\[\int_{\mathbb{R}}\!\Big(\iint_{\Gamma_\alpha(t)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\Big)^{1/2}\,dt\ =\ L\cdot \int_{\mathbb{R}}\!\Big(\iint_{\Gamma_\alpha(\tau)} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta\Big)^{1/2}\,d\tau.\]
+
+\paragraph{Window $H^1$ constant.}
+Define
+\[C_\psi^{(H^1)}\ :=\ \left(\frac{2}{\pi}\,\iint_{\mathbb{H}} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta\right)^{1/2},\]
+so that $\big(\iint |\nabla \Phi_{L,t_0}|^2\,y\big)^{1/2}\le \sqrt{\tfrac{\pi}{2}}\,L^{-1/2} C_\psi^{(H^1)}$.
+
+\paragraph{Hilbert envelope.}
+Set
+\[C_H(\psi)\ :=\ \sup_{s\in\mathbb{R}}\,\left|(\mathcal H[\varphi_{1,0}])'(s)\right|,\]
+so that $\|(\mathcal H[\varphi_{L,t_0}])'\|_\infty= C_H(\psi)/L$ by scaling.
+
+\paragraph{Poisson plateau.}
+For $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$ define
+\[c_0(\psi):=\inf_{z\in Q_\alpha(I)} \Phi_{L,t_0}(z).\]
+By scale invariance and continuity of $\Phi_{L,t_0}$, $c_0(\psi)>0$ depends only on $\psi$ and $\alpha$, and is independent of $L$ and $t_0$.
+
+\paragraph{Carleson energy.}
+For harmonic $U=\mathcal P[u]$, define
+\[C_{\rm box}(U;\alpha):=\sup_I \frac{1}{|I|}\,\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,dx\,dy.\]
+Under Whitney scaling $|I|\le 1/(\Lambda\log\langle T\rangle)$, the constants above are independent of height $T$.

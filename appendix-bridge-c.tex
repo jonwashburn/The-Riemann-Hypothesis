@@ -1,0 +1,56 @@
+% Appendix (archival; not used in the main chain)
+% Bridge C — Neumann step and diagonal covering
+% This appendix is archival and not used in the proof of the main result.
+
+\section*{Appendix (archival; not used in the main chain): Bridge C — Neumann step and diagonal covering}
+
+We record the differential and discrete propagation bounds for the Schur gap along vertical lines and across a diagonal covering. These results are not used in the single-route product-certificate chain but are included for completeness.
+
+\begin{lemma}[Row-sum Lipschitz bound]\label{lem:rowsum-lip-arch}
+Let $\sigma>\tfrac12$ and $h\in\R$. For the weighted $p$-adaptive model one has, uniformly in $t\in\R$,
+\[
+  \sup_p \sum_q \big| T_{pq}(\sigma+h+it)-T_{pq}(\sigma+it)\big|\ \le\ K(\sigma)\,|h|\,\sup_p \sum_q |T_{pq}(\sigma+it)|,
+\]
+where $K(\sigma)$ is the explicit Lipschitz majorant defined in the covering (the derivative-of-log--row-sum majorant). The same bound holds with rows and columns interchanged. Consequently, by Schur's test,
+\[
+  \|T(\sigma+h+it)-T(\sigma+it)\|\ \le\ K(\sigma)\,|h|\,\|T(\sigma+it)\|_{\mathrm{Schur}}\ \le\ K(\sigma)\,|h|\,(1-\delta_{\mathrm{Schur}}(\sigma)).
+\]
+\end{lemma}
+
+\begin{lemma}[Neumann step]\label{lem:neumann-step}
+Suppose $\|T(\sigma+it)\|\le 1-\delta$ and $\|T(\sigma+h+it)-T(\sigma+it)\|\le \vartheta\,\delta$ with $\vartheta\in[0,1)$. Then $I-T(\sigma+h+it)$ is invertible and
+\[
+  \delta_{\mathrm{Schur}}(\sigma+h)\ \ge\ (1-\vartheta)\,\delta_{\mathrm{Schur}}(\sigma).
+\]
+\end{lemma}
+
+\begin{proposition}[Differential propagation bound]\label{prop:diff-bridgeC}
+Let $\delta_{\mathrm{Schur}}:(\tfrac12,1]\to(0,\infty)$ be the line-wise Schur gap defined above for certified lines. Assume $\delta_{\mathrm{Schur}}$ is locally absolutely continuous (which holds since the row sums are locally Lipschitz in $\sigma$ by Lemma~\ref{lem:rowsum-lip-arch}). Then for a.e. $\sigma\in(\tfrac12,1]$,
+\[
+  \frac{d}{d\sigma}\,\log \delta_{\mathrm{Schur}}(\sigma)\ \ge\ -\,K(\sigma).
+\]
+\end{proposition}
+
+\begin{theorem}[Differential Bridge C covering]\label{thm:diff-bridgeC}
+Let $\sigma_0\in(\tfrac12,1)$ and suppose the differential bound of Proposition~\ref{prop:diff-bridgeC} holds on $[\tfrac12+\eta,\sigma_0]$. Then for every $\sigma\in[\tfrac12+\eta,\sigma_0]$,
+\[
+  \delta_{\mathrm{Schur}}(\sigma)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,\exp\!\Big(-\int_{\sigma_0}^{\sigma} K(u)\,du\Big).
+\]
+In particular, any a priori bound $\int_{\tfrac12+\eta}^{\sigma_0}K(u)\,du\le \Lambda$ guarantees
+\[
+  \delta_{\mathrm{Schur}}(\tfrac12+\eta)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,e^{-\Lambda}\ >\ 0.
+\]
+\end{theorem}
+
+\paragraph{Admissible schedule generator.}
+Fix $h_{\max}>0$ and $\varepsilon\in(0,1]$. Define the step-size and grid by
+\[
+  h(\sigma):=\min\!\Big\{\,h_{\max},\ \frac{\varepsilon}{1+K(\sigma)}\,\Big\},\qquad \sigma_{n+1}:=\sigma_n-h(\sigma_n),\quad \sigma_0>\tfrac12.
+\]
+Then $\theta_n:=K(\sigma_n)h(\sigma_n)\le \varepsilon\le \tfrac12$, so one may fall back on the discrete Neumann/Gershgorin step. Moreover, for $N$ with $\sigma_N\le \tfrac12+\eta$,
+\[
+  \delta_{\mathrm{Schur}}(\sigma_N)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,\exp\!\Big(-\int_{\sigma_N}^{\sigma_0} K(u)\,du\Big)\ >\ 0.
+\]
+
+\medskip
+\noindent This appendix is archival and not used in the product-certificate route to (P+).

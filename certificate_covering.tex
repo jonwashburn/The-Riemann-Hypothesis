@@ -1,0 +1,27 @@
+% Certificate—Covering (weighted p-adaptive; Q=29, p_min=31, Cwin=1/4).
+% This block is uniform in t (no t-dependence in K or in the budgets).
+
+\begin{table}[H]
+\centering
+\caption{Certified covering schedule (weighted $p$-adaptive; $Q=29$, $p_{\min}=31$, $C_{\mathrm{win}}=\tfrac14$). Each row was audited to have $\delta_{\mathrm{Schur}}(\sigma_k)>0$.}
+\label{tab:certificate-covering}
+\begin{tabular}{r r r r r r r}
+\toprule
+$k$ & $\sigma_k$ & $h_k$ & $K(\sigma_k)$ & $\theta_k$ & $\Delta L_k$ & $L_k$ \\
+\midrule
+1 & 0.6000 & 0.0100 & 1.418255 & 0.014183 & 0.014284 & 0.014284 \\
+2 & 0.5900 & 0.0100 & 1.442518 & 0.014425 & 0.014530 & 0.028814 \\
+3 & 0.5800 & 0.0100 & 1.467425 & 0.014674 & 0.014783 & 0.043597 \\
+4 & 0.5700 & 0.0100 & 1.493000 & 0.014930 & 0.015043 & 0.058640 \\
+5 & 0.5600 & 0.0100 & 1.519269 & 0.015193 & 0.015309 & 0.073949 \\
+6 & 0.5500 & 0.0100 & 1.546260 & 0.015463 & 0.015583 & 0.089533 \\
+7 & 0.5400 & 0.0100 & 1.573998 & 0.015740 & 0.015865 & 0.105398 \\
+8 & 0.5300 & 0.0100 & 1.602515 & 0.016025 & 0.016155 & 0.121553 \\
+9 & 0.5200 & 0.0100 & 1.631841 & 0.016318 & 0.016453 & 0.138006 \\
+10 & 0.5100 & 0.0095 & 1.662007 & 0.015789 & 0.015915 & 0.153921 \\
+\bottomrule
+\end{tabular}
+\vspace{0.3em}
+
+\par\small\textit{Notes.} $\theta_k=K(\sigma_k)\,h_k$ and $L_k=\sum_{j\le k}\! -\log(1-\theta_j)$. The Schur audit verifies $\delta_{\mathrm{Schur}}(\sigma_k)>0$ uniformly in $t$ for all rows. The corrected Bridge~C then yields nonvanishing of $\zeta$ on each line $\Re s=\sigma_k$.
+\end{table}

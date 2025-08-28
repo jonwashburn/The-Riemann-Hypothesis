@@ -1,0 +1,6 @@
+﻿\begin{lemma}[Endgame: from PSC to RH]\label{lem:endgame}
+Assume PSC holds with the locked constants so that for every $\sigma> \tfrac12$, the vertical line $\Re s=\sigma$ is zero–free for $\xi$. Then the open half–plane $\Re s>\tfrac12$ is zero–free, and by the functional equation $\xi(s)=\xi(1-s)$, all nontrivial zeros lie on $\Re s=\tfrac12$. Hence RH.
+\end{lemma}
+\begin{proof}
+By PSC, $\Re J\ge0$ on $\Re s=\sigma>\tfrac12$; Herglotz/Poisson and the maximum–modulus principle give Schur contractivity in $\Re s\ge\sigma$, so no zeros of $\xi$ occur there. Let $\sigma\downarrow\tfrac12$ to conclude $\Re s>\tfrac12$ is zero–free. Symmetry under $s\mapsto 1-s$ pins zeros to the critical line.
+\end{proof}

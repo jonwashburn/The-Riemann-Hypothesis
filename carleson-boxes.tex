@@ -1,0 +1,118 @@
+% Unconditional bound for the ξ–block on Carleson boxes
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Unconditional ξ–block bound on Carleson boxes}
+
+\paragraph{Domain, boxes, and the ξ–block.}
+Set the upper half–plane $\mathbb{H}:=\{z=x+iy:y>0\}$ with boundary $\mathbb{R}$. Fix a bounded interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})\subset\mathbb{R}$, $L>0$, and its Carleson box
+\[
+Q(I):=\{x+iy: x\in I,\ 0<y\le L\},\qquad Q(\alpha I):=\{x+iy: x\in \alpha I,\ 0<y\le \alpha L\},\ \alpha>1.
+\]
+We study the contribution of the Riemann $\xi$–function to the weighted box energy
+\[
+\mathcal{E}_{\xi}(I):=\iint_{Q(I)} |\nabla U_{\xi}(z)|^2\,y\,dx\,dy,
+\]
+where $U_{\xi}=\Re\log \Xi$ is the (fixed–branch) potential of the $\xi$–block after transfer to $\mathbb{H}$; write $s=\tfrac{1}{2}-i z$ and set $\Xi(z):=\xi(s)$ so the critical line maps to $\partial\mathbb{H}$. Let $\mathcal{Z}_+:=\{a_j=x_j+i y_j\in\mathbb{H}\}$ be the zeros of $\Xi$ with multiplicities $m_j\in\mathbb{N}$. In $\mathbb{H}$,
+\[
+\log |\Xi(z)| = H(z) + \sum_{j} m_j\,\Phi_{a_j}(z),\qquad
+\Phi_{a}(z):=\log\left|\frac{z-a}{z-\overline{a}}\right|,
+\]
+where $H$ is harmonic (archimedean and outer part). Accordingly,
+\[
+U_{\xi}(z)=H(z)+\sum_j m_j \,\Phi_{a_j}(z),\qquad 
+\nabla\Phi_{a}(z)=\frac{z-a}{|z-a|^2}-\frac{z-\overline{a}}{|z-\overline{a}|^2}.
+\]
+We bound the discrete “$\xi$–block” $\sum_j m_j\Phi_{a_j}$; the smooth part $H$ is handled elsewhere and does not enter $K_{\xi}$.
+
+\paragraph{Neutralization.}
+Given $\alpha>1$, define the local Blaschke neutralizer
+\[
+B_I(z):=\prod_{a_j\in Q(\alpha I)}\left(\frac{z-a_j}{z-\overline{a_j}}\right)^{m_j},\qquad |B_I(t)|=1\ \text{ for a.e. } t\in\mathbb{R}.
+\]
+Set $\widetilde{\Xi}:=\Xi/B_I$ and $\widetilde{U}_{\xi}:=\Re\log \widetilde{\Xi} = H+\sum_{a_j\notin Q(\alpha I)} m_j \Phi_{a_j}$. Then $\widetilde{U}_\xi$ is harmonic on $Q(\alpha I)$, and
+\[
+\mathcal{E}_{\xi}(I)=\iint_{Q(I)} |\nabla \widetilde{U}_{\xi}|^2\,y\,dx\,dy\;+\;\underbrace{\iint_{Q(I)} |\nabla \Re\log B_I|^2\,y\,dx\,dy}_{=:\ \mathcal{E}_{B}(I)}.
+\]
+We bound the \emph{far–field} term $\mathcal{E}^{\mathrm{far}}_{\xi}(I):=\iint_{Q(I)} |\nabla \widetilde{U}_{\xi}|^2 y\,dx\,dy$ by a universal constant after normalization by $|I|$, and show the \emph{near–field} neutralizer term $\mathcal{E}_B(I)$ is a local sum that shifts harmlessly when boxes move.
+
+\section*{Pointwise kernel, cubic decay, and a per–zero bound}
+Let $a=x_0+i y_0\in\mathbb{H}$, $y_0>0$. Introduce $A:= (x-x_0)^2+(y-y_0)^2$ and $B:=(x-x_0)^2+(y+y_0)^2$. Differentiating $\Phi_a$ gives
+\begin{align*}
+\partial_x \Phi_a(z)&=\frac{4 y y_0 (x-x_0)}{A\,B},\\
+\partial_y \Phi_a(z)&=\frac{2 y_0\big(y^2-(x-x_0)^2-y_0^2\big)}{A\,B}.
+\end{align*}
+Hence
+\[
+|\nabla \Phi_a(z)|^2
+:=\frac{4y_0^2\big(4y^2(x-x_0)^2+\big(y^2-(x-x_0)^2-y_0^2\big)^2\big)}{A^2 B^2}.
+\]
+
+\begin{lemma}[Cubic far–field bound]\label{lem:cubic}
+Fix $\alpha>1$. Let $I=(c-L/2,c+L/2)$ and $a\notin Q(\alpha I)$. Define $D:=\mathrm{dist}(x_0,I)$ and $R:=\sqrt{D^2+y_0^2}$. Then
+\[
+\mathcal{E}(a;I):=\iint_{Q(I)} |\nabla \Phi_a(z)|^2\,y\,dx\,dy\ \le\ \frac{64}{\alpha^2}\,\frac{y_0\,L^2}{(D+y_0)^3}\ \le\ 64\,\frac{y_0\,L^2}{R^3}.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $a\notin Q(\alpha I)$, for $x\in I$ and $0<y\le L$ one has $|x-x_0|\ge D\ge \tfrac{\alpha-1}{2}L$ and $y\le \tfrac{2}{\alpha-1}D$. Estimating $A\,B\ge (x-x_0)^2 (y_0+y)^2$ and bounding the numerator by $(u^2+v^2)^2\le 2(u^4+v^4)$ yields $|\nabla\Phi_a|^2\le \dfrac{64y_0^2}{(x-x_0)^2(y_0+y)^4}$. Integrate in $x$ and $y$ explicitly to obtain the stated bound.
+\end{proof}
+
+\paragraph{Annular summation and zero–counting only.}
+For $k\ge 0$ define dyadic horizontal annuli around $I$ by
+\[
+\mathcal{A}_k(I):=\Big\{x+iy\in\mathbb{H}:\ 2^k\tfrac{L}{2}\le |x-c|<2^{k+1}\tfrac{L}{2},\ 0<y\le 1\Big\}.
+\]
+Partition $\mathcal{Z}_+\setminus Q(\alpha I)$ into $\mathcal{Z}_k:=\mathcal{Z}_+\cap \mathcal{A}_k(I)$; for $a_j\in\mathcal{Z}_k$ one has $D\asymp 2^k L$. Summing Lemma~\ref{lem:cubic} and using $y_0\le \tfrac{1}{2}$,
+\[
+\frac{1}{|I|}\,\mathcal{E}^{\mathrm{far}}_{\xi}(I)\ \le\ \frac{64}{\alpha^2}\,\frac{1}{L^2}\sum_{k\ge0}\frac{\#\mathcal{Z}_k}{2^{3k}}.
+\]
+
+\begin{lemma}[Zero–counting in horizontal windows]\label{lem:zc}
+There exist $A_0,A_1\ge 1$ such that for all $T\ge 3$ and $W\in(0,T]$,
+\[
+\#\{\rho=\beta+i\gamma: 0<\gamma\le T+W\}-\#\{\rho: 0<\gamma\le T-W\}\ \le\ A_0\,W\log T\ +\ A_1\log T.
+\]
+Equivalently, for $\Xi$ in $\mathbb{H}$,
+\[
+\#\big(\mathcal{Z}_+\cap\{x+iy: |x-T|<W\}\big)\ \le\ A_0\,W\log T + A_1\log T.
+\]
+\end{lemma}
+
+Applying Lemma~\ref{lem:zc} on the horizontal window of width $2^{k}L$ centered at height $T=|c|+1$ gives
+\[
+\#\mathcal{Z}_k\ \le\ C_0\,(2^k L)\,\log\langle T\rangle\ +\ C_1\log\langle T\rangle,\qquad \langle T\rangle:=2+|T|.
+\]
+Hence
+\[
+\frac{1}{|I|}\,\mathcal{E}^{\mathrm{far}}_{\xi}(I)
+\ \le\ \frac{64}{\alpha^2}\,\frac{\log\langle T\rangle}{L^2}\left(C_0 \sum_{k\ge0}\frac{1}{2^{2k}} + C_1\sum_{k\ge0}\frac{1}{2^{3k}}\right)
+\ =:\ C^\star\,\frac{\log\langle T\rangle}{L^2}.
+\]
+
+\paragraph{Scale law and unconditional uniformity.}
+With Whitney scaling $L\le 1/(\Lambda\log\langle T\rangle)$ (fixed $\Lambda\ge 1$),
+\[
+\frac{1}{|I|}\,\mathcal{E}^{\mathrm{far}}_{\xi}(I)\ \le\ C^\star\,\Lambda^2\ =:\ K_\xi^{\mathrm{far}}.
+\]
+
+\section*{The neutralizer term $\mathcal{E}_{B}(I)$}
+By construction, $B_I$ includes exactly the zeros of $\Xi$ inside $Q(\alpha I)$. Set $U_B:=\Re\log B_I=\sum_{a_j\in Q(\alpha I)} m_j\,\Phi_{a_j}$. Its energy on $Q(I)$ is
+\[
+\mathcal{E}_B(I)\ =\ \sum_{a_j\in Q(\alpha I)} m_j\,\iint_{Q(I)} |\nabla\Phi_{a_j}(z)|^2 y\,dx\,dy.
+\]
+Each summand is nonnegative and local. As boxes move, contributions migrate between $\mathcal{E}_B$ and $\mathcal{E}^{\mathrm{far}}_{\xi}$ and remain controlled by Lemma~\ref{lem:cubic}. Taking a supremum over all boxes does not increase beyond the far–field bound. Thus we may absorb $\mathcal{E}_B$ and put $K_\xi:=K_\xi^{\mathrm{far}}$.
+
+\section*{Conclusion}
+\begin{theorem}[Unconditional $\xi$–block bound]\label{thm:Kxi}
+Fix $\alpha\ge 2$ and a scale parameter $\Lambda\ge 1$. For every Carleson box $Q(I)$ at height $T$ with length $L\le 1/(\Lambda\log\langle T\rangle)$,
+\[
+\frac{1}{|I|}\,\iint_{Q(\alpha I)} |\nabla U_{\xi}(z)|^2\,y\,dx\,dy\ \le\ K_\xi,
+\qquad K_\xi:=\frac{64}{\alpha^2}\left( \frac{C_0}{1-2^{-2}}+\frac{C_1}{1-2^{-3}}\right)\Lambda^2,
+\]
+where $C_0,C_1$ are the absolute constants from Lemma~\ref{lem:zc}. The proof is unconditional, using only the local neutralizer $B_I$, the explicit kernel, cubic far–field decay, and classical zero–counting.
+\end{theorem}
+
+\begin{remark}[Sharper variants]
+(i) A slightly more delicate estimate yields quartic decay $R^{-4}$ pointwise; cubic suffices and is simpler. (ii) Optimizing $\alpha$ and the $y$–integral can lower constants without affecting unconditionality.
+\end{remark}

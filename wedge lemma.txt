@@ -1,0 +1,201 @@
+﻿\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{The Wedge Lemma (Phase Rise vs.\ Drop): Two--Sided Control and Regularity of the Boundary Phase}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Setting.}
+Work in the upper half--plane $\mathbb{H}=\{x+iy:y>0\}$ with boundary $\mathbb{R}$.
+Let $F$ be meromorphic in $\mathbb{H}$, of bounded type, with a.e.\ non--tangential boundary values.
+Write
+\[
+\log F=U+iV, \qquad u:=\log|F|\in L^1_{\mathrm{loc}}(\mathbb{R}),\qquad
+w:=\text{a.e.\ boundary trace of }V\ (\text{the boundary phase}).
+\]
+Fix an interval $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$ and an aperture $\alpha>1$;
+set $Q(\alpha I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\}$.
+
+
+\paragraph{Phase--balayage (interval form).}
+Let $\mu$ be the signed zero--pole measure of $F$ in $\mathbb{H}$ (poles positive, zeros negative, with multiplicity).
+For any bounded open interval $J=(a,b)\subset \mathbb{R}$ whose endpoints are points of approximate continuity for $u,w$ one has
+\begin{equation}\label{eq:PB-interval}
+\int_{J} (-w'(t))\,dt
+=\int_{\mathbb{H}}\mathrm{Bal}(z;J)\,d\mu(z)\;-\;\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big),
+\end{equation}
+where $\mathrm{Bal}(x+iy;J)=\displaystyle\int_{a}^{b}\frac{2y}{(t-x)^2+y^2}\,dt\in[0,2\pi]$ is the balayage kernel and $\mathcal{H}$ is the Hilbert transform.
+(The identity follows from Poisson--Jensen and non--tangential limits; it is a standard computation and self--contained.)
+
+
+\paragraph{The certificate format.}
+Let $\psi$ be a fixed $C^1$ window of mean $0$ supported in $(-1,1)$ and set $\varphi_{L,t_0}(t)=L^{-1}\psi\big(\frac{t-t_0}{L}\big)$.
+Assume the box energy
+\[
+C_{\mathrm{box}}=\sup_{J}\frac{1}{|J|}\iint_{Q(\alpha J)}|\nabla U|^2\,y\,dx\,dy
+\]
+is finite (harmonic $U$; the supremum runs over intervals $J\subset\mathbb{R}$).
+Let $C_H(\psi),\,C_\psi^{(H^1)},\,c_0(\psi),\,C_P$ be the window/geometry constants (Poisson plateau $c_0>0$, Hilbert envelope $C_H$, $H^1$ window constant, and the band--limit remainder bound). Define the \emph{certificate number}
+\[
+\Upsilon(F):=\frac{C_H(\psi)\,M_\psi(F)+C_P}{c_0(\psi)},\qquad
+M_\psi(F):=\sup_{L,t_0}\frac{1}{L}\Big|\int u(t)\,\varphi_{L,t_0}(t)\,dt\Big|.
+\]
+The proof map uses the implication
+\begin{equation}\label{eq:cert-imp}
+\Upsilon(F)\le \tfrac{1}{2}\quad\Longrightarrow\quad
+\int_{J}(-w'_F)\,dt\ \le\ \frac{\pi}{2}\quad\text{for every subinterval }J\subset I,
+\end{equation}
+obtained by (i) testing \eqref{eq:PB-interval} against $\varphi_{L,t_0}$, (ii) bounding the outer term via the fixed--aperture $H^1$--BMO/Carleson estimate
+$M_\psi\le \tfrac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\mathrm{box}}}$, and (iii) using the plateau lower bound $c_0$ and $\mathrm{Bal}\le 2\pi$ (all constants are fixed once $\psi,\alpha$ are fixed). This direction is standard and unconditional under our hypotheses.
+
+
+\medskip
+The issue is to prove \emph{two--sided} control: not only the phase \emph{drop} bound \eqref{eq:cert-imp}, but also a matching \emph{rise} bound. We now show that the same certificate, with the \emph{same constants}, automatically yields the rise bound by passing to the reciprocal.
+
+
+\section*{Certificate invariance and rise control}
+
+
+\begin{lemma}[Invariance under inversion]\label{lem:inv}
+Let $F^\sharp:=1/F$. Then:
+\[
+u^\sharp=-u,\qquad w^\sharp=-w\ \ (\text{a.e.}),\qquad \mu^\sharp=-\mu,\qquad C_{\mathrm{box}}(F^\sharp)=C_{\mathrm{box}}(F),
+\]
+and
+\[
+M_\psi(F^\sharp)=M_\psi(F),\qquad \Upsilon(F^\sharp)=\Upsilon(F).
+\]
+\end{lemma}
+
+
+\begin{proof}
+The first identities are immediate from $\log F^\sharp=-\log F$. Since $C_{\mathrm{box}}$ uses $|\nabla U|^2$, it is invariant under $U\mapsto -U$. The window functional $M_\psi$ is defined by an absolute value and flips sign with $u$, hence is unchanged. The residual/band--limit bound $C_P$ is an \emph{upper} bound on a linear functional of the data (in the RH map, a Dirichlet--polynomial main term paired with $\varphi_{L,t_0}$); changing $F$ to $F^\sharp$ flips the sign of that linear functional but not its absolute bound. Therefore the certificate $\Upsilon$ is unchanged.
+\end{proof}
+
+
+\begin{lemma}[Rise bound]\label{lem:rise}
+If $\Upsilon(F)\le \tfrac12$, then for every subinterval $J\subset I$,
+\[
+\int_{J} w'_F(t)\,dt\ \le\ \frac{\pi}{2}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Apply \eqref{eq:cert-imp} to $F^\sharp$: $\int_J (-w'_{F^\sharp})\le \pi/2$. Since $w^\sharp=-w$, this reads $-\int_J (-w'_F)\le \pi/2$, i.e. $\int_J w'_F\le \pi/2$.
+\end{proof}
+
+
+Combining \eqref{eq:cert-imp} and Lemma~\ref{lem:rise} yields the \emph{two--sided} oscillation control
+\begin{equation}\label{eq:two-sided}
+\left|\int_{J} (-w'_F(t))\,dt\right|\ \le\ \frac{\pi}{2}\qquad\text{for every subinterval }J\subset I.
+\end{equation}
+
+
+\section*{Regularity and the canonical phase representative}
+
+
+The wedge conclusion will follow once we rigorously connect the interval functional
+$J\mapsto \int_J (-w')$ to a canonical representative of the phase. We now build that representative and show it coincides a.e.\ with the boundary phase.
+
+
+\begin{lemma}[Countable additivity of the phase--drop functional]\label{lem:add}
+Define $T$ on finite disjoint unions of bounded open intervals by
+\[
+T\Big(\bigsqcup_{m=1}^M (a_m,b_m)\Big)\ :=\ \sum_{m=1}^M\left(\int_{\mathbb{H}}\mathrm{Bal}(z;(a_m,b_m))\,d\mu(z)
+-\big(\mathcal{H}[u](b_m)-\mathcal{H}[u](a_m)\big)\right).
+\]
+Then $T$ is well--defined and countably additive on the algebra generated by bounded open intervals.
+\end{lemma}
+
+
+\begin{proof}
+Linearity of $\mathrm{Bal}$ in the indicator of the interval and finite additivity of endpoint differences make $T$ finitely additive. If $\{(a_m,b_m)\}$ shrink and exhaust $(a,b)$, monotone convergence of $\mathrm{Bal}$ (it is a nonnegative kernel) and telescoping of Hilbert endpoint terms give countable additivity.
+\end{proof}
+
+
+\begin{lemma}[Canonical phase via indefinite integral]\label{lem:W}
+Fix an anchor $t_\star\in I$ at which $u,w$ have non--tangential boundary values and set $w(t_\star)=0$ (branch choice). Define
+\[
+w^\sharp(t)\ :=\ -\,T\big((t_\star,t]\cap I\big),\qquad t\in I
+\]
+(where $(t_\star,t]\cap I$ is a finite union of intervals, oriented in the natural way). Then $w^\sharp\in BV(I)$ and for all $a<b$ in $I$,
+\[
+w^\sharp(b)-w^\sharp(a)\ =\ -\,T\big((a,b)\big)\ =\ \int_{(a,b)} \big(-w'(t)\big)\,dt
+\]
+(the last equality is the interval form \eqref{eq:PB-interval}).
+\end{lemma}
+
+
+\begin{proof}
+By Lemma~\ref{lem:add}, $T$ is a finite signed measure on $I$, so $w^\sharp$ is the (anchored) distribution function of $-T$ and is of bounded variation; additivity gives the difference formula. The second equality is precisely \eqref{eq:PB-interval}.
+\end{proof}
+
+
+\begin{lemma}[Identification $w^\sharp=w$ a.e.]\label{lem:identify}
+The distributional derivatives of $w$ and $w^\sharp$ coincide on $I$, hence $w^\sharp-w$ is constant a.e.; with the anchor $w(t_\star)=w^\sharp(t_\star)=0$ one has $w^\sharp=w$ a.e.\ on $I$.
+\end{lemma}
+
+
+\begin{proof}
+For every $\varphi\in C_c^\infty(I)$, integrating \eqref{eq:PB-interval} against $\varphi$ (via the test--function form proved with Poisson kernels) yields $\langle -w',\varphi\rangle=T(\varphi)$, where $T(\varphi)$ denotes $\int \varphi\,dT$. By construction, $w^\sharp$ satisfies $\langle -{w^\sharp}',\varphi\rangle=T(\varphi)$. Therefore $w$ and $w^\sharp$ have the same distributional derivative; on a connected set they differ by a constant a.e. The anchor fixes the constant.
+\end{proof}
+
+
+\section*{Wedge from two--sided oscillation (no extra smoothness needed)}
+
+
+\begin{theorem}[Wedge Lemma: phase rise vs.\ drop]\label{thm:wedge}
+Assume $\Upsilon(F)\le \tfrac12$ on $I$.
+Fix the anchored representative $w^\sharp$ of Lemma~\ref{lem:W}.
+Then for every $t\in I$,
+\[
+|w^\sharp(t)|\ \le\ \frac{\pi}{2}.
+\]
+Consequently $w(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ for a.e.\ $t\in I$.
+\end{theorem}
+
+
+\begin{proof}
+For $t\ge t_\star$,
+\[
+w^\sharp(t)\ =\ -\,T\big((t_\star,t)\big)\ =\ -\int_{(t_\star,t)} (-w'(s))\,ds.
+\]
+By the two--sided bound \eqref{eq:two-sided}, $|T((t_\star,t))|\le \pi/2$, hence $|w^\sharp(t)|\le \pi/2$.
+For $t<t_\star$, the same argument with $(t,t_\star)$ gives the bound.
+By Lemma~\ref{lem:identify}, $w=w^\sharp$ a.e., hence the wedge holds a.e.
+\end{proof}
+
+
+\section*{What has been proved and what was required}
+
+
+\begin{itemize}
+\item \textbf{Rise is controlled.} The same certificate that bounds the \emph{drop} on every subinterval immediately bounds the \emph{rise} by applying it to the reciprocal $F^\sharp=1/F$ (Lemma~\ref{lem:inv} and Lemma~\ref{lem:rise}); all constants are invariant.
+\item \textbf{Regularity is sufficient.} We did \emph{not} assume absolute continuity of $w$. Instead, we built a canonical $BV$ representative $w^\sharp$ directly from the countably additive phase--drop functional $T$ (Lemma~\ref{lem:W}), proved that $w^\sharp$ equals the boundary phase a.e.\ (Lemma~\ref{lem:identify}), and then deduced the wedge from the two--sided bounds (Theorem~\ref{thm:wedge}). No differentiation of $\mathcal{H}[u]$ was needed.
+\item \textbf{Locality.} All statements hold on each box $I$ under the fixed scale/aperture. Exhausting the domain by overlapping boxes preserves the wedge a.e.\ everywhere the certificate holds.
+\end{itemize}
+
+
+\begin{remark}[Anchoring]
+The wedge is a statement modulo additive constants; fixing $w(t_\star)=0$ simply pins the branch. Any other choice shifts the wedge interval by the same constant.
+\end{remark}
+
+
+\end{document}

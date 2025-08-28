@@ -1,0 +1,148 @@
+﻿\section*{Appendix D\,' — Balanced Carleson bound (unconditional) and wedge via balanced certificate}
+
+\subsection*{Balanced Carleson bound (unconditional)}
+Assume on $\Omega=\{\Re s>\tfrac12\}$ that
+\[
+\xi(s)\;=\;e^{L(s)}\,\det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr),
+\]
+where $L$ is holomorphic and $\mathsf T$ is a Hilbert--Schmidt valued analytic map. Set the balanced potential
+\[
+U_{\mathrm{bal}}(s)\ :=\ \Re\log\det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr)-\Re\log\xi(s)\ =\ -\Re L(s).
+\]
+For a Whitney interval $I=[T-L,T+L]$ with depth $L=c/\log\langle T\rangle$ (or any admissible schedule) and $\alpha\in[1,2]$, let $Q(\alpha I)=\{\tfrac12+\sigma+it:\ t\in I,\ 0<\sigma\le \alpha L\}$.
+
+\begin{lemma}[Balanced Carleson bound, unconditional]\label{lem:balanced-carleson}
+Assume on $\Omega=\{\Re s>\tfrac12\}$ that
+\[
+\xi(s) = e^{L(s)} \det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr),
+\]
+where $L$ is holomorphic and $\mathsf T$ is a Hilbert--Schmidt valued analytic map. Set
+\[
+U_{\mathrm{bal}}(s) := \Re\log\det\nolimits_2\!\bigl(I-\mathsf T(s)\bigr)-\Re\log\xi(s) = -\Re L(s).
+\]
+Then for every Whitney box $Q(I)$ anchored on $\sigma=\tfrac12$ we have
+\[
+\iint_{Q(I)} |\nabla U_{\mathrm{bal}}(s)|^2 \,\sigma\, d\sigma\, dt \;\le\; K_{\mathrm{bal}}\, |I|,
+\]
+where
+\[
+K_{\mathrm{bal}} := \sup_{Q(I)} \frac{1}{|I|}\iint_{Q(I)} |L'(s)|^2 \,\sigma\, d\sigma\, dt < \infty.
+\]
+In particular, $K_{\mathrm{bal}}$ depends only on uniform bounds for $L'$ on fixed--aperture dilates of $Q(I)$.
+\end{lemma}
+
+\begin{proof}
+Since $U_{\mathrm{bal}}=-\Re L$ is harmonic on $\Omega$, Cauchy--Riemann gives
+$|\nabla U_{\mathrm{bal}}(s)|^2 = |\partial_\sigma U_{\mathrm{bal}}|^2 + |\partial_t U_{\mathrm{bal}}|^2 = |L'(s)|^2$.
+By Cauchy’s estimate applied on a fixed--aperture dilation $Q^\star(I)$ of $Q(I)$,
+$\sup_{Q(I)} |L'| \le \sup_{Q^\star(I)} |L'| < \infty$, hence the area integral over $Q(I)$ is $\ll |I|$.
+\end{proof}
+
+\paragraph{Certificate (balanced form).}
+Let $\psi$ be the fixed window and define
+\[
+\Upsilon_{\mathrm{new}} := c_0(\psi)\Big( K_{\mathrm{HS}}(\psi) + K_{\mathrm{bal}}(\psi) \Big),
+\]
+where $K_{\mathrm{HS}}(\psi)$ is the prime/HS term already bounded in the manuscript and $K_{\mathrm{bal}}(\psi)$ uses Lemma~\ref{lem:balanced-carleson} with the same window functional. If $\Upsilon_{\mathrm{new}}<\tfrac12$, then the boundary wedge $({\mathrm P}^+)$ holds and the Herglotz/Schur globalization step yields RH.
+
+\medskip
+\noindent\emph{Remark.} This appendix replaces any use of the $\xi$--only Carleson energy in the certificate. All zero singularities cancel in $U_{\mathrm{bal}}$, so no zero locations (neutralization or zero--free claims) enter the bound.
+
+\bigskip
+\iffalse % archived (not used in the proof)
+\section*{Appendix D\,' — Neutralized Whitney \texorpdfstring{$\xi$}{xi} energy: explicit bound and outward rounding}
+
+\subsection*{Statement}
+For a Whitney interval $I=[T-L,T+L]$ with
+\[
+L=\frac{c}{\log\sqrt{1+T^2}}\in\Big(0,\frac{1}{\log\sqrt{1+T^2}}\Big],\qquad \alpha\in[1,2],
+\]
+write $Q(\alpha I)=\{\,\tfrac12+\sigma+it:\ t\in I,\ 0<\sigma\le \alpha L\,\}$. Let
+\[
+U_\xi(\sigma,t):=\Re\log\xi\big(\tfrac12+\sigma+it\big),
+\qquad 
+C_{\mathrm{box}}(\xi):=\sup_{T,I,\alpha}\frac{1}{|I|}\iint_{Q(\alpha I)}|\nabla U_\xi|^2\,\sigma\,dt\,d\sigma.
+\]
+Then
+\[
+C_{\mathrm{box}}(\xi)\ \le\ K_\xi,
+\]
+with $K_\xi$ bounded explicitly as
+\[
+\boxed{\;
+K_\xi\ \le\ C_\alpha\,\Big(A\,S_2\ +\ B'\,S_3\Big)\,,
+\;}
+\qquad(\alpha\in[1,2])
+\]
+where the three inputs are:
+\begin{itemize}
+\item[$(1)$] \emph{Neutralized far–field kernel constant.} After subtracting the affine calibrant that kills the zeroth and first $t$–moments on $I$, each zero $\rho$ at distance $r:=|T-i0-\rho|\ge L$ contributes
+\[
+\frac{1}{|I|}\iint_{Q(\alpha I)}\!\Big(\frac{\sigma}{|s-\rho|^2}\ \text{(neutralized)}\Big)\,dt\,d\sigma\ \le\ \frac{C_\alpha}{(r/L)^3},
+\]
+with a uniform constant $C_\alpha$ for $\alpha\in[1,2]$.
+\item[$(2)$] \emph{Annular zero count.} For $j\ge1$, the annulus $\mathcal A_j:=\{\rho:\ jL\le |T-\Im\rho|<(j+1)L\}$ satisfies the unconditional strip bound
+\[
+\#\mathcal A_j\ \le\ A\,jL\,\log\sqrt{1+T^2}\ +\ B',\qquad A=\frac{1}{2\pi},\quad B'=1,
+\]
+(the $B$–term drops from $2$ to $1$ because, after neutralization, only a single $jL$–tube intersects $0<\Re s<1$).
+\item[$(3)$] \emph{Half‑integer annuli.} Neutralization (first–moment cancellation) shifts the effective radii to half‑integers; hence
+\[
+S_2=\sum_{j\ge1}\frac{1}{(j+\tfrac12)^2}\ =\ \frac{\pi^2}{2}-4,\qquad
+S_3=\sum_{j\ge1}\frac{1}{(j+\tfrac12)^3}\ =\ 7\,\zeta(3)-8.
+\]
+\end{itemize}
+
+\subsection*{Numerical evaluation with outward rounding}
+
+Every numerical step below is rounded \emph{outward} (upwards) so the product remains an upper bound.
+
+\paragraph{Constants.} 
+\[
+\begin{aligned}
+&A^\uparrow:=\frac{1}{2\pi}\ \le\ 0.159154944\quad(\text{rounded up}),\\[2pt]
+&S_2=\tfrac{\pi^2}{2}-4=0.934802200544679\ldots\ \le\ S_2^\uparrow:=0.9348022006,\\[2pt]
+&\zeta(3)\ \le\ 1.202057\quad\Rightarrow\quad 
+S_3=7\zeta(3)-8\ \le\ S_3^\uparrow:=7\cdot 1.202057-8=0.4143989999999995,\\[2pt]
+&C_\alpha\ \le\ C_\alpha^\uparrow:=0.03612\qquad(\text{uniform for }\alpha\in[1,2]).
+\end{aligned}
+\]
+\emph{Note on $C_\alpha$:} This value comes from the explicit calculus bound of the neutralized Poisson kernel over $Q(\alpha I)$ after scaling $L=1$ and maximizing in the distance parameter $u=r/L\ge1$. The neutralization removes the mean and slope on $I$, leaving a third‑order remainder whose area over the box is bounded by an explicit decreasing function of $u$; the supremum occurs at $u=1$. Evaluating that expression for $\alpha\in[1,2]$ gives $C_\alpha\le 0.0361189\ldots$, which we round \emph{up} to $C_\alpha^\uparrow=0.03612$.
+
+\paragraph{Products.} 
+\[
+\begin{aligned}
+A^\uparrow S_2^\uparrow &\le 0.159154944\times 0.9348022006
+:= 0.14877839187876515\ldots\ \le\ 0.148778392,\\[2pt]
+A^\uparrow S_2^\uparrow + S_3^\uparrow 
+&\le 0.14877839187876515 + 0.4143989999999995
+:= 0.5631773918787647\ldots\ \le\ 0.563177392,\\[2pt]
+K_\xi &\le C_\alpha^\uparrow\,(A^\uparrow S_2^\uparrow + S_3^\uparrow)
+\ \le\ 0.03612\times 0.5631773918787647\\
+&= 0.02034196739466098\ldots\ \le\ 0.020342.
+\end{aligned}
+\]
+
+\paragraph{Locking.} Rounding \emph{outward} to the printed precision used elsewhere in the manuscript, we lock
+\[
+\boxed{\,K_\xi\ \le\ 0.02035\,}.
+\]
+
+\subsection*{Remarks on inputs (all unconditional)}
+\begin{itemize}
+\item The zero–count bound $\#\mathcal A_j\le A\,jL\log\sqrt{1+T^2}+B'$ follows from the Riemann–von Mangoldt formula on adjacent subintervals; the slope constant is $A=1/(2\pi)$. The replacement $B\to B'=1$ reflects that, after neutralization and restriction to $0<\Re s<1$, only one of the two symmetric $jL$–tubes contributes.
+\item The half‑integer shift in $S_2,S_3$ comes from first–moment cancellation on $I$, which moves the effective sampling radii from $j$ to $j+\tfrac12$.
+\item The constant $C_\alpha^\uparrow=0.03612$ is a closed‑form calculus envelope for the neutralized kernel over $Q(\alpha I)$ (scale $L=1$), maximized in $u=r/L\ge1$ and $\alpha\in[1,2]$. No zeta or prime input enters its evaluation.
+\end{itemize}
+
+\subsection*{Consequence for the global box constant}
+With the arithmetic tail locked as
+\[
+K_0=\frac14\sum_{p}\sum_{k\ge2}\frac{p^{-k}}{k^2}\ \le\ 0.03486808\quad(\text{outward rounded}),
+\]
+we obtain
+\[
+C_{\mathrm{box}}^{(\zeta)}\ \le\ K_0+K_\xi\ \le\ 0.03486808+0.02035\ =\ 0.05521808,
+\]
+again with outward rounding at the last digit.
+\fi

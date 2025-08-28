@@ -1,0 +1,229 @@
+﻿\documentclass[11pt]{article}
+
+
+% No new packages introduced.
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\newenvironment{proof}{\par\noindent\textit{Proof.}\ }{\hfill$\square$\par}
+
+
+\title{Boundary Behavior and Outer Normalization for \texorpdfstring{$\mathcal{J}$}{J} on the Half--Plane}
+\author{Jonathan Washburn \\ Recognition Science, Recognition Physics Institute \\ \texttt{jon@recognitionphysics.org} \\ Austin, Texas, USA}
+\date{August 24, 2025}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Domain, Boundary, and Function Classes}
+
+
+Let
+\[
+\Omega:=\{\,s\in\mathbb{C}:\ \Re s>\tfrac12\,\},\qquad \partial\Omega=\{\,\tfrac12+it:\ t\in\mathbb{R}\,\}.
+\]
+For a bounded interval \(I\subset\mathbb{R}\) and \(\alpha\ge 1\), write
+\[
+Q(\alpha I)=\bigl\{\tfrac12+x+iy:\ 0<x<\alpha|I|,\ y\in I\bigr\},\qquad \Omega(I)=\Omega\cap\{\,\Im s\in I\,\}.
+\]
+For \(f\) harmonic on \(\Omega\), the \emph{Poisson extension} of a boundary datum \(g\in L^1_{\mathrm{loc}}(\mathbb{R})\) is
+\[
+\mathbf{P}[g](\tfrac12+x+iy)\ :=\ \frac{1}{\pi}\int_{\mathbb{R}} \frac{x}{(y-t)^2+x^2}\,g(t)\,dt.
+\]
+A complex function \(F\) analytic on \(\Omega\) is in the local Smirnov class \(N^+_{\mathrm{loc}}(\Omega)\) if for every bounded \(I\) there exists some harmonic majorant on \(\Omega(I)\) for \(\log^+|F|\).
+
+
+\section*{Local Outer Construction on \texorpdfstring{$\Omega$}{Omega}}
+
+
+\begin{definition}[Local outer function from boundary modulus]
+\label{def:outer}
+Fix a bounded interval \(I\), and let \(b\in L^1(I)\cap \mathrm{BMO}(I)\).
+Extend \(b\) by \(0\) to \(\mathbb{R}\).
+Let \(U:=\mathbf{P}[b]\) on \(\Omega\) and let \(\widetilde U\) be its harmonic conjugate on \(\Omega\) normalized by \(\widetilde U(\tfrac12+1+i\,\mathrm{center}(I))=0\).
+Define
+\[
+\mathcal{O}_I(s)\ :=\ \exp\!\big(U(s)+i\,\widetilde U(s)\big),\qquad s\in\Omega.
+\]
+\end{definition}
+
+
+\begin{proposition}[Basic properties of \(\mathcal{O}_I\)]
+\label{prop:outer-props}
+With \(b\) and \(\mathcal{O}_I\) as above:
+\begin{enumerate}
+\item \(\mathcal{O}_I\) is analytic and zero–free on \(\Omega\).
+\item For a.e.\ \(t\in I\), the nontangential boundary limit exists and satisfies
+\(|\mathcal{O}_I^\ast(t)|=\exp(b(t))\).
+For a.e.\ \(t\notin I\), \(|\mathcal{O}_I^\ast(t)|=1\).
+\item On every bounded \(I'\subset\mathbb{R}\), \(\log|\mathcal{O}_I^\ast|\in L^1(I')\) and \(\log|\mathcal{O}_I^\ast|\in \mathrm{BMO}(I'\cap I)\) with
+\[
+\|\log|\mathcal{O}_I^\ast|\|_{\mathrm{BMO}(I'\cap I)}\ \le\ C\,\|b\|_{\mathrm{BMO}(I)}.
+\]
+\item The \emph{Carleson area} of \(\nabla \log|\mathcal{O}_I|\) over \(Q(\alpha I)\) is controlled:
+\[
+\frac{1}{|I|}\iint_{Q(\alpha I)} x\,|\nabla U(s)|^2\,dx\,dy\ \le\ C(\alpha)\,\|b\|_{\mathrm{BMO}(I)}^{\,2}.
+\]
+\end{enumerate}
+\end{proposition}
+
+
+\begin{proof}
+(1) \(\mathcal{O}_I=\exp(U+i\widetilde U)\) with \(U\) harmonic and \(\widetilde U\) its conjugate; simply connectedness of \(\Omega\) ensures analyticity and nonvanishing.
+
+
+(2) Since \(b\in L^1_{\mathrm{loc}}\), the Poisson extension \(U\) admits nontangential limits a.e.\ equal to \(b\); conjugate limits exist a.e.; therefore \(|\mathcal{O}_I^\ast|=\exp(b)\) a.e. on \(I\) and \(=1\) off \(I\).
+
+
+(3) The boundary modulus is \(\exp(b)\) with \(b\in L^1(I)\cap \mathrm{BMO}(I)\); hence \(\log|\mathcal{O}_I^\ast|=b\) on \(I\) and \(0\) on \(I^c\), which gives the claimed membership and norm bound.
+
+
+(4) Standard \(H^1\)–BMO/Carleson theory: the square function of \(U\) over a fixed–aperture tent above \(I\) is controlled by \(\|b\|_{\mathrm{BMO}(I)}\); the Carleson weight \(x\) converts tent control to the box integral with a geometric constant \(C(\alpha)\).
+\end{proof}
+
+
+\begin{lemma}[Approximation by smooth boundary data]
+\label{lem:smooth-approx}
+Let \(\{\eta_\varepsilon\}_{\varepsilon\downarrow 0}\) be an approximate identity on \(\mathbb{R}\), and set \(b_\varepsilon:=\eta_\varepsilon\ast b\).
+Let \(\mathcal{O}_{I,\varepsilon}:=\exp\big(\mathbf{P}[b_\varepsilon]+i\,\widetilde{\mathbf{P}[b_\varepsilon]}\big)\).
+Then, for every compact \(K\subset\Omega\),
+\[
+\lim_{\varepsilon\downarrow 0}\ \sup_{s\in K}\ \big|\mathcal{O}_{I,\varepsilon}(s)-\mathcal{O}_I(s)\big|\ =\ 0,
+\]
+and a.e.\ on \(\mathbb{R}\),
+\(
+\lim_{\varepsilon\downarrow 0}\ \log|\mathcal{O}_{I,\varepsilon}^\ast(t)|= \log|\mathcal{O}_I^\ast(t)|.
+\)
+\end{lemma}
+
+
+\begin{proof}
+We have \(b_\varepsilon\to b\) in \(L^1_{\mathrm{loc}}\) and pointwise a.e.; Poisson extensions converge uniformly on compacta, and so do their conjugates up to an additive constant fixed by the same normalization; exponentiation preserves uniform convergence on compacta.
+For boundary values, use nontangential convergence of Poisson integrals and dominated convergence on compact subintervals.
+\end{proof}
+
+
+\section*{Boundary Values for \texorpdfstring{$\mathcal{J}$}{J} via Outer Normalization}
+
+
+Let \(R\) be a given analytic function on \(\Omega\) (in application \(R(s)=\det\nolimits_2(I-A(s))/\xi(s)\)).
+We work locally on a fixed bounded interval \(I\).
+
+
+\begin{definition}[Local outer normalization]
+\label{def:J}
+Let \(b_I\) be a boundary majorant for \(\log|R|\) on \(I\), with \(b_I\in L^1(I)\cap \mathrm{BMO}(I)\), and define \(\mathcal{O}_I\) from \(b_I\) as in Definition~\ref{def:outer}.
+Set
+\[
+\mathcal{J}_I(s)\ :=\ \frac{R(s)}{\mathcal{O}_I(s)}\,,\qquad s\in\Omega.
+\]
+\end{definition}
+
+
+\begin{theorem}[Existence and identification of boundary values of \(\mathcal{J}_I\)]
+\label{thm:boundary-J}
+Assume:
+\begin{itemize}
+\item[(i)] \(R\in N^+_{\mathrm{loc}}(\Omega)\), so that for every bounded \(I\), \(\log^+|R|\) admits a harmonic majorant on \(\Omega(I)\).
+\item[(ii)] \(\log|R^\ast|\in L^1_{\mathrm{loc}}(\mathbb{R})\) in the nontangential sense on \(\partial\Omega\).
+\item[(iii)] \(b_I\in L^1(I)\cap \mathrm{BMO}(I)\) and \(b_I\ge \log|R^\ast|\) a.e.\ on \(I\).
+\end{itemize}
+Then \(\mathcal{J}_I\) has nontangential boundary values a.e.\ on \(I\), and
+\[
+|\mathcal{J}_I^\ast(t)|\ =\ \exp\big(\log|R^\ast(t)|-b_I(t)\big)\ \le\ 1\quad\text{for a.e.\ }t\in I.
+\]
+Moreover, \(\log|\mathcal{J}_I^\ast|\in L^1(I)\) and \(\log|\mathcal{J}_I^\ast|\in \mathrm{BMO}(I)\) with
+\[
+\|\log|\mathcal{J}_I^\ast|\|_{\mathrm{BMO}(I)}\ \le\ C\,\big(\|\log|R^\ast|\|_{\mathrm{BMO}(I)}+\|b_I\|_{\mathrm{BMO}(I)}\big).
+\]
+\end{theorem}
+
+
+\begin{proof}
+By hypothesis (i)–(ii), \(R\) admits a.e.\ nontangential boundary values with \(\log|R^\ast|\in L^1_{\mathrm{loc}}\).
+By Proposition~\ref{prop:outer-props}, \(\mathcal{O}_I\) has boundary modulus \(e^{b_I}\) a.e.\ on \(I\).
+Thus the quotient \(\mathcal{J}_I=R/\mathcal{O}_I\) has a.e.\ boundary modulus on \(I\) given by \(\exp(\log|R^\ast|-b_I)\), which is \(\le 1\) by (iii).
+The integrability and BMO bounds for \(\log|\mathcal{J}_I^\ast|\) follow from triangle inequalities for BMO and \(L^1\).
+\end{proof}
+
+
+\begin{proposition}[Stability under smooth outer approximation]
+\label{prop:stability}
+Let \(b_{I,\varepsilon}=\eta_\varepsilon\ast b_I\) and \(\mathcal{O}_{I,\varepsilon}\) be as in Lemma~\ref{lem:smooth-approx}, and set \(\mathcal{J}_{I,\varepsilon}:=R/\mathcal{O}_{I,\varepsilon}\).
+Then for every compact \(K\subset\Omega\),
+\[
+\lim_{\varepsilon\downarrow 0}\ \sup_{s\in K}\big|\mathcal{J}_{I,\varepsilon}(s)-\mathcal{J}_I(s)\big|=0,
+\]
+and a.e.\ on \(I\),
+\[
+\lim_{\varepsilon\downarrow 0}\ \log|\mathcal{J}_{I,\varepsilon}^\ast(t)|\ =\ \log|\mathcal{J}_I^\ast(t)|.
+\]
+\end{proposition}
+
+
+\begin{proof}
+Uniform convergence of \(\mathcal{O}_{I,\varepsilon}\to \mathcal{O}_I\) on compacts gives uniform convergence of \(\mathcal{J}_{I,\varepsilon}\to\mathcal{J}_I\) on compacts.
+For boundary values, use a.e.\ convergence of \(\log|\mathcal{O}_{I,\varepsilon}^\ast|\) to \(\log|\mathcal{O}_I^\ast|\), plus a.e.\ boundary existence for \(R\).
+\end{proof}
+
+
+\section*{From Local to Global Outer Normalization}
+
+
+\begin{definition}[Global outer normalization]
+Let \(b\in L^1_{\mathrm{loc}}(\mathbb{R})\cap \mathrm{BMO}_{\mathrm{loc}}(\mathbb{R})\) be a global boundary majorant for \(\log|R^\ast|\).
+Define \(\mathcal{O}:=\exp\big(\mathbf{P}[b]+i\,\widetilde{\mathbf{P}[b]}\big)\) (normalization fixed at a base point).
+Set
+\[
+\mathcal{J}\ :=\ \frac{R}{\mathcal{O}}\,.
+\]
+\end{definition}
+
+
+\begin{theorem}[Boundary behavior of \(\mathcal{J}\)]
+\label{thm:J-global}
+Assume \(R\in N^+_{\mathrm{loc}}(\Omega)\) and \(\log|R^\ast|\in L^1_{\mathrm{loc}}\).
+Let \(b\ge \log|R^\ast|\) a.e. on \(\mathbb{R}\) with \(b\in L^1_{\mathrm{loc}}\cap \mathrm{BMO}_{\mathrm{loc}}\).
+Then \(\mathcal{J}\) has a.e.\ nontangential boundary limits on \(\partial\Omega\) with
+\[
+|\mathcal{J}^\ast(t)|\ =\ \exp\big(\log|R^\ast(t)|-b(t)\big)\ \le\ 1\quad\text{for a.e.\ }t\in\mathbb{R}.
+\]
+On each bounded \(I\), \(\log|\mathcal{J}^\ast|\in L^1(I)\cap \mathrm{BMO}(I)\), and the Carleson area of \(\nabla\log|\mathcal{O}|\) over \(Q(\alpha I)\) is bounded by \(C(\alpha)\|b\|_{\mathrm{BMO}(I)}^2|I|\).
+\end{theorem}
+
+
+\begin{proof}
+Apply Theorem~\ref{thm:boundary-J} with \(b_I:=b|_I\) and Proposition~\ref{prop:outer-props} on each bounded interval, then cover \(\mathbb{R}\) by overlapping \(I\)'s; the statements are local.
+\end{proof}
+
+
+\section*{What This Delivers for the Proof Map}
+
+
+\begin{itemize}
+\item A \emph{constructive} outer normalization \(\mathcal{O}\) with explicit local Carleson control of \(\nabla\log|\mathcal{O}|\) in terms of local \(\mathrm{BMO}\) size of the chosen majorant \(b\).
+\item Almost–everywhere nontangential boundary limits for \(\mathcal{J}=R/\mathcal{O}\), with \(|\mathcal{J}^\ast|\le 1\) wherever \(b\) dominates \(\log|R^\ast|\).
+\item Stability under \emph{smoothed} approximations \(b\mapsto b_\varepsilon\): the corresponding outer functions \(\mathcal{O}_\varepsilon\) and normalized quotients \(\mathcal{J}_\varepsilon\) converge locally uniformly in \(\Omega\) and a.e.\ on the boundary to \(\mathcal{O}\) and \(\mathcal{J}\).
+\end{itemize}
+
+
+\bigskip
+\noindent\textbf{BLOCKER:} Verify hypothesis \(R\in N^+_{\mathrm{loc}}(\Omega)\) for \(R(s)=\det\nolimits_2(I-A(s))/\xi(s)\) by supplying an explicit harmonic majorant for \(\log^+|R|\) on each \(\Omega(I)\).
+This requires a Hilbert–Schmidt bound for \(\log|\det_2(I-A)|\) and an unconditional bound for \(\log|\xi|\) to the right of \(\Re s=\tfrac12\).
+
+
+\noindent\textbf{BLOCKER:} Provide a detailed constant audit for the fixed–aperture Carleson estimate in Proposition~\ref{prop:outer-props}(4), including the precise dependence \(C(\alpha)\) and independence from the height of \(I\).
+
+
+\noindent\textbf{BLOCKER:} Record the exact normalization used to define the harmonic conjugate \(\widetilde U\) and show that alternative normalizations only change \(\mathcal{O}\) by a unimodular constant, which cancels in \(\mathcal{J}=R/\mathcal{O}\).
+
+
+\end{document}

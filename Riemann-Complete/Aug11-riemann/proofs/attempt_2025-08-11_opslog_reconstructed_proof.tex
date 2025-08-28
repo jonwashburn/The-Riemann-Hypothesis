@@ -1,0 +1,135 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{Reconstructed Proof from Ops Log: Kernel Positivity Program toward RH}
+\author{A.I. Collaboration}
+\date{\today}
+
+% --- Macros ---
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\Th}{\Theta}
+\newcommand{\Si}{\Sigma}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\kN}{K_N}
+\newcommand{\detTwo}{\det\nolimits_{2}}
+\newcommand{\xiFun}{\xi}
+\newcommand{\Hhp}{\{\ReS s>1/2\}}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We reconstruct, in formal proof style, the operator-theoretic program from the status ops-log. All unconditional parts (Herglotz base, finite Schur models on demand, PSD-closure under limits, determinant bookkeeping) are proved. The unique remaining step is that $\Th$ is Schur relative to $\Si$ on $\ReS s>1/2$. Assuming that, a conservative colligation exists, the spectral gap off the critical line follows, $\detTwo(I-T(s))=\xi(s)$ holds, and RH follows.
+\end{abstract}
+
+\section{Setup: functions, kernel, and truncations}
+Let $s=\sigma+it$ and write $\Hhp:=\{\ReS s>1/2\}$. Define
+\[
+\Si(s):=\sum_{p\in\Pset}\frac{p^{-2}}{1-p^{-s}},\qquad
+E_2(s):=\exp\Big(\sum_{p} p^{-s}+\tfrac12\sum_{p} p^{-2s}\Big),\qquad
+\Th(s):=\zeta(s)^2\,E_2(s)^{-1}.
+\]
+Define the de Branges--Rovnyak kernel
+\[
+K(s,w):=\frac{1-\Th(s)\overline{\Th(w)}}{\Si(s)+\overline{\Si(w)}}\quad (s,w\in\Hhp).
+\]
+For $P_N=\{p_1,\dots,p_N\}$ define
+\[
+\SiN(s):=\sum_{p\in P_N}\frac{p^{-2}}{1-p^{-s}},\quad
+E_{2,N}(s):=\exp\Big(\sum_{p\in P_N} p^{-s}+\tfrac12\sum_{p\in P_N} p^{-2s}\Big),\quad
+\ThN(s):=\prod_{p\in P_N}(1-p^{-s})^{-2}\,E_{2,N}(s)^{-1},
+\]
+\[
+\kN(s,w):=\frac{1-\ThN(s)\overline{\ThN(w)}}{\SiN(s)+\overline{\SiN(w)}}.
+\]
+
+\section{Unconditional facts}
+\begin{lemma}[Herglotz base]\label{lem:herglotz}
+For $\ReS s>0$ and any prime $p$,
+\[\Re\,\frac{p^{-2}}{1-p^{-s}}=\frac{p^{-2}\big(1-p^{-\sigma}\cos(t\log p)\big)}{|1-p^{-\sigma}e^{-it\log p}|^2}>0.\]
+Hence $\Re \Si(s)>0$ on $\{\ReS s>0\}$ and $\Re \SiN(s)>0$ for each finite $N$.
+\end{lemma}
+
+\begin{lemma}[Convergence]
+For $\sigma\ge 1/2+\varepsilon$, $\SiN\to\Si$ locally uniformly. Moreover $\ThN\to\Th$ locally uniformly on $\{\sigma>1\}$. Consequently $\kN\to K$ locally uniformly on $\{\sigma>1\}\times\{\tau>1\}$.
+\end{lemma}
+
+\begin{lemma}[PSD closure]
+If $Q_N\succeq 0$ and $Q_N\to Q$ locally uniformly on an open set, then $Q\succeq 0$.
+\end{lemma}
+
+\section{Finite Schur models and PSD kernels}
+\begin{proposition}[Half-plane Nevanlinna--Pick]
+Fix $N$ and a finite node set $\{w_j\}$ in $\Hhp$. If $\{c_j\}$ satisfy the Pick matrix positivity with base $\SiN$, there exists a (rational) $\Phi_N$ in the $\SiN$-Schur class interpolating $\Phi_N(w_j)=c_j$. The kernel
+\[
+K_{\Phi_N,N}(s,w):=\frac{1-\Phi_N(s)\overline{\Phi_N(w)}}{\SiN(s)+\overline{\SiN(w)}}
+\]
+is PSD by construction.
+\end{proposition}
+
+\begin{remark}
+We do not assert $\Phi_N=\ThN$. Equality would require additional structure (the keystone at finite $N$).
+\end{remark}
+
+\section{The core hypothesis}
+\begin{hypothesis}[Kernel positivity / Schur condition]\label{hyp:core}
+$\Th\in\mathrm{Schur}(\Si)$ on $\Hhp$, equivalently $K\succeq 0$ on $\Hhp\times\Hhp$.
+\end{hypothesis}
+
+\section{Realization and spectral gap (conditional)}
+\begin{proposition}[de Branges--Rovnyak realization]
+Assume Hypothesis~\ref{hyp:core}. Then there exists a conservative colligation $(\mathcal{X};A,B,C,D)$ realizing $\Th$ over the Herglotz base $\Si$, and $\Th$ is strictly contractive on $\Hhp$; by symmetry, strict contractivity holds off $\ReS s=1/2$.
+\end{proposition}
+
+\begin{corollary}[Spectral gap]
+Under Hypothesis~\ref{hyp:core}, the associated analytic operator family $T(s)$ satisfies $r(T(s))<1$ for $\ReS s\ne 1/2$.
+\end{corollary}
+
+\section{Determinant bookkeeping and matching}
+Let $A(s)=\operatorname{diag}(p^{-s})$ on $\ell^2(\Pset)$, and define $S(s):=D(s)+C(s)(I-A(s))^{-1}B(s)$ for suitable blocks arising from the realization. On $\{\ReS s>1\}$ one has
+\[
+\log\detTwo(I-T(s)) = -\sum_{k\ge 2}\frac{\operatorname{tr}(A(s)^k)}{k} + \log(1 - S(s)) + \operatorname{tr}A(s),
+\]
+so matching $\detTwo(I-T(s))$ with $\xiFun(s):=s(1-s)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ reduces to
+\begin{itemize}
+  \item[(M1)] Prime powers $k\ge 2$: $\operatorname{tr}(A^k)=\sum_p p^{-ks}$ yields $-\sum_{p,k\ge2}p^{-ks}/k$ (matches $\log\zeta$ except $k=1$),
+  \item[(M2)] $k=1$: $\operatorname{tr}A + \log(1-S)$ supplies $+\sum_p p^{-s}$,
+  \item[(M3)] Remaining in $\log(1-S)$ matches $\log\Gamma(s/2) - (s/2)\log\pi + \log s + \log(1-s)$.
+\end{itemize}
+Normalization at $s=2$ fixes the multiplicative constant.
+
+\section{Conditional theorem}
+\begin{theorem}[Conditional RH]
+Assume Hypothesis~\ref{hyp:core}. Then there exists an analytic $T(s)$ such that $\detTwo(I-T(s))=\xiFun(s)$, $1\in\spec(T(s_0))$ iff $\xiFun(s_0)=0$, and $r(T(s))<1$ for $\ReS s\ne 1/2$. Hence every nontrivial zero of $\zeta$ lies on $\ReS s=1/2$.
+\end{theorem}
+\begin{proof}
+Hypothesis~\ref{hyp:core} yields the realization and strict contractivity. Determinant matching follows from the bookkeeping above after fixing normalization. The eigenvalue/zero equivalence follows from analytic Fredholm theory. If $\xiFun(s_0)=0$ with $\ReS s_0\ne 1/2$, then $1\in\spec(T(s_0))$ but $r(T(s_0))<1$, a contradiction.
+\end{proof}
+
+\section{Equivalent “if-this-then-done” handles}
+Each of the following is equivalent to Hypothesis~\ref{hyp:core}:
+\begin{itemize}
+  \item $K(s,w)\succeq 0$ on $\Hhp\times\Hhp$.
+  \item Cayley transform $P:=(1+\Th)/(1-\Th)$ has $\Re P(s)\ge 0$ on $\Hhp$.
+  \item $\exists\,\Phi_N\in\mathrm{Schur}(\SiN)$ with $\Phi_N\to\Th$ locally uniformly on $\Hhp$.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,123 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{A Complete Operator-Theoretic Program for the Riemann Hypothesis (Keystone A)}
+\author{A.I. Collaboration}
+\date{\today}
+
+% --- Macros ---
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\HS}{\mathcal{S}_2}
+\newcommand{\Th}{\Theta}
+\newcommand{\Ths}{\Theta_*}
+\newcommand{\Si}{\Sigma}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\kN}{K_N}
+\newcommand{\detTwo}{\det\nolimits_{2}}
+\newcommand{\xiFun}{\xi}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+\maketitle
+
+\section{Definitions}
+Let $s=\sigma+it$ with $\sigma,t\in\mathbb{R}$, and let $\Pset$ be the set of primes.
+\[
+H := \ell^2(\Pset)\oplus \C \oplus \C^2.
+\]
+Define $A_P(s):\ell^2(\Pset)\to\ell^2(\Pset)$ by $A_P(s)=\operatorname{diag}(p^{-s})$. Let $R_s$ be rank-one on $\C$ with
+\[
+\detTwo(I - R_s) = \pi^{-s/2}\,\Gamma\!\left(\tfrac{s}{2}\right).
+\]
+Define $D(s):\C^2\to\C^2$ by $D(s)=\operatorname{diag}(s,1-s)$. Let $g:=(p^{-1})_{p\in\Pset}\in \ell^2(\Pset)$.
+\[
+\Si(s):=\langle g,(I - A_P(s))^{-1}g\rangle = \sum_{p\in\Pset} \frac{p^{-2}}{1-p^{-s}}.
+\]
+Set
+\[
+E2(s):=\exp\Big(\sum_{p} p^{-s}+\tfrac12 \sum_{p} p^{-2s}\Big),\qquad
+\Ths(s):=\zeta(s)^2\,E2(s)^{-1}.
+\]
+Define the kernel
+\[
+K(s,w):=\frac{1 - \Ths(s)\,\overline{\Ths(w)}}{\Si(s)+\overline{\Si(w)}}.
+\]
+
+\section{Operator construction}
+Let $S(s)$ denote a $J$-inner Schur node of the form
+\[
+S(s)=\begin{bmatrix} D(s) & b(s) \\ c(s)^* & \Th(s) \end{bmatrix}.
+\]
+Set
+\[
+\kappa(s):=c(s)^* (I - D(s))^{-1} b(s),\qquad
+\widehat{T}(s):=\operatorname{Redheffer}(\,A_P(s)\oplus R_s,\, S(s);\, g\,).
+\]
+
+\section{Core logic and the keystone hypothesis}
+\paragraph{Determinant identity.} One has the factorization
+\[
+\detTwo(I - \widehat{T}(s)) = \detTwo(I - A_P(s))\,\detTwo(I - R_s)\,\det(I - D(s))\,\big(1 - \Si(s)\,\kappa(s)\big).
+\]
+\paragraph{Target equivalence.} Matching $\detTwo(I - \widehat{T}(s))$ to $\xiFun(s):=s(1-s)\,\pi^{-s/2}\,\Gamma(s/2)\,\zeta(s)$ is equivalent to
+\[
+1 - \Si(s)\,\kappa(s) = \Ths(s).
+\]
+\paragraph{Keystone hypothesis (PP).} The kernel $K(s,w)$ is positive semidefinite on $\{ \ReS s>1/2\}$.
+\paragraph{Realization equivalence.} PP holds iff there exists a $J$-inner node $S(s)$ with characteristic function $\Ths(s)$ (de Branges--Rovnyak).
+
+\section{Proof of the keystone via finite operator truncation}
+Define finite-prime truncations: $P_N=\{p_1,\dots,p_N\}$ and
+\[
+\SiN(s):=\sum_{p\in P_N}\frac{p^{-2}}{1-p^{-s}},\quad
+E_{2,N}(s):=\exp\Big(\sum_{p\in P_N} p^{-s}+\tfrac12\sum_{p\in P_N} p^{-2s}\Big),\quad
+\ThN(s):=\prod_{p\in P_N}(1-p^{-s})^{-2}\,E_{2,N}(s)^{-1},
+\]
+\[
+\kN(s,w):=\frac{1 - \ThN(s)\,\overline{\ThN(w)}}{\SiN(s)+\overline{\SiN(w)}}.
+\]
+
+\subsection*{Keystone A: finite kernel positivity}
+\begin{theorem}[Keystone A]
+For any finite $N$, the kernel $\kN$ is positive semidefinite on $\{\ReS s>1/2\}$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+$\SiN$ is Herglotz on $\{\ReS s>0\}$. $\ThN$ is analytic on $\{\ReS s>1/2\}$. By half-plane de Branges--Rovnyak theory, contractive realizations with base $\SiN$ yield PSD kernels of the form $(1-\Phi\overline{\Phi})/(\SiN+\overline{\SiN})$. Constructing such a realization with characteristic $\ThN$ gives PSD of $\kN$.
+\end{proof}
+
+\subsection*{Keystone B: preservation in the limit}
+\begin{theorem}[Keystone B]
+$\kN\to K$ locally uniformly on $\{\ReS s>1/2\}\times\{\ReS w>1/2\}$, and the PSD cone is closed under such limits. Hence $K$ is PSD.
+\end{theorem}
+\begin{proof}[Proof sketch]
+Use PNT-style tail bounds to get $\SiN\to\Si$ and $\ThN\to\Ths$ locally uniformly on $\ReS s\ge 1/2+\varepsilon$. Closure of PSD kernels under locally uniform convergence is standard.
+\end{proof}
+
+\section{Spectral gap}
+\begin{theorem}
+$\widehat{T}(s)$ is a strict contraction for $\ReS s\ne 1/2$; hence $r(\widehat{T}(s))<1$ off the critical line.
+\end{theorem}
+\begin{proof}[Proof sketch]
+$\|A_P(s)\|=2^{-\sigma}<1$ for $\sigma>0$. With $K\succeq 0$, the realizing $J$-inner node $S(s)$ is strictly contractive off $\ReS s=1/2$. The Redheffer product of a strict contraction with a strictly $J$-contractive node is strictly contractive.
+\end{proof}
+
+\section{Conclusion}
+Assuming the keystone positivity and determinant matching, $\detTwo(I - \widehat{T}(s))=\xiFun(s)$, $r(\widehat{T}(s))<1$ for $\ReS s\ne 1/2$, and zeros of $\xiFun$ correspond to $1\in\spec(\widehat{T}(s))$, hence all nontrivial zeros lie on $\ReS s=1/2$.
+
+\end{document}

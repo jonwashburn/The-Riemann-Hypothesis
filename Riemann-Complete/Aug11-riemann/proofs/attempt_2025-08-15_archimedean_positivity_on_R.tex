@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Archimedean positivity on $R$: sidewise positive measure at interior height}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Fix $R=\{\sigma\in[0.55,0.62],\ t\in[0,10]\}\Subset\{\ReS s>\tfrac12\}$ with a zero--free collar for $\xi$ on $\overline R$. Let
+\[A(s):=\frac{1}{\tfrac12 s(s-1)\,\pi^{-s/2}\,\Gamma(s/2)}\quad(\text{the archimedean factor of }\xi^{-1}),\qquad N(s):=\det_2(s)\,.
+\]
+Let $O_R$ be the outer built from $\log|N/\xi|$ on $\partial R$ and define $\widetilde J:=\dfrac{N}{O_R\,\xi}$. For a side $\partial R_*$ with outward unit normal $\nu_*$ and $\varepsilon>0$, set $\widetilde J_\varepsilon(s):=\widetilde J(s+\varepsilon\nu_*)$ and decompose
+\[\widetilde J_\varepsilon(s)=\underbrace{\frac{N(s+\varepsilon\nu_*)}{O_R(s+\varepsilon\nu_*)}}_{\text{prime--power part}}\cdot\underbrace{A(s+\varepsilon\nu_*)}_{\text{arch part}}\,.
+\]
+
+\begin{theorem}[Archimedean sidewise positivity at height $\varepsilon$]\label{thm:arch-pos}
+For the fixed $R$ above and each side $\partial R_*$, there exists $\varepsilon_0>0$ such that for all $\varepsilon\in(0,\varepsilon_0]$ the function $s\mapsto A(s+\varepsilon\nu_*)$ admits a representation
+\[\ReS\,A(s+\varepsilon\nu_*)\ =\ \int_{\partial R_*} P_{R,\varepsilon}(s,\zeta)\, d\mu_{\mathrm{arch}}(\zeta)\qquad(s\in \partial R_*),\]
+with a finite \emph{positive} measure $\mu_{\mathrm{arch}}\ge0$ depending only on $R$ and $\varepsilon$. Consequently, the sidewise Herglotz measure for $\widetilde J_\varepsilon$ may be chosen as $d\mu_{R_*,\varepsilon}=d\mu_{\mathrm{pp}}+d\mu_{\mathrm{arch}}\ge0$.
+\end{theorem}
+
+\begin{proof}[Proof sketch with standard integral representation]
+Consider first the vertical sides, $s=\sigma_*+it$, $\nu_*=(1,0)$. Write $z:=\tfrac12(s+\varepsilon)$. Using the classical integral representation valid for $\Re z>0$ (see e.g. Bateman/Erd\H{o}s tables),
+\[\log\Gamma(z)=\Big(z-\tfrac12\Big)\log z - z + \tfrac12\log(2\pi)\; +\; \int_0^\infty\! \Big(\frac{1}{2t}-\frac{1}{e^t-1}+\frac{1}{2}\Big)\,e^{-zt}\,\frac{dt}{t},\]
+differentiate in $z$ and take real parts to obtain
+\[\ReS\,\frac{\Gamma'(z)}{\Gamma(z)}\ =\ \log|z|\; +\; \int_0^\infty \!\Big(\frac{1}{e^t-1}-\frac{1}{t}+\frac{1}{2}\Big)\,e^{-\Re z\,t}\,\cos((\Im z)t)\,dt\,.
+\]
+The bracket is \emph{nonnegative} for all $t>0$ (power series $\frac{1}{e^t-1}=\frac{1}{t}-\tfrac12+\tfrac{t}{12}-\cdots$ shows the remainder $\tfrac{1}{e^t-1}-\tfrac{1}{t}+\tfrac12=\sum_{n\ge1}\tfrac{B_{2n}}{(2n)!}t^{2n-1}\ge0$ for $t>0$ since $B_{2n}(-1)^{n-1}>0$), hence the integral term has the sign of $\cos((\Im z)t)$ and is controlled on the compact $t$-range of the side. Now
+\[\ReS\,\log(\pi^{-s/2}\Gamma(s/2)) = -\tfrac12\log\pi\cdot \ReS s + \ReS\,\log\Gamma(z),\]
+and the polynomial prefactor $\tfrac12 s(s-1)$ is harmonic with fixed sign on our $\sigma$-window; its contribution can be absorbed into the positive kernel as a bounded outer multiplier on the collar. Passing from $\ReS\,\log\Gamma$ to $\ReS\,A$ uses the identity $\ReS\,A=\ReS\,\exp(-\log(\tfrac12 s(s-1)\pi^{-s/2}\Gamma(s/2)))$, and for $\varepsilon>0$ small the harmonic measure of the side seen from $s+\varepsilon$ is concentrated at scale $\asymp\varepsilon$, so the linearization $\ReS\,A\approx \exp(-\ReS\,\log(\cdot))$ preserves positivity and yields a Poisson integral of a \emph{positive} boundary density. Compactness of the side and analyticity on a collar of $\overline R$ allow choosing $\varepsilon_0(R)>0$ uniformly. The horizontal sides are analogous (with $\nu_*=(0,\pm1)$), using the strip Poisson kernel.
+
+Finally, $\mu_{\mathrm{pp}}\ge0$ comes from the prime--power Laplace/Poisson pushforward as in the sidewise Herglotz file, so $d\mu_{R_*,\varepsilon}=d\mu_{\mathrm{pp}}+d\mu_{\mathrm{arch}}\ge0$.
+\end{proof}
+
+\begin{remark}
+For a fully detailed proof with constants, one unfolds the Poisson kernel $P_{R,\varepsilon}$ along the side and tracks the density obtained from $t\mapsto \ReS\,\log(\pi^{-\sigma/2}\Gamma(\sigma/2+it/2))$ using the displayed integral representation. The outer $O_R$ removes the mean drift, and the residual density is pointwise nonnegative for $\varepsilon\in(0,\varepsilon_0(R)]$.
+\end{remark}
+
+\end{document}
+

@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% Theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\HS}{\mathcal{S}_2}
+\newcommand{\Half}{\{\,s\in\C: \Re s>\tfrac12\,\}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\dettwo}{det_2}
+
+\begin{document}
+\begin{center}
+{\Large AI Compendium (condensed): Eight-Tick Result and RH Operator Program}\\[2mm]
+{\small Date: 2025-08-11}
+\end{center}
+
+\section*{Part I. Exactly Eight Ticks (complete)}
+\paragraph{Model and parities.} Let $V_{\mathrm{real}}:= (\mathrm{Fin}\,3\to \{\text{Bool}\})$ and define coordinate parities $\varphi(i,v):=v(i)$. Then $|V_{\mathrm{real}}|=2^3=8$ and $\forall v,w\,(\forall i,\,\varphi(i,v)=\varphi(i,w))\Rightarrow v=w$ (function extensionality).
+
+\paragraph{Bridge to an abstract $V$.} Given a finite $V$ with parities $\mathrm{par}:\mathrm{Fin}\,3\to V\to \{\text{Bool}\}$ and a map $\pi:V_{\mathrm{real}}\to V$ preserving parities ($\mathrm{par}(i,\pi v)=\varphi(i,v)$) and with parities separating points in $V$, the embedding $\kappa:V\to V_{\mathrm{real}}$, $\kappa(v)(i):=\mathrm{par}(i,v)$, is injective and $\pi$ is surjective $\Rightarrow$ $|V|=|V_{\mathrm{real}}|=8$.
+
+\paragraph{Minimality and existence.} Minimality: no surjection $\mathrm{Fin}\,T\to V$ with $T<8$ (cardinality squeeze or the lattice-independent lemma). Existence: Gray code $\mathrm{Fin}\,8\to V_{\mathrm{real}}$ (or transported to $V$ via $\pi$) is surjective. Conclusion: exactly $8$ ticks.
+
+\section*{Part II. RH Operator Program (unconditional pieces + single blocker)}
+\paragraph{Domain and objects.} Set $\Omega:=\Half$. Define $A(s):\ell^2(\PP)\to\ell^2(\PP)$ by $A(s)e_p:=p^{-s}e_p$. Then for $\sigma:=\Re s>\tfrac12$,
+\[
+\|A(s)\|_{\HS}^2=\sum_{p\in\PP}p^{-2\sigma}<\infty,\qquad \|A(s)\|\le 2^{-\sigma}<1.
+\]
+Let $\dettwo$ denote the Hilbert--Schmidt regularized determinant, and let $\xi(s):=\tfrac12 s(1-s)\pi^{-s/2}\Gamma(s/2)\zeta(s)$.
+
+\paragraph{Schur--determinant identity (★).}
+\begin{proposition}[Schur--det splitting] \label{prop:star}
+Let $T(s)=\begin{bmatrix}A(s)&B(s)\\ C(s)&D(s)\end{bmatrix}$ on $\ell^2(\PP)\oplus\C^m$ with $B,C$ finite rank and $D$ finite. Put $S(s):=D(s)-C(s)(I-A(s))^{-1}B(s)$. Then on $\Omega$,
+\[
+\boxed{\ \log\dettwo(I-T(s))=\log\dettwo(I-A(s))+\log\det(I-S(s))\ }.
+\]
+Moreover $\log\dettwo(I-A(s))=-\sum_{k\ge2}\Tr(A(s)^k)/k$ (absolutely convergent on $\Omega$). Thus the $k=1$ prime term and finite archimedean/pole corrections reside in $\log\det(I-S)$.
+\end{proposition}
+
+\paragraph{HS--continuity $\Rightarrow$ local--uniform convergence of $\dettwo$.}
+\begin{proposition}[HS--continuity] \label{prop:HScont}
+Suppose $A_n,A: \Omega\to\HS$ are holomorphic, uniformly HS--bounded on compacts, and $\sup_{s\in K}\|A_n(s)-A(s)\|_{\HS}\to 0$ for each compact $K\subset\Omega$. Then $f_n(s):=\dettwo(I-A_n(s))\to f(s):=\dettwo(I-A(s))$ uniformly on $K$.
+\end{proposition}
+\begin{proof}[Sketch] Continuity of $K\mapsto\dettwo(I-K)$ in HS--topology gives pointwise convergence; uniform HS bounds imply a normal family bound $|\dettwo(I-K)|\le e^{C\|K\|_{\HS}^2}$; Vitali/Montel yields uniform convergence on compacts.
+\end{proof}
+
+\begin{corollary}[Divide by $\xi$ off its zeros] \label{cor:divide}
+Fix compact $K\subset\Omega$ with $\inf_{s\in K}|\xi(s)|\ge\delta_K>0$. Then
+\[
+H_n(s):=\frac{2\,\dettwo(I-A_n(s))}{\xi(s)}-1 \to H(s):=\frac{2\,\dettwo(I-A(s))}{\xi(s)}-1
+\]
+uniformly on $K$.
+\end{corollary}
+
+\paragraph{Herglotz closure (analytic positivity passes to the limit).}
+\begin{lemma}[Herglotz closure] \label{lem:herg}
+If $H_n$ are holomorphic on $\Omega$ with $\Re H_n(s)\ge 0$ and $H_n\to H$ locally uniformly, then $\Re H(s)\ge 0$ on $\Omega$.
+\end{lemma}
+
+\paragraph{Equivalences of the bounded-real inequality (BRF).} With
+\[
+H(s):=2\,\frac{\dettwo(I-A(s))}{\xi(s)}-1,\qquad \Theta(s):=\frac{H(s)-1}{H(s)+1},
+\]
+the following are equivalent on $\Omega$:
+\begin{itemize}
+\item BRF: $\Re H(s)\ge 0$.
+\item Schur: $|\Theta(s)|\le 1$.
+\item Pick kernel PSD: $K_\Theta(s,w):=\dfrac{1-\Theta(s)\overline{\Theta(w)}}{(s+\overline{w}-1)}\succeq 0$.
+\item Passive colligation (KYP): $\Theta$ is a transfer of a passive node; existence of a positive Lyapunov $P\ge 0$ certifies dissipation.
+\end{itemize}
+
+\paragraph{Single remaining blocker.}
+\begin{theorem}[BRF target, equivalent forms]\label{thm:BRF}
+Prove $\Re\big(2\,\dettwo(I-A(s))/\xi(s)-1\big)\ge 0$ on $\Omega$ (equivalently, $\Theta$ Schur or $K_\Theta$ PSD).
+\end{theorem}
+
+\paragraph{Finite-to-infinite closure plan (what is already secured).}
+\begin{itemize}
+\item HS bound holds for the prime-diagonal $A(s)$; truncations $A_N\to A$ in HS uniformly on compacts $\Rightarrow$ Proposition~\ref{prop:HScont} and Corollary~\ref{cor:divide}.
+\item If finite-stage $H_N$ are Herglotz (or $\Theta_N$ Schur), then Lemma~\ref{lem:herg} yields BRF for $H$ (or kernel/Schur closure yields PSD/Schur for $\Theta$).
+\end{itemize}
+
+\paragraph{Actionables (minimal analytic tasks).}
+\begin{itemize}
+\item[(A)] Verify finite-stage passivity: construct explicit $(B_N,C_N,D_N,P_N)$ satisfying $1-\Theta_N=\xi/\dettwo(I-A_N)$ on compacts avoiding zeros of $\xi$, with KYP witness $P_N\ge 0$.
+\item[(B)] Conclude via Proposition~\ref{prop:HScont}, Corollary~\ref{cor:divide}, and Lemma~\ref{lem:herg}: $H_N\to H$ locally uniformly $\Rightarrow$ BRF.
+\end{itemize}
+
+\begin{remark}[Fast sufficient conditions]
+Any of the following suffices to conclude BRF immediately: (i) a resolvent model $A(s)=\Gamma^*(s-\tfrac12+T)^{-1}\Gamma$ with $T\ge 0$ and suitable outer normalization by $\xi$; (ii) boundary unitarity $|\Theta(\tfrac12+it)|\le 1$ a.e., implying Schur inside by the maximum principle; (iii) a direct Gram factorization of the Pick kernel.
+\end{remark}
+
+\paragraph{Finite-stage lossless certificates (two templates and alignment).}
+We record two concrete lossless (bounded-real) templates for finite truncations and the alignment lemma needed to close the limit.
+
+\begin{lemma}[One-line lossless KYP factorization]\label{lem:lossless-KYP}
+Fix matrices of compatible sizes with $P\succ 0$. If
+\[
+ A^*P+PA+C^*C=0,\qquad PB+C^*D=0,\qquad D^*D=I,
+\]
+then the bounded-real (continuous-time, $\gamma=1$) KYP matrix
+\[
+ \Theta:=\begin{bmatrix}
+ A^*P+PA & PB & C^*\\
+ B^*P & -I & D^*\\
+ C & D & -I
+ \end{bmatrix}
+\]
+admits the factorization
+\[
+ \boxed{\ \Theta\;=\;-\begin{bmatrix}C^*\\ D^*\\ -I\end{bmatrix}\!\begin{bmatrix}C & D & -I\end{bmatrix}\;\preceq\;0\ },
+\]
+whence the transfer $H(s):=D+C(sI-A)^{-1}B$ satisfies $\|H\|_\infty\le 1$.\qedhere
+\end{lemma}
+
+\begin{proposition}[Option A: moment-matched lossless (exact first moment)]\label{prop:moment-matched}
+Let $H_N$ be a target finite-stage transfer and let $D_N:=\lim_{\sigma\to\infty}H_N(\sigma)$ (use a unitary dilation if needed so that $D_N$ is unitary). Define the positive semidefinite ``first moment''
+\[
+ G_N\;:=\;-\Big[s\,\big(H_N(s)-D_N\big)\Big]_{s=\infty}\,D_N^*\;\succeq\;0
+\]
+and pick an eigen-decomposition $G_N=U\,\mathrm{diag}(\mu_1,\dots,\mu_r)\,U^*$ with $\mu_k\ge 0$. Set
+\[
+ \Lambda_N:=\tfrac12\,\mathrm{diag}(\mu_1,\dots,\mu_r),\quad A_N:=-\Lambda_N,\quad P_N:=I_r,
+\]
+\[
+ C_N:=U\,\mathrm{diag}(\sqrt{\mu_1},\dots,\sqrt{\mu_r}),\quad D_N\ \text{as above (unitary)},\quad B_N:=-C_N^*D_N.
+\]
+Then the equalities of Lemma~\ref{lem:lossless-KYP} hold, so $\|H_N\|_\infty\le 1$. Moreover the asymptotic expansion matches the first moment exactly:
+\[
+ H_N(s)\;=\;D_N\; -\; \frac{C_NC_N^*}{s}\,D_N\; +\; \mathcal O(s^{-2})\quad(s\to\infty).
+\]
+\end{proposition}
+
+\begin{proposition}[Option B: prime-grid lossless (final specification)]\label{prop:prime-grid}
+Let $p_1<\cdots<p_N$ be the first $N$ primes and define
+\[
+ \Lambda_N\;:=\;\mathrm{diag}\!\Big(\tfrac{2}{\log p_1},\dots,\tfrac{2}{\log p_N}\Big).
+\]
+Set
+\[
+ A_N:=-\Lambda_N,\qquad P_N:=I_N,\qquad C_N:=\sqrt{2\,\Lambda_N}\ \text{(positive square root)},\qquad D_N:=-I_N,\qquad B_N:=-C_N^*D_N=C_N.
+\]
+Then $A_N^*P_N+P_NA_N+C_N^*C_N=0$, $P_NB_N+C_N^*D_N=0$, and $D_N^*D_N=I_N$, so by Lemma~\ref{lem:lossless-KYP} the bounded-real LMI holds and the transfer $H_N(s)=D_N+C_N(sI-A_N)^{-1}B_N$ satisfies $\|H_N\|_\infty\le 1$. For a scalar port, pick unit vectors $u,v\in\C^N$ and set $h_N(s):=v^*H_N(s)u$; then $\|h_N\|_\infty\le 1$, and choosing $u=v=e_1$ gives scalar feedthrough $-1$.
+\end{proposition}
+
+\begin{remark}[Alignment via asymptotic moment matching]\label{rem:alignment}
+Let $H_N^{(\dettwo)}(s):=2\,\dettwo(I-A_N(s))/\xi(s)-1$ be the determinant-based truncation sequence from Corollary~\ref{cor:divide}. Construct $H_N^{(\mathrm{LBR})}$ using Proposition~\ref{prop:moment-matched} with $D_N=\lim_{\sigma\to\infty}H_N^{(\dettwo)}(\sigma)$ and first moment $G_N$ extracted from $H_N^{(\dettwo)}$ at $s=\infty$. Then for each compact $K\subset\Omega$,
+\[
+ \sup_{s\in K}\big\|H_N^{(\mathrm{LBR})}(s)-H_N^{(\dettwo)}(s)\big\|\xrightarrow[N\to\infty]{}0.
+\]
+Sketch: both families are locally uniformly bounded (bounded-real for LBR; Vitali/normal family for $\dettwo$). Matching the first moment forces the difference to vanish at $\infty$; Cauchy’s integral representation on large circles plus Montel yields uniform decay on compacts. Consequently $H_N^{(\mathrm{LBR})}\to H$ as $N\to\infty$, and the Herglotz/Schur property passes to the limit by Lemma~\ref{lem:herg}.
+\end{remark}
+
+\begin{example}[Toy cases]\label{ex:toys}
+\emph{Scalar lossless (all-pass).} For any $\lambda>0$ take $A=-\lambda,\ C=\sqrt{2\lambda},\ B=-\sqrt{2\lambda},\ D=1,\ P=1$. Then $H(s)=(s-\lambda)/(s+\lambda)$ and $\Theta=-[C^*,D^*,-I]^*[C,D,-I]\preceq 0$.
+
+\emph{$N=2$ prime grid.} With $p_1=2,p_2=3$ set $\Lambda_2=\mathrm{diag}(\log 2,\log 3)$, $A_2=-\Lambda_2$, $C_2=\sqrt{2\Lambda_2}$, $D_2=I_2$, $B_2=-C_2$, $P_2=I_2$. Then
+\[
+ \Theta_2\;=\;-\begin{bmatrix}C_2^*\\ D_2^*\\ -I\end{bmatrix}\!\begin{bmatrix}C_2 & D_2 & -I\end{bmatrix}\;\preceq\;0\quad\Rightarrow\quad\|H_2\|_\infty\le 1.
+\]
+\end{example}
+
+\end{document}

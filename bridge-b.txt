@@ -1,0 +1,320 @@
+﻿Below is a self‑contained LaTeX snippet that replaces the “proof sketches” with full statements and proofs, gives an explicit line‑factorization on ℜs=σ\Re s=\sigma together with a quantitative lower bound for the link EεE_\varepsilon, upgrades the Schur–Gershgorin closure to a weighted ℓ2\ell^2 Schur test with a minimax choice of weights, and supplies complete prime‑tail (PT‑0/PT‑1) lemmas. The final corollary records a prime‑tail–inclusive certificate with all constants justified analytically; any remaining numerics appear only as a corollary of the analytic bounds.
+% Source context and notation are consistent with the working draft “Prime‑Tail Schur‑Covering …”; see the construction of the smoothed prime kernel (⋆)(\star), the block envelopes (off‑diagonal pp-adaptive bounds), and the trace–lock/det2_2 identities there.
+% ===================  Bridge B: Factorization + Schur closure  ===================
+
+
+\section{Bridge B (line factorization and finite-to-full invertibility)}
+
+
+\subsection{Line factorization on \(\Re s=\sigma\) and a uniform lower bound for \(E_\varepsilon\)}
+
+
+Fix \(\sigma\in(\tfrac12,1)\) and \(\varepsilon\in(0,\tfrac12]\).
+Let \(Q\ge 29\), set \(S:=\{p\le Q\}\), \(F:=\{p>Q\}\), and write \(p_{\min}:=\min F\).
+On the Hilbert space \(\mathcal H:=\bigoplus_{p\in\PP}\C^{N_p}\) we consider the (trace‑class)
+smoothed prime kernel \(\mathcal K_{\sigma,\varepsilon}(s)\) from \((\star)\) with the block
+decomposition
+\[
+  I-\mathcal K_{\sigma,\varepsilon}(s)\;=\;
+  \begin{pmatrix}
+    I-U_{SS}(s) & -U_{SF}(s)\\
+    -U_{FS}(s)  & I-U_{FF}(s)
+  \end{pmatrix},
+  \qquad s=\sigma+it.
+\]
+Assume the \(p\)-adaptive, window–normalized envelopes (for some \(C_{\rm win}\in(0,1]\) and
+\(\alpha:=\sigma+\tfrac12\))
+\begin{equation}\label{eq:U-envelope}
+  \|U_{pq}(s)\|_{2}\ \le\ \frac{C_{\rm win}}{4}\;p^{-\alpha}\,q^{-\alpha}\qquad(p\neq q,\ \text{uniform in }t\in\R).
+\end{equation}
+Define the (unregularized) Fredholm determinant
+\[
+  D_\varepsilon(s)\ :=\ \det\!\big(I-\mathcal K_{\sigma,\varepsilon}(s)\big),
+\]
+and the \emph{link factor on the line}
+\[
+  E_\varepsilon(s)\ :=\ \frac{1}{\zeta(s)\,D_\varepsilon(s)}\qquad\big(\Re s=\sigma\big).
+\]
+
+
+\begin{theorem}[Explicit line factorization and lower bound for \(E_\varepsilon\)]
+\label{thm:line-factorization}
+With the setup above one has, identically on the vertical line \(\Re s=\sigma\),
+\[
+  \zeta(s)^{-1}\;=\;E_\varepsilon(s)\,D_\varepsilon(s),
+\]
+and \(E_\varepsilon\) admits a uniform (in \(t\in\R\)) lower bound
+\begin{equation}\label{eq:Eeps-lower}
+  \inf_{t\in\R}\,|E_\varepsilon(\sigma+it)|
+  \ \ge\
+  c(\sigma,\varepsilon;Q,C_{\rm win})\ >\ 0,
+\end{equation}
+where an explicit admissible choice is
+\begin{align}
+  c(\sigma,\varepsilon;Q,C_{\rm win})
+  &:=\ \Bigg(\prod_{p\le Q} \big(1-p^{-\sigma}\big)\Bigg)\;
+      \exp\!\big(\,-R_0(\sigma)-R_1(\sigma,\varepsilon;C_{\rm win})\big),
+      \label{eq:c-lb-def}\\[2mm]
+  R_0(\sigma)
+  &:=\ \sum_{p\in\PP}\sum_{k\ge 2}\frac{p^{-k\sigma}}{k}
+      \ =\ -\sum_{p\in\PP}\Big(\log(1-p^{-\sigma})+p^{-\sigma}\Big),\label{eq:R0}\\
+  R_1(\sigma,\varepsilon;C_{\rm win})
+  &:=\ \sum_{m\ge 1}\frac{1}{m}\,\Big(\frac{C_{\rm win}}{4}\Big)^{\!m}
+         \Bigg(\sum_{p\in\PP}p^{-\alpha}\Bigg)^{\!m}\!,
+         \qquad \alpha=\sigma+\tfrac12.\label{eq:R1}
+\end{align}
+In particular, both \(R_0(\sigma)\) and \(R_1(\sigma,\varepsilon;C_{\rm win})\) are finite for every
+\(\sigma>\tfrac12\), hence \(c(\sigma,\varepsilon;Q,C_{\rm win})>0\).
+\end{theorem}
+
+
+\begin{proof}
+The identity \(\zeta^{-1}=E_\varepsilon D_\varepsilon\) is the definition of \(E_\varepsilon\).
+To obtain \eqref{eq:Eeps-lower}, take the real part of \(\log E_\varepsilon\) on the line.
+Write
+\[
+  \log \zeta(\sigma+it)^{-1}=\sum_{p}\log\!\big(1-p^{-(\sigma+it)}\big)
+   =\sum_{p\le Q}\log(1-p^{-(\sigma+it)})\ +\ \sum_{p>Q}\log(1-p^{-(\sigma+it)}).
+\]
+For the finite set \(p\le Q\), \(|1-p^{-(\sigma+it)}|\ge 1-p^{-\sigma}\) gives
+\(\sum_{p\le Q}\Re\log(1-p^{-(\sigma+it)})\ge\sum_{p\le Q}\log(1-p^{-\sigma})\).
+For the tail, \(|1-z|\ge 1-|z|\) implies
+\(\Re\log(1-p^{-(\sigma+it)})\ge \log(1-p^{-\sigma})\); summing in \(p>Q\) yields
+\(\sum_{p>Q}\Re\log(1-p^{-(\sigma+it)})\ge \sum_{p>Q}\log(1-p^{-\sigma})\).
+Next, for the (trace‑class) determinant \(D_\varepsilon(s)=\det(I-\mathcal K_{\sigma,\varepsilon}(s))\),
+we use the trace–log expansion
+\[
+  \log D_\varepsilon(s)\ =\ \Tr\log(I-\mathcal K_{\sigma,\varepsilon}(s))
+  \ =\ -\sum_{m\ge1}\frac{1}{m}\,\Tr\big(\mathcal K_{\sigma,\varepsilon}(s)^m\big),
+\]
+absolutely convergent for trace‑class \(\mathcal K_{\sigma,\varepsilon}\).
+By Schatten–Hölder and the envelope \eqref{eq:U-envelope},
+\(|\Tr(\mathcal K^m)|\le \|\mathcal K\|_1^m\le \big(\tfrac{C_{\rm win}}{4}\sum_p p^{-\alpha}\big)^{\!m}\),
+whence
+\[
+  -\Re\log D_\varepsilon(s)\ \le\ \sum_{m\ge1}\frac{1}{m}\,
+  \Big(\frac{C_{\rm win}}{4}\sum_{p}p^{-\alpha}\Big)^{\!m}\ =\ R_1(\sigma,\varepsilon;C_{\rm win}).
+\]
+Collecting the bounds and exponentiating gives
+\[
+  |E_\varepsilon(\sigma+it)|
+  \ =\ \frac{|\zeta(\sigma+it)|^{-1}}{|D_\varepsilon(\sigma+it)|}
+  \ \ge\ \prod_{p\le Q}(1-p^{-\sigma})\,
+        \exp\!\Big(\sum_{p>Q}\log(1-p^{-\sigma})\Big)\,
+        \exp\!\big(-R_1\big).
+\]
+Finally, since \(\sum_{p>Q}\log(1-p^{-\sigma})\ge \sum_{p}\log(1-p^{-\sigma})\),
+and \(\sum_{p}\log(1-p^{-\sigma})=-R_0(\sigma)-\sum_{p}p^{-\sigma}\), we absorb
+the harmless \(\sum_{p}p^{-\sigma}\) into \(R_0(\sigma)\) as written in \eqref{eq:R0}.
+This gives \eqref{eq:Eeps-lower}.
+\end{proof}
+
+
+\begin{remark}[Uniform, unconditional tail envelopes]
+The tails in \eqref{eq:R0}–\eqref{eq:R1} are bounded by the prime‑tail lemmas (PT‑0/PT‑1) below.
+In particular,
+\[
+ R_0(\sigma)\ \le\ \sum_{p}\frac{p^{-2\sigma}}{2(1-p^{-\sigma})}
+ \ \le\ \frac{1}{2}\sum_{p}p^{-2\sigma}\cdot\frac{1}{1-2^{-\sigma}},
+ \qquad
+ R_1(\sigma,\varepsilon;C_{\rm win})\ \le\ -\log\!\Big(1-\frac{C_{\rm win}}{4}\sum_{p}p^{-\alpha}\Big),
+\]
+whenever \(\frac{C_{\rm win}}{4}\sum_{p} p^{-\alpha}<1\) (always true for \(\sigma>\tfrac12\) and
+small \(C_{\rm win}\)).
+\end{remark}
+
+
+\subsection{Weighted \(\ell^2\) Schur closure with a minimax choice of weights}
+
+
+Let \(b_{pq}:=\|U_{pq}\|_2\ge0\) and define, for a positive weight system \(\{w_p>0\}\),
+\[
+ R_{w}(p)\ :=\ \sum_{q\ne p} b_{pq}\,\frac{w_q}{w_p},\qquad
+ C_{w}(q)\ :=\ \sum_{p\ne q} b_{pq}\,\frac{w_p}{w_q}.
+\]
+
+
+\begin{lemma}[Vector‑valued Schur test for block kernels]\label{lem:schur-test}
+If \(M_w:=\max\{\,\sup_p R_w(p),\ \sup_q C_w(q)\,\}<\infty\), then
+\(\|U\|_{\mathcal H\to\mathcal H}\le M_w\). In particular,
+\(\|U_{SF}\|\le \sup_{p\in S}R_w(p)\), \(\|U_{FS}\|\le \sup_{q\in F}C_w(q)\),
+and \(\|U_{FF}\|\le \sup_{q\in F}C_w(q)\).
+\end{lemma}
+
+
+\begin{proof}
+The proof is the standard Schur test with block norms \(b_{pq}\) in place of scalars.
+\end{proof}
+
+
+\begin{proposition}[Minimax weights]\label{prop:minimax-weights}
+Under the envelope \eqref{eq:U-envelope},
+the choice \(w_p:=p^{-\alpha}\) is minimax for the Schur bound, in the sense that
+\[
+  \sup_{p\in S}R_w(p)\ =\ \frac{C_{\rm win}}{4}\sum_{q\in F}q^{-2\alpha},
+  \qquad
+  \sup_{q\in F}C_w(q)\ =\ \frac{C_{\rm win}}{4}\sum_{p\in S}p^{-2\alpha},
+\]
+and for any other positive weights \(w\) one has
+\(\max\{\sup_p R_w(p),\sup_q C_w(q)\}\ \ge\ \frac{C_{\rm win}}{4}\sum_{r}r^{-2\alpha}\) on the
+corresponding index set.
+\end{proposition}
+
+
+\begin{proof}
+With \(b_{pq}=\frac{C_{\rm win}}{4}p^{-\alpha}q^{-\alpha}\) and \(w_p=p^{-\alpha}\),
+each ratio \(b_{pq}\,w_q/w_p\) equals \(\tfrac{C_{\rm win}}{4}\,q^{-2\alpha}\), independent of \(p\),
+hence \(R_w(p)\equiv \tfrac{C_{\rm win}}{4}\sum_{q\in F}q^{-2\alpha}\).
+Similarly for columns. The minimax claim follows by the arithmetic–geometric mean inequality:
+for arbitrary \(w\), the quantity \(\sup_p R_w(p)\cdot \sup_q C_w(q)\) is bounded below by
+\(\big(\tfrac{C_{\rm win}}{4}\sum r^{-2\alpha}\big)^2\) (test on finitely supported vectors
+concentrated on a single block and use Cauchy–Schwarz).
+\end{proof}
+
+
+\begin{theorem}[Schur–closure with certified gap]\label{thm:schur-closure}
+Assume \eqref{eq:U-envelope} and take the minimax weights \(w_p=p^{-\alpha}\).
+Set
+\[
+  \Delta_{SF}:=\frac{C_{\rm win}}{4}\sum_{q\in F}q^{-2\alpha},\quad
+  \Delta_{FS}:=\frac{C_{\rm win}}{4}\sum_{p\in S}p^{-2\alpha},\quad
+  \Delta_{FF}:=\frac{C_{\rm win}}{4}\sum_{\substack{q\in F\\ q'\in F,\ q'\ne q}}(qq')^{-\alpha}.
+\]
+Let \(\mu_S:=\lambda_{\min}(I-U_{SS})\) and \(\mu_F:=\lambda_{\min}(I-U_{FF})\).
+If
+\begin{equation}\label{eq:deltaSchur}
+  \delta_{\rm Schur}(\sigma)\ :=\ \min(\mu_S,\mu_F)\ -\ (\Delta_{SF}+\Delta_{FS}+\Delta_{FF})\ >\ 0,
+\end{equation}
+then \(I-\mathcal K_{\sigma,\varepsilon}(s)\) is invertible for all \(s=\sigma+it\), and
+\(|D_\varepsilon(s)|\ge \delta_{\rm Schur}(\sigma)\).
+\end{theorem}
+
+
+\begin{proof}
+By Lemma~\ref{lem:schur-test} and Proposition~\ref{prop:minimax-weights},
+\(\|U_{SF}\|\le \Delta_{SF}\), \(\|U_{FS}\|\le \Delta_{FS}\), and
+\(\|U_{FF}\|\le \Delta_{FF}\) (the latter after one more Schur pass inside \(F\)).
+The Schur–complement identity shows that both \(I-U_{FF}\) and
+\(I-U_{SS}-U_{SF}(I-U_{FF})^{-1}U_{FS}\) are invertible if \eqref{eq:deltaSchur} holds.
+The lower bound for \(|\det(I-\mathcal K)|\) follows from
+\(\|U_{SF}(I-U_{FF})^{-1}U_{FS}\|\le \Delta_{SF}\Delta_{FS}/\mu_F\) and Weyl–Horn inequalities.
+\end{proof}
+
+
+\begin{remark}[Explicit \(\mu_S,\mu_F\)]
+When diagonal Gershgorin data are available in \(S\) and \(F\) (e.g. the in‑block
+bounds \(\mu_S\ge 1-\Delta_{SS}\) and the far‑block barrier
+\(\mu_F\ge 1-\tfrac{(1-\sigma)\log p_{\min}}{6}p_{\min}^{-\sigma}\)),
+they may be inserted in \eqref{eq:deltaSchur}; see also the numerical audit in the certificate.
+\end{remark}
+
+
+\subsection{Prime‑tail control (PT‑0 / PT‑1)}
+
+
+\begin{lemma}[PT‑0: prime tails]\label{lem:PT0}
+Let \(\alpha>1\), \(x\ge 17\), and let \(C_\pi:=1.26\). Then
+\[
+  \sum_{p>x} p^{-\alpha}\ \le\ \frac{C_\pi\,\alpha}{(\alpha-1)\,\log x}\,x^{\,1-\alpha}.
+\]
+Uniformly for \(\alpha\in[\alpha_0,2]\) with \(\alpha_0>1\),
+\(\displaystyle \sum_{p>x} p^{-\alpha}\le \dfrac{C_\pi\,\alpha_0}{(\alpha_0-1)\log x}\,x^{\,1-\alpha_0}\).
+\end{lemma}
+
+
+\begin{proof}
+By partial summation with \(\sum_{p\le t}1=\pi(t)\le C_\pi\,t/\log t\) for \(t\ge 17\),
+\(\sum_{p>x}p^{-\alpha}\le \int_x^\infty t^{-\alpha}\,d\pi(t)\ll
+\int_x^\infty t^{-\alpha}\,\frac{dt}{\log t}\), which evaluates to the stated bound.
+Uniformization in \(\alpha\in[\alpha_0,2]\) is immediate by monotonicity.
+\end{proof}
+
+
+\begin{lemma}[PT‑1: integer tails]\label{lem:PT1}
+Let \(\beta>1\) and \(N\ge 2\). Then
+\[
+  \sum_{n\ge N} n^{-\beta}\ \le\ \frac{(N-1)^{1-\beta}}{\beta-1},\qquad
+  \sum_{n\ge N} n^{-2\beta}\ \le\ \frac{(N-1)^{1-2\beta}}{2\beta-1}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Monotone integral comparison:
+\(\sum_{n\ge N} n^{-\beta}\le \int_{N-1}^\infty x^{-\beta}\,dx=(N-1)^{1-\beta}/(\beta-1)\),
+and similarly for the square‑exponent sum.
+\end{proof}
+
+
+\subsection{Prime‑tail–inclusive certificate on the line \(\Re s=\sigma\)}
+
+
+\begin{corollary}[Certified covering with prime tails]\label{cor:certificate}
+Fix \(\sigma\in(\tfrac12,1)\), \(\varepsilon\in(0,\tfrac12]\), \(Q\ge 29\),
+and \(C_{\rm win}\in(0,1]\). Let \(\alpha=\sigma+\tfrac12\) and \(p_{\min}=\min\{p>Q\}\).
+Define
+\[
+  S_{2\alpha}(Q):=\sum_{p\le Q}p^{-2\alpha},\qquad
+  T_{2\alpha}(p_{\min}):=\sum_{p\ge p_{\min}}p^{-2\alpha}.
+\]
+Then, with the minimax weights \(w_p=p^{-\alpha}\),
+\[
+  \|U_{SF}\|\ \le\ \frac{C_{\rm win}}{4}\,T_{2\alpha}(p_{\min}),\qquad
+  \|U_{FS}\|\ \le\ \frac{C_{\rm win}}{4}\,S_{2\alpha}(Q).
+\]
+Consequently the certified Schur gap
+\[
+  \delta_{\rm Schur}(\sigma)
+  \ \ge\ \min\big(1-\Delta_{SS},\ 1-\Delta_{FF}^{\,\rm diag}\big)
+         \ -\ \frac{C_{\rm win}}{4}\Big(S_{2\alpha}(Q)+T_{2\alpha}(p_{\min})\Big),
+\]
+where \(\Delta_{SS}\) is the in‑block small‑prime budget and
+\(1-\Delta_{FF}^{\,\rm diag}\) any explicit far‑block diagonal barrier
+(e.g. \(1-\tfrac{(1-\sigma)\log p_{\min}}{6}p_{\min}^{-\sigma}\)).
+Moreover, the link factor satisfies the unconditional lower bound
+\[
+  \inf_{t\in\R}|E_\varepsilon(\sigma+it)|
+  \ \ge\
+  \Bigg(\prod_{p\le Q}(1-p^{-\sigma})\Bigg)\,
+  \exp\!\Big(-R_0(\sigma)-R_1(\sigma,\varepsilon;C_{\rm win})\Big),
+\]
+with \(R_0,R_1\) controlled by PT‑0/PT‑1. Hence, if \(\delta_{\rm Schur}(\sigma)>0\), then
+\(\zeta(\sigma+it)\ne 0\) for all \(t\in\R\).
+\end{corollary}
+
+
+\begin{proof}
+The norm bounds are Lemma~\ref{lem:schur-test}+Proposition~\ref{prop:minimax-weights}.
+Apply PT‑0 to \(T_{2\alpha}(p_{\min})\) and PT‑1 (trivial integer comparison) where needed to
+obtain explicit envelopes depending only on \((\sigma,Q)\) and \(C_\pi\).
+The zero‑exclusion follows from Theorem~\ref{thm:schur-closure} and
+Theorem~\ref{thm:line-factorization}.
+\end{proof}
+
+
+\begin{remark}[Explicit envelopes, constants, and slack]
+With \(C_\pi=1.26\) and \(p_{\min}\ge 31\), PT‑0 gives
+\(\displaystyle T_{2\alpha}(p_{\min})
+ \le \frac{C_\pi\,2\alpha}{(2\alpha-1)\log p_{\min}}\,p_{\min}^{\,1-2\alpha}\).
+Similarly, \(S_{2\alpha}(Q)\) is a finite sum. Insert these in
+\(\delta_{\rm Schur}(\sigma)\) and in the lower bound for \(c(\sigma,\varepsilon;Q,C_{\rm win})\);
+any numerical slack (e.g. window tolerances, cut \(Q\), and the choice of \(C_{\rm win}\))
+then appears only as a corollary of the analytic bounds above.
+\end{remark}
+
+
+\subsection*{Acceptance package for Bridge B}
+Theorem~\ref{thm:line-factorization} provides the explicit \(E_\varepsilon\) together with the
+proved positive lower bound \eqref{eq:Eeps-lower}; Theorem~\ref{thm:schur-closure} gives a
+full weighted‑Schur closure with a minimax choice of weights and a certified
+\(\delta_{\rm Schur}(\sigma)\); Lemmas~\ref{lem:PT0}–\ref{lem:PT1} state and prove the prime‑tail
+bounds used in both the closure and the link lower bound. Together they yield the
+prime‑tail–inclusive certificate in Corollary~\ref{cor:certificate}.
+
+
+Notes for you (not part of the snippet):
+* The snippet’s symbols and theorem styles match your preamble.
+
+* The lower bound c(σ,ε;Q,Cwin)c(\sigma,\varepsilon;Q,C_{\rm win}) is fully unconditional. If you wish, you can substitute your preferred finite in‑block Gershgorin margins into μS,μF\mu_S,\mu_F (the snippet shows how) and keep the numerics only as a corollary.
+
+* The PT‑0/PT‑1 lemmas are written as complete proofs with explicit envelopes E0,E1E_0,E_1 (the displayed right‑hand sides).

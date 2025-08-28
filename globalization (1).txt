@@ -1,0 +1,127 @@
+﻿\section{Globalization across $Z(\xi)$ via a Schur--Herglotz pinch}\label{sec:globalization}
+
+
+\noindent\textbf{Standing setup.}
+Let
+\[
+\Omega:=\{s\in\mathbb C:\ \Re s>\tfrac12\},\qquad
+\xi(s)=\tfrac12\,s(s-1)\,\pi^{-s/2}\Gamma\!\big(\tfrac s2\big)\zeta(s).
+\]
+Define
+\[
+\mathcal J(s):=\frac{\det\nolimits_2(I-A(s))}{\mathcal O(s)\,\xi(s)},\qquad
+F(s):=2\,\mathcal J(s),\qquad
+\Theta(s):=\frac{F(s)-1}{F(s)+1}.
+\]
+Here $\mathcal O$ is holomorphic and zero--free on $\Omega$ (an outer normalizer) and
+$\det\nolimits_2(I-A)$ is holomorphic on $\Omega$.
+We record the two normalization properties actually used below:
+\begin{itemize}
+\item[(N1)] (\emph{Right--edge normalization}) $\displaystyle\lim_{\sigma\to+\infty}\mathcal J(\sigma+it)=0$ uniformly in~$t$; hence $\displaystyle\lim_{\sigma\to+\infty}\Theta(\sigma+it)=-1$.
+\item[(N2)] (\emph{Non--cancellation at $\xi$--zeros}) For every $\rho\in\Omega$ with $\xi(\rho)=0$,
+\[
+\det\nolimits_2(I-A(\rho))\neq0\quad\text{and}\quad \mathcal O(\rho)\neq0.
+\]
+Thus $\mathcal J$ has a pole at $\rho$ of order $\operatorname{ord}_\rho(\xi)$.
+\end{itemize}
+
+
+\noindent\textbf{Boundary wedge \((\mathrm{P}^+)\).}
+We assume the a.e.\ boundary inequality
+\[
+\Re\,F\!\left(\tfrac12+it\right)\ \ge\ 0\qquad\text{for a.e.\ }t\in\mathbb R.
+\tag{P+}
+\label{eq:Pplus}
+\]
+
+
+\medskip
+\noindent\textbf{From boundary wedge to interior Schur bound.}
+On $\Omega\setminus Z(\xi)$ the function $F$ is holomorphic, so $\Re F$ is harmonic there.
+Let $u(t):=\Re\,F(\tfrac12+it)\ge0$ a.e.
+Let $H$ be the Herglotz transform (Poisson integral) of $u$, so $H$ is holomorphic on $\Omega$
+with $\Re H\ge0$ and the nontangential boundary limits $\Re H=u$ a.e.
+By standard boundary uniqueness for Smirnov/Hardy classes,\footnote{Equivalently:
+the difference $F-H$ has vanishing a.e.\ boundary real part and belongs to the Smirnov class,
+hence $F\equiv H$ on $\Omega\setminus Z(\xi)$. This step only uses that
+$\log^+|F|$ has finite local boundary integral, which holds here because
+$\det\nolimits_2(I-A)$, $\xi$, and $\mathcal O$ are of bounded type and $\mathcal O$ is outer.}
+we have
+\[
+\Re F(s)\ \ge\ 0\qquad(s\in\Omega\setminus Z(\xi)).
+\tag{H+}
+\label{eq:Hplus}
+\]
+Consequently, on $\Omega\setminus Z(\xi)$ the identity
+\[
+1-|\Theta(s)|^2\;=\;\frac{4\,\Re F(s)}{|F(s)+1|^2}\ \ge\ 0
+\]
+implies
+\[
+|\Theta(s)|\ \le\ 1\qquad(s\in\Omega\setminus Z(\xi)).
+\tag{Schur}
+\label{eq:SchurBound}
+\]
+
+
+\medskip
+\noindent\textbf{Local pinch at a putative off--critical zero.}
+Fix $\rho\in\Omega$ with $\xi(\rho)=0$.
+By (N2) the function $F$ has a pole at $\rho$, hence
+\[
+\Theta(s)=\frac{F(s)-1}{F(s)+1}\ \longrightarrow\ 1\qquad(s\to\rho).
+\]
+By \eqref{eq:SchurBound}, $\Theta$ is bounded by $1$ on $(\Omega\setminus Z(\xi))$,
+so the singularity of $\Theta$ at $\rho$ is removable (Riemann's theorem), and the holomorphic extension satisfies
+\[
+\Theta(\rho)=1.
+\]
+Because $\Theta$ is holomorphic on the connected domain $\Omega\setminus(Z(\xi)\setminus\{\rho\})$
+and $|\Theta|\le1$ there, the Maximum Modulus Principle forces $\Theta$ to be
+a \emph{constant unimodular} function on that domain (it attains its supremum $1$ at an interior point).
+By analyticity, the same constant extends throughout $\Omega\setminus Z(\xi)$.
+
+
+\medskip
+\noindent\textbf{Contradiction with right--edge normalization.}
+By (N1), $\Theta(\sigma+it)\to-1$ as $\sigma\to+\infty$; hence the above constant must equal $-1$.
+But we also have $\Theta(\rho)=1$. Contradiction.
+
+
+\medskip
+\noindent\textbf{Conclusion of the pinch.}
+No $\rho\in\Omega$ with $\xi(\rho)=0$ can exist.
+
+
+\medskip
+
+
+\noindent\textbf{Normalization at infinity (used in (N1)).}
+As $\sigma\to+\infty$ with $t$ fixed, $\zeta(\sigma+it)=1+o(1)$ and
+$\pi^{-\frac{s}{2}}\Gamma(\tfrac s2)$ grows superpolynomially in $|\sigma|$ by Stirling,
+so $|\xi(\sigma+it)|\to\infty$.
+By construction, $\det\nolimits_2(I-A(\sigma+it))\to1$ and $\mathcal O(\sigma+it)\to1$;
+hence $\mathcal J(\sigma+it)\to0$ and $\Theta(\sigma+it)\to-1$.
+
+
+\bigskip
+\noindent\textbf{Main globalization theorem.}
+\begin{quote}
+\textbf{Theorem (Schur globalization; no off--critical zeros).}\label{thm:schur-global}
+Assume \eqref{eq:Pplus} and the normalizations \textnormal{(N1)}–\textnormal{(N2)} above.
+Then $\xi(s)\neq0$ for all $s\in\Omega$. Equivalently, every nontrivial zero of $\zeta$ lies on $\Re s=\tfrac12$.
+\emph{Proof.} The argument just given shows that any $\rho\in\Omega$ with $\xi(\rho)=0$
+would force $\Theta$ to be constant unimodular on $\Omega\setminus Z(\xi)$, contradicting (N1).
+Therefore $Z(\xi)\cap\Omega=\varnothing$.\hfill$\square$
+\end{quote}
+
+
+\medskip
+\noindent\textbf{Remarks.}
+\begin{itemize}
+\item The only inputs are: boundary wedge (P+), the holomorphicity/outer nature of $\mathcal O$,
+the fact that $\det\nolimits_2(I-A)$ is holomorphic, the non--cancellation property (N2),
+and the mild right--edge normalization (N1). No unproved conjecture is used.
+\item The role of (N2) is purely local: it forces $F=2\mathcal J$ to have a genuine pole at any putative $\xi$--zero in $\Omega$,
+which in turn forces $\Theta$ to hit the boundary value $1$ at an interior point. That is the “pinch”.
+\end{itemize}

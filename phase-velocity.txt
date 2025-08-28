@@ -1,0 +1,21 @@
+﻿\begin{lemma}[Phase–velocity identity, tested form; ζ-normalized]\label{lem:phase-velocity-tested}
+Let $J_\zeta:=\dettwo(I-A)/\zeta$ and $J_{\mathrm{comp}}:=J_\zeta\,B$, where $B$ is the Blaschke factor at $s=1$. Let $w(t):=\Arg J_{\mathrm{comp}}(\tfrac12+it)$ with a continuous branch on $I$. For the mass--1 window $\varphi_I(t)=L^{-1}\psi\!\big(\frac{t-T}{L}\big)$ one has
+\[
+  \int_\R \bigl(-w'(t)\bigr)\,\varphi_I(t)\,dt
+  \;=\; c_0(\psi)\,\mu\!\big(Q(I)\big)
+  \;+\;\langle \mathcal H[u'],\varphi_I\rangle
+  \;+\; \mathsf{Prime}_{\kappa}[\varphi_I],
+\]
+where $u(t):=\log|J_{\mathrm{comp}}(\tfrac12+it)|$, $c_0(\psi)$ is the Whitney Poisson lower constant, $\mu$ is the off--critical zero measure, and $\mathsf{Prime}_\kappa$ is the band-limited prime mismatch term (the $k=1$ slice), supported in $|\xi|\le \kappa/L$.
+Moreover, for the printed window and $\kappa=\kappaBand$,
+\[
+  \big|\langle \mathcal H[u'],\varphi_I\rangle\big| \le \CHone\,M_\psi,\qquad
+  \big|\mathsf{Prime}_{\kappa}[\varphi_I]\big| \le \CPband.
+\]
+\end{lemma}
+\begin{proof}
+The boundary Cauchy/Herglotz representation of $\log J_{\mathrm{comp}}$ and the Balayage identity give the Poisson mass equality for the zero measure tested on $Q(I)$ (Whitney aperture). The Hilbert pairing is the distributional identity
+$\langle \mathcal H[u'],\varphi_I\rangle=\langle u, (\mathcal H[\varphi_I])'\rangle$,
+and the bound by $M_\psi$ follows from the fixed-aperture Carleson embedding with $C_\psi^{(H^1)}$ and the derivative envelope $\|(\mathcal H[\varphi_L])'\|_\infty\le \CHone/L$. The prime remainder bound uses the explicit bandlimit estimate for the $k=1$ layer,
+$C_P(\psi,\kappa)\le 2\kappa$, and we lock $\kappa=\kappaBand$.
+\end{proof}

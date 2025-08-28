@@ -1,0 +1,177 @@
+﻿% ------------------------------------------------------------------
+% Unconditional Carleson–Energy Bound for the xi–block (rigorous)
+% Addresses: beta–dependence, cubic decay, cross–term control.
+% No external refs/URLs; no new packages.
+% ------------------------------------------------------------------
+
+
+\section*{Unconditional Bound on the \texorpdfstring{$\xi$}{xi}–Block Energy}
+
+
+\subsection*{Geometry and objects}
+Let \(\Omega=\{s=\tfrac12+\sigma+it:\ \sigma>0\}\). Fix a Whitney box
+\[
+Q(\alpha I):=\Big\{\,\tfrac12+\sigma+it:\ t\in I=[T-L,T+L],\ 0<\sigma<\alpha L\,\Big\},\quad \alpha\in[1,2],
+\]
+with the Whitney scaling \(L=c/\log\langle T\rangle\) (hence \(L\log\langle T\rangle\le c\)). For a zero \(\rho=\beta+i\gamma\) of \(\xi\) set
+\[
+a:=\big|\beta-\tfrac12\big|\in[0,\tfrac12],\qquad \Delta:=t-\gamma,\qquad r:=|\gamma-T|,\qquad R:=\frac{r}{L}.
+\]
+Define
+\[
+u_\rho(s):=\Re\log\frac{s-\rho}{s-\rho^\ast},\qquad \rho^\ast:=1-\overline{\rho}.
+\]
+The \emph{neutralized field} is \(\widetilde U:=\Re\log|\xi B_I|\), where the local Blaschke compensator
+\[
+B_I(s):=\prod_{\rho\in\mathcal H_I} \frac{s-\rho^\ast}{s-\rho},\qquad
+\mathcal H_I:=\{\rho:\ |\gamma-T|\le 2L\},
+\]
+removes all near zeros; thus \(\widetilde U\) is harmonic on \(Q(\alpha I)\). We must prove the \emph{uniform} bound
+\begin{equation}\label{eq:goal}
+\iint_{Q(\alpha I)} |\nabla \widetilde U|^2\,\sigma\,dt\,d\sigma\ \le\ K_\xi\,|I|\quad\text{with }K_\xi\ \text{absolute (depends only on }\alpha,c).
+\end{equation}
+
+
+\subsection*{Key identity and \(\beta\)–dependence}
+For every \(s=\tfrac12+\sigma+it\) and \(\rho=\beta+i\gamma\) one has the exact formula
+\begin{equation}\label{eq:exact-grad}
+\big|\nabla u_\rho(s)\big|^2
+=\left|\frac{1}{s-\rho}-\frac{1}{s-\rho^\ast}\right|^2
+=\frac{4a^2}{\big((\sigma-a)^2+\Delta^2\big)\big((\sigma+a)^2+\Delta^2\big)}.
+\end{equation}
+Thus the \(\beta\)–dependence appears explicitly as \(a^2\le \tfrac14\). No step below suppresses \(a\); when a uniform bound is needed we use \(a\le \tfrac12\).
+
+
+\subsection*{Step 1: Per–zero cubic decay (no projection needed)}
+Using
+\[
+\big((\sigma-a)^2+\Delta^2\big)\big((\sigma+a)^2+\Delta^2\big)
+=\Big((\sigma^2+a^2+\Delta^2)-2a\sigma\Big)\Big((\sigma^2+a^2+\Delta^2)+2a\sigma\Big),
+\]
+we get
+\[
+\big((\sigma-a)^2+\Delta^2\big)\big((\sigma+a)^2+\Delta^2\big)
+\ \ge\ \Delta^2\Big((\sigma-|a|)^2+\Delta^2\Big)\ \ge\ \Delta^4.
+\]
+Consequently, by \eqref{eq:exact-grad},
+\begin{equation}\label{eq:pointwise-1overDelta4}
+\big|\nabla u_\rho(s)\big|^2\ \le\ \frac{4a^2}{\Delta^4}\qquad(\text{all }0<\sigma<\alpha L,\ t\in I).
+\end{equation}
+Integrating on the box with weight \(\sigma\),
+\[
+\iint_{Q(\alpha I)} |\nabla u_\rho|^2\,\sigma\,dt\,d\sigma
+\ \le\ 4a^2\left(\int_0^{\alpha L}\!\sigma\,d\sigma\right)\!
+\left(\int_{T-L}^{T+L}\!\frac{dt}{(t-\gamma)^4}\right)
+\ =\ 2a^2\,\alpha L^2\ \int_{T-L}^{T+L}\!\frac{dt}{(t-\gamma)^4}.
+\]
+For \(r=|\gamma-T|\ge L\) (far zero), the integrand is monotone on the interval and
+\[
+\int_{T-L}^{T+L}\frac{dt}{(t-\gamma)^4}
+\ =\ \frac{1}{3}\left[\frac{1}{(t-\gamma)^3}\right]_{T-L}^{T+L}
+\ \le\ \frac{2}{3}\,\frac{1}{(r-L)^3}.
+\]
+Hence, for all far zeros,
+\begin{equation}\label{eq:perzero-cubic}
+\iint_{Q(\alpha I)} |\nabla u_\rho|^2\,\sigma\,dt\,d\sigma
+\ \le\ \frac{4}{3}\,\alpha\,a^2\,\frac{L^2}{(r-L)^3}
+\ =\ \frac{4}{3}\,\alpha\,a^2\,\frac{L}{(R-1)^3}.
+\end{equation}
+This is the required **cubic decay** in \(R\), uniform in \(\beta\) since \(a\le\tfrac12\).
+
+
+\subsection*{Step 2: Cross–term (almost–orthogonality) bound}
+For two distinct far zeros \(\rho,\rho'\) with \(a'=|\beta'-\tfrac12|\), \(r'=|\gamma'-T|\), \(R'=r'/L\), write \(\Delta=t-\gamma\), \(\Delta'=t-\gamma'\). From \eqref{eq:pointwise-1overDelta4},
+\[
+|\nabla u_\rho|\ \le\ \frac{2a}{|\Delta|^2},\qquad
+|\nabla u_{\rho'}|\ \le\ \frac{2a'}{|\Delta'|^2}.
+\]
+Therefore
+\[
+\big|\langle u_\rho,u_{\rho'}\rangle_{Q(\alpha I)}\big|
+\ :=\ \left|\iint_{Q(\alpha I)} \nabla u_\rho\!\cdot\!\nabla u_{\rho'}\,\sigma\,dt\,d\sigma\right|
+\ \le\ 4aa'\left(\int_0^{\alpha L}\!\sigma\,d\sigma\right)\!
+\left(\int_{T-L}^{T+L}\!\frac{dt}{|\Delta|^2\,|\Delta'|^2}\right).
+\]
+The elementary dichotomy
+\[
+\forall\,t\in[T-L,T+L]\quad
+\text{either }|\Delta|\ge \tfrac12|\gamma-\gamma'|\ \ \text{or}\ \ |\Delta'|\ge \tfrac12|\gamma-\gamma'|
+\]
+implies
+\[
+\frac{1}{|\Delta|^2\,|\Delta'|^2}
+\ \le\ \frac{4}{|\gamma-\gamma'|^2}\left(\frac{1}{|\Delta|^2}+\frac{1}{|\Delta'|^2}\right).
+\]
+Hence, using \(\int_{T-L}^{T+L}\frac{dt}{(t-\gamma)^2}\le \frac{2}{r-L}\) and the same for \(\gamma'\),
+\begin{equation}\label{eq:cross-term}
+\big|\langle u_\rho,u_{\rho'}\rangle_{Q(\alpha I)}\big|
+\ \le\ \alpha L^2\cdot \frac{8aa'}{|\gamma-\gamma'|^2}\left(\frac{1}{r-L}+\frac{1}{r'-L}\right)
+\ \le\ C_\alpha\,L\,\frac{aa'}{(R-1)^{1/2}(R'-1)^{1/2}}\,
+\frac{1}{\big(1+\tfrac{|\gamma-\gamma'|}{L}\big)^2}.
+\end{equation}
+(Here we used \(x^{-1}\le C(1+x)^{-1}\) and absorbed harmless constants into \(C_\alpha\).)
+
+
+\subsection*{Step 3: Cotlar–Stein/Schur summation (uniform in configuration)}
+Define the weights
+\[
+b_\rho\ :=\ \sqrt{L}\,\frac{a}{(R-1)^{3/2}},\qquad
+\|u_\rho\|^2\ :=\ \iint_{Q(\alpha I)} |\nabla u_\rho|^2\,\sigma\,dt\,d\sigma.
+\]
+By \eqref{eq:perzero-cubic}, \(\|u_\rho\|^2\le C_\alpha\,b_\rho^2\).
+By \eqref{eq:cross-term}, for \(\rho\ne\rho'\),
+\[
+\frac{\big|\langle u_\rho,u_{\rho'}\rangle\big|}{b_\rho\,b_{\rho'}}\ \le\ 
+\frac{C_\alpha}{\big(1+\tfrac{|\gamma-\gamma'|}{L}\big)^2}\,.
+\]
+Let \(G=(g_{\rho\rho'})\) be the Gram matrix \(g_{\rho\rho'}:=\langle u_\rho,u_{\rho'}\rangle\).
+The normalized kernel \(K(\rho,\rho'):=|g_{\rho\rho'}|/(b_\rho b_{\rho'})\) has rows/columns bounded uniformly:
+group zeros by vertical annuli \(\mathcal A_j:=\{\rho:\ jL\le r< (j{+}1)L\}\).
+Unconditionally (Jensen/Littlewood),
+\[
+\#\mathcal A_j\ \le\ A\,j\,L\log\langle T\rangle + B\ \le\ A' j + B' \qquad(\text{since }L\log\langle T\rangle\le c).
+\]
+Therefore, for any fixed \(\rho\),
+\[
+\sum_{\rho'\ne\rho} K(\rho,\rho')
+\ \le\ \sum_{m\ge 0}\ \sum_{\rho':\,\tfrac{|\gamma-\gamma'|}{L}\in[m,m+1)}
+\frac{C_\alpha}{(1+m)^2}
+\ \le\ C_\alpha\sum_{m\ge 0}\frac{A'(m+1)+B'}{(1+m)^2}
+\ \le\ C_\alpha^{\!*}<\infty,
+\]
+with \(C_\alpha^{\!*}\) absolute (depends only on \(\alpha,c\)). The same holds for column sums.
+By the Schur test (or Cotlar–Stein almost–orthogonality),
+\[
+\Big\|\sum_{\rho\in S} u_\rho\Big\|^2
+\ \le\ C_\alpha^{\!*}\sum_{\rho\in S} b_\rho^2
+\ \le\ C_\alpha^{\!*}\sum_{j\ge 1}\ \sum_{\rho\in\mathcal A_j} \frac{L\,a^2}{(j-1)^{3}}
+\ \le\ C_\alpha^{\!*}L\sum_{j\ge 1}\frac{A'j+B'}{(j-1)^3}
+\ \le\ \widetilde C_\alpha\,L.
+\]
+Here \(S:=Z(\xi)\setminus\mathcal H_I\) are the far zeros. This is the desired **uniform** bound for the far–zero superposition.
+
+
+\subsection*{Step 4: Near–zero compensation and analytic remainder}
+By construction of \(B_I\), \(\xi\,B_I\) has no zeros in the \(2L\)–halo, so \(\widetilde U=\Re\log|\xi B_I|\) is harmonic on \(Q(\alpha I)\). The contribution of the finite set \(\mathcal H_I\) is entirely in \(B_I\) and produces no singular energy on \(Q(\alpha I)\).
+The analytic remainder \(H_I\) from the canonical factorization of \(\log(\xi B_I)\) is holomorphic on a fixed enlargement of \(Q(\alpha I)\); by standard Caccioppoli/Poincar\'e on fixed–aperture boxes,
+\[
+\iint_{Q(\alpha I)} |\nabla \Re H_I|^2\,\sigma\,dt\,d\sigma\ \le\ C_\alpha^{\diamond}\,|I|.
+\]
+
+
+\subsection*{Conclusion}
+Collecting the far–zero bound from Step~3 and the analytic remainder, we obtain \eqref{eq:goal} with
+\[
+K_\xi\ :=\ \widetilde C_\alpha + C_\alpha^{\diacmond},
+\]
+an absolute constant depending only on \(\alpha\) and on the Whitney constant \(c\) (through the harmless factor \(L\log\langle T\rangle\le c\)). This bound is:
+\begin{itemize}
+  \item \textbf{Unconditional:} uses only classical short–interval zero counts and no assumptions on zero locations beyond being in the critical strip.
+  \item \textbf{Uniform in \(\beta\):} the explicit \(a=|\beta-\tfrac12|\) factor is retained throughout; worst–case \(a\le\tfrac12\) gives a universal bound.
+  \item \textbf{Summable:} the per–zero cubic decay \(\sim (R-1)^{-3}\) and linear annular counts imply a finite energy budget proportional to \(|I|=2L\).
+\end{itemize}
+Therefore the \(\xi\)–block Carleson energy on \(Q(\alpha I)\) is uniformly bounded, and thus
+\[
+C_{\mathrm{box}}\ \le\ K_0\ +\ K_\xi\ +\ \|U_\Gamma\|_{\mathrm{area}}
+\]
+as required. \hfill\(\Box\)

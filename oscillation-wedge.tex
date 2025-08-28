@@ -1,0 +1,40 @@
+% Oscillation ⇒ Wedge (BV and AC forms)
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Oscillation $\Rightarrow$ Wedge (BV and AC forms)}
+
+\begin{lemma}[Oscillation $\Rightarrow$ Wedge (BV form)]\label{lem:OscToWedgeBV}
+Let $w:\mathbb{R}\to\mathbb{R}$ be locally of bounded variation. Write the distributional derivative $Dw=\mu^+-\mu^-$ with $\mu^\pm$ finite positive Radon measures on bounded intervals. Assume:
+\begin{itemize}
+\item[(A)] (Two-sided oscillation) For every bounded open interval $I\subset\mathbb{R}$,
+\[ \mu^-(I)\ \le\ \tfrac{\pi}{2}\qquad\text{and}\qquad \mu^+(I)\ \le\ \tfrac{\pi}{2}. \]
+\item[(B)] (Anchor) There exists a Lebesgue point $t_\star\in\mathbb{R}$ with $w(t_\star)=0$.
+\end{itemize}
+Then $w(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ for almost every $t\in\mathbb{R}$.
+\end{lemma}
+
+\begin{proof}
+Let $J=(a,b)$ be any bounded open interval with endpoints that are points of approximate continuity of $w$ (true for a.e. choice since BV functions are approximately continuous a.e.). The BV fundamental theorem gives
+\[ w(b)-w(a)=Dw((a,b))=\mu^+((a,b)) - \mu^-((a,b)). \]
+By (A), $0\le \mu^\pm((a,b))\le \pi/2$, hence $-\pi/2\le w(b)-w(a)\le \pi/2$. Fix the anchor $t_\star$ from (B) and any $t$ that is a point of approximate continuity. Applying the previous bound to $(\min\{t,t_\star\},\max\{t,t_\star\})$ yields
+\[ -\tfrac{\pi}{2}\ \le\ w(t)-w(t_\star)\ \le\ \tfrac{\pi}{2}. \]
+Since $w(t_\star)=0$, it follows that $|w(t)|\le \pi/2$ for a.e. $t$.
+\end{proof}
+
+\begin{remark}
+The anchor pins the absolute phase. Without (B), (A) still implies the essential range of $w$ has diameter at most $\pi/2$, i.e., $|w(t)-w(s)|\le \pi/2$ for a.e. $s,t$, but the interval’s center is undetermined. In applications, the branch is fixed so that $w=0$ at a designated reference (e.g., the box center).
+\end{remark}
+
+\begin{corollary}[Absolutely continuous form]\label{cor:OscToWedgeAC}
+Let $w\in W^{1,1}_{\mathrm{loc}}(\mathbb{R})$ and suppose that for every bounded open interval $I\subset\mathbb{R}$,
+\[ \int_I (-w'(t))\,dt\ \le\ \tfrac{\pi}{2}\qquad\text{and}\qquad \int_I w'(t)\,dt\ \le\ \tfrac{\pi}{2}. \]
+If there exists $t_\star$ with $w(t_\star)=0$, then $w(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ for almost every $t$.
+\end{corollary}
+
+\begin{proof}
+For $w\in W^{1,1}_{\mathrm{loc}}$, the BV measures are absolutely continuous: $\mu^\pm(I)=\int_I (w')_\pm$. The two integral bounds are equivalent to (A), so Lemma~\ref{lem:OscToWedgeBV} applies.
+\end{proof}
+
+% Implementation note (not printed): In the manuscript, the two-sided bounds in (A)
+% are obtained from the product certificate by applying it to F and to 1/F (invariance under inversion),
+% while the anchor is fixed by the chosen phase branch at the box center.

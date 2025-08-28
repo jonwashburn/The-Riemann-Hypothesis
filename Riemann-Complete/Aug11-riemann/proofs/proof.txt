@@ -1,0 +1,49 @@
+Internal RH Proof (AI shorthand) — 2025-08-11
+
+Goal (BRF): Prove Re(2·det₂(I−A(s))/ξ(s) − 1) ≥ 0 on Ω := {Re s > 1/2}.
+Equivalently: Θ := (H−1)/(H+1) Schur on Ω; or Pick kernel K_Θ PSD.
+
+Objects:
+- Arithmetic block: A(s): ℓ²(𝒫) → ℓ²(𝒫), A(s)e_p = p^{−s} e_p.
+  For σ>1/2: ||A(s)||²_HS = Σ_p p^{−2σ} < ∞; ||A(s)|| ≤ 2^{−σ}.
+- Completed zeta: ξ(s) = (1/2) s(1−s) π^{−s/2} Γ(s/2) ζ(s).
+- H(s) := 2·det₂(I−A(s))/ξ(s) − 1; Θ(s) := (H−1)/(H+1).
+
+Schur–det (★): For T(s) = [ A  B; C  D ], S(s) := D − C(I−A)^{-1}B,
+  log det₂(I−T) = log det₂(I−A) + log det(I−S).
+  M1–M3: k≥2 prime powers in log det₂(I−A); k=1 + archimedean/poles in log det(I−S).
+
+HS tails (prime truncations): For compact K⊂Ω, σ* = inf_{s∈K} Re s > 1/2,
+  sup_{s∈K} ||A−A_N||²_HS = sup_{s∈K} Σ_{p>p_N} |p^{−s}|² ≤ Σ_{p>p_N} p^{−2σ*} → 0.
+  Finite-rank auxiliaries (archimedean/poles) do not affect HS tail control.
+
+Carleman bound: |det₂(I−B)| ≤ exp(1/2 ||B||²_HS) for B∈HS.
+
+HS→det₂ convergence: If A_N,A holomorphic into HS, uniformly HS-bounded on compacts,
+  and sup_{s∈K} ||A_N−A||_HS → 0, then det₂(I−A_N) → det₂(I−A) locally uniformly on K.
+
+Divide by ξ off zeros: On K with inf_{K} |ξ| ≥ δ_K > 0,
+  H_N := 2·det₂(I−A_N)/ξ − 1 → H := 2·det₂(I−A)/ξ − 1 locally uniformly.
+
+Herglotz/Schur closure:
+- If each H_N is Herglotz (Re H_N ≥ 0), then H is Herglotz (locally uniform limit).
+- Or, if Θ_N Schur (||Θ_N||∞ ≤ 1), then Pick kernel K_Θ_N PSD; entrywise limits of Gram matrices yield K_Θ PSD, so Θ Schur.
+
+Finite-stage passivity (KYP) target (F1): For each truncation N, construct a passive realization
+  H_N(s) = C_N(sI − A_sys,N)^{-1} B_N + D_N, with A_sys,N Hurwitz,
+  and P_N ≻ 0 solving the bounded-real LMI (continuous-time, γ=1):
+    [ A_sys,N^* P_N + P_N A_sys,N    P_N B_N      C_N^* ]
+    [      B_N^* P_N                  −I          D_N^* ] ⪯ 0.
+    [         C_N                      D_N         −I   ]
+  (Discrete-time form available if needed.)
+  This certifies ||H_N||∞ ≤ 1 and hence H_N Herglotz via Cayley, or directly gives Schur Θ_N.
+
+Closure to the limit: With H_N → H locally uniformly on zero-free compacts and KYP holding at each N,
+  H is Herglotz (or Θ Schur) by closure ⇒ BRF holds on Ω.
+
+Fast sufficient conditions (any suffices instead of finite KYP):
+- Resolvent model: A(s) = Γ^*(s−1/2+T)^{−1} Γ with T ≥ 0 and ξ outer-normalized ⇒ H Herglotz.
+- Boundary unitarity: |Θ(1/2+it)| ≤ 1 a.e. ⇒ Θ Schur by maximum principle.
+- Direct Gram factorization of the Pick kernel.
+
+Single remaining blocker: Provide finite-stage passive certificates (A_sys,N,B_N,C_N,D_N,P_N) for each N (or use a fast sufficient condition) to conclude BRF.

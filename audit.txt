@@ -1,0 +1,82 @@
+﻿No.
+Below is a point‑by‑point audit of the five stated stages, citing the exact places in your manuscript where each claim is made or used.
+________________
+
+
+1) Reduction to Boundary Positivity (P+)
+Verdict: Logic verified.
+ Why: The paper correctly reduces RH to proving (P+) for the outer‑normalized ratio J\mathcal J: (i) it states and uses the Poisson/Herglotz equivalence to identify (P+)  ⟺  (\mathrm{P+}) \iff “2J2\mathcal J is Herglotz,” and (ii) it then globalizes to ∣Θ∣≤1|\Theta|\le1 on Ω\Omega and pinches across Z(ξ)Z(\xi) to reach RH (maximum principle / removable singularity). This chain is explicitly laid out in Three equivalent faces of self‑correction and the surrounding “phase–velocity and Poisson … then globalization” discussion.
+________________
+
+
+2) Proving (P+) by establishing the Carleson Self‑Correction (PSC) principle
+Verdict: Not established as written.
+ Why: The paper proves PSC ⇒ (P+) (via the phase–balayage law and the ensuing “boundary wedge” lemma), but it does not actually prove PSC nor the converse (P+)⇒PSC(\mathrm{P+})\Rightarrow \mathrm{PSC}; in the theorem labeled “Three equivalent faces,” the proof only covers (P+)⇔(\mathrm{P+})\Leftrightarrow Herglotz and PSC⇒(P+)\mathrm{PSC}\Rightarrow(\mathrm{P+}), leaving (P+)⇒PSC(\mathrm{P+})\Rightarrow\mathrm{PSC} unproved. Thus the stage “prove (P+) by establishing PSC” is not executed: PSC is used as a sufficient condition, not derived.
+________________
+
+
+3) Proving PSC via an explicit Certificate Inequality (⋯ )<π/2(\cdots)<\pi/2
+Verdict: Fails as stated (certificate closes (P+) directly, not PSC).
+ Why: The manuscript verifies a product‑form certificate
+CH(ψ) Mψ+CP(κ)c0(ψ)<π2,\frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{c_0(\psi)}<\frac{\pi}{2},
+and from this deduces the boundary wedge and hence (P+); however, PSC (a Carleson box mass bound) requires the mass‑1 form with CHC_H (not CH×MψC_H\times M_\psi) together with CΓC_\Gamma, namely (CΓ+CP+CH)/c0≤π/2\big(C_\Gamma+C_P+C_H\big)/c_0\le\pi/2. The manuscript itself flags PSC‑from‑constants separately, but the locked numerical close is only shown for the product form (which yields (P+) but not PSC). Moreover, the proof line “Consequently the Carleson self‑correction (PSC) principle holds” in the certificate theorem is not justified by the preceding inequalities: the phase–balayage inequality used there controls ∫(−w′)\int(-w') from above by the Carleson mass and does not supply the lower bound needed to turn the product certificate into a Carleson mass bound (nor does it include the off‑box tail Ctail(ψ)C_{\mathrm{tail}}(\psi) in the final numeric close).
+Concrete mismatches inside Stage 3
+* What’s proved numerically: locked constants give Mψ≤0.07690M_\psi\le 0.07690 and then Θ≈0.3972<π/2\Theta\approx 0.3972<\pi/2, which establishes the wedge and hence (P+).
+
+* What PSC needs: the earlier PSC lemma/theorem needs (CΓ+CP+CH)/c0≤π/2(C_\Gamma+C_P+C_H)/c_0\le\pi/2; your numbers don’t check that inequality (e.g., CH/c0≈0.65/0.176>3C_H/c_0\approx 0.65/0.176>3), so PSC is not closed by those constants.
+
+* Missing direction: the “phase–balayage law” is used with the inequality ∫I(−w′)≤π μ(Q(I))/∣I∣\int_I(-w')\le \pi\,\mu(Q(I))/|I|; this does not imply μ(Q(I))/∣I∣\mu(Q(I))/|I| is bounded above by the product‑certificate numerator (one needs a two‑sided sandwich that the paper does not provide).
+
+________________
+
+
+4) Constants (c0, CH, Mψ, CP)(c_0,\,C_H,\,M_\psi,\,C_P) derived from unconditional theorems/calculations
+Verdict: Argument is (mostly) sound, with explicit non‑asymptotic enclosures.
+ Why:
+   * c0(ψ)c_0(\psi) is obtained by a sharp Poisson‑convolution minimum (explicit calculus: inf attained at (x,b)=(1,1)(x,b)=(1,1), value 0.17620819…0.17620819\ldots).
+
+   * CH(ψ)≤0.65C_H(\psi)\le 0.65 is proved by an explicit Hilbert‑transform envelope for the printed flat‑top window.
+
+   * CP(κ)≤2κC_P(\kappa)\le 2\kappa is derived unconditionally by band‑limiting the k=1k{=}1 prime line (no PNT or RH input).
+
+   * MψM_\psi is bounded by a standard H1H^1–BMO/Carleson argument with fixed cone aperture, i.e., Mψ≤4πCψ(H1)CboxM_\psi\le \frac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}}, and the manuscript supplies  Cψ(H1)=0.2400±5 ⁣× ⁣10−4\,C_\psi^{(H^1)}=0.2400\pm5\!\times\!10^{-4} (with a stated quadrature error budget) and a closed Carleson energy bound Cbox≤0.063171C_{\rm box}\le 0.063171 via explicit K0K_0, KξK_\xi, and Archimedean terms. (This numerics‑plus‑enclosures step is acceptable as written; if you want purely analytic margins, you could loosen the numerical constant slightly without affecting the certificate.)
+
+Note: The constants indeed come from unconditional ingredients (Hilbert transform calculus, Poisson/outer theory, Montgomery–Vaughan‑type bandlimit, Stirling, and zero‑counting bounds only at the level used for the Carleson energy), and the paper clearly states that no RH/PNT density inputs are assumed.
+________________
+
+
+5) Final conclusion (RH) from (P+) by standard globalization (Poisson integral; maximum modulus)
+Verdict: Logic verified.
+ Why: Once (P+) is in hand, the text applies the Poisson/Herglotz lift and maximum principle on zero‑free rectangles, then extends across Z(ξ)Z(\xi) (via compensator when needed) to obtain a global Schur bound and the “pinch” that forces all nontrivial zeros onto ℜs=12\Re s=\tfrac12. This is standard and is spelled out in the rectangle‑boundary/inner–outer normalization passage and the globalization lemma.
+________________
+
+
+What must be done to make the proof complete and unconditional
+      1. Fix the PSC link (the central gap).
+ Provide a rigorous implication from the product certificate to PSC. Concretely, you need a two‑sided estimate
+c0 μ(Q(I))∣I∣  −  Ctail(ψ) ≤ ∫(−w′) φI ≤ CH(ψ) Mψ+CP(κ)c_0\,\frac{\mu(Q(I))}{|I|}\;-\;C_{\mathrm{tail}}(\psi)\ \le\ \int(-w')\,\varphi_I\ \le\ C_H(\psi)\,M_\psi + C_P(\kappa)
+with explicit Ctail(ψ)C_{\mathrm{tail}}(\psi); then the locked constants give μ(Q(I))/∣I∣≤( CHMψ+CP+Ctail )/c0≤π/2\mu(Q(I))/|I|\le(\,C_HM_\psi+C_P+C_{\mathrm{tail}}\,)/c_0\le\pi/2. At present you only have the upper balayage inequality, which does not yield a Carleson upper bound from the product certificate.
+
+      2. Either (a) restate the main chain as “Certificate ⇒ (P+) ⇒ RH” (dropping PSC from the core argument), or (b) actually prove PSC by closing the mass‑1 inequality (CΓ+CP+CH)/c0≤π/2\big(C_\Gamma+C_P+C_H\big)/c_0\le\pi/2 with numbers (which your current constants do not satisfy). If you keep PSC in the chain, the manuscript must not claim PSC from the product certificate without the missing lower estimate in step 1.
+
+      3. Prove (P+) ⇒ PSC if you wish to retain the “equivalent faces” theorem as stated.
+ The theorem currently shows (P+)⇔(\mathrm{P+})\Leftrightarrow Herglotz and PSC⇒(P+)\mathrm{PSC}\Rightarrow(\mathrm{P+}); add a complete proof of (P+)⇒PSC(\mathrm{P+})\Rightarrow\mathrm{PSC} (or weaken the theorem statement).
+
+      4. Unify the Poisson stamp normalization.
+ Two slightly different stamp formulas appear (with and without an explicit 2a2a factor). Insert the explicit Poisson scale reduction step every time and carry the ∣I∣|I| normalization through so that the Whitney lower bound and the Carleson ratio μ(Q(I))/∣I∣\mu(Q(I))/|I| are dimensionally aligned in all occurrences.
+
+      5. Make Ctail(ψ)C_{\mathrm{tail}}(\psi) explicit and lock it.
+ You already proved existence of a uniform tail constant for off‑box zeros; give the enclosure and include it in the final certificate if you keep the PSC route.
+
+      6. Document the fixed‑aperture Carleson embedding constant.
+ The inequality Mψ≤4πCψ(H1)CboxM_\psi\le \frac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}} is standard, but you cite it as “recorded”; add the proof (or a precise reference with your normalization and aperture) so the numerical factor 4/π4/\pi and “CCE(α)=1C_{\rm CE}(\alpha)=1” are beyond doubt in your setup.
+
+      7. (Optional but strengthens robustness) Replace the quadrature‑only evaluation Cψ(H1)=0.2400±5 ⁣× ⁣10−4C_\psi^{(H^1)}=0.2400\pm5\!\times\!10^{-4} with a purely analytic upper bound (e.g., <0.245<0.245) so the product certificate remains closed with a fully analytic margin; the current numerical enclosure is careful but not strictly necessary given your slack.
+
+________________
+
+
+Bottom line
+         * What the paper does prove soundly: the product certificate closes the boundary wedge (P+)(\mathrm{P+}), and from there the standard Poisson/Herglotz + maximum‑principle globalization yields RH.
+
+         * What is not yet proved: that the same certificate establishes PSC (or that (P+)⇒PSC(\mathrm{P+})\Rightarrow\mathrm{PSC}). Fixing this (or removing PSC from the core chain) is the one material change required to make the argument fully self‑contained and internally consistent with the five‑stage narrative you stated.

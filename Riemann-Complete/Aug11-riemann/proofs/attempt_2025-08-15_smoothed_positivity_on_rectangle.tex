@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Attempt: Poisson-smoothed boundary inequality on a zero-free rectangle}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega=\{\ReS s>\tfrac12\}$ and $R\Subset\Omega$ with $\xi\ne0$ on a collar of $\overline R$. Define $J=\det_2/(O_R\,\xi)$, where $O_R$ is the outer factor built from $\log|\det_2/\xi|$ on $\partial R$ via the (rectangle) Poisson integral, so that $\log|J|$ has mean zero on each side. Fix a side $\partial R_*$, parametrize by $t\mapsto s(t)$, and set
+\[
+w(t)=\arg J(s(t)) - \mathcal H\big[\log|J|\big](t),\quad P_\varepsilon* w\text{ the side-Poisson smooth.}
+\]
+
+\section*{Target}
+For every $\varepsilon>0$, prove the \emph{smoothed} bound
+\begin{equation}\label{eq:smoothed}
+(P_\varepsilon * w)(t)\ \le\ \frac{\pi}{2}\quad\text{for a.e. }t\text{ on }\partial R_*.
+\end{equation}
+By Theorem~F (de-smoothed positivity), \eqref{eq:smoothed} implies $w\le\pi/2$ a.e. and hence boundary accretivity $\ReS J\ge 0$ on $\partial R_*$.
+
+\section*{Reduction to a Herglotz claim at height $\varepsilon$}
+Let $J_\varepsilon(s):=J(s+\varepsilon\,\nu_*)$, where $\nu_*$ is the outward unit normal to the side (vertical sides: $\nu_*=(1,0)$; horizontal: $\nu_*=(0,1)$ after appropriate rescaling). Standard harmonic analysis on rectangles gives
+\[
+(P_\varepsilon*w)(t)= \arg J_\varepsilon(s(t)) - \mathcal H\big[\log|J_\varepsilon|\big](t).
+\]
+Thus \eqref{eq:smoothed} holds provided $J_\varepsilon$ is \emph{Herglotz} on the side in the half-plane sense, i.e. $\ReS J_\varepsilon(s(t))\ge0$, which is equivalent to the Pick kernel
+\[
+\frac{J_\varepsilon(s)+\overline{J_\varepsilon(t)}}{s+\overline t-1}
+\]
+being PSD for nodes on $\partial R_*$. Hence:
+
+\begin{proposition}[Sufficient condition]
+If for each $\varepsilon>0$, the function $J_\varepsilon$ admits a half-plane Herglotz representation on a collar of $\partial R_*$ with a \emph{positive} boundary measure, then \eqref{eq:smoothed} holds for that side.
+\end{proposition}
+
+\section*{Prime-power measure and the remaining positivity}
+Write $\log\det_2(s)= -\sum_{p}\sum_{m\ge2} p^{-ms}/m$. Differentiating in $s$ yields the Laplace transform of the positive discrete measure $\mu_{\rm pp}=\sum_{p,m\ge2} \delta_{m\log p}/m$. For the denominator, $\log\xi$ is holomorphic on a collar of $\overline R$; its boundary contribution can be absorbed by the outer $O_R$. After outer normalization one is reduced to proving that, for $\varepsilon>0$, the function $J_\varepsilon$ is the Herglotz transform of a \emph{positive} measure on the side. Concretely:
+
+\begin{lemma}[Positivity criterion; to be proved]
+For each fixed $R$ and $\varepsilon>0$, the outer-normalized $J_\varepsilon$ satisfies
+\[
+\ReS J_\varepsilon(s)\ =\ \frac{1}{\pi}\int_{\partial R_*} P_{R,\varepsilon}(s,\zeta)\, d\mu_{R,\varepsilon}(\zeta),\quad d\mu_{R,\varepsilon}\ \ge\ 0,
+\]
+where $P_{R,\varepsilon}$ is the Poisson kernel for the shifted side and $\mu_{R,\varepsilon}$ is a finite measure depending on $R$ and $\varepsilon$.
+\end{lemma}
+
+\noindent\textbf{Status.} Establishing $d\mu_{R,\varepsilon}\ge0$ is the sole remaining step. It is equivalent to the interior NP--PSD at height $\varepsilon$ and can be attacked via (i) explicit formula bookkeeping of primes vs. $\xi$ with the outer removing smooth drift, or (ii) a finite-passive colligation realizing $J_\varepsilon$.
+
+\section*{Conclusion}
+Granting the lemma, \eqref{eq:smoothed} follows, and Theorem~F then yields boundary accretivity, unlocking NP--PSD and Schur interpolation on $R$.
+
+\end{document}
+

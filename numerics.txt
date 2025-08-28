@@ -1,0 +1,89 @@
+﻿\section*{Appendix X. Locked Numerical Enclosures Used in the Certificate (with rounding directions)}
+\noindent\textbf{Policy.}
+All bounds below are height–uniform and scale–free. Decimals are printed to the stated precision using \emph{outward rounding}: every declared \emph{upper} bound is rounded \emph{up} at its last printed digit; every declared \emph{lower} bound is rounded \emph{down}. No other numerical values are to be used in verifying the certificate.
+
+
+\medskip
+\noindent\textbf{A. Poisson plateau constant.}
+For the mass–1 flat–top window \(\psi\) with \(\psi\equiv 1\) on \([-1,1]\) and \(\operatorname{supp}\psi\subset[-2,2]\),
+\[
+  c_0(\psi)\;=\;\frac{1}{2\pi}\arctan 2.
+\]
+Decimal used (rounded \emph{down}, 8 d.p.): \(c_0(\psi)=0.17620819\).
+
+
+\medskip
+\noindent\textbf{B. Hilbert–envelope derivative constant.}
+\[
+  \|(\mathcal H[\varphi_L])'\|_\infty \;\le\; \frac{C_H(\psi)}{L}.
+\]
+Upper enclosure (rounded \emph{up}, 2 d.p.): \(C_H(\psi)=0.65\).
+
+
+\medskip
+\noindent\textbf{C. Window \(H^1\) constant.}
+\[
+  C_\psi^{(H^1)} \;\le\; 0.2400.
+\]
+Upper enclosure (rounded \emph{up}, 4 d.p.): \(C_\psi^{(H^1)}=0.2400\).
+
+
+\medskip
+\noindent\textbf{D. Zeta–side Carleson box constant (the only box constant used).}
+Let \(K_0\) be the arithmetic tail and \(K_\xi\) the \(\xi\)–zero Whitney–box term. We use only their \(\zeta\)–normalized sum
+\[
+  C_{\mathrm{box}}^{(\zeta)}\ :=\ K_0 + K_\xi.
+\]
+Upper enclosures (each rounded \emph{up} to the shown precision):
+\[
+  K_0=0.03486808\quad(8\text{ d.p.}),\qquad
+  K_\xi=0.02035000\quad(8\text{ d.p.}),
+\]
+hence (sum rounded \emph{up}, 8 d.p.)
+\[
+  C_{\mathrm{box}}^{(\zeta)}=0.05521808.
+\]
+\emph{Note.} No \(\Gamma\)–factor area term is used anywhere in the certificate route; only \(C_{\mathrm{box}}^{(\zeta)}\) enters.
+
+
+\medskip
+\noindent\textbf{E. Locked \(M_\psi\).}
+With \((\mathrm{NC\text{--}P1})\): \(M_\psi \le \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}^{(\zeta)}}\).
+Numerical value computed at high precision and then rounded \emph{up} (8 d.p.):
+\[
+  M_\psi \;=\; 0.07180621.
+\]
+
+
+\medskip
+\noindent\textbf{F. Adaptive prime–side budget (AAB).}
+With adaptive \(\kappa(T)=c'/\log\log\langle T\rangle\), Lemma (AAB) yields the uniform bound
+\[
+  C_P(\kappa(T))\ \le\ C_P^*\ :=\ 0.030,
+\]
+rounded \emph{up} (3 d.p.).
+
+
+\medskip
+\noindent\textbf{G. Wedge constants.}
+Upper enclosures (rounded \emph{up}):
+\[
+ C_{\mathrm{far}}=0.05,\qquad C_{\mathrm{line}}=0.10.
+\]
+
+\medskip
+\noindent\textbf{H. Certificate value.}
+The certificate quantity is
+\[
+  \Upsilon \;:=\; \frac{C_H(\psi)\,M_\psi + C_P}{c_0(\psi)}.
+\]
+Using only the locked decimals from A–F (with the stated outward rounding),
+\[
+  \Upsilon \;=\; \frac{0.65\cdot 0.07180621 \;+\; 0.030}{0.17620819}
+  \;=\; 0.43514 \;\le\; \tfrac12.
+\]
+
+
+\medskip
+\noindent\textbf{Audit remarks.}
+(i) All inputs (A)–(F) are independent of height \(T\) and scale \(L\). (ii) Items (B)–(F) are upper bounds (rounded up); item (A) is a lower bound (rounded down) to make \(\Upsilon\) conservative. (iii) No other numerics elsewhere in the manuscript are part of the certificate; the present appendix is the sole authoritative ledger for numerical verification.

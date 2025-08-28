@@ -1,0 +1,36 @@
+% Box energy: definition, unconditional decomposition, and aggregation
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Box energy: decomposition and aggregation}
+
+\paragraph{Definition (fixed aperture).}
+For a harmonic potential $U=\Re\log F$ with $F$ meromorphic of bounded type in $\Omega$, define the fixed–aperture box Carleson energy
+\[C_{\rm box}(U;\alpha)\ :=\ \sup_{I}\ \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U(x,y)|^2\,y\,dx\,dy.\]
+All statements below are for a fixed aperture $\alpha\ge 1$.
+
+\paragraph{Unconditional decomposition.}
+Write $U=U_{\det_2}-U_\xi+U_\Gamma$, corresponding to the log–potentials of $\det_2(I-A)$, $\xi$ and the archimedean/Gamma factor (with signs consistent with $\mathcal J$). Then for every interval $I$,
+\[\frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,\le\ \underbrace{\frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U_{\det_2}|^2\,y}_{\le\ K_0}\ +\ \underbrace{\frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U_\xi|^2\,y}_{\le\ K_\xi}\ +\ \underbrace{\frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U_\Gamma|^2\,y}_{\le\ K_\Gamma}.\]
+Consequently,
+\begin{equation}\label{eq:cbox-split}
+C_{\rm box}(U;\alpha)\ \le\ K_0\ +\ K_\xi\ +\ K_\Gamma.
+\end{equation}
+
+\paragraph{Arithmetic tail $K_0$.}
+The $\det_2$–tail begins at prime powers $p^k$ with $k\ge2$; its box energy is finite and independent of $T$ under the fixed aperture, yielding a constant $K_0<\infty$ (with explicit enclosure given in the numeric appendix).
+
+\paragraph{Archimedean term $K_\Gamma$.}
+By Stirling/digamma bounds on fixed–aperture boxes, the $\Gamma$–term has bounded gradient and yields a finite, height–independent constant $K_\Gamma<\infty$.
+
+\paragraph{Zeros ($\xi$–block) term $K_\xi$.}
+With local Blaschke neutralization of zeros inside $Q_\alpha(I)$ and a cubic far–field kernel bound summed over dyadic horizontal annuli using only unconditional zero–counting, one obtains a uniform, height–independent constant $K_\xi<\infty$; see Theorem~\ref{thm:Kxi}.
+
+\begin{theorem}[Aggregation of the box energy]\label{thm:aggregation-box}
+For fixed $\alpha\ge1$, there exist absolute constants $K_0,K_\xi,K_\Gamma<\infty$ such that for every interval $I$,
+\[\frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,\le\ K_0+K_\xi+K_\Gamma.\]
+Equivalently, $C_{\rm box}(U;\alpha)\le K_0+K_\xi+K_\Gamma$.
+\end{theorem}
+
+\begin{remark}[Uniformity under Whitney scaling]
+Under the scale law $|I|\le 1/(\Lambda\log\langle T\rangle)$, each of $K_0,K_\xi,K_\Gamma$ is independent of height $T$; hence the bound \eqref{eq:cbox-split} is height–uniform.
+\end{remark}

@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{Operator-Theoretic Program for RH via de Branges--Rovnyak Kernels and Fredholm Matching}
+\author{A.I. Collaboration}
+\date{\today}
+
+% --- Macros ---
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\HS}{\mathcal{S}_2}
+\newcommand{\Th}{\Theta}
+\newcommand{\Si}{\Sigma}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\kN}{K_N}
+\newcommand{\Hhp}{\mathbb{H}_{1/2}}
+\newcommand{\detTwo}{\det\nolimits_{2}}
+\newcommand{\xiFun}{\xi}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We organize an operator-theoretic approach to RH on $\ReS s>1/2$ using a Herglotz base $\Si$ and target transfer $\Th=\zeta^2/E_2$. Unconditional facts: $\Si$ is Herglotz, finite Schur models yield PSD kernels, PSD kernels are closed under locally uniform limits, and determinant matching imposes explicit constraints. The sole remaining statement is that $\Th$ is Schur relative to $\Si$ on $\ReS s>1/2$, which would imply RH via a spectral gap and Fredholm identity.
+\end{abstract}
+
+\section{Setup}
+\begin{definition}
+Let $\Hhp=\{ \ReS s>1/2\}$ and define
+\[
+\Si(s):=\sum_{p} \frac{p^{-2}}{1-p^{-s}},\quad
+E_2(s):=\exp\Big(\sum_p p^{-s}+\tfrac12\sum_p p^{-2s}\Big),\quad
+\Th(s):=\zeta(s)^2\,E_2(s)^{-1}.
+\]
+Set
+\[K(s,w):=\frac{1-\Th(s)\overline{\Th(w)}}{\Si(s)+\overline{\Si(w)}}.\]
+\end{definition}
+
+\begin{lemma}[Herglotz]
+$\Re \Si(s)>0$ on $\{\ReS s>0\}$.
+\end{lemma}
+
+\section{Finite models and limits}
+\begin{definition}
+For $P_N$, define $\SiN,\ThN$ by truncation and $\kN$ as above.
+\end{definition}
+
+\begin{lemma}[Convergence]
+On $\sigma\ge 1/2+\varepsilon$, $\SiN\to\Si$ and $\ThN\to\Th$ locally uniformly; thus $\kN\to K$.
+\end{lemma}
+
+\begin{lemma}[PSD closure]
+Locally uniform limits of PSD kernels are PSD.
+\end{lemma}
+
+\section{Schur realization and spectral gap}
+\begin{proposition}
+If $K\succeq 0$, then $\Th$ is a contractive multiplier relative to $\Si$, realized by a conservative colligation. Hence strict contractivity off the critical line.
+\end{proposition}
+
+\section{Fredholm matching}
+\begin{proposition}[Bookkeeping]
+Let $A,B,C,D$ be as in the block model and $S:=D+C(I-A)^{-1}B$. On $\{\ReS s>1\}$,
+\[
+\log \detTwo(I-T)= -\sum_{k\ge2}\frac{\operatorname{tr}(A^k)}{k} + \log(1-S)+ \operatorname{tr}A.
+\]
+Matching with $\log \xiFun(s)$ yields constraints (M1)--(M3).
+\end{proposition}
+
+\section{Core hypothesis and consequence}
+\begin{hypothesis}[Core]
+$K\succeq 0$ on $\Hhp\times\Hhp$.
+\end{hypothesis}
+
+\begin{theorem}[Conditional RH]
+Assuming the Core hypothesis, there is an analytic family $T(s)$ with $\detTwo(I-T(s))=\xiFun(s)$ (normalized at $s=2$) and a spectral gap off $\ReS s=1/2$, hence RH.
+\end{theorem}
+
+\end{document}

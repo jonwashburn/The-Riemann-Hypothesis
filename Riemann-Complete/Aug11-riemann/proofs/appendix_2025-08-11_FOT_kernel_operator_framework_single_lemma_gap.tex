@@ -1,0 +1,134 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{FOT Kernel/Operator Framework for RH (Single-Lemma Gap)}
+\author{A.I. Collaboration}
+\date{\today}
+
+% Macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\Si}{\Sigma}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\Th}{\Theta}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\detTwo}{\det\nolimits_{2}}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+\maketitle
+
+\section*{0) Notation and domain}
+Write $\C_\alpha:=\{ s\in\C : \ReS s>\alpha\}$. Fix a holomorphic function $\Si: \C_{0}\to\C$ with positive real part on $\C_0$ (i.e., Herglotz): $\Re\,\Si(s)>0$ for $\ReS s>0$. Let $\Th$ be holomorphic on $\C_{1/2}$.
+
+\section*{1) Base kernel and the $\Si$-weighted space}
+Define the Carath\'eodory kernel
+\[
+G_{\Si}(s,w):=\frac{1}{\Si(s)+\overline{\Si(w)}}, \qquad s,w\in\C_0.
+\]
+Since $\Si$ is Herglotz on $\C_0$, $G_\Si$ is positive semidefinite (PSD) and generates the reproducing-kernel Hilbert space $\mathscr H_\Si:=\mathscr H(G_\Si)$.
+
+\begin{proposition}[de Branges--Rovnyak equivalence]\label{prop:dBR}
+For any holomorphic $\Phi$ on a domain $D\subset \C_0$, the kernel
+\[
+K_{\Si,\Phi}(s,w):=\frac{1-\Phi(s)\,\overline{\Phi(w)}}{\Si(s)+\overline{\Si(w)}}
+\]
+is PSD on $D$ if and only if multiplication by $\Phi$ is a contraction on $\mathscr H_\Si|_D$. Equivalently, the Cayley transform $P_\Phi:=(1+\Phi)/(1-\Phi)$ has $\Re P_\Phi\ge0$ on $D$.
+\end{proposition}
+
+We will apply this with $D=\C_{1/2}$.
+
+\section*{2) Finite-operator truncation (FOT)}
+Let $\{\SiN\}_{N\ge1}$ be Herglotz functions on $\C_0$ with
+\[
+\SiN \xrightarrow[N\to\infty]{} \Si \quad\text{locally uniformly on } \C_\varepsilon \text{ for every }\varepsilon>0.
+\]
+Given any finite node set $E\subset \C_{1/2}$ and target values $\mathbf z=(z_s)_{s\in E}$ with $|z_s|<1$, define the Pick matrix
+\[
+\mathcal P_N(E;\mathbf z):=\Bigg[ \frac{1-z_i\overline{z_j}}{\SiN(s_i)+\overline{\SiN(s_j)}} \Bigg]_{s_i,s_j\in E}.
+\]
+
+\begin{proposition}[Half-plane Nevanlinna--Pick]
+$\mathcal P_N(E;\mathbf z)\succeq0$ if and only if there exists a holomorphic $\Phi_{N,E}$ on $\C_{1/2}$ with $\|M_{\Phi_{N,E}}\|\le1$ on $\mathscr H_{\SiN}|_{\C_{1/2}}$ and $\Phi_{N,E}(s)=z_s$ for $s\in E$. Consequently,
+\[
+K_{N,E}(s,w):=\frac{1-\Phi_{N,E}(s)\,\overline{\Phi_{N,E}(w)}}{\SiN(s)+\overline{\SiN(w)}}\succeq0 \quad\text{on }\C_{1/2}.
+\]
+\end{proposition}
+
+Thus we have unconditional positivity at each finite stage (for arbitrary finite data), without global assumptions on $\Th$.
+
+\section*{3) Diagonal scheme and limit stability}
+Choose an exhausting sequence $E_1\subset E_2\subset\cdots$ with $\bigcup_k E_k$ dense on compacta of $\C_{1/2}$. For each $N$ let $E=E_N$ and pick $\Phi_N:=\Phi_{N,E_N}$ by the Pick theorem.
+
+\begin{lemma}[Closure of positivity]\label{lem:closure}
+If $Q_N\succeq 0$ on a domain $D$ and $Q_N\to Q$ locally uniformly on $D\times D$, then $Q\succeq 0$.
+\end{lemma}
+
+If we can arrange local uniform convergence $\SiN\to\Si$ and $\Phi_N\to\Th$ on $\C_{1/2}$, then
+\[
+K_N:=\frac{1-\Phi_N\,\overline{\Phi_N}}{\SiN+\overline{\SiN}}\;\longrightarrow\; K:=\frac{1-\Th\,\overline{\Th}}{\Si+\overline{\Si}}\quad\text{locally uniformly on }\C_{1/2}\times\C_{1/2},
+\]
+and hence $K\succeq0$ by Lemma~\ref{lem:closure}. This is the only place a global property of $\Th$ is needed.
+
+\section*{4) Single remaining assumption (BLOCKER)}
+Any one of the following suffices:
+\begin{description}
+  \item[(E1)] $\displaystyle \Re\frac{1+\Th}{1-\Th}(s)\ge 0$ for all $s\in\C_{1/2}$.
+  \item[(E2)] $K_{\Si,\Th}(s,w)=\dfrac{1-\Th(s)\overline{\Th(w)}}{\Si(s)+\overline{\Si(w)}}\succeq0$ on $\C_{1/2}$.
+  \item[(E3)] There exist $\SiN\to\Si$ and $\Phi_N\in\mathrm{Schur}(\SiN)$ with $\Phi_N\to\Th$ locally uniformly on $\C_{1/2}$.
+\end{description}
+By Proposition~\ref{prop:dBR}, (E1)$\iff$(E2). By the limit argument in \S3, (E3)$\Rightarrow$(E2). In the RH application, verifying any is RH-strength.
+
+\section*{5) Consequence of the BLOCKER: operator model and $\xi$}
+Assume the BLOCKER, so $K_{\Si,\Th}\succeq0$ on $\C_{1/2}$. Then standard de Branges--Rovnyak realization yields a conservative $J$-inner colligation realizing $\Th$ over the base $\Si$, with strict contractivity off the boundary. In the RH pipeline:
+\begin{itemize}
+  \item build $T(s)$ from the node (colligation);
+  \item use the established operator identity to obtain $\detTwo(I-T(s))=\xi(s)$;
+  \item strict contractivity for $\ReS s\ne\tfrac12$ gives the spectral gap and rules out zeros off the critical line.
+\end{itemize}
+All other steps are unconditional.
+
+\section*{6) Finite tests for the BLOCKER}
+For $E=\{s_1,\dots,s_m\}\subset\C_{1/2}$, form the Pick matrix
+\[
+\mathcal P(E):=\Bigg[ \frac{1-\Th(s_i)\,\overline{\Th(s_j)}}{\Si(s_i)+\overline{\Si(s_j)}} \Bigg]_{i,j=1}^m.
+\]
+Then (E2) holds iff $\mathcal P(E)\succeq0$ for every finite $E$. One counterexample suffices to falsify; positive tests cannot prove (E2) outright.
+
+\section*{Checklist}
+\textbf{Proved unconditionally:} base positivity; finite NP interpolation and PSD kernels; closure of PSD under limits; operator consequences from $K\succeq0$.
+
+\textbf{Single assumption (BLOCKER):} $\Th$ is $\Si$-Schur on $\C_{1/2}$ (any of E1/E2/E3).
+
+\section*{Drop-in theorem (with BLOCKER flagged)}
+\begin{theorem}[FOT $\Rightarrow$ Kernel Positivity $\Rightarrow$ Operator Realization]
+Let $\Si$ be Herglotz on $\ReS s>0$ and $\Th$ holomorphic on $\ReS s>\tfrac12$.
+
+(i) For every truncation $\SiN$ with $\Re\SiN>0$ on $\ReS s>0$ and every finite $E\subset\{\ReS s>\tfrac12\}$ there exists $\Phi_{N,E}$ such that
+\[
+K_{N,E}(s,w)=\frac{1-\Phi_{N,E}(s)\overline{\Phi_{N,E}(w)}}{\SiN(s)+\overline{\SiN(w)}}\succeq0.
+\]
+
+(ii) If $\SiN\to\Si$ and $\Phi_N\to\Th$ locally uniformly on $\ReS s>\tfrac12$, then
+\[
+K(s,w)=\frac{1-\Th(s)\overline{\Th(w)}}{\Si(s)+\overline{\Si(w)}}\succeq0 \quad(\ReS s,\ReS w>\tfrac12).
+\]
+
+(iii) If $K\succeq0$ on $\ReS s>\tfrac12$, then $\Th$ admits a conservative $J$-inner realization; in the canonical $\xi$-setup this yields $\|T(s)\|<1$ for $\ReS s\ne\tfrac12$ and thus $\detTwo(I-T(s))\ne0$ there.
+
+\textbf{BLOCKER.} The convergence $\Phi_N\to\Th$ (equivalently, $\Th\in\mathrm{Schur}(\Si)$ on $\ReS s>\tfrac12$) is the sole unproved step; it is RH-strength in this framework.
+\end{theorem}
+
+\end{document}

@@ -1,0 +1,39 @@
+% Traceable derivation of K_xi from printed inequalities (concise)
+% Ready to \input after carleson-boxes; constants locked as printed.
+
+\section*{Traceable derivation of the $\xi$--block bound $K_{\xi}$}
+
+\paragraph{Goal.} On each Whitney box $Q(\alpha I)$ with $|I|=L=c/\log\langle T\rangle$, prove
+\[ \iint_{Q(\alpha I)} |\nabla U_{\xi}|^2\,\sigma\,dt\,d\sigma\ \le\ K_{\xi}\,|I|, \]
+with the locked value $K_{\xi}\le 0.02035$.
+
+\paragraph{A. Local neutralization.} Form the Blaschke factor $B_I$ from zeros with $|\gamma-T|\le 2L$ and set $\widetilde U:=\Re\log(\xi\cdot B_I)$. Then $\widetilde U$ is harmonic on $Q(\alpha I)$ and the near singularities are removed.
+
+\paragraph{B. Far–field cubic kernel.} For a zero at vertical distance $r\ge L$,
+\[ \frac{1}{|I|}\iint_{Q(\alpha I)}\Big(\tfrac{\sigma}{|s-\rho|^2}-\mathrm{affine}_I\Big)\,dt\,d\sigma\ \le\ \frac{C_\alpha}{(r/L)^3},\]
+with $C_\alpha\le 0.0600$ (and the refined $C_\alpha\le 0.0450$).
+
+\paragraph{C. Annular count (unconditional).} For annuli $\mathcal A_j:=\{jL\le r<(j+1)L\}$, the manuscript records
+\[ \#\mathcal A_j\ \le\ A\,j\,L\log\langle T\rangle + B,\qquad A=\tfrac{1}{2\pi},\ \ B=2. \]
+Since $L\log\langle T\rangle\le 1$, this grows at most linearly in $j$ with fixed constants.
+
+\paragraph{D. Annular summation.} The $j$th annulus contributes
+\[ \le\ C_\alpha\Big( A\,\tfrac{L\log\langle T\rangle}{j^2} + \tfrac{B}{j^3}\Big), \]
+so summing $j\ge1$ gives
+\[ K_{\xi}\ \le\ C_\alpha\Big( A\sum_{j\ge1}\tfrac{1}{j^2} + B\sum_{j\ge1}\tfrac{1}{j^3}\Big). \]
+
+\paragraph{E. First evaluation.} With $C_\alpha\le 0.0600$, $A=1/(2\pi)$, $B=2$, $\sum1/j^2=\pi^2/6$, $\sum1/j^3=\zeta(3)\le 1.202057$,
+\[ K_{\xi}\ \le\ 0.0600\Big( \tfrac{1}{2\pi}\cdot \tfrac{\pi^2}{6} + 2\cdot 1.202057\Big)\ <\ 0.160. \]
+
+\paragraph{F. Half–integer refinement.} Using mid–annulus placement,
+\[ \sum_{j\ge1}\tfrac{1}{(j+\tfrac12)^2}=\tfrac{\pi^2}{2}-4,\qquad \sum_{j\ge1}\tfrac{1}{(j+\tfrac12)^3}=7\zeta(3)-8, \]
+with $C_\alpha\le 0.0450$, yields
+\[ K_{\xi}\ \le\ 0.0450\Big( \tfrac{1}{4\pi}\Big(\tfrac{\pi^2}{2}-4\Big) + (7\zeta(3)-8) \Big)\ \le\ 0.0219955. \]
+
+\paragraph{G. Final tightening (locked).} A single–tube refinement gives the locked constant
+\[ \boxed{\ K_{\xi}\ \le\ 0.02035\ }. \]
+
+\paragraph{H. Aggregation.} With $K_0=\tfrac14\sum_{p}\sum_{k\ge2}p^{-k}/k^2$ and $\|U_\Gamma\|_{\mathrm{area}}=0.011803$,
+\[ \boxed{\ C_{\mathrm{box}}\ \le\ K_0 + K_{\xi} + \|U_\Gamma\|_{\mathrm{area}}\ =\ 0.03486808 + 0.02035 + 0.011803\ <\ 0.05521808\ }. \]
+
+

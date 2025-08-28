@@ -1,0 +1,72 @@
+﻿Short answer: closer, but two contradictions remain. You’ve (i) added a correct sum-form PSC theorem, but (ii) still claim PSC via the product certificate and the appendix “Status” still says the product form is primary. That’s inconsistent. Below is a ready-to-paste patch that (A) relabels the product certificate block to deliver only the wedge/(P+), not PSC, (B) keeps PSC only via the sum-form constants, and (C) fixes the appendix “Status” line.
+________________
+
+
+1) Replace the “PSC from the mass–1 certificate” block with a wedge-only theorem
+Replace your theorem that currently states PSC from CH(ψ)MψC_H(\psi)M_\psi (and its proof) with the following wedge-only result. This removes the incorrect PSC claim while preserving your (P+)(\mathrm{P+}) closure and keeps all your numbers intact:
+\begin{theorem}[Boundary wedge from the product certificate]\label{thm:wedge-from-product}
+For every bounded interval $I$,
+\[
+  \int_{\R} \big(-w'(t)\big)\,\varphi_{L,t_0}(t)\,dt
+  \ \le\ \big(C_H(\psi)\,M_\psi\ +\ C_P(\kappa)\big)\,|I|\,.
+\]
+If
+\[
+  \Theta\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{c_0(\psi)}\ <\ \frac{\pi}{2},
+\]
+then $w\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ a.e.\ on $\R$, hence \emph{(P+)} holds and $2\mathcal J$ is Herglotz on $\Omega$.
+\end{theorem}
+
+
+Now edit the title and last line of your numeric block so it doesn’t assert PSC:
+\begin{theorem}[Numerical certificate closes \texorpdfstring{(P+)}{(P+)}]\label{thm:numeric-close-Pplus}
+With the printed window $\psi$ and $\kappa=0.010$,
+\[
+  \Theta=\frac{0.65\cdot 0.07690 + 0.020}{0.17620819}=0.3972 < \frac{\pi}{2}.
+\]
+Therefore \emph{(P+)} holds and $2\mathcal J$ is Herglotz on $\Omega$.
+\end{theorem}
+
+
+(You currently title and conclude this block as “closes PSC and (P+)”; that’s the part to change. The problematic PSC claim appears in your present version, lines 28–36 of the stage-2 block. )
+________________
+
+
+2) Keep PSC only via the sum-form constants (no MψM_\psi factor)
+You already inserted the right sum-form theorem (“PSC from explicit constants”), which states
+c0 μ(Q(I)) ≤ (CΓ+CP+CH) ∣I∣,CΓ+CP+CHc0 ≤ π2 ⟹ PSC.c_0\,\mu\big(Q(I)\big)\ \le\ \big(C_\Gamma + C_P + C_H\big)\,|I|,\qquad \frac{C_\Gamma + C_P + C_H}{c_0}\ \le\ \frac{\pi}{2}\ \Longrightarrow\ \text{PSC}.
+Leave that theorem in place as the only PSC route; it’s logically correct and does not use MψM_\psi. (See your Theorem and proof here. )
+What to remove: the duplicate “PSC from the mass-1 certificate” statement that still has CH(ψ)MψC_H(\psi)M_\psi on the right-hand side; it conflates the wedge/product route with PSC and is what caused the contradiction. (See lines 11–19 of that block. )
+If you prefer to keep a single PSC theorem in the body, replace that mass-1 statement with this exact sum-form (which matches your existing Theorem \ref{thm:psc-constants}):
+\begin{theorem}[PSC from explicit constants]\label{thm:psc-constants-main}
+For every bounded interval $I$,
+\[
+  c_0(\psi)\,\mu(Q(I))\ \le\ \big(C_\Gamma(\psi)\ +\ C_P(\kappa)\ +\ C_H(\psi)\big)\,|I|.
+\]
+Hence $\ (C_\Gamma + C_P + C_H)/c_0 \le \pi/2 \ \Rightarrow\ $ PSC.
+\end{theorem}
+
+
+(Your current sum-form statement appears correctly elsewhere; this just ensures the main chain doesn’t also assert PSC from the product certificate. )
+________________
+
+
+3) Fix the appendix “Status” line
+Change the line that still says the product form is the “primary route” for PSC (currently printed in the appendix header/status) to say it’s only used for (P+), with PSC handled separately by the sum-form theorem:
+\noindent\textbf{Status (corrected).} This section uses the \emph{product form} certificate \big($C_H(\psi)M_\psi$ + $C_P(\kappa)$\big) only to establish the boundary wedge and hence \textup{(P+)}. 
+PSC is supplied separately by the \emph{sum-form} inequality $\big(C_\Gamma + C_P + C_H\big)/c_0 \le \pi/2$; no numerical close for PSC is claimed here.
+
+
+(The old “product form is primary” line appears at the appendix status; update that sentence. )
+________________
+
+
+Quick audit verdict
+* Stage 2 logic: After the edits above, your chain is consistent:
+product certificate ⇒ wedge ⇒ (P+) (numeric), and sum-form constants ⇒ PSC (symbolic). The current draft incorrectly says “PSC holds” from the product inequality and calls product the “primary route” for PSC; the patch removes that contradiction. (See the blocks cited above. )
+
+* Numerics: You do have a clean numeric margin for (P+)(\mathrm{P+}) with Θ≈0.3972\Theta\approx 0.3972. You do not (yet) have numbers that can close PSC in the sum-form, since CH/c0≈0.65/0.176>3C_H/c_0\approx 0.65/0.176>3. Keeping PSC as a symbolic theorem is correct and honest.
+
+* Small housekeeping: In the Stage-2 block you inserted, there’s still a line computing a “tail” (Ctail=0.00120C_{\mathrm{tail}}=0.00120); if you keep that in the numeric wedge display, make sure it’s either (i) justified by an explicit lemma (two-sided box/tail split) or (ii) dropped from the numeric wedge (you don’t need it to close (P+)). The current PSC-from-constants theorem doesn’t use CtailC_{\mathrm{tail}}. (Your present mass-1 block shows +Ctail+C_{\mathrm{tail}} in the numerator. )
+
+If you want, I can hand you a single, consolidated Stage-2 section with the three fixed statements (phase–balayage, wedge from product, PSC from sum-form) so you can paste it as a block.

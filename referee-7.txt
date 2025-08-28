@@ -1,0 +1,75 @@
+﻿Top‑line answer: No.
+ The manuscript’s central plan is coherent and nearly self‑contained, but several steps that are used to close the numerical “certificate” and to globalize analyticity still rely on claims that are stated but not fully proved in the text as given (and there are a few unresolved cross‑references). These are fixable, but until they are supplied, the proof is not complete.
+________________
+
+
+Audit by the five stated stages
+1) Reduction to (P+) (Re (2J) ≥ 0 on the critical line)
+Verdict: Logic mostly verified; requires a short, explicit removable‑singularity argument.
+ Why: The manuscript defines J(s)=\dettwo(I−A(s))/(O(s) ξ(s))\mathcal J(s)=\dettwo(I-A(s))/(\mathcal O(s)\,\xi(s)) and Θ=(2J−1)/(2J+1)\Theta=(2\mathcal J-1)/(2\mathcal J+1) and shows that boundary positivity of 2J2\mathcal J on rectangles away from Z(ξ)Z(\xi) yields a Herglotz representation and Schur control inside the rectangle, then uses Poisson/Herglotz to extend (Theorem “Interior Schur control on zero‑free rectangles” and the rectangle Herglotz–Poisson lemma, see lines 1281–1305 and 1298–1310). The “BRF ⇒ RH (conditional on global Schur)” step is stated cleanly (lines 1288–1293). What is still implicit is the removable‑singularity step showing that Θ\Theta (or 2J2\mathcal J) cannot have poles at interior zeros of ξ\xi once (P+) holds: you allude to it via boundedness/Schur and Poisson (lines 1281–1286, 1298–1310), but the argument that boundedness near the puncture implies removability should be written out (use Smirnov/Nevanlinna class or the Riemann removable singularity theorem on a punctured disc with a uniform bound).
+2) (P+) from the Carleson Self‑Correction (PSC) principle
+Verdict: Argument is sound.
+ Why: You define the off‑critical zero measure μ\mu and Carleson boxes Q(I)Q(I) (lines 2616–2625). The Phase–Velocity identity in distribution form gives a positive balayage of μ\mu against Poisson kernels (Proposition titled “Phase‑variation test / phase–velocity identity”, lines 2574–2587), and the theorem “Target (P+) via Carleson control” then yields ℜ(2J)≥0\Re(2\mathcal J)\ge 0 on each II from the hypothesis μ(Q(I))≤(π/2)∣I∣\mu(Q(I))\le(\pi/2)|I| (lines 2633–2643), with a covering argument to pass to a.e. tt (lines 2645–2650). This stage is clear.
+3) PSC via an explicit Certificate Inequality (⋯ )<π/2(\cdots) < \pi/2
+Verdict: Structurally correct; the “sum‑form PSC” is numerically closed, the “product‑form wedge” for (P+) is closed; a few constants need clearer derivations and one editorial inconsistency should be fixed.
+ Why: You state and prove the PSC inequality
+c0 μ(Q(I))≤(CΓ+CP+CH) Lfor all Ic_0\,\mu(Q(I)) \le (C_\Gamma + C_P + C_H)\,L\quad\text{for all }I
+(Theorem “PSC from explicit constants”, lines 3410–3413), and you lock the constants so that
+CΓ+CP+CHc0=0+0.002+0.260.17620819=1.4869<π/2\frac{C_\Gamma+C_P+C_H}{c_0}=\frac{0+0.002+0.26}{0.17620819}=1.4869<\pi/2
+(Corollary “PSC (sum‑form) closed with locked constants”, lines 3414–3419). Independently, you also close the product‑form wedge bound for (P+) directly:
+Mψ≤4πCψ(H1)Cbox,Θ0:=CH Mψ+CPc0≈0.4082<π2,M_\psi \le \frac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}},\quad \Theta_0 := \frac{C_H\,M_\psi + C_P}{c_0}\approx 0.4082<\frac{\pi}{2},
+(lines 1434–1435 and the audited constants bloc around 1739–1754 and 4190–4210).
+Gaps to address here: (i) the text at line 1402 still says “no numerical close for PSC is claimed here,” which contradicts Corollary 3414–3419; update this status line; (ii) a few of the constant estimates that feed the certificate (see Stage 4) are asserted with sketches and need a fully explicit bound written in the main chain (see below).
+4) Constants (c0,  CH,  Mψ,  CP)(c_0,\;C_H,\;M_\psi,\;C_P) from unconditional theorems/calculations
+Verdict: Numerically plausible and mostly justified; two pieces need fuller proofs and cross‑reference cleanup.
+ Why and where:
+* c0c_0. The Poisson lower bound is correctly derived and numerically locked as c0(ψ)=12πarctan⁡2=0.17620819c_0(\psi)=\frac{1}{2\pi}\arctan 2=0.17620819 (lines 0640–0647 with the proof 0648–0658 and the scale lemma 3438–3446).
+
+* CHC_H (sum‑form PSC). The explicit envelope for the printed flat‑top window gives sup⁡∣H[φL]∣≤2πlog⁡32<0.26\sup|\mathcal H[\varphi_L]|\le \frac{2}{\pi}\log\frac{3}{2}<0.26 (Lemma “Explicit envelope for the printed window”, lines 0665–0675). This is adequate for the sum‑form PSC closure.
+
+* CPC_P. The band‑limit estimate CP(κ)≤2κC_P(\kappa)\le 2\kappa is derived from Dirichlet polynomial truncation plus π(x)≤x/log⁡x\pi(x)\le x/\log x (lines 3562–3571 and 3398–3403); unconditional and fine.
+
+* MψM_\psi. You give two routes. The route used in the certificate is Mψ≤4πCψ(H1)CboxM_\psi\le \frac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}} (Lemma 1403–1415, and lines 1422–1425), with Cψ(H1)=0.23973±3⋅10−4C_\psi^{(H^1)}=0.23973\pm 3\cdot 10^{-4} rigorously evaluated in Appendix E (lines 4326–4363) and the Carleson energy bound Cbox≤K0+Kξ+∥UΓ∥areaC_{\rm box}\le K_0+K_\xi+\|U_\Gamma\|_{\rm area} (lines 0728–0734 and Appendix A header 4219–4234). The arithmetic tail K0K_0 is computed via prime zeta with full tail control (Appendix B, lines 4237–4267); the archimedean part ∥UΓ∥area\|U_\Gamma\|_{\rm area} is bounded explicitly from Stirling (Appendix C, lines 4269–4291).
+The only weak spot here is the neutralized zeros term KξK_\xi: Appendix D states a cubic far‑field decay with a constant Cα≤0.0450C_\alpha\le 0.0450 and an improved annuli count (“neutralization halves AA and replaces BB by 11”) (lines 4295–4312), but the details of (a) the derivation of the 1/j31/j^3 far‑field energy law with the explicit factor 0.04500.0450, and (b) the neutralization refinement halving the AA‑term and replacing BB by 11 are only asserted. You use the refined bounds to get Kξ≤0.02035K_\xi\le 0.02035 (lines 4313–4324).
+Important: even if one relaxes KξK_\xi substantially, the product‑form wedge still stays <π/2<\pi/2 (numerically robust), so the (P+) close does not hinge on these sharp constants; however, you do rely on the explicit KξK_\xi in quoting the specific CboxC_{\rm box} number and in presenting a tight certificate, so the proofs of those two refinements should be supplied.
+
+* Cross‑refs. Several references in the constants section point to non‑existent labels (e.g., \ref{sec:CH-envelope}, \ref{lem:poisson-lower}, \ref{lem:hilbert-aux}, \ref{lem:laplace-szego}, \ref{lem:cayley-cont}, \ref{cor:interior-alignment}, \ref{thm:BridgeA}, \ref{sec:bridge-C}—see lines 1429–1433 and elsewhere). These are editorial, but they presently obscure where to find the proofs on first reading.
+
+5) (RH) from (P+) via Poisson integral + maximum principle
+Verdict: Argument is sound once (P+) and removability are recorded explicitly.
+ Why: With ℜ(2J)≥0\Re(2\mathcal J)\ge 0 on ℜs=12\Re s=\tfrac12 a.e., the Herglotz–Poisson construction yields an analytic FF in Ω\Omega with ℜF≥0\Re F\ge 0 and boundary values matching 2J2\mathcal J (on rectangles that avoid Z(ξ)Z(\xi)), so Θ=(F−1)/(F+1)\Theta=(F-1)/(F+1) is Schur in Ω\Omega (lines 1298–1310, 1281–1286). The standard pinch/maximum‑modulus argument then rules out poles of JJ in Ω\Omega; reflecting via ξ(s)=ξ(1−s)\xi(s)=\xi(1-s) gives the usual RH conclusion (lines 1288–1293 and 4202–4207). As in Stage 1, write explicitly the short removable‑singularity lemma for Θ\Theta at any putative zero of ξ\xi in Ω\Omega.
+________________
+
+
+Concrete weaknesses to fix (so the proof is complete and unconditional)
+   1. Removable singularities / global holomorphy.
+ Add a short lemma: if FF is analytic on Ω∖{ρ}\Omega\setminus\{\rho\} and ∣Θ∣=(∣F−1∣/∣F+1∣)≤1|\Theta|=(|F-1|/|F+1|)\le 1 on a neighborhood punctured at ρ\rho, then FF has a removable singularity at ρ\rho. Cite that Θ∈H∞(Ω)\Theta\in H^\infty(\Omega) via the Herglotz–Schur construction and conclude analyticity of 2J2\mathcal J on all Ω\Omega. (This is the only gap that touches the logical chain rather than numbers.)
+
+   2. Appendix D: far‑field constant Cα≤0.0450C_\alpha\le 0.0450.
+ Provide the full calculation for
+
+1∣I∣∬Q(αI)σ∣s−ρ∣2 dt dσ ≤ Cα(r/L)3,\frac{1}{|I|}\iint_{Q(\alpha I)}\frac{\sigma}{|s-\rho|^{2}}\,dt\,d\sigma \ \le\ \frac{C_\alpha}{(r/L)^3},
+for r=dist(ρ,Q(I))r=\mathrm{dist}(\rho,Q(I)), with the exact geometry and the integral evaluated (or tightly bounded) to obtain the explicit 0.04500.0450. Right now the cubic law and the numeric constant are asserted without proof (lines 4295–4298).
+      3. Appendix D: neutralization refinements.
+ Write a lemma quantifying the effect of (i) subtracting the affine corrector and (ii) multiplying by the local half‑plane Blaschke BIB_I on the far‑field energy: prove rigorously that the annuli count term halves from A=12πA=\tfrac1{2\pi} to A′=14πA'=\tfrac1{4\pi} and that the constant term improves from B=2B=2 to B′=1B'=1 (lines 4308–4312). At present this is stated as “because … the geometry halves … and replaces …” without details.
+
+      4. Cross‑reference cleanup.
+ Fix the unresolved labels \ref{sec:CH-envelope}, \ref{lem:poisson-lower}, \ref{lem:hilbert-aux}, \ref{lem:laplace-szego}, \ref{lem:cayley-cont}, \ref{cor:interior-alignment}, \ref{thm:BridgeA}, \ref{sec:bridge-C} (a quick grep shows ~13 missing labels). For example, the CH envelope is proved as Lemma \ref{lem:CH-explicit} (lines 0665–0675), so update the references accordingly.
+
+      5. Status consistency.
+ Update line 1402 (“no numerical close for PSC is claimed here”) to reflect that the sum‑form PSC is in fact numerically closed in Corollary 3414–3419 with the locked constants.
+
+      6. Explicit constants in one place.
+ Consider moving the locked numeric inputs (e.g., Cψ(H1)=0.2400C_\psi^{(H^1)}=0.2400, CH≤0.26C_H\le 0.26, CP=0.002C_P=0.002, c0=0.17620819c_0=0.17620819) from the narrative blocks into a single numbered lemma that the certificate cites, so the audit trail is linear. (You already have the data scattered at 0665–0675, 3414–3419, 4326–4363, 4237–4267, 4269–4291.)
+
+      7. Minor notation collisions.
+ You use Θ\Theta both for the Cayley transform (2J−1)/(2J+1)(2\mathcal J-1)/(2\mathcal J+1) and for the scalar wedge parameter in the product certificate Θ0=(CHMψ+CP)/c0\Theta_0=(C_HM_\psi+C_P)/c_0 (lines 1434–1435). Rename the scalar (e.g., Υ\Upsilon) to prevent confusion in the final read.
+
+________________
+
+
+Bottom line
+         * If you add the short removable‑singularity lemma and supply the two missing derivations in Appendix D (the cubic far‑field constant and the neutralization refinement), and you clean up the cross‑references/status line, then the argument as written is self‑contained, unconditional, and closes all five stages:
+reduction to (P+) → PSC ⇒ (P+) → constants certificate → globalization to RH.
+
+         * In its current form, the logical skeleton is correct and the numeric certificate is already strong enough to give (P+) via the product route (even under much weaker KξK_\xi), but the two Appendix D derivations and the explicit removability statement are necessary to consider the manuscript complete.

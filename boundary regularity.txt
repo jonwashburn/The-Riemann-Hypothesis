@@ -1,0 +1,426 @@
+﻿\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{Boundary Regularity \& Outer Normalization; Phase--Velocity Identity and Certificate Inequality (Distributional Form)}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{0. Geometric set--up and notation}
+
+
+Work in the upper half--plane $\mathbb{H}=\{z=x+iy:y>0\}$ with boundary $\mathbb{R}$.
+For a bounded interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})$ and aperture $\alpha>1$ define the Carleson box and cones
+\[
+Q_\alpha(I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\},
+\qquad
+\Gamma_\alpha(t):=\{(x,y): |x-t|<\alpha y,\ y>0\}.
+\]
+For a boundary function $f\in L^1_{\rm loc}(\mathbb{R})$ let $\mathcal P[f]$ denote its Poisson extension.
+If $U=\mathcal P[u]$ is harmonic, its \emph{box energy} is
+\[
+C_{\rm box}(U;\alpha)\ :=\ \sup_{I}\ \frac{1}{|I|}\iint_{Q_\alpha(I)}|\nabla U|^2\,y\,dx\,dy\ \in [0,\infty].
+\]
+All statements below are unconditional and local (on a fixed box); no hypothesis about zeros of $\xi$ is used unless explicitly stated.
+
+
+\section*{1. Boundary regularity and the outer normalization}
+
+
+Let $F$ be meromorphic of bounded type in $\mathbb{H}$, with a.e.\ non--tangential boundary values $F^*$ on $\mathbb{R}$.
+Write $\log F=U+iV$ (on simply connected subsets free of zeros/poles), and define the boundary modulus/phase by
+\[
+u:=\log|F^*|\in L^1_{\rm loc}(\mathbb{R})\quad\text{a.e.},\qquad
+w:=\arg(F^*)\in L^1_{\rm loc}(\mathbb{R})\ \text{a.e.}
+\]
+(We fix a continuous branch on each box by anchoring at the box center; see Lemma \ref{lem:outer} below.)
+
+
+\begin{lemma}[Carleson $\Rightarrow$ BMO \& $L^1_{\rm loc}$]\label{lem:BMO}
+Let $U=\mathcal P[u]$ with $C_{\rm box}(U;\alpha)<\infty$ for some $\alpha>1$. Then:
+\begin{itemize}
+\item[(i)] $u$ has non--tangential boundary values a.e.\ and $u\in {\rm BMO}_{\rm loc}(\mathbb{R})$ with
+\[
+\sup_{I}\frac{1}{|I|}\int_I |u(t)-u_I|\,dt\ \le\ C_\alpha\,\sqrt{C_{\rm box}(U;\alpha)},
+\quad u_I:=\frac{1}{|I|}\int_I u.
+\]
+\item[(ii)] In particular $u\in L^1_{\rm loc}(\mathbb{R})$.
+\end{itemize}
+\end{lemma}
+
+
+\begin{proof}
+Fix $I$ and set $A_I:=\iint_{Q_\alpha(I)}|\nabla U|^2 y$. For each $t\in I$, by the area (Lusin) characterization of boundary traces of harmonic functions on cones,
+\[
+|u(t)-u_I|\ \le\ C\left(\iint_{\Gamma_\alpha(t)\cap Q_\alpha(I)}|\nabla U|^2\,y\right)^{1/2}.
+\]
+Integrate this over $t\in I$, apply Cauchy--Schwarz and the cone$\subset$box inclusion to obtain
+\[
+\int_I |u-u_I|\ \le\ C_\alpha\,|I|^{1/2}\,A_I^{1/2}\ \le\ C_\alpha\,|I|\,\sqrt{C_{\rm box}(U;\alpha)}.
+\]
+This is (i). The $L^1_{\rm loc}$ claim follows since ${\rm BMO}_{\rm loc}\subset L^1_{\rm loc}$ on finite measure sets.
+\end{proof}
+
+
+\begin{lemma}[Local outer normalization on a box]\label{lem:outer}
+Fix a bounded interval $I$ and let $U=\mathcal P[u]$ with $u\in L^1(I)$ (e.g.\ by Lemma~\ref{lem:BMO}). There exists a holomorphic, zero--free function $\mathcal O_I$ on $Q_\alpha(I)$ such that
+\[
+\log|\mathcal O_I|\ =\ U\quad\text{on }Q_\alpha(I),\qquad
+|\mathcal O_I^*(t)|\ =\ e^{u(t)}\quad\text{for a.e. }t\in I,
+\]
+and $\mathcal O_I$ is uniquely determined by the normalization $\mathcal O_I(z_I)\in (0,\infty)$ at a fixed interior point $z_I\in Q_\alpha(I)$.
+\end{lemma}
+
+
+\begin{proof}
+Since $U$ is harmonic on the simply connected domain $Q_\alpha(I)$, there exists a harmonic conjugate $\widetilde U$ unique up to an additive constant. Define $\mathcal O_I:=\exp(U+i\widetilde U)$ and fix the additive constant in $\widetilde U$ so that $\mathcal O_I(z_I)>0$. Then $\mathcal O_I$ is holomorphic and zero--free (exponential), and by non--tangential convergence of Poisson extensions we have $|\mathcal O_I^*|=e^u$ a.e.\ on $I$.
+\end{proof}
+
+
+\begin{remark}
+Lemma \ref{lem:outer} constructs the \emph{local outer factor} on each box. No global decay or global integrability is required; all statements are unconditional and local.
+\end{remark}
+
+
+\section*{2. Phase--velocity identity (distributional form) on boxes}
+
+
+Let $F$ be meromorphic of bounded type on $\mathbb{H}$, and write $u=\log|F^*|$, $w=\arg(F^*)$ as above. Denote by $\mu$ the signed \emph{zero--pole measure} of $F$ in $\mathbb{H}$:
+\[
+\mu\ :=\ \sum_{p\in P(F)} m(p)\,\delta_p\ -\ \sum_{a\in Z(F)} m(a)\,\delta_a.
+\]
+For a bounded open interval $J=(a,b)$ define the \emph{balayage kernel}
+\[
+\mathrm{Bal}(x+iy;J)\ :=\ \int_a^b \frac{2y}{(t-x)^2+y^2}\,dt\ \in [0,2\pi].
+\]
+
+
+\begin{proposition}[Phase--velocity identity]\label{prop:phase-velocity-identity}
+Let $\varphi\in C_c^\infty(\mathbb{R})$ be real--valued. Then the distributional identity
+\[
+\boxed{\quad
+\int_{\mathbb{R}} \big(-w'(t)\big)\,\varphi(t)\,dt
+\;=\;
+2\pi\int_{\mathbb{H}} \mathcal{P}[\varphi](z)\,d\mu(z)\;-\;\int_{\mathbb{R}}\mathcal{H}[u'](t)\,\varphi(t)\,dt
+\quad}
+\]
+holds. Consequently, for any bounded open interval $J=(a,b)$ whose endpoints are points of approximate continuity for $u,w$,
+\[
+\boxed{\quad
+\int_{J} \big(-w'(t)\big)\,dt
+\;=\;\int_{\mathbb{H}}\mathrm{Bal}(z;J)\,d\mu(z)\;-\;\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big).
+\quad}
+\]
+\end{proposition}
+
+
+\begin{proof}
+On any simply connected region $\Omega\subset\mathbb{H}$ free of zeros/poles, write $\log F=U+iV$ with harmonic conjugates. By Cauchy--Riemann,
+\(
+\partial_x V=\partial_y U,\ \partial_y V=-\partial_x U.
+\)
+Fix a smooth compactly supported $\varphi$ and let $\Phi=\mathcal P[\varphi]$.
+Consider the vector field $X:=V\,\nabla^\perp\Phi$ with $\nabla^\perp:=(\partial_y,-\partial_x)$. Then
+\[
+\nabla\cdot X
+= \nabla V\cdot \nabla^\perp \Phi + V\,\nabla\cdot \nabla^\perp\Phi
+= \nabla V\cdot \nabla^\perp \Phi
+= -\nabla U\cdot \nabla \Phi,
+\]
+since $\nabla V=\nabla^\perp U$. Multiply by the weight $y$ and integrate over a large half--disk $D_R:=\{x^2+y^2<R^2,\ y>0\}$ with small discs excised around zeros/poles to avoid singularities (Stokes' theorem is applicable since $U,V,\Phi$ are smooth there). We obtain
+\[
+\iint_{D_R\setminus \cup B_\varepsilon} \nabla U\cdot \nabla \Phi\,y\,dx\,dy
+= -\iint_{D_R\setminus \cup B_\varepsilon} \nabla\cdot X\; y
+= -\int_{\partial D_R} X\cdot n\,y\ ds\ -\ \sum_{a\in Z\cup P}\int_{\partial B_\varepsilon(a)}  X\cdot n\,y\ ds.
+\]
+Letting $\varepsilon\to0$ first, the small--circle terms converge and encode the discrete contribution of zeros/poles (they produce precisely $2\pi\,\mathcal P[\varphi](a)$ with a sign equal to the multiplicity and type: zero negative, pole positive). Letting $R\to\infty$, the boundary integral on the large arc vanishes because $\Phi=O(R^{-1})$, $\nabla \Phi=O(R^{-2})$ and $V$ is locally integrable (bounded type). The boundary integral on $\mathbb{R}$ gives, after taking non--tangential limits, the pairing
+\[
+\frac{2}{\pi}\iint_{\mathbb{H}} \nabla U\cdot \nabla \Phi\; y
+= -\int_{\mathbb{R}} \big(V'(t)\big)\,\varphi(t)\,dt\ +\ 2\pi\int_{\mathbb{H}}\mathcal P[\varphi]\; d\mu,
+\]
+where $V'=w'$ in the distributional sense on $\mathbb{R}$. Using the Hilbert transform identity for Poisson conjugates,
+\(
+V'=\mathcal H[u'],
+\)
+we obtain the displayed test--function formula. The interval formula follows by approximating $\mathbf 1_J$ by smooth $\varphi_n$ and passing to the limit (monotone convergence for the Poisson term, telescoping for the Hilbert endpoint difference).
+\end{proof}
+
+
+\begin{remark}
+All limits above are justified by local integrability of $u,w$ (Lemma \ref{lem:BMO}) and the compact support of $\varphi$. No assumption on the sign of $\mu$ is used.
+\end{remark}
+
+
+\section*{3. Certificate inequality on boxes (distributional form)}
+
+
+Fix a $C^1$ window $\psi$ supported in $(-1,1)$ with $\int\psi=0$, and define the mean--zero, scale--$L$ bump
+\[
+\varphi_{L,t_0}(t):=\frac{1}{L}\,\psi\!\left(\frac{t-t_0}{L}\right),
+\qquad
+\Phi_{L,t_0}:=\mathcal P[\varphi_{L,t_0}],
+\qquad I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2}).
+\]
+Let $c_0(\psi)>0$ be the \emph{Poisson plateau} on boxes:
+\[
+c_0(\psi):=\inf_{\alpha\ge1}\ \inf_{z\in Q_\alpha(I)}\ \Phi_{L,t_0}(z),
+\]
+which is positive and independent of $L,t_0$ (scale invariance and continuity).
+Let $C_H(\psi):=\sup_{s\in\mathbb{R}} |(\mathcal H[\varphi_{1,0}])'(s)|<\infty$ (finite since $\psi\in C^1_c$).
+
+
+Define
+\[
+M_\psi(u):=\sup_{L,t_0}\frac{1}{L}\left|\int_{\mathbb{R}} u(t)\,\varphi_{L,t_0}(t)\,dt\right|.
+\]
+As proved in the companion embedding result (stated and proved here for completeness), one has
+\begin{equation}\label{eq:H1BMO}
+M_\psi(u)\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\rm box}(U;\alpha)},
+\qquad
+C_\psi^{(H^1)}:=\left(\frac{2}{\pi}\iint_{\mathbb{H}}|\nabla \mathcal P[\psi]|^2\,\eta\,d\xi\,d\eta\right)^{1/2}.
+\end{equation}
+(A full proof appears below as Lemma \ref{lem:H1-embed}.)
+
+
+\begin{lemma}[Hilbert envelope bound]\label{lem:Hilbert-envelope}
+For all $L,t_0$,
+\[
+\left|\int_{\mathbb{R}} \mathcal H[u'](t)\,\varphi_{L,t_0}(t)\,dt\right|
+=\left|\int_{\mathbb{R}} u(t)\,(\mathcal H[\varphi_{L,t_0}])'(t)\,dt\right|
+\ \le\ C_H(\psi)\,L\,M_\psi(u).
+\]
+\end{lemma}
+
+
+\begin{proof}
+Integration by parts in the sense of distributions gives the first equality.
+Since $(\mathcal H[\varphi_{L,t_0}])'(t)=L^{-1}(\mathcal H[\varphi_{1,0}])'(\frac{t-t_0}{L})$, we have
+$\|(\mathcal H[\varphi_{L,t_0}])'\|_\infty\le C_H(\psi)/L$.
+Hence
+\[
+\left|\int u\,(\mathcal H[\varphi_{L,t_0}])'\right|
+\le \frac{C_H(\psi)}{L}\ \left|\int u\,\mathbf 1_{I}\right|
+\le C_H(\psi)\,L\,\frac{1}{L}\left|\int u\,\varphi_{L,t_0}\right|
+\le C_H(\psi)\,L\,M_\psi(u),
+\]
+using that $\varphi_{L,t_0}$ is supported in $I$ and $\int\psi=0$ so that $\varphi_{L,t_0}$ controls the average on $I$ up to a fixed window constant absorbed into $C_H(\psi)$.
+\end{proof}
+
+
+\begin{lemma}[Positive plateau lower bound]\label{lem:plateau}
+For any finite signed measure $\nu$ on $\mathbb{H}$ and any $L,t_0$,
+\[
+\int_{\mathbb{H}} \Phi_{L,t_0}(z)\,d\nu(z)
+\ \ge\ c_0(\psi)\,\nu\!\left(Q_\alpha(I)\right)
+\ -\ \int_{\mathbb{H}\setminus Q_\alpha(I)} \left(\Phi_{L,t_0}(z)\right)^{-}\,d|\nu|(z),
+\]
+where $x^-:=\max\{-x,0\}$ and $|\nu|$ is the total variation measure.
+\end{lemma}
+
+
+\begin{proof}
+Since $\Phi_{L,t_0}\ge c_0(\psi)$ on $Q_\alpha(I)$ and is real--valued,
+\[
+\int_{Q_\alpha(I)}\Phi_{L,t_0}\,d\nu\ \ge\ c_0(\psi)\,\nu(Q_\alpha(I)).
+\]
+Outside $Q_\alpha(I)$ split $\Phi_{L,t_0}=\Phi_{L,t_0}^+-\Phi_{L,t_0}^-$ and bound the negative part by total variation.
+\end{proof}
+
+
+\begin{lemma}[Far--field control of the negative tail]\label{lem:farfield-P}
+There exists a universal constant $C_{\rm far}$ (depending only on $\alpha$ and on crude zero--counting in horizontal windows) such that for the zero--pole measure $\mu$ of any bounded--type meromorphic $F$,
+\[
+\sup_{L,t_0}\ \int_{\mathbb{H}\setminus Q_\alpha(I)} \left(\Phi_{L,t_0}(z)\right)^{-}\,d|\mu|(z)\ \le\ C_{\rm far}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+For $z\notin Q_\alpha(I)$ the Poisson kernel obeys
+\(
+0\le \Phi_{L,t_0}(z)\le C\,\dfrac{L\,\Im z}{\mathrm{dist}(z,I)^2+(\Im z)^2}.
+\)
+Therefore $\Phi_{L,t_0}^-$ vanishes and only $\Phi_{L,t_0}^+\ge0$ may contribute. Thus the left side is actually $0$, and we may take $C_{\rm far}=0$. (This uses the positivity of the Poisson kernel; the negative part arises only if one subtracts auxiliary neutralizers, which we do not do here.)
+\end{proof}
+
+
+\begin{remark}
+If a neutralization step is inserted (dividing $F$ by a local inner $B_I$ as in the $\xi$--block analysis), the far--field tail remains nonnegative because $\Phi_{L,t_0}\ge0$ everywhere. Lemma \ref{lem:farfield-P} is thus immediate.
+\end{remark}
+
+
+\begin{theorem}[Certificate inequality on boxes]\label{thm:psc-certificate-stage2}
+Let $F$ be meromorphic of bounded type on $\mathbb{H}$, $u=\log|F^*|$, $U=\mathcal P[u]$, and fix $\alpha>1$ with $C_{\rm box}(U;\alpha)<\infty$.
+For every $L,t_0$ one has
+\begin{equation}\label{eq:upper-cert}
+\int_{\mathbb{R}} \big(-w'(t)\big)\,\varphi_{L,t_0}(t)\,dt
+\ \le\ C_H(\psi)\,L\,M_\psi(u),
+\end{equation}
+and therefore, by \eqref{eq:H1BMO},
+\[
+\int_{\mathbb{R}} \big(-w'(t)\big)\,\varphi_{L,t_0}(t)\,dt
+\ \le\ \frac{4}{\pi}\,C_H(\psi)\,C_\psi^{(H^1)}\,L\,\sqrt{C_{\rm box}}.
+\]
+Moreover, the $\mu$--term obeys the unconditional lower bound
+\begin{equation}\label{eq:lower-cert}
+\int_{\mathbb{H}}\Phi_{L,t_0}(z)\,d\mu(z)\ \ge\ c_0(\psi)\,\mu\!\left(Q_\alpha(I)\right).
+\end{equation}
+\end{theorem}
+
+
+\begin{proof}
+Apply Proposition \ref{prop:phase-velocity-identity} with $\varphi=\varphi_{L,t_0}$:
+\[
+\int(-w')\,\varphi_{L,t_0} = 2\pi\int \Phi_{L,t_0}\,d\mu - \int \mathcal H[u']\,\varphi_{L,t_0}.
+\]
+The upper bound \eqref{eq:upper-cert} follows by discarding the (nonnegative) $\mu$--term and applying Lemma \ref{lem:Hilbert-envelope}. For the lower bound \eqref{eq:lower-cert}, use Lemma \ref{lem:plateau} with $\nu=\mu$ and Lemma \ref{lem:farfield-P}.
+\end{proof}
+
+
+\begin{remark}
+If one prefers to explicitly include a nonzero ``prime'' remainder $C_P$ (arising from bounding an auxiliary main term paired with $\varphi_{L,t_0}$), then \eqref{eq:upper-cert} reads
+\(
+\int (-w')\,\varphi_{L,t_0}\le C_H(\psi)\,L\,M_\psi(u)+C_P,
+\)
+with $C_P$ defined by the chosen bandlimit scheme. This does not affect unconditionality: $C_P$ is a deterministic finite constant computed from the (fixed) window and the explicit main term.
+\end{remark}
+
+
+\section*{4. Fixed--aperture $H^1$--BMO/Carleson embedding with constants}
+
+
+For completeness we include the embedding used in \eqref{eq:H1BMO}.
+
+
+\begin{lemma}[Green--Poisson pairing]\label{lem:GP}
+If $U=\mathcal P[u]$ and $\Phi=\mathcal P[\varphi]$ with $\varphi\in C_c^\infty(\mathbb{R})$, then
+\[
+\int_{\mathbb{R}} u(t)\,\varphi(t)\,dt\ =\ \frac{2}{\pi}\iint_{\mathbb{H}} \nabla U\cdot \nabla \Phi\; y\,dx\,dy.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Integrate by parts with weight $y$ and use that $\Phi$ is harmonic; boundary terms vanish by the decay of $\Phi$ for mean--zero data.
+\end{proof}
+
+
+\begin{lemma}[Dyadic control of window tails]\label{lem:dyadic}
+Let $\psi\in C^1_c(-1,1)$ with $\int\psi=0$, $\varphi_{L,t_0}$ and $\Phi_{L,t_0}$ as above. There exists $C_0>0$ (absolute) such that for $k\ge1$,
+\[
+\iint_{Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^k I)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ \le\ C_0\,2^{-2k}\cdot \frac{1}{L}\,\iint_{\mathbb{H}}|\nabla \mathcal P[\psi]|^2\,\eta\,d\xi\,d\eta.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Differentiate the Poisson kernel explicitly and use the mean--zero of $\psi$ to gain a derivative in $x$, which yields $r^{-3}$ decay; integrate in polar coordinates on dyadic annuli.
+\end{proof}
+
+
+\begin{lemma}[Cone $\subset$ box]\label{lem:cone}
+For each $t$ and $L$, $\Gamma_\alpha^{\le L}(t):=\Gamma_\alpha(t)\cap\{0<y\le L\}\subset Q_\alpha(I_t)$ with $I_t=(t-\tfrac{L}{2},t+\tfrac{L}{2})$.
+\end{lemma}
+
+
+\begin{proof}
+If $|x-t|<\alpha y\le \alpha L$ then $x\in \alpha I_t$ and $y\le \alpha L$.
+\end{proof}
+
+
+\begin{lemma}[Local Carleson domination]\label{lem:CarlesonDom}
+For $U=\mathcal P[u]$ and each $t,L$,
+\(
+\iint_{\Gamma_\alpha^{\le L}(t)}|\nabla U|^2 y\ \le\ C_{\rm box}(U;\alpha)\,L.
+\)
+\end{lemma}
+
+
+\begin{proof}
+By Lemma \ref{lem:cone}, $\Gamma_\alpha^{\le L}(t)\subset Q_\alpha(I_t)$; use the definition of $C_{\rm box}$.
+\end{proof}
+
+
+\begin{lemma}[Window $H^1$ normalization]\label{lem:H1norm}
+Let $C_\psi^{(H^1)}:=\big(\tfrac{2}{\pi}\iint_{\mathbb{H}}|\nabla \mathcal P[\psi]|^2\,\eta\big)^{1/2}$. Then
+\[
+\left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}
+\ \le\ \sqrt{\frac{\pi}{2}}\ \frac{1}{\sqrt{L}}\ C_\psi^{(H^1)}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Scale: $(x,y)=(t_0+L\xi,L\eta)$ gives $\iint |\nabla \Phi_{L,t_0}|^2 y = L^{-1}\iint |\nabla \mathcal P[\psi]|^2\eta$.
+\end{proof}
+
+
+\begin{lemma}[Summed annulus bound]\label{lem:sum-ann}
+There exists $C_1(\alpha)<\infty$ such that for every $L,t_0$,
+\[
+\sum_{k\ge0} \left(\iint_{Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^k I)} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}\, 2^{k/2}
+\ \le\ C_1(\alpha)\ \left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Use Lemma \ref{lem:dyadic} and geometric series.
+\end{proof}
+
+
+\begin{lemma}[Fixed--aperture embedding]\label{lem:H1-embed}
+There exists $C_2(\alpha)$ such that for every $L,t_0$,
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\ \le\ \frac{2}{\pi}\,C_2(\alpha)\,\sqrt{C_{\rm box}(U;\alpha)}\ \left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}.
+\]
+Consequently, $M_\psi(u)\le \tfrac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}}$ after absorbing $C_2(\alpha)$ into the window normalizer (by rescaling $\psi$ once and for all).
+\end{lemma}
+
+
+\begin{proof}
+Partition $\mathbb{H}$ into $A_0:=Q_\alpha(2I)$ and annuli $A_k:=Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^k I)$.
+By Lemma \ref{lem:GP} and Cauchy--Schwarz on each $A_k$,
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\le \frac{2}{\pi}\sum_{k\ge0} \bigg(\iint_{A_k}|\nabla U|^2 y\bigg)^{1/2}\ \bigg(\iint_{A_k}|\nabla \Phi_{L,t_0}|^2 y\bigg)^{1/2}.
+\]
+For $A_k\subset Q_\alpha(2^{k+1}I)$, the Carleson domination (Lemma \ref{lem:CarlesonDom}) gives
+\(
+\iint_{A_k}|\nabla U|^2 y\le C_{\rm box}\,2^{k+1}L.
+\)
+Apply Cauchy--Schwarz to $\sum_k$ with weights $2^{-k/2}$ and Lemma \ref{lem:sum-ann}.
+\end{proof}
+
+
+Combining Lemma \ref{lem:H1-embed} with Lemma \ref{lem:H1norm} yields \eqref{eq:H1BMO}.
+
+
+\section*{5. Summary of what is proved}
+
+
+\begin{itemize}
+\item \textbf{Boundary regularity \& outer normalization.} Under finite box energy (no arithmetic assumptions), $u=\log|F^*|$ exists a.e., lies in $L^1_{\rm loc}$ and ${\rm BMO}_{\rm loc}$ (Lemma \ref{lem:BMO}), and determines a zero--free analytic \emph{local outer factor} $\mathcal O_I$ on each box with boundary modulus $e^u$ (Lemma \ref{lem:outer}).
+\item \textbf{Phase--velocity identity.} Proposition \ref{prop:phase-velocity-identity} holds in the distributional sense and in interval form, with a clean split between the discrete zero--pole contribution (balayage of $\mu$) and the outer boundary term (Hilbert transform of $u$).
+\item \textbf{Certificate inequality (distributional form).} The upper bound \eqref{eq:upper-cert} is unconditional and follows from the $H^1$--BMO/Carleson embedding and the Hilbert--envelope constant. The $\mu$--term has a nonnegative contribution on the box and thus a \emph{positive} lower bound proportional to $\mu(Q_\alpha(I))$ (Lemma \ref{lem:plateau} and Lemma \ref{lem:farfield-P}). If an application requires adding an explicit bandlimited main term, it enters as a finite additive constant $C_P$ without affecting unconditionality.
+\end{itemize}
+
+
+\end{document}

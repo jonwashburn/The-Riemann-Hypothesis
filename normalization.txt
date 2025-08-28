@@ -1,0 +1,29 @@
+﻿% === Normalization used in the certificate ===
+% ζ-normalized, Blaschke at s=1: C_Γ = 0 in the certificate.
+% Box constant uses only K0 + K_ξ.
+
+
+\newcommand{\czeroplateau}{0.17620819}   % from Lemma: Poisson plateau lower bound
+\newcommand{\Kzero}{0.03486808}          % Appendix: arithmetic tail bound
+\newcommand{\Kxi}{0.02035000}            % collected ξ-zeros Whitney-box bound (neutralized)
+\newcommand{\CboxZeta}{0.05521808}       % = K0 + Kξ (ζ-normalized route; no Γ)
+
+
+% H^1–BMO / Hilbert constants (make naming unambiguous)
+\newcommand{\CHzero}{0.26}               % envelope: sup_t |H[φ_L](t)|  (sum-form PSC)
+\newcommand{\CHone}{0.65}                % derivative: ||(H[φ_L])'||_∞ ≤ CHone / L  (certificate)
+
+
+% Window H^1 constant and locked M_ψ (Whitney aperture absorbed in C_CE=1)
+\newcommand{\CHoneHone}{0.2400}          % C_ψ^{(H^1)} as used throughout
+\newcommand{\Mpsilocked}{\num{0.07180621}} % = (4/π)*C_ψ^{(H^1)}*sqrt(Cbox) with Cbox=CboxZeta
+
+
+% AAB constants (adaptive prime budget and wedge)
+\newcommand{\CPstar}{0.03}               % Uniform prime budget bound
+\newcommand{\Cfar}{0.05}                 % Far-field constant (upper phase)
+\newcommand{\Cline}{0.10}                % Line-atom constant (upper phase)
+
+
+% Locked certificate value (used only for readability in the text)
+\newcommand{\UpsilonLocked}{\num{0.43514}} % = (CHone*Mψ + CP*)/c0 with numbers above

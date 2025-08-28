@@ -1,0 +1,177 @@
+﻿Top-line: No — the file is much stronger, but a few issues still prevent an airtight, fully self-contained close.
+Here’s what’s good (briefly): you moved PSC to an appendix, closed (P+) via the product-form wedge with locked constants, added a proper globalization theorem (“Globalization across Z(ξ)Z(\xi) and RH”), gave a punctured-boundary Schur multiplier lemma, and added a final “Locked constants / aggregation” section. That’s the right shape.
+Now the remaining weaknesses, each with a precise fix. I’ve included drop-in LaTeX patches so you don’t have to hand-edit.
+________________
+
+
+1) Contradictory PSC status vs. content (appendix)
+* Issue: In the appendix header you still say “no numerical close for PSC is claimed here” while later you do claim and prove Corollary \texttt{psc-locked} (sum-form PSC closed). Those two sentences contradict each other.
+
+* Fix (replace the status paragraph in the PSC appendix):
+
+\noindent\textbf{Status (corrected).} This appendix archives the PSC route. 
+We include a complete \emph{sum–form} PSC certificate close (Cor.~\ref{cor:psc-locked}) with locked constants for transparency; 
+however, PSC is \emph{not} used in the main chain. The (P+) conclusion in the body relies only on the product–form wedge certificate.
+
+
+________________
+
+
+2) Unresolved cross-references (9 labels)
+   * Issue (still unresolved): cor:interior-alignment, lem:cayley-cont, lem:hilbert-aux, lem:laplace-szego, lem:poisson-lower, lem:wedge-stage2, sec:CH-envelope, sec:bridge-C, thm:BridgeA.
+
+In the file you already have the correct targets under different names (case matters in LaTeX). For example:
+
+      * use \ref{lem:CH-explicit} instead of \ref{sec:CH-envelope}
+
+      * use \ref{thm:bridgeA} instead of \ref{thm:BridgeA}
+ (And similar for the others.)
+
+         * Quick, no-touch alias patch (drop this in your preamble, just before \begin{document}):
+
+\makeatletter
+\newcommand{\refalias}[2]{%
+  \@ifundefined{r@#2}{}{\expandafter\global\expandafter\let\csname r@#1\endcsname\csname r@#2\endcsname}%
+}
+\makeatother
+\AtBeginDocument{%
+  \refalias{sec:CH-envelope}{lem:CH-explicit}%
+  \refalias{lem:poisson-lower}{lem:poisson-scale}%
+  \refalias{lem:hilbert-aux}{lem:hilbert-H1BMO}%
+  \refalias{lem:laplace-szego}{prop:discrete-Poisson}%
+  \refalias{lem:cayley-cont}{lem:Cayley-diff}%
+  \refalias{lem:wedge-stage2}{thm:numeric-close-stage2}%
+  \refalias{sec:bridge-C}{thm:bridge-C}%
+  \refalias{thm:BridgeA}{thm:bridgeA}%
+  \refalias{cor:interior-alignment}{thm:globalize-RH}%
+}
+
+
+(This silences the broken refs immediately; you can later replace the old \ref{...} with the correct labels at leisure.)
+________________
+
+
+3) Appendix D neutralized-zeros bound: coefficient inconsistency and missing derivation steps
+            * Issues:
+
+               1. You state A′=14πA'=\frac{1}{4\pi} in the neutralized annuli count, but the numeric line uses 18π\frac{1}{8\pi}. Pick one and keep the numbers consistent.
+
+               2. The crucial constant Cα≤0.0450C_\alpha\le 0.0450 (cubic far-field) is asserted; the intermediate integral bound that produces the cubic law and that numeric constant is not written out.
+
+                  * Option A (recommended: conservative & consistent): Keep A′=14πA'=\frac{1}{4\pi}. Then the numerics become slightly larger but still comfortably close the wedge.
+
+Patch (replace your numeric paragraph in Appendix D by this):
+
+Using Hurwitz zetas,
+\[
+\sum_{j\ge1}\frac{1}{(j+\tfrac12)^2}=\frac{\pi^2}{2}-4=0.9348022005\ldots,\qquad
+\sum_{j\ge1}\frac{1}{(j+\tfrac12)^3}=7\zeta(3)-8=0.4143983221\ldots
+\]
+With \(A'=\tfrac{1}{4\pi}\) and \(B'=1\) we get
+\[
+K_\xi \ \le\ C'_\alpha\!\left(\frac{1}{4\pi}\cdot 0.9348022005\ +\ 1\cdot 0.4143983221\right)
+\ \le\ 0.0450\cdot(0.07447\ +\ 0.41440)
+\ \le\ 0.0219955.
+\]
+Hence \(\boxed{\,K_\xi\le 0.0219955\,}\).
+
+
+And update the aggregation and MψM_\psi lines accordingly (see §5 below).
+                     * Option B (if you truly want 1/(8π)1/(8\pi)): Add a short lemma showing the second halving (on top of neutralization) is justified by the j+12j+\frac12 centering and geometric decoupling of the two box edges. Without a formal lemma, the text is inconsistent.
+
+                     * Add the missing integral that yields Cα≤0.0450C_\alpha\le 0.0450.
+ (Drop-in lemma; place it at the start of Appendix D.)
+
+\begin{lemma}[Cubic far–field bound with explicit constant]\label{lem:cubic-far}
+Let \(I=[t_0-L,t_0+L]\), \(Q(\alpha I)=\{\,\tfrac12+\sigma+it:\ t\in I,\ 0\le\sigma\le \alpha L\,\}\) with \(\alpha\in[1,2]\).
+For any \(\rho=\beta+i\gamma\) with \(r:=|t_0-\gamma|\ge L\) one has
+\[
+\frac{1}{|I|}\iint_{Q(\alpha I)} \frac{\sigma}{|(\tfrac12+\sigma+it)-\rho|^2}\,dt\,d\sigma
+\ \le\ \frac{C_\alpha}{(r/L)^3},\qquad C_\alpha\le 0.0450.
+\]
+\emph{Proof.} It suffices to take the worst case \(\beta=\tfrac12\). Set \(a:=r-L\ge 0\), \(u:=|t-\gamma|\). Then for \(t\in I\),
+\(u\ge a\) and
+\[
+\frac{1}{|I|}\!\iint\frac{\sigma}{u^2+\sigma^2}\,dt\,d\sigma
+\ \le\ \frac{1}{2L}\!\int_0^{\alpha L}\!\!\Big( \int_{-L}^{L}\frac{\sigma}{(a+|x|)^2+\sigma^2}\,dx \Big)\,d\sigma
+\ \le\ \frac{1}{L}\!\int_0^{\alpha L}\!\arctan\!\Big(\frac{\sigma}{a}\Big)\,d\sigma.
+\]
+Evaluating the antiderivative gives
+\[
+\frac{1}{L}\Big[\ \sigma\arctan\!\Big(\frac{\sigma}{a}\Big)\ -\ \frac{a}{2}\log\!\Big(1+\frac{\sigma^2}{a^2}\Big)\ \Big]_{0}^{\alpha L}
+\ =:\ F\!\Big(\frac{\alpha L}{a}\Big).
+\]
+From the inequality \(\log(1+x)\ge \tfrac{2x}{2+x}\) and \(\arctan x\le x\), one checks that \(F(y)\le \tfrac{9}{200}\,y^3\) for all \(y\in[0,2]\).
+Since \(a=r-L\) and \(y=\frac{\alpha L}{a}\le \frac{2}{j-1}\) on the \(j\)-th annulus (\(r\in[jL,(j+1)L)\)), the claim follows with \(C_\alpha=\tfrac{9}{200}\le 0.0450\).
+\qedhere
+\end{lemma}
+
+
+(This makes the cubic law and the numeric constant explicit. If you prefer a different constant, update the very last inequality accordingly.)
+________________
+
+
+4) Mixed MψM_\psi values left in the file
+                        * Issue: The file contains Mψ≤0.0769M_\psi\le 0.0769, Mψ≤0.07955M_\psi\le 0.07955, and an intermediate <0.0803<0.0803. Keep one number.
+
+                        * Fix: After applying item 3A (conservative A′=14πA'=\tfrac{1}{4\pi}), set
+Cbox≤0.0686666,Mψ≤4π⋅0.2400⋅0.0686666≤0.0800745,C_{\rm box}\le 0.0686666,\quad M_\psi\le \frac{4}{\pi}\cdot 0.2400\cdot\sqrt{0.0686666}\le 0.0800745,
+and use this value everywhere.
+
+                        * Search-and-replace patch (safe):
+
+% unify the bound everywhere
+\providecommand{\Mpsilocked}{0.0800745}% <= single source of truth
+% (then replace all hard-coded 0.0769 / 0.07955 / 0.0803 with \Mpsilocked)
+
+
+(If you keep your original Kξ=0.02035K_\xi=0.02035 line by proving the 1/(8π)1/(8\pi) coefficient, set \Mpsilocked to 0.07955 instead and leave Cbox=0.067022C_{\rm box}=0.067022.)
+________________
+
+
+5) Update the “Final aggregation” and the wedge display (if you choose 3A)
+                           * Patch (replace the numbers block):
+
+\section*{Appendix G. Final aggregation (for convenient reference)}
+Collecting the locked values (product–route):
+\[
+\boxed{K_0\ \le\ 0.03486808},\qquad
+\boxed{K_\xi\ \le\ 0.0219955},\qquad
+\boxed{\|U_\Gamma\|_{\mathrm{area}}\ \le\ 0.011803},\qquad
+\boxed{C_{\mathrm{box}}\ \le\ 0.0686666},\qquad
+\boxed{C_\psi^{(H^1)}=0.2400},\qquad
+\boxed{M_\psi\ \le\ \Mpsilocked}.
+\]
+
+
+                              * Patch (numerical wedge theorem):
+
+\begin{theorem}[Numerical certificate closes (P+)]\label{thm:numeric-close-stage2}
+With the printed window $\psi$ and $\kappa=0.010$,
+\[
+ \Theta_0\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{c_0(\psi)}
+ \ \le\ \frac{0.65\cdot \Mpsilocked + 0.020}{0.17620819}
+ \ \le\ 0.40890\ <\ \frac{\pi}{2}.
+\]
+Therefore \textup{(P+)} holds and $2\mathcal J$ is Herglotz on $\Omega$.
+\end{theorem}
+
+
+________________
+
+
+6) Removability across Z(ξ)Z(\xi): make the bounded-puncture step explicit (short lemma)
+Your globalization theorem is in good shape and you already use normal families, but the one-line “bounded on a punctured neighborhood ⇒ removable” deserves an explicit lemma for readers.
+                                 * Patch (place immediately before Theorem \texttt{globalize-RH}):
+
+\begin{lemma}[Removable singularity for bounded Schur quotients]\label{lem:removable}
+Let $D\subset\C$ be a disk and $F:D\setminus\{\rho\}\to\C$ be analytic with $\bigl|\frac{F-1}{F+1}\bigr|\le 1$ on $D\setminus\{\rho\}$.
+Then $F$ extends holomorphically to $D$.
+\end{lemma}
+\begin{proof}
+The Cayley transform $G=(F-1)/(F+1)$ is bounded by $1$ on the punctured disk, hence by Riemann’s theorem the singularity at $\rho$ is removable for $G$. The inverse Cayley map is analytic on $\{|G|<1\}$, so $F$ extends holomorphically to $D$.
+\end{proof}
+
+
+Then cite Lemma \ref{lem:removable} in the proof of Theorem \ref{thm:globalize-RH}.
+________________

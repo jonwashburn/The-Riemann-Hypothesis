@@ -1,0 +1,23 @@
+% Static longtable (no pgfplotstable dependency)
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\arraystretch}{1.1}
+\begin{longtable}{r r r r r r r r r r r r}
+\caption{Prime-tail covering schedule and margins ($Q=53$, $\theta_{\max}=0.30$, $h_{\max}=0.015$, $C_{\pi}=1.26$, $p_{\min}^{\mathrm{cap}}=10^6$, $\tau_{\mathrm{FF}}=\tau_{\mathrm{FS}}=7.5\times10^{-4}$, $L_{\mathrm{seed}}\approx0.0108$).}\label{tab:prime-tail-certificate}\\
+\toprule
+$\sigma$ & $h$ & $K(\sigma)$ & $p_{\min}$ & $\Delta_{\rm SS}$ & $\Delta_{\rm SF}$ & $\Delta_{\rm FS}$ & $\Delta_{\rm FF}$ & $\mu_{\rm small}^{\min}$ & $\delta_{\rm cert}$ & $L$ & $\delta_{\rm cert}-e^{-L}$ \\
+\midrule
+\endfirsthead
+\toprule
+$\sigma$ & $h$ & $K(\sigma)$ & $p_{\min}$ & $\Delta_{\rm SS}$ & $\Delta_{\rm SF}$ & $\Delta_{\rm FS}$ & $\Delta_{\rm FF}$ & $\mu_{\rm small}^{\min}$ & $\delta_{\rm cert}$ & $L$ & $\delta_{\rm cert}-e^{-L}$ \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+0.6000 & 0.0150 & 1.60344 & 77 & 0.0279663 & 0.0316651 & 0.0007495 & 0.0005709 & 0.9786261 & 0.9176743 & 0.0240516 & -0.0480744 \\
+0.5850 & 0.0150 & 1.61776 & 86 & 0.0291379 & 0.0354960 & 0.0007268 & 0.0005996 & 0.9772491 & 0.9112887 & 0.0242664 & -0.0313068 \\
+0.5700 & 0.0150 & 1.63286 & 91 & 0.0303640 & 0.0409033 & 0.0007494 & 0.0006882 & 0.9752871 & 0.9025823 & 0.0244929 & -0.0172068 \\
+0.5550 & 0.0150 & 1.64754 & 107 & 0.0316473 & 0.0471726 & 0.0006927 & 0.0007084 & 0.9740892 & 0.8938682 & 0.0247131 & -0.0034686 \\
+0.5400 & 0.0150 & 1.66233 & 132 & 0.0329907 & 0.0559256 & 0.0006121 & 0.0007166 & 0.9731981 & 0.8829530 & 0.0249349 & 0.0077145 \\
+0.5250 & 0.0150 & 1.67746 & 171 & 0.0343973 & 0.0700372 & 0.0005179 & 0.0007329 & 0.9726270 & 0.8669416 & 0.0251619 & 0.0134510 \\
+0.5100 & 0.0150 & 1.69284 & 259 & 0.0358704 & 0.1001679 & 0.0003772 & 0.0007368 & 0.9733260 & 0.8361737 & 0.0253926 & 0.0040825 \\
+\end{longtable}

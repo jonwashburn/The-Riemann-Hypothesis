@@ -1,0 +1,17 @@
+% Upper bound on the phase drop (tested form)
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Upper bound on the phase drop (tested form)}
+
+Let $F=2\mathcal J$ be meromorphic of bounded type on $\mathbb{H}$ with boundary data $u=\log|F^*|$, $w=\arg(F^*)$. Fix a $C^1$ window $\psi$ of mean zero supported in $(-1,1)$ and define $\varphi_{L,t_0}(t)=L^{-1}\psi((t-t_0)/L)$ and $\Phi_{L,t_0}=\mathcal P[\varphi_{L,t_0}]$.
+
+\begin{lemma}[Upper bound for the tested phase drop]\label{lem:upper-bound-tested}
+For every $L>0$ and $t_0\in\mathbb{R}$,
+\[\int_{\mathbb{R}} (-w'(t))\,\varphi_{L,t_0}(t)\,dt\ \le\ C_H(\psi)\,L\,M_\psi(u)\ +\ C_P(\kappa).\]
+\end{lemma}
+
+\begin{proof}
+By the distributional phase–velocity identity, $\int(-w')\,\varphi_{L,t_0}=2\pi\int \Phi_{L,t_0}\,d\mu-\int \mathcal H[u']\,\varphi_{L,t_0}$. The $\mu$–term is nonnegative on boxes (or absorbed into $C_P$ if a finite prime main term is present), while
+\[\left|\int \mathcal H[u']\,\varphi_{L,t_0}\right|=\left|\int u\,(\mathcal H[\varphi_{L,t_0}])'\right|\ \le\ \| (\mathcal H[\varphi_{L,t_0}])'\|_\infty\ \left|\int_I u\right|\ \le\ C_H(\psi)\,L\,M_\psi(u),\]
+using $(\mathcal H[\varphi_{L,t_0}])'(t)=L^{-1}(\mathcal H[\varphi_{1,0}])'((t-t_0)/L)$ and the support of $\varphi_{L,t_0}$ in $I$.
+\end{proof}

@@ -1,0 +1,169 @@
+﻿\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{Boundary $\Rightarrow$ Interior on Rectangles and Removable Singularities for $\mathcal J$ at $Z(\xi)$}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Set--up.}
+Let $\Omega:=\{s=\sigma+it:\ \sigma>1/2\}$ and let $R\Subset\Omega$ be a closed axis--parallel rectangle with nonempty interior and piecewise $C^1$ boundary $\partial R$ (four sides, four corners).
+Let $\mathcal J$ be meromorphic in $R$, holomorphic in $R\setminus Z$, where $Z\subset R$ is a discrete set (in our application $Z=Z(\xi)\cap R$).
+Define
+\[
+F\ :=\ 2\mathcal J,\qquad
+\Theta\ :=\ \frac{F-1}{F+1}\ =\ \frac{2\mathcal J-1}{2\mathcal J+1}
+\]
+on $R\setminus Z$.
+Write $F^*$ for the non--tangential boundary values of $F$ on $\partial R$, defined a.e.\ with respect to arclength.
+We assume throughout that $F^*\in L^1(\partial R)$ and that the a.e.\ boundary \emph{wedge} condition holds in the strong form
+\begin{equation}\label{eq:wedge}
+\Re F^*(\zeta)\ \ge\ 0\quad\text{for a.e. }\zeta\in\partial R.
+\end{equation}
+(As explained in the proof map, this is obtained from $w\in[-\pi/2,\pi/2]$ a.e.\ via $F=2\mathcal J$.)
+
+
+\medskip
+We now formalize two steps:
+\begin{itemize}
+\item[(I)] From \eqref{eq:wedge} deduce the interior \emph{Herglotz/Schur} bounds on $R\setminus Z$:
+\[
+\Re F(s)\ \ge\ 0\quad\text{and}\quad |\Theta(s)|\ \le\ 1\qquad (s\in R\setminus Z).
+\]
+\item[(II)] Show that each $z_0\in Z$ is a \emph{removable} singularity for $\Theta$, hence also for $\mathcal J$ via the inverse Cayley transform, and thus $\mathcal J$ has no pole at $z_0$.
+\end{itemize}
+
+
+\section*{Boundary $\Rightarrow$ interior on rectangles}
+
+
+We use conformal transfer from the unit disk $\mathbb D$.
+
+
+\begin{lemma}[Carath\'eodory/F.\&M.\ Riesz for rectangles]\label{lem:CFR}
+There exists a conformal map $\phi:\mathbb D\to \mathrm{int}(R)$ which extends to a homeomorphism from $\overline{\mathbb D}$ onto $R$ except at the four corners (a set of arclength measure $0$ on $\partial R$). For any $h\in L^1(\partial R)$ there is a unique harmonic function $H$ on $\mathrm{int}(R)$ with non--tangential boundary values $h$ a.e., given by
+\[
+H(\zeta)\ =\ \int_{\partial R} P_R(\zeta,\xi)\,h(\xi)\,|d\xi|\qquad(\zeta\in\mathrm{int}(R)),
+\]
+where $P_R$ is the Poisson kernel of $R$ (the pushforward of the unit--disk Poisson kernel by $\phi$). Moreover, harmonic measure on $\partial R$ is absolutely continuous with respect to arclength.
+\end{lemma}
+
+
+\begin{proof}
+Rectangles are Jordan domains with piecewise $C^1$ boundary, so a Riemann map $\phi$ extends to the boundary homeomorphically except at the four corners; this exceptional set has arclength measure $0$. The remaining assertions are the standard solvability and uniqueness of the Dirichlet problem for $L^1$ boundary data on Lipschitz planar domains, with $P_R$ obtained from the unit disk via $\phi$.
+\end{proof}
+
+
+\begin{theorem}[Boundary positivity $\Rightarrow$ interior positivity]\label{thm:pos}
+Let $F$ be holomorphic on $R\setminus Z$, with $F^*\in L^1(\partial R)$ and $\Re F^*\ge0$ a.e.\ on $\partial R$. Then
+\[
+\Re F(s)\ \ge\ 0\qquad\text{for all }s\in R\setminus Z.
+\]
+\end{theorem}
+
+
+\begin{proof}
+Fix a connected component $U$ of $R\setminus Z$. The function $u:=\Re F$ is harmonic on $U$ and has a.e.\ boundary trace $u^*=\Re F^*\ge0$ on $\partial U\cap\partial R$; on small circles around $z\in Z\cap\partial U$ the trace is bounded below in $L^1_{\rm loc}$ by the a.e.\ radial limits of $u$ (which exist since $u$ is harmonic).
+By Lemma \ref{lem:CFR} applied on each simply connected piece of $U$ after removing tiny discs around $Z\cap U$ and letting the radii tend to $0$, we conclude that $u$ equals the Poisson extension of its nonnegative boundary trace; hence $u\ge0$ on $U$. As $U$ was arbitrary, $\Re F\ge0$ on $R\setminus Z$.
+\end{proof}
+
+
+\begin{lemma}[Cayley transform is Schur on $R\setminus Z$]\label{lem:schur}
+If $\Re F\ge0$ on $R\setminus Z$, then $|\Theta|\le1$ on $R\setminus Z$.
+\end{lemma}
+
+
+\begin{proof}
+For any complex $w$ with $\Re w\ge0$,
+\[
+\left|\frac{w-1}{w+1}\right|^2
+=\frac{(w-1)(\overline w-1)}{(w+1)(\overline w+1)}
+=\frac{|w|^2-2\Re w+1}{|w|^2+2\Re w+1}
+\le 1,
+\]
+since the numerator $\le$ the denominator. Apply with $w=F(s)$.
+\end{proof}
+
+
+Combining Theorem \ref{thm:pos} and Lemma \ref{lem:schur} yields:
+\begin{equation}\label{eq:schur-on-RZ}
+\Re F(s)\ge0\quad\text{and}\quad |\Theta(s)|\le1\qquad (s\in R\setminus Z).
+\end{equation}
+
+
+\section*{Removable singularities of $\Theta$ (and of $\mathcal J$) at $Z(\xi)$}
+
+
+\begin{lemma}[Removable singularity for bounded analytic functions]\label{lem:removable}
+Let $z_0\in R$ and suppose $\Theta$ is holomorphic on $(R\cap B(z_0,r))\setminus\{z_0\}$ and bounded there: $|\Theta|\le 1$. Then $\Theta$ extends holomorphically to $z_0$ with $|\Theta(z_0)|\le1$.
+\end{lemma}
+
+
+\begin{proof}
+By the Riemann removable singularity theorem, any bounded holomorphic function on a punctured neighborhood extends holomorphically at the puncture. The bound persists by continuity.
+\end{proof}
+
+
+\begin{lemma}[Excluding $\Theta(z_0)=1$ unless $\Theta$ is constant]\label{lem:no-one}
+If $\Theta$ is holomorphic on a domain $D$ and $|\Theta|\le1$ on $D$, then either $\Theta\equiv e^{i\theta}$ is unimodular constant on the component containing $z_0$, or else $|\Theta(z_0)|<1$. In particular, $\Theta(z_0)\neq1$ unless $\Theta\equiv1$ locally.
+\end{lemma}
+
+
+\begin{proof}
+If $|\Theta|$ attains its global supremum $1$ at an interior point, then by the maximum modulus principle $\Theta$ is locally constant with $|\Theta|\equiv1$. Otherwise $|\Theta(z_0)|<1$.
+\end{proof}
+
+
+\begin{theorem}[Removable singularities for $\mathcal J$ at $Z(\xi)$]\label{thm:rem-J}
+Assume \eqref{eq:schur-on-RZ}. Let $z_0\in Z\cap R$. Then:
+\begin{itemize}
+\item[(a)] $\Theta$ extends holomorphically to $z_0$ with $|\Theta(z_0)|\le1$.
+\item[(b)] In fact $\Theta(z_0)\neq1$ unless $\Theta$ is identically $1$ on the component of $R$ containing $z_0$ (which is impossible if $\mathcal J$ is nonconstant). Hence $\Theta(z_0)\ne1$.
+\item[(c)] Consequently, $\mathcal J$ extends holomorphically to $z_0$ via the inverse Cayley transform
+\[
+\mathcal J\ =\ \frac{1+\Theta}{2(1-\Theta)},
+\]
+and therefore $\mathcal J$ has \emph{no pole} at $z_0$.
+\end{itemize}
+\end{theorem}
+
+
+\begin{proof}
+(a) By \eqref{eq:schur-on-RZ}, $\Theta$ is holomorphic and $|\Theta|\le1$ on $(R\cap B(z_0,r))\setminus\{z_0\}$ for small $r>0$; Lemma \ref{lem:removable} applies.
+
+
+(b) If $\Theta(z_0)=1$, then by Lemma \ref{lem:no-one} $\Theta\equiv1$ on the component, which would force $\mathcal J\equiv\infty$ there by the Cayley relation---impossible for a nonconstant meromorphic function. Thus $\Theta(z_0)\ne1$.
+
+
+(c) Since $1-\Theta(z_0)\ne0$, the right–hand side is holomorphic at $z_0$, giving the extension of $\mathcal J$ without a pole.
+\end{proof}
+
+
+\section*{Consequences in the RH framework}
+
+
+On each rectangle $R\Subset\Omega$, once the boundary wedge condition \eqref{eq:wedge} is established a.e.\ on $\partial R$, Theorem \ref{thm:pos} and Lemma \ref{lem:schur} yield the \emph{local Schur property} $|\Theta|\le1$ on $R\setminus Z$. Theorem \ref{thm:rem-J} then shows that every putative singularity of $\mathcal J$ arising from a zero of $\xi$ \emph{must} be removable; i.e., there is no genuine pole in $\Omega$. Equivalently, $\xi$ has no zeros in $\Omega$, which is the local RH conclusion on $R$. An exhaustion of $\Omega$ by overlapping rectangles carries this to all of $\Omega$ (normal families/compactness guarantees no loss in the bound $|\Theta|\le1$ and the removable–singularity argument is local).
+
+
+\begin{remark}[Exceptional boundary sets]
+All boundary statements are a.e.\ with respect to arclength on $\partial R$.
+Corners form a null set and play no role. Non–tangential limits exist a.e.\ on each side for $F\in H^1_{\rm loc}$; uniqueness of the harmonic extension uses only $L^1$ boundary data on Lipschitz boundaries (rectangles).
+\end{remark}
+
+
+\end{document}

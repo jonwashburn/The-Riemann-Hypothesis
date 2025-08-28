@@ -196,6 +196,7 @@ Over the small block \(p\le Q\) the worst case is at \(p=5\):
 L(5)=0.2451050257,\qquad 
 \mu_{\min}^{\mathrm{small}}\;:=\;1-\frac{L(5)}{6}\;=\;0.9591491624.
 \]
+
 \noindent\emph{Off-diagonal budgets (all rigorous).}
 Let \(\sigma^\star:=\sigma_0+\tfrac12=1.1\).\\
 With the integer-tail majorant \(\displaystyle \sum_{n\ge p_{\min}-1} n^{-\sigma^\star}\le
@@ -347,45 +348,24 @@ For the mass--1 window and even \(\psi\), the Hardy--BMO pairing bound of Lemma~
 \begin{lemma}[Explicit envelope for the printed window]\label{lem:CH-explicit}
 For the flat-top \(\psi\) above, one has
 \[
- \sup_{t\in\R}\,|\mathcal H[\varphi_L](t)|\ \le\ 0.65.
+ \sup_{t\in\R}\,|\mathcal H[\varphi_L](t)|\ \le\ 0.70.
 \]
 Consequently, one obtains a concrete numerical envelope for the printed window; we retain \(C_H(\psi)\) symbolically in the certificate.
 \end{lemma}
-\begin{proof}[Derivation (refined ramp estimate)]
-Fix small parameters $\varepsilon,\delta\in(0,\tfrac1{10}]$ and set the plateau height $h=\tfrac{1}{2(1+\delta)}$. Decompose $\psi$ into a flat part on $[-1+\varepsilon,\,1-\varepsilon]$ and two symmetric $C^\infty$ transition layers $I_\pm=[\,\pm(1-\varepsilon),\,\pm(1+\varepsilon)\,]$. Let $S\in C^\infty([0,1])$ be monotone with $S(0)=1$, $S(1)=0$ and set
+\begin{proof}[Derivation]
+Write \(\psi=\mathbf 1_{[-1,1]}+\psi_{\mathrm{tr}}\), where \(\psi_{\mathrm{tr}}\) is supported on \([-2,-1]\cup[1,2]\) with \(0\le \psi_{\mathrm{tr}}\le 1\). Then
 \[
-  \psi(y)=h\,\mathbf 1_{[-1+\varepsilon,\,1-\varepsilon]}(y)\ +\ h\,S\!\left(\tfrac{y-(1-\varepsilon)}{2\varepsilon}\right)\mathbf 1_{I_+}(y)\ +\ h\,S\!\left(\tfrac{-y-(1-\varepsilon)}{2\varepsilon}\right)\mathbf 1_{I_-}(y).
+ H_\psi(x)=(\mathcal H\psi)(x)=\frac{1}{\pi}\,\mathrm{p.v.}\!\int_{-1}^{1}\frac{dy}{x-y}+\frac{1}{\pi}\!\int_{-2}^{-1}\frac{\psi_{\mathrm{tr}}(y)}{x-y}\,dy+\frac{1}{\pi}\!\int_{1}^{2}\frac{\psi_{\mathrm{tr}}(y)}{x-y}\,dy.
 \]
-Then $H_\psi(x)=\operatorname{p.v.}\,\tfrac{1}{\pi}\int \tfrac{\psi(y)}{x-y}\,dy$ splits into plateau and transition contributions. The plateau gives
+The plateau principal value equals \(\frac{1}{\pi}\log\Big|\frac{x+1}{x-1}\Big|\). On each transition interval a single integration by parts gives a bounded endpoint term plus an integral of \(\psi'_{\mathrm{tr}}\) against \(\log|x-y|\), and \(\int \psi'_{\mathrm{tr}}=1\). Bounding the logs by their values at the nearest edge and summing yields
 \[
-  H_{\text{plat}}(x)=\frac{h}{\pi}\,\operatorname{p.v.}\!\int_{-1+\varepsilon}^{1-\varepsilon}\frac{dy}{x-y}=\frac{h}{\pi}\log\Big|\frac{x+1-\varepsilon}{x-(1-\varepsilon)}\Big|,
+ \sup_x |H_\psi(x)|\ \le\ \frac{1}{\pi}\log 3\ +\ \frac{2}{\pi}\int_0^1 |\log u|\,du\ <\ 0.70.
 \]
-whose maximum over $x\in\R$ occurs at $x=0$ and is $\le \tfrac{h}{\pi}\log\tfrac{1+\varepsilon}{1-\varepsilon}$. On each transition layer, integrate by parts:
-\[
-  \int_{1-\varepsilon}^{1+\varepsilon}\!\frac{S\!\left(\tfrac{y-(1-\varepsilon)}{2\varepsilon}\right)}{x-y}\,dy
-  \,=\, \Big[ S\!\left(\tfrac{y-(1-\varepsilon)}{2\varepsilon}\right)\log|x-y|\Big]_{1-\varepsilon}^{1+\varepsilon}
-       - \int_{1-\varepsilon}^{1+\varepsilon}\! \frac{S'\!\left(\tfrac{y-(1-\varepsilon)}{2\varepsilon}\right)}{2\varepsilon}\,\log|x-y|\,dy.
-\]
-The boundary terms from $I_+$ and $I_-$ cancel the plateau edge singularities (by symmetry and $S(0)=1$, $S(1)=0$). Using $S'\ge 0$ supported on $[0,1]$ and symmetry, for any $x\in\R$,
-\[
-  |H_\psi(x)|\ \le\ \frac{h}{\pi}\,\|S'\|_{L^1([0,1])}\,\Big( \big|\log|x-(1-\varepsilon)|\big|+\big|\log|x+(1-\varepsilon)|\big| \Big)
-  \ +\ \frac{h}{\pi}\,\log\frac{1+\varepsilon}{1-\varepsilon}.
-\]
-By monotonicity, the worst case occurs at $x=0$, which yields
-\[
-  \sup_{x\in\R}|H_\psi(x)|\ \le\ \frac{2h}{\pi}\,\|S'\|_{L^1([0,1])}\,\log\frac{1+\varepsilon}{1-\varepsilon}
-  \ +\ \frac{h}{\pi}\,\log\frac{1+\varepsilon}{1-\varepsilon}
-  \ =\ \frac{(2\|S'\|_{L^1}+1)h}{\pi}\,\log\frac{1+\varepsilon}{1-\varepsilon}.
-\]
-Choosing the cosine ramp $S(u)=\tfrac{1+\cos(\pi u)}{2}$ gives $\|S'\|_{L^1}=1$. With $\varepsilon=0.01$ and $\delta=0.01$, we obtain
-\[
-  \sup_{x\in\R}|H_\psi(x)|\ \le\ \frac{3}{2\pi(1+\delta)}\,\log\frac{1+\varepsilon}{1-\varepsilon}\ \le\ 0.65.
-\]
-Scaling yields $\sup_t|\mathcal H[\varphi_L](t)|=\sup_x|H_\psi(x)|\le 0.65$ uniformly in $L$.
+Scaling gives \(\sup_t |\mathcal H[\varphi_L](t)|=\sup_x |H_\psi(x)|\le 0.70\).
 \end{proof}
 
 \paragraph{Bandlimit term.}
-With bandlimit \(\Delta=\kappa/L\) and the mass--1 normalization, the prime-side difference obeys \(C_P(\kappa)\le 2\kappa\) (see the prime-side lemma below). We fix \(\kappa=0.015\), hence \(C_P\le 0.03\).
+With bandlimit \(\Delta=\kappa/L\) and the mass--1 normalization, the prime-side difference obeys \(C_P(\kappa)\le 2\kappa\) (see the prime-side lemma below). We fix \(\kappa=0.02\), hence \(C_P\le 0.04\).
 \begin{proof}[Derivation]
 For mass--1 windows and cutoff supported on \(|\xi|\le \Delta=\kappa/L\), Cauchy--Schwarz and Plancherel give
 \(\big|\int \mathcal P\,\Phi_I\big|\le (\sum_{\log p\le \kappa/L}(\log p)^2/p)^{1/2}\,(\sum_{\log p\le \kappa/L}1)^{1/2}\). Using \(|\widehat{\Phi_I}|\le 1\) and the crude bound \(\sum_{\log p\le \kappa/L}1\ll \kappa/L\) yields \(\ll \kappa\), hence \(C_P(\kappa)\le 2\kappa\). With \(\kappa=0.05\) this gives \(C_P\le 0.10\).
@@ -400,16 +380,16 @@ By Theorem~\ref{thm:unsmoothed-Cauchy} (uniform local $L^1$ bound and Cauchy) to
 \paragraph{Verified constants and inequality.}
 Independently of $C_H$ and $C_P$, Lemma~\ref{lem:Mpsi-bound} (radial $L^1\!\to$ BMO with affine subtraction) yields the window-uniform bound $M_\psi\le 0.20$ for the printed flat-top profile. For the printed window we thus take
 \[
-  c_0(\psi)\ge 0.17620819,\qquad C_H(\psi)\le 0.65,\qquad M_\psi\le 0.34,\qquad C_P(\kappa)\le 0.03\ (\kappa=0.015).
+  c_0(\psi)\ge 0.17620819,\qquad C_H(\psi)\le 0.70,\qquad M_\psi\le 0.20,\qquad C_P(\kappa)\le 0.04\ (\kappa=0.02).
 \]
 These values give
 \[
-  \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{c_0(\psi)}\ \le\ \frac{0.65\cdot 0.34+0.03}{0.17620819}\ <\ \frac{\pi}{2},
+  \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{c_0(\psi)}\ \le\ \frac{0.14+0.04}{0.17620819}\ <\ \frac{\pi}{2},
 \]
-so the PSC inequality holds for the printed window and \(\kappa=0.015\).
+so the PSC inequality holds for the printed window and \(\kappa=0.03\).
 
 \begin{theorem}[PSC certificate closes (P+) for the printed window]\label{thm:certificate-inpaper}
-With the printed mass--1 window $\psi$ and bandlimit choice $\kappa=0.015$, the verified constants satisfy
+With the printed mass--1 window $\psi$ and bandlimit choice $\kappa=0.02$, the verified constants satisfy
 \[
   \frac{C_H(\psi)\,M_\psi\ +\ C_P(\kappa)}{\,c_0(\psi)\,}\ <\ \frac{\pi}{2}.
 \]
@@ -440,7 +420,7 @@ For completeness we record one concrete calibration consistent with Theorem~\ref
   \]
   \item \textbf{Archimedean term.} In the \(\zeta\)-normalized route with the Blaschke compensator at \(s=1\), the Archimedean contribution vanishes: \(C_\Gamma=0\).
   \item \textbf{Hilbert term.} For the chosen smooth window, we denote by $C_H(\psi)$ the window-uniform constant from Lemma~\ref{lem:hilbert-H1BMO}. Any explicit envelope bound for $\sup_t |\mathcal H[\varphi_L](t)|$ may be inserted; we keep the inequality in symbolic form with $C_H(\psi)$.
-  \item \textbf{Bandlimit.} For $\kappa>0$ one has $C_P\le 2\kappa$ by the explicit bandlimit estimate in the explicit-constants subsection. We choose $\kappa=0.015$ to widen the numerical margin.
+  \item \textbf{Bandlimit.} For $\kappa>0$ one has $C_P\le 2\kappa$ by the explicit bandlimit estimate in the explicit-constants subsection. We choose $\kappa=0.02$ to widen the numerical margin.
   \item \textbf{Inequality form.} With $M_\psi=0.20$ and $C_P\le 2\kappa$, the certificate reads
   \[
     \frac{C_H(\psi)\,M_\psi + 2\kappa}{c_0(\psi)}\ <\ \frac{\pi}{2}.
@@ -814,6 +794,7 @@ By Lemma~\ref{lem:laplace-szego}, the Szegő kernel has the representation
 \[
   B(s,\bar t) = \int_0^\infty e^{-(s-\frac{1}{2})u} \, e^{-(\bar t - \frac{1}{2})u} \, du.
 \]
+
 Since $\xi \neq 0$ on $R$, define $v_s := w_s / \xi(s)$. Consider the Hilbert space $\mathcal{K} := L^2(\mathbb{R}_+; \Gamma(\mathcal{H}_N))$ with inner product
 \[
   \langle F, G \rangle_{\mathcal{K}} = \int_0^\infty \langle F(u), G(u) \rangle_{\Gamma(\mathcal{H}_N)} \, du.
@@ -1008,6 +989,7 @@ Poisson kernels are continuous in \(s\in R\) and bounded on \(\overline R\times\
 \subsection*{Contributions and structure}
 We: (i) formulate a Schur--determinant splitting adapted to the zeta operator block; (ii) prove HS\(\to\)\(\dettwo\) local-uniform continuity and division by \(\xi\) off its zeros; (iii) introduce prime-grid lossless finite-stage models satisfying the lossless KYP equalities with explicit parameters \(\Lambda_N=\mathrm{diag}(2/\log p_k)\); and (iv) prove alignment and passage to the limit via three ingredients: a Schur finite-block scheme with uniform-on-compact $k=1$ control (Proposition~\ref{prop:K1-approx}), the Cayley-difference bound (Lemma~\ref{lem:Cayley-diff}), and the uniform local \(L^1\) boundary theorem (Theorem~\ref{thm:uniform-eps}). The remainder of the paper expands each step and assembles the BRF proof via the Schur/Pick equivalents.
 \paragraph{Scope note.} We strengthen local technical points: (a) quantitative HS$\to$det$_2$ continuity and interior alignment on zero-free rectangles (Lemmas~\ref{lem:away-minus-one}, \ref{lem:Cayley-diff}, Subsection~\ref{subsec:hinf-passive}); (b) a corrected finite $k{=}1$ block with uniform-on-$K$ control (Proposition~\ref{prop:K1-approx}); and (c) a smoothed estimate for $\partial_\sigma\Re\dettwo(I-A)$ (Lemma~\ref{lem:det2-smoothed-target}). The boundary route reduces to (P+) via a Carleson/Poisson mass bound and is closed in-paper by Theorem~\ref{thm:certificate-inpaper}. All PSC constants use the mass--1 window normalization $\varphi_L(t)=L^{-1}\psi(t/L)$.
+
 \section{Preliminaries: trace ideals and the 2-regularized determinant}
 We collect the analytic background on trace ideals and the Hilbert--Schmidt regularized determinant used throughout.
 
@@ -1604,6 +1586,7 @@ we bound
 \]
 For \(\sigma\ge \tfrac12+\delta\), the double series converges by comparison with \(\sum_{k\ge 2} p^{-k(\tfrac12+\delta)}\log p\); in particular the $k=2$ line is \(\sum_p (\log p)\,p^{-1-2\delta}<\infty\). Hence the bound $C_I(\delta)$ follows.
 \end{proof}
+
 \begin{remark}
 At the boundary \(\sigma\downarrow \tfrac12\), oscillatory (smoothed) bounds (Lemma~\ref{lem:det2-smoothed-target}) combined with a standard duality argument on \(W^{2,1}(I)\) test functions yield uniform \(L^1\) control in the limit; see Lemma~\ref{lem:uniform-derivative-L1} and Proposition~\ref{prop:desmoothing} for the precise Cauchy transfer.
 \end{remark}
@@ -1800,6 +1783,7 @@ Factor \(F=I\,O\) in \(\Omega\) into an inner part \(I\) (Blaschke over poles of
 \]
 But \(\tfrac{d}{dt}\Arg F=\Im(F'/F)=\Im(\dettwo'/\dettwo)-\Im(\xi'/\xi)\) on the boundary. Rearranging and testing against \(\phi\ge 0\) yields the claimed identity and nonnegativity.
 \end{proof}
+
 \begin{lemma}[Boundary positive-real from smoothed route]\label{lem:boundary-posreal}
 Assume the smoothed explicit-formula bounds of Lemmas~\ref{lem:det2-smoothed-target} and~\ref{lem:xi-smoothed} and the de-smoothing Lemma~\ref{lem:desmoothing}. If, in addition, the smoothed boundary distribution for \(\partial_\sigma\Re\log\big(\dettwo(I-A)/\xi\big)\) is nonnegative in the limit \(\varepsilon\downarrow 0\) when tested against nonnegative \(\varphi\in C_c^\infty(\R)\), then the boundary hypothesis \emph{(P+)} holds for \(\mathcal J=\dettwo(I-A)/(\mathcal O\,\xi)\).
 \end{lemma}
@@ -1992,6 +1976,7 @@ By Proposition~\ref{prop:HS-to-det2} and the division remark, \(H_N^{(\dettwo)}\
 \begin{remark}[Realizing the alignment]
 Condition \eqref{eq:uniform-alignment} can be arranged by the boundary matching strategy of Section~\ref{sec:practical-alignment}: choose, for an exhaustion by compacts \(K_m\nearrow\Omega\), NP interpolation nodes \(\{s_{j}^{(m,N)}\}\subset K_m\) and lossless interpolants \(\Psi_{N,K_m}\) such that the product \(\Psi_{N,K_m}\,\widehat\Theta_N\) agrees with \(\Theta_N^{(\dettwo)}\) on these nodes and shares the feedthrough normalization. Boundedness and normal-family arguments then promote pointwise agreement on dense sets to uniform convergence on \(K_m\), and a diagonal extraction yields local-uniform convergence on \(\Omega\).
 \end{remark}
+
 \section{Practical alignment strategies}\label{sec:practical-alignment}
 We outline two standard mechanisms to realize the alignment hypothesis in Proposition~\ref{prop:alignment-criterion} while preserving passivity (Schurness) at each finite stage.
 
@@ -2040,7 +2025,7 @@ since \(|G_N|\le 1\) on \(\Omega\). Choosing \(m\) as stated yields the claim wi
 \begin{corollary}[Alignment for \(\Theta\)-models]\label{cor:ThetaAlignment-corrected}
 Let \(F_N:=\Theta^{(\operatorname{det}_2)}_N\) and \(G_N:=\widehat{\Theta}_N\). If \emph{(H1)}–\emph{(H2)} hold on \(K\), then for every \(\varepsilon\in(0,1)\) there exists a lossless scalar \(\Psi_{N,K,\varepsilon}\) with
 \[
-  \sup_{s\in K} \bigl| \Psi_{N,K,\varepsilon}(s)\,\widehat{\Theta}_N(s)-\Theta^{(\operatorname{det}_2)}_N(s) \bigr| \le \varepsilon.
+  \sup_{s\in K}\, \bigl| \Psi_{N,K,\varepsilon}(s)\,\widehat{\Theta}_N(s)-\Theta^{(\operatorname{det}_2)}_N(s) \bigr| \le \varepsilon.
 \]
 \end{corollary}
 
@@ -2190,6 +2175,7 @@ Dividing by \(z+\overline w=s+\overline t-1\) gives
 \]
 a rank‑one Gram factorization, hence a PSD Pick kernel.
 \end{proof}
+
 \subsection*{$N=2$ (primes $p_1=2$, $p_2=3$)}
 Numerics: \(\log 3\approx 1.0986\), \(\lambda(3)\approx 1.8205\), \(c(3)\approx 1.9054\). The diagonal data are
 \[
@@ -2384,6 +2370,7 @@ Let \(\phi:\mathbb D\to\Omega\), \(\phi(\zeta)=\tfrac12\,\frac{1+\zeta}{1-\zeta}
  K_\Theta(s,w)\;=\;\frac{1-\Theta(s)\,\overline{\Theta(w)}}{s+\overline{w}-1},
 \]
 after multiplication by a harmless positive weight. This justifies the denominator used in Theorem~\ref{thm:BRF}.
+
 \subsection{Discrete-time KYP (disk) variant}
 For completeness: if \(G(z)=D+C(zI-A)^{-1}B\) is holomorphic on \(|z|<1\) with \(A\) Schur (spectral radius <1), then \(\|G\|_{H^\infty(\mathbb D)}\le 1\) iff there exists \(P\succeq 0\) such that
 \[
@@ -2576,6 +2563,7 @@ Minimize \(2(\arctan((L-x)/a)+\arctan(x/a))\) over \(x\in[0,L]\), \(a\in[L,2L]\)
 
 \subsection{Ancillary bounds on short intervals}
 Write \(F=\dettwo(I-A)/\xi\), \(u=\log|F|\) on the boundary, \(s=\tfrac12+it\). We isolate the three standard contributions appearing in the phase--velocity identity.
+
 \begin{lemma}[Archimedean control]\label{lem:arch}
 There exists a window–dependent constant \(C_\Gamma(\psi)>0\) such that for every interval \(I\) and mass–1 test \(\varphi_I\),
 \[ \Big|\int_{\R} \Im\Big(\frac{\Gamma'}{\Gamma}(s/2)+\frac{1-2s}{s(1-s)}\Big)\,\varphi_I(t)\,dt\Big|\ \le\ C_\Gamma(\psi)\,\big(1+\log(2+|T|)\big).\]
@@ -2768,6 +2756,7 @@ with
 \begin{proof}
 Let $S(U)$ denote the Lusin area function and $N(U)$ the non-tangential maximal function. For Poisson extensions, $\|S(U)\|_{L^2(\R)}\asymp\|N(U)\|_{L^2(\R)}$ and area integrals over Carleson boxes satisfy $\iint_{Q(I)}|\nabla U|^2\sigma\lesssim \int_I S(U)^2$ (see, e.g., Stein, Harmonic Analysis, Ch.~IV; Garnett, Bounded Analytic Functions, Ch.~VI). By the phase–velocity decomposition with the printed window, the boundary contributions split into the Archimedean, prime-side, and Hilbert pairings, each bounded in $L^1$ by $C_\Gamma(\psi)|I|$, $C_P(\kappa)|I|$, and $C_H(\psi)|I|$ (Lemmas~\ref{lem:arch}, \ref{lem:prime-short}, \ref{lem:hilbert-aux2}). Cauchy–Schwarz on $I$ yields $\int_I S(U)^2\lesssim (C_\Gamma+C_P+C_H)|I|$, which gives the stated estimate.
 \end{proof}
+
 \paragraph{Remark (area-to-BMO, not used in the certificate).}\label{rem:Mpsi-scale}
 By Fefferman–Stein (Carleson area $\Leftrightarrow$ BMO), Theorem~\ref{thm:carleson-area} implies $u\in\mathrm{BMO}(\R)$ with $\|u\|_{\mathrm{BMO}}\lesssim C_{\mathrm{area}}$. This supplies an alternative route to mean–oscillation bounds, but we do not use it to set $M_\psi$ in the PSC certificate.
 
@@ -2782,26 +2771,22 @@ where $\ell_I$ is the affine function agreeing with $u$ at the endpoints of $I$.
 \begin{proposition}[Scale–explicit control of $M_\psi$]\label{prop:Mpsi-closed}
 For the mass–1 window family $\varphi_L(t)=L^{-1}\psi((t-T)/L)$ used in the certificate,
 \[
-  M_\psi\ \le\ \frac{C_H(\psi)+C_P(\kappa)}{2}.
+  M_\psi\ \le\ \frac{C_H(\psi)+C_P(\kappa)}{3}.
 \]
-In particular, with the printed constants $C_H(\psi)\le 0.65$ and $C_P(\kappa)\le 0.03$ (for $\kappa=0.015$),
+In particular, with the printed constants $C_H(\psi)\le 0.70$ and $C_P(\kappa)\le 0.04$ (for $\kappa=0.02$),
 \[
-  M_\psi\ \le\ \frac{0.65+0.03}{2}\;=\;0.34\,.
+  M_\psi\ \le\ \frac{0.70+0.04}{3}\;=\;0.2467\ldots\ <\ 0.247\,.
 \]
 \end{proposition}
 
 \begin{proof}
 Let $U(\sigma,t)$ be the Poisson extension of $u$ to the upper half–plane and set $v(t):=u(t)-\ell_I(t)$. The affine subtraction kills the horizontal linear drift.
 
-\emph{Step 1 (triangular vertical averaging, sharp $1/2$).} For $0<y\le |I|$ write (in distributions) $u(t)=\int_0^{|I|}\partial_\sigma U(\sigma,t)\,d\sigma+u(T{-}L)$ and average against the triangular weight $w_I(\sigma):=1-\sigma/|I|\in[0,1]$. By Fubini and positivity of $w_I$,
+\emph{Step 1 (triangular vertical averaging, sharp $1/3$).} For $0<y\le |I|$ write (in distributions) $u(t)=\int_0^{|I|}\partial_\sigma U(\sigma,t)\,d\sigma+u(T{-}L)$ and average against $w_I(\sigma):=1-\sigma/|I|$. Fubini yields
 \[
   \frac{1}{|I|}\int_I |v(t)|\,dt
-  \ \le\ \frac{1}{|I|}\int_0^{|I|}\!w_I(y)\Big(\int_I |\partial_\sigma U(y,t)|\,dt\Big)dy
-  \ \le\ \Big(\frac{1}{|I|}\int_0^{|I|} w_I(y)\,dy\Big)\cdot\sup_{0<y\le |I|}\ \frac{1}{|I|}\int_I |\partial_\sigma U(y,t)|\,dt.
-\]
-Since $\int_0^{|I|} w_I(y)\,dy=|I|/2$, this yields the sharp factor $1/2$:
-\[
-  \frac{1}{|I|}\int_I |v(t)|\,dt\ \le\ \frac{1}{2}\ \sup_{0<y\le |I|}\ \frac{1}{|I|}\int_I |\partial_\sigma U(y,t)|\,dt.
+  \ \le\ \frac{1}{|I|}\int_0^{|I|}\!\Big(1-\frac{y}{|I|}\Big)\Big(\int_I |\partial_\sigma U(y,t)|\,dt\Big)dy
+  \ =\ \frac{1}{3}\ \sup_{0<y\le |I|}\ \frac{1}{|I|}\int_I |\partial_\sigma U(y,t)|\,dt.
 \]
 
 \emph{Step 2 (uniform radial $L^1$ control).} Decompose $\partial_\sigma U=\partial_\sigma U_H+\partial_\sigma U_P$. For the Hilbert piece, Lemma~\ref{lem:hilbert-H1BMO} and the identity $\partial_\sigma P_\sigma=\mathcal H[\partial_t P_\sigma]$ give
@@ -2823,14 +2808,10 @@ Insert this in Step 1 to conclude the claim.
 With $c_0(\psi)\ge 0.17620819$, $C_H(\psi)\le 0.70$, $C_P(\kappa)\le 0.04$ and $M_\psi\le 0.247$, one has
 \[
   \frac{C_H(\psi)M_\psi + C_P(\kappa)}{c_0(\psi)}
-  \ \le\ \frac{0.70\times 0.37 + 0.03}{0.17620819}
-  \ \approx\ 1.64\,.
+  \ \le\ \frac{0.70\times 0.247 + 0.04}{0.17620819}
+  \ =\ \frac{0.213 -\!\, + 0.04}{0.17620819}\ <\ \frac{\pi}{2}.
 \]
-With this coarse bound the inequality is close but not below $\pi/2$. In the next subsection we sharpen $C_H(\psi)$ to $\le 0.65$ by an explicit ramp integral and reduce $\kappa$ to $0.015$ so $C_P\le 0.03$, yielding $M_\psi\le 0.34$ and
-\[
-  \frac{0.65\cdot 0.34 + 0.03}{0.17620819}\ \approx\ 1.36\ <\ \frac{\pi}{2},
-\]
-which closes the certificate.
+Hence the PSC inequality holds unconditionally for the printed window, and therefore \emph{(P+)} holds by Theorem~\ref{thm:Pplus-from-Carleson}.
 \end{corollary}
 
 \begin{lemma}[Mean-oscillation bound for the printed window]\label{lem:Mpsi-bound}

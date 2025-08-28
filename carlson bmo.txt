@@ -1,0 +1,183 @@
+﻿% ============================================================
+% Appendix A.  Carleson–BMO Route (Route A) in Half–Plane Normalization
+% ============================================================
+
+
+\section*{Appendix A. Carleson–BMO Route in the Half–Plane}
+
+
+\subsection*{A.1. Setting and normalizations}
+
+
+Write points in the right half–plane as
+\[
+s=\tfrac12+\sigma+it,\qquad \sigma>0,\ t\in\mathbb R.
+\]
+For an interval \(I=[T-L,T+L]\) and fixed aperture \(\alpha\in[1,2]\), the associated Carleson box is
+\[
+Q(\alpha I)\ :=\ \Big\{\,\tfrac12+\sigma+it:\ t\in I,\ 0<\sigma<\alpha L\,\Big\}.
+\]
+The (half–plane) Poisson kernel and its tangential/normal derivatives are
+\[
+P_\sigma(u)=\frac{1}{\pi}\frac{\sigma}{\sigma^2+u^2},\qquad
+\partial_t P_\sigma(u)=-\,\frac{2}{\pi}\frac{\sigma u}{(\sigma^2+u^2)^2},\qquad
+\partial_\sigma P_\sigma(u)=\frac{1}{\pi}\frac{u^2-\sigma^2}{(\sigma^2+u^2)^2}.
+\]
+For a boundary function \(f\in L^\infty(\mathbb R)\), its Poisson extension is
+\[
+V(\sigma,t):=(P_\sigma*f)(t)=\int_{\mathbb R}P_\sigma(t-u)\,f(u)\,du,
+\]
+which is harmonic in \(\sigma>0\) with nontangential boundary trace \(V(0,t)=f(t)\) a.e.
+
+
+We use the weighted Dirichlet energy measure
+\[
+d\mu_V:=|\nabla V|^2\,\sigma\,dt\,d\sigma,\qquad
+|\nabla V|^2=(\partial_t V)^2+(\partial_\sigma V)^2,
+\]
+and its Carleson norm
+\[
+\|\mu_V\|_{\mathrm{Car}}\ :=\ \sup_{I}\ \frac{1}{|I|}\iint_{Q(\alpha I)} |\nabla V|^2\,\sigma\,dt\,d\sigma.
+\]
+
+
+\subsection*{A.2. Carleson control from bounded boundary phase (the Route A “Fefferman–Stein step”)}
+
+
+The next theorem is the precise half–plane version we need; it is stated for \(L^\infty\) data (which is all we require under the corridor), and it is proved by a direct near–/far–field decomposition. A standard BMO version follows by the same proof with the John–Nirenberg inequality; we do not need that generality here.
+
+
+\begin{theoremA}\label{thm:FS}
+Let \(f\in L^\infty(\mathbb R)\) with \(\|f\|_\infty\le M\), and let \(V=P_\sigma*f\) be its Poisson extension. Then
+\[
+\|\mu_V\|_{\mathrm{Car}}\ \le\ C_\alpha\,M^2,
+\]
+where \(C_\alpha\) depends only on the fixed aperture \(\alpha\).
+\end{theoremA}
+
+
+\begin{proof}
+Fix \(I=[T-L,T+L]\). Decompose \(f\) as
+\[
+f=f_I+\underbrace{(f-f_I)\mathbf 1_{3I}}_{=:g_0}\ +\ \sum_{k\ge1}\underbrace{(f-f_{3\cdot 2^{k-1}I})\,\mathbf 1_{A_k}}_{=:g_k},
+\]
+where \(f_J:=|J|^{-1}\!\int_J f\), \(3I\) is the concentric triple of \(I\), and
+\(
+A_k:=\big(3\cdot 2^{k}I\big)\setminus \big(3\cdot 2^{k-1}I\big)
+\)
+are dyadic annuli about \(I\).
+Since \(P_\sigma\) has mean \(1\), the constant \(f_I\) does not contribute to \(\nabla V\).
+We estimate the contributions of \(g_0\) (near field) and of each \(g_k\) (far field).
+
+
+\smallskip
+\emph{Near field.}
+Because \(|f|\le M\), we have \(|g_0|\le 2M\) and \(\mathrm{supp}(g_0)\subset 3I\).
+By the global Littlewood–Paley identity for the Poisson semigroup,
+\[
+\int_{\mathbb R}\!\int_{0}^{\infty} |\nabla(P_\sigma*g_0)|^2\,\sigma\,d\sigma\,dt
+\ \le\ C\,\|g_0\|_{L^2(\mathbb R)}^2
+\ \le\ C\,(2M)^2\,|3I|.
+\]
+Restricting the \((t,\sigma)\)–integral to \(Q(\alpha I)\) only decreases it, hence
+\[
+\iint_{Q(\alpha I)} |\nabla(P_\sigma*g_0)|^2\,\sigma\,dt\,d\sigma
+\ \le\ C\,M^2\,|I|.
+\]
+
+
+\smallskip
+\emph{Far field.}
+Fix \(k\ge1\). For \(t\in I\), \(u\in A_k\), one has \(|t-u|\ge c\,2^k L\).
+Using the explicit bounds above,
+\[
+|\partial_\sigma P_\sigma(t-u)|\ \le\ \frac{C}{(t-u)^2}\ \le\ \frac{C}{(2^k L)^2},\qquad
+|\partial_t P_\sigma(t-u)|\ \le\ \frac{C\,\sigma}{|t-u|^3}\ \le\ \frac{C\,\sigma}{(2^k L)^3}.
+\]
+Moreover \(|g_k|\le 2M\) and \(|A_k|\lesssim 2^k L\).
+Thus, for \(t\in I\) and \(\sigma\in(0,\alpha L)\),
+\[
+|\partial_\sigma(P_\sigma*g_k)(t)| \le \frac{C\,M\,|A_k|}{(2^k L)^2}\ \lesssim\ M\,2^{-k}L^{-1},
+\]
+\[
+|\partial_t(P_\sigma*g_k)(t)| \le \frac{C\,M\,\sigma\,|A_k|}{(2^k L)^3}\ \lesssim\ M\,\sigma\,2^{-2k}L^{-2}.
+\]
+Therefore
+\[
+\int_{0}^{\alpha L}\!\!\int_{t\in I} |\partial_\sigma(P_\sigma*g_k)|^2\,\sigma\,dt\,d\sigma
+\ \lesssim\ |I|\,(M\,2^{-k}L^{-1})^2 \int_{0}^{\alpha L}\sigma\,d\sigma
+\ \lesssim\ |I|\,M^2\,2^{-2k},
+\]
+and
+\[
+\int_{0}^{\alpha L}\!\!\int_{t\in I} |\partial_t(P_\sigma*g_k)|^2\,\sigma\,dt\,d\sigma
+\ \lesssim\ |I| \int_{0}^{\alpha L} (M\,\sigma\,2^{-2k}L^{-2})^2 \sigma\,d\sigma
+\ \lesssim\ |I|\,M^2\,2^{-4k}.
+\]
+Summing the two components yields
+\[
+\iint_{Q(\alpha I)} |\nabla(P_\sigma*g_k)|^2\,\sigma\,dt\,d\sigma
+\ \lesssim\ |I|\,M^2\,2^{-2k}.
+\]
+Summing over \(k\ge1\) gives a geometric series:
+\[
+\sum_{k\ge1}\iint_{Q(\alpha I)} |\nabla(P_\sigma*g_k)|^2\,\sigma\,dt\,d\sigma
+\ \lesssim\ |I|\,M^2.
+\]
+
+
+\smallskip
+Combining near and far field contributions finishes the proof:
+\[
+\iint_{Q(\alpha I)} |\nabla V|^2\,\sigma\,dt\,d\sigma
+\ \le\ C_\alpha\,M^2\,|I|.
+\]
+Taking the supremum over \(I\) establishes \(\|\mu_V\|_{\mathrm{Car}}\le C_\alpha M^2\).
+\end{proof}
+
+
+\subsection*{A.3. Application to the $\xi$–block under the phase corridor}
+
+
+Let \(B\) be the half–plane Blaschke inner factor built from the off–line zeros
+\(\rho=\tfrac12+a+i\gamma\) of \(\xi\), and set
+\[
+U(s):=\log|B(s)|,\qquad w(t):=\Arg B(\tfrac12+it)\quad\text{(principal branch a.e.)}.
+\]
+Assume the \emph{phase corridor} (P+): \(w(t)\in[-\pi/2,\pi/2]\) almost everywhere. Then
+\(|w|\le \pi/2\) a.e., so Theorem~\ref{thm:FS} applies with \(M=\pi/2\) to the Poisson
+extension \(V=P_\sigma*w\), yielding
+\[
+\sup_{I}\frac{1}{|I|}\iint_{Q(\alpha I)} |\nabla V|^2\,\sigma\,dt\,d\sigma\ \le\ C_\alpha\,\pi^2.
+\]
+
+
+\begin{lemmaA}[Identification of energies]\label{lem:energies}
+On each simply connected subdomain \(D\subset\{\sigma>0\}\) avoiding the zeros of \(B\),
+there exists a harmonic conjugate pairing \((U,V_D)\) with \(U=\log|B|\) and
+\(\nabla V_D=\nabla V\) on \(D\). Consequently, \(|\nabla U|=|\nabla V|\) pointwise on \(D\).
+Moreover, for every Carleson box \(Q(\alpha I)\),
+\[
+\iint_{Q(\alpha I)} |\nabla U|^2\,\sigma\,dt\,d\sigma
+\ =\ \iint_{Q(\alpha I)} |\nabla V|^2\,\sigma\,dt\,d\sigma,
+\]
+where equalities are understood as limits of integrals over \(Q(\alpha I)\) with small discs around zeros removed.
+\end{lemmaA}
+
+
+\begin{proof}
+On \(D\), \(B\) has no zeros, so \(\log B\) admits a single–valued analytic branch with
+real and imaginary parts \(U\) and \(V_D\) satisfying the Cauchy–Riemann relations
+\(U_\sigma=V_{D,t}\), \(U_t=-V_{D,\sigma}\), hence \(|\nabla U|=|\nabla V_D|\) on \(D\).
+Both \(V\) and \(V_D\) are harmonic and have the same boundary trace \(w\) on the portion
+of \(\partial D\) lying on \(\{\sigma=0\}\); uniqueness of the Poisson solution on \(D\) gives
+\(\nabla V=\nabla V_D\) on \(D\). The last assertion follows by exhausting \(Q(\alpha I)\) by such domains \(D\) that avoid the (discrete) zero set and letting the radii of the excluded discs shrink to \(0\).
+\end{proof}
+
+
+\noindent Combining Theorem~\ref{thm:FS} with Lemma~\ref{lem:energies} yields the desired, \(T\)–uniform Carleson bound for the $\xi$–block:
+\[
+\sup_{I}\frac{1}{|I|}\iint_{Q(\alpha I)} |\nabla \log|B||^2\,\sigma\,dt\,d\sigma
+\ \le\ C_\alpha\,\pi^2.
+\]
+Thus, under (P+), the $\xi$–block energy measure is Carleson with an absolute constant depending only on the fixed aperture \(\alpha\). No zero counting is required, and no interaction (cross–term) estimates are used.

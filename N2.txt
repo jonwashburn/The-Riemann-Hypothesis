@@ -1,0 +1,105 @@
+﻿Here’s a drop-in, self-contained LaTeX block that proves (N2) in full, with no external references or unresolved labels. It also records the simple uniform operator-norm bound that you noted is a sufficient condition.
+% --- Begin drop-in proof of (N2): Non-cancellation at ξ-zeros on Ω ---
+% Context: Ω := { s = σ+it : σ > 1/2 }. Primes set 𝔓. Basis {e_p}_{p∈𝔓} of ℓ^2(𝔓).
+% Prime-diagonal operator and 2-modified determinant are fixed below.
+
+
+\medskip
+\noindent\textbf{Setup (prime-diagonal model).}
+For $s=\sigma+it$ with $\sigma>1/2$, define the bounded diagonal operator
+\[
+A(s):\ell^2(\mathbb P)\to\ell^2(\mathbb P),\qquad A(s)e_p \;=\; p^{-s}\,e_p\quad(p\in\mathbb P).
+\]
+Then
+\[
+\|A(s)\| \;=\; \sup_{p\in\mathbb P}|p^{-s}| \;=\; 2^{-\sigma} \;<\;1,
+\qquad
+\|A(s)\|_{\mathrm{HS}}^2 \;=\; \sum_{p\in\mathbb P} |p^{-s}|^2 \;=\; \sum_{p\in\mathbb P} p^{-2\sigma} \;<\;\infty,
+\]
+so $A(s)$ is Hilbert–Schmidt and normal (diagonal).
+
+
+\medskip
+\noindent\textbf{Definition (diagonal $\det_2$).}
+For such diagonal Hilbert–Schmidt $A(s)$ with eigenvalues $\lambda_p=p^{-s}$, we take
+\[
+\det\nolimits_2\!\big(I-A(s)\big)
+\;:=\;
+\prod_{p\in\mathbb P}\Big(1-\lambda_p\Big)\,e^{\lambda_p}
+\;=\;
+\prod_{p\in\mathbb P}\Big(1-p^{-s}\Big)\,e^{p^{-s}}.
+\]
+This product converges absolutely because
+\(
+\sum_{p} \big|\log(1-\lambda_p)+\lambda_p\big|
+\lesssim \sum_{p} |\lambda_p|^2
+= \sum_{p} p^{-2\sigma} < \infty
+\),
+using $\log(1-z)+z = O(|z|^2)$ as $z\to 0$.
+
+
+\medskip
+\noindent\textbf{Lemma (invertibility of $I-A(s)$ for $\sigma>0$).}
+For every $\sigma>0$ and $t\in\mathbb R$, the operator $I-A(s)$ is boundedly invertible on $\ell^2(\mathbb P)$, with
+\[
+\|(I-A(s))^{-1}\| \;\le\; \frac{1}{\,1-2^{-\sigma}\,}.
+\]
+\emph{Proof.}
+Since $(I-A(s))e_p=(1-p^{-s})e_p$ and $|p^{-s}|=p^{-\sigma}<1$, we have
+\(
+|1-p^{-s}|\ge 1-|p^{-s}|=1-p^{-\sigma}\ge 1-2^{-\sigma}>0
+\).
+Thus $(I-A(s))^{-1}$ exists and
+\(
+\|(I-A(s))^{-1}\|=\sup_{p}|1-p^{-s}|^{-1}\le (1-2^{-\sigma})^{-1}
+\).
+\hfill$\square$
+
+
+\medskip
+\noindent\textbf{Lemma (non-vanishing of the diagonal $\det_2$ on $\Omega$).}
+If $\sigma>1/2$, then $\det\nolimits_2(I-A(s))\neq 0$.
+\emph{Proof.}
+All eigenvalues satisfy $|\lambda_p|=p^{-\sigma}<1$, hence $1-\lambda_p\neq 0$ for every prime $p$.
+In the product representation above, each factor $(1-\lambda_p)e^{\lambda_p}$ is nonzero and the product converges absolutely; therefore the value is nonzero.
+\hfill$\square$
+
+
+\medskip
+\noindent\textbf{Lemma (outer normalizer is zero-free on $\Omega$).}
+Let $\mathcal O$ be the outer normalizer fixed in the construction on $\Omega=\{\Re s>1/2\}$, i.e.
+\(
+\mathcal O(s)=\exp H(s)
+\)
+with $H$ analytic on $\Omega$ and $\Re H$ harmonic there (the Poisson transport of the prescribed boundary datum).
+Then $\mathcal O(s)\neq 0$ for all $s\in\Omega$.
+\emph{Proof.}
+As an exponential of an analytic function, $\mathcal O$ has no zeros in its domain of analyticity.
+\hfill$\square$
+
+
+\medskip
+\noindent\textbf{(N2) Non-cancellation at $\boldsymbol{\xi}$-zeros on $\boldsymbol{\Omega}$.}
+If $\rho\in\Omega$ and $\xi(\rho)=0$, then
+\[
+\det\nolimits_2\!\big(I-A(\rho)\big)\neq 0
+\quad\text{and}\quad
+\mathcal O(\rho)\neq 0.
+\]
+\emph{Proof.}
+Since $\Re \rho>1/2$, the previous two lemmas apply at $s=\rho$.
+\hfill$\square$
+
+
+\medskip
+\noindent\textbf{Corollary (pole of $\mathcal J$ at off-critical $\xi$-zeros).}
+Under the standing factorization used in the paper, $2\mathcal J$ is the product of the zero-free factors $\mathcal O$ and $\det_2(I-A)$ with the $\xi$-dependent factor that carries the $\xi$-zeros.
+Therefore, if $\rho\in\Omega$ with $\xi(\rho)=0$, then $\mathcal J$ has a pole at $s=\rho$ (no cancellation occurs in the numerator).
+\hfill$\square$
+
+
+\medskip
+\noindent\textbf{Remark (sufficient norm condition).}
+The bound $\|A(s)\|=2^{-\sigma}<1$ for every $\sigma>0$ already guarantees invertibility of $I-A(s)$ via the Neumann series.
+The diagonal/eigenvalue proof above strengthens this to a uniform inverse bound and, for $\sigma>1/2$, gives the explicit non-vanishing of the diagonal $\det_2$.
+% --- End drop-in proof of (N2) ---

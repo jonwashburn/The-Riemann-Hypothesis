@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Interior NP--PSD target, supporting lemmas, and acceptance criteria}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega:=\{\ReS s>\tfrac12\}$ and $R\Subset\Omega$ be a rectangle with $\xi\ne0$ on $\overline R$. Set $\det{}_2^N(s)=\prod_{p\le P_N}(1-p^{-s})e^{p^{-s}}$, $J_N=\det{}_2^N/\xi$, $g_N=(2J_N-1)/(2J_N+1)$.
+
+\section*{Main target}
+\begin{theorem}[Interior NP--PSD on $\partial R$]\label{thm:np_psd}
+There exists $N_0(R)$ such that for all $N\ge N_0(R)$ and all finite node sets $\{s_j\}\subset \partial R$, the Herglotz kernel
+\[H_{J_N}(s_i,\overline{s_j})=\frac{J_N(s_i)+\overline{J_N(s_j)}}{s_i+\overline{s_j}-1}\]
+is positive semidefinite. Equivalently, the Pick matrix of $g_N$ is PSD on $\partial R$.
+\end{theorem}
+
+\paragraph{Acceptance.} No RH, no assumption $|g_N|\le1$, no scaling of Schur outputs. Proof must hold for arbitrary finite node sets on $\partial R$.
+
+\section*{Supporting lemmas (provable now)}
+
+\begin{lemma}[Half-plane Szeg\H{o} kernel]\label{lem:szego}
+For $\Omega$, the kernel $B(s,\overline t)=(s+\overline t-1)^{-1}$ has feature map $\varphi_s(u)=e^{-(s-\tfrac12)u}$ in $L^2((0,\infty),du)$, i.e., $B(s,\overline t)=\int_0^\infty e^{-(s+\overline t-1)u}\,du=\langle\varphi_s,\varphi_t\rangle$.
+\end{lemma}
+\begin{proof}
+Direct evaluation of the Laplace integral with $\ReS(s+\overline t-1)>0$.
+\end{proof}
+
+\begin{lemma}[Derivative does not imply Herglotz]\label{lem:not_herglotz}
+Let $\mu\ge0$ be a finite positive measure on $(0,\infty)$ and $f(s)=\int_0^\infty e^{-sx}\,d\mu(x)$. Then $\ReS f$ is not necessarily nonnegative on $\Omega$. Consequently, $H_f(s,\overline t)=(f(s)+\overline{f(t)})/(s+\overline t-1)$ need not be PSD in general.
+\end{lemma}
+\begin{proof}
+Take $d\mu=\delta_x$ with any $x>0$ and $s=\sigma+it$, then $\ReS f(s)=e^{-\sigma x}\cos(tx)$ changes sign as $t$ varies.
+\end{proof}
+
+\begin{proposition}[Per-atom square completion]\label{prop:sq}
+For $x>0$ and $s,t\in\Omega$,
+\[\frac{-e^{-s x}-e^{-\overline t x}}{x(s+\overline t-1)}=\int_0^\infty e^{u}\,(e^{-su}-e^{-s(u+x)})\,\overline{(e^{-tu}-e^{-t(u+x)})}\,du\; -\;\frac{1}{x}\,B(s,\overline t).\]
+Summing against $d\mu_N(x)/x$ with $d\mu_N(x)=\sum_{p\le P_N}\sum_{k\ge2}(\log p)\,\delta_{k\log p}$ yields
+\[H_{g_N}=\int_0^\infty\!\int (\cdot)\, d\mu_N(x)/x\,du \; -\;\Big(\int \tfrac{d\mu_N(x)}{x}\Big)\,B,\quad g_N=\log\det{}_2^N.\]
+\end{proposition}
+\begin{proof}
+Expand the polarized square and integrate termwise.
+\end{proof}
+
+\begin{proposition}[Exponential/Fock kernel]\label{prop:fock}
+If $\Lambda$ is PSD, then $E(s,\overline t):=\exp(\Lambda(s,\overline t)-\tfrac12\Lambda(s,\overline s)-\tfrac12\Lambda(t,\overline t))$ is PSD.
+\end{proposition}
+\begin{remark}
+Applied with $\Lambda_N(s,\overline t)=\sum_{p\le P_N}\sum_{k\ge2}\tfrac{e^{-k(s+\overline t)\log p}}{k}$, this gives a PSD kernel that mirrors the multiplicative structure of $\det{}_2^N$.
+\end{remark}
+
+\section*{Exact gap to close}
+Neither Proposition~\ref{prop:sq} nor Proposition~\ref{prop:fock} by itself produces an \emph{exact} Gram formula for $H_{J_N}$ on $\partial R$. To finish Theorem~\ref{thm:np_psd}, it suffices to prove either:
+\begin{itemize}
+  \item (Accretivity) $\ReS J_N\ge0$ and $2J_N+1\ne0$ on $\partial R$ for large $N$, or
+  \item (Direct NP--PSD) an exact Gram representation of $H_{J_N}$ on $\partial R$ (e.g., via a normalized exponential construction anchored at $\partial R$).
+\end{itemize}
+
+\end{document}
+

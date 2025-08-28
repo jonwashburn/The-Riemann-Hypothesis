@@ -1,0 +1,32 @@
+﻿% --- Begin: Certificate ⇒ (P+) via density points (no global unwrapping) ---
+\begin{lemma}[Certificate implies boundary wedge (P+)]
+Let $\varphi_{L,t_0}$ be the Poisson plateau associated to a fixed window profile $\psi$
+with plateau constant $c_0(\psi)>0$, and let
+\[
+Q := \bigl\{t\in\mathbb R:\ |\Arg \mathcal J(1/2+it)-m|\ge \tfrac{\pi}{2}\bigr\},
+\]
+where $m\in\mathbb R/2\pi\mathbb Z$ is any fixed angular shift.
+Assume that for all $t_0\in\mathbb R$ and $L\ge L_0$,
+\begin{equation}\label{eq:window-certificate}
+c_0(\psi)\,\mu\big(Q\cap I_{L,t_0}\big)\ \le\
+\int_{\mathbb R} \varphi_{L,t_0}(t)\,(-w'(t))\,dt\
+\le\ \tfrac{2}{\pi}\,M_\psi ,
+\end{equation}
+with $M_\psi$ independent of $t_0,L$.
+If $\frac{(2/\pi)M_\psi}{c_0(\psi)}<\infty$ (in particular if it is $<\tfrac12$ as in the
+numerical closure), then $\mu(Q)=0$, hence
+$\Re\bigl(2\mathcal J(1/2+it)\bigr)\ge 0$ for a.e.\ $t$.
+\end{lemma}
+
+
+\begin{proof}
+Suppose $\mu(Q)>0$. By Lebesgue's density theorem there is $t_\ast\in Q$ with a density
+$\delta := \lim_{L\to\infty}\frac{1}{L}\mu(Q\cap I_{L,t_\ast})>0$.
+For all sufficiently large $L$, $\mu(Q\cap I_{L,t_\ast})\ge \frac{\delta}{2} L$.
+Since $\varphi_{L,t_\ast}\ge c_0(\psi)$ on $I_{L,t_\ast}$, the left–hand side of
+\eqref{eq:window-certificate} obeys
+$c_0(\psi)\,\mu(Q\cap I_{L,t_\ast}) \ge c_0(\psi)\,\frac{\delta}{2}\,L$.
+But the right–hand side is uniformly bounded by $\tfrac{2}{\pi}M_\psi$, independent of $L$,
+which is impossible as $L\to\infty$. Thus $\mu(Q)=0$ and the a.e.\ wedge follows.
+\end{proof}
+% --- End: Certificate ⇒ (P+) via density points ---

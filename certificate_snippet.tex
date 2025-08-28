@@ -1,0 +1,104 @@
+% ===========================================================
+% Executable finite-block certificate (weighted p-adaptive)
+% Parameters from the current run: σ0=0.6, Q=29, pmin=31, Cwin=0.25
+% ===========================================================
+\begingroup
+\def\sigmao{0.6}
+\def\Q{29}
+\def\pmin{31}
+\def\Cwin{0.25}
+
+% Prime sums actually used (these are over primes)
+% S_{σ0}(Q) and S_{σ0+1/2}(Q), and a crude integer tail bound
+\def\SsigzeroQ{2.9593220929397814}          % S_{σ0}(Q) with σ0=0.6, Q=29
+\def\SsigQ{1.323998125015387}               % S_{σ0+1/2}(Q) with σ0+1/2=1.1, Q=29
+\def\pminpow{0.022882429699843422}          % pmin^{-(σ0+1/2)} with pmin=31, σ0+1/2=1.1
+\def\TailInt{7.1168510179159785}            % integer-tail bound: (pmin-1)^{-(σ0+1/2-1)}/(σ0+1/2-1)
+
+% Far-block Gershgorin lower bound via μ_p^L ≥ 1 - L(p)/6 with L(p)=(1-σ0)\log p·p^{-σ0}
+\def\Lofpmin{0.17500145020235344}           % L(pmin)
+\def\mufar{0.9708330916329411}              % μ_min^{far} = 1 - L(pmin)/6
+
+% Small-block μ bound (from your interval Gershgorin/LDL^T on D̃_p over [σ0,1])
+\def\musmall{0.959149}                      % μ_min^{small} (as produced by your script)
+
+% Off-diagonal block norm model (weighted p-adaptive):
+%   U_{pq} ≤ (Cwin/4)·p^{-(σ0+1/2)}·q^{-(σ0+1/2)}  for p≠q.
+\noindent\textbf{Model.}\quad
+For $\sigma_0=\sigmao$, $Q=\Q$, $p_{\min}=\pmin$, $C_{\mathrm{win}}=\Cwin$ and weighted p\-/adaptive blocks,
+\[
+U_{pq}\ \le\ \frac{C_{\mathrm{win}}}{4}\,p^{-(\sigma_0+\tfrac12)}\,q^{-(\sigma_0+\tfrac12)}\qquad(p\neq q).
+\]
+
+\medskip
+\noindent\textbf{Budgets (symbolic; numeric values in parentheses).}
+Let $\Sigma_Q:=S_{\sigma_0+\frac12}(Q)=\sum_{p\le Q}p^{-(\sigma_0+\frac12)}$ and
+\[
+\mathrm{Tail}(p_{\min})
+\ \le\
+\frac{(p_{\min}-1)^{-\big(\sigma_0+\frac12-1\big)}}{\sigma_0+\frac12-1}
+\quad\text{(integer tail bound)}.
+\]
+With $(\Sigma_Q,\,p_{\min}^{-(\sigma_0+\frac12)},\,\mathrm{Tail})=(\SsigQ,\,\pminpow,\,\TailInt)$ we have
+\[
+\begin{aligned}
+\Delta_{\mathrm{SS}}
+&:= \max_{p\le Q}\ \frac{C_{\mathrm{win}}}{4}\,p^{-(\sigma_0+\tfrac12)}
+\Big(\Sigma_Q - p^{-(\sigma_0+\tfrac12)}\Big)
+\quad\ (=\,\mathbf{0.02500183280388026}),\\[2pt]
+\Delta_{\mathrm{SF}}
+&:= \max_{p\le Q}\ \frac{C_{\mathrm{win}}}{4}\,p^{-(\sigma_0+\tfrac12)}\,
+\mathrm{Tail}(p_{\min})
+\quad\ (=\,\mathbf{0.20750802486149744}),\\[2pt]
+\Delta_{\mathrm{FS}}
+&:= \frac{C_{\mathrm{win}}}{4}\,p_{\min}^{-(\sigma_0+\tfrac12)}\,\Sigma_Q
+\quad\ (=\,\mathbf{0.0018935183761493184}),\\[2pt]
+\Delta_{\mathrm{FF}}
+&:= \frac{C_{\mathrm{win}}}{4}\,p_{\min}^{-(\sigma_0+\tfrac12)}\,
+\mathrm{Tail}(p_{\min})
+\quad\ (=\,\mathbf{0.010178177693857593}).
+\end{aligned}
+\]
+
+\medskip
+\noindent\textbf{Diagonal lower bounds.}
+For the far block ($p\ge p_{\min}$), interval Gershgorin gives
+\[
+\mu_{\min}^{\mathrm{far}}
+\ \ge\
+1-\frac{L(p_{\min})}{6}
+\qquad\text{with}\qquad
+L(p):=(1-\sigma_0)\,(\log p)\,p^{-\sigma_0},
+\]
+thus $\mu_{\min}^{\mathrm{far}}=\mufar$ from $L(\pmin)=\Lofpmin$.
+For the small block ($p\le Q$), your validated enclosure yields
+$\mu_{\min}^{\mathrm{small}}=\musmall$.
+
+\medskip
+\noindent\textbf{Certified blockwise gaps.}
+\[
+\begin{aligned}
+\delta_{\mathrm{small}}
+&:= \mu_{\min}^{\mathrm{small}} - \big(\Delta_{\mathrm{SS}}+\Delta_{\mathrm{SF}}\big)
+\ =\ \mathbf{0.7266391423346223},\\
+\delta_{\mathrm{far}}
+&:= \mu_{\min}^{\mathrm{far}} - \big(\Delta_{\mathrm{FS}}+\Delta_{\mathrm{FF}}\big)
+\ =\ \mathbf{0.9587613955629342}.
+\end{aligned}
+\]
+Thus the uniform finite\-block spectral gap on $[\sigma_0,1]$ is
+\[
+\boxed{\ \delta_{\mathrm{cert}}(\sigma_0)\ :=\ \min\{\delta_{\mathrm{small}},\delta_{\mathrm{far}}\}
+\ =\ \mathbf{0.7266391423346223}\ >\ 0\ }.
+\]
+
+\medskip
+\noindent\textbf{Tail budget (from $(\star)$).}
+With $B$ the (explicit) budget produced by your $(\star)$ selection rule,
+the run reports $B\approx\mathbf{0.2503}$, which satisfies $B\le \varepsilon=\mathbf{0.5}$.
+
+\medskip
+\noindent\emph{Conclusion.}
+The normalized finite prime block is strictly diagonally dominant by blocks on $[\sigma_0,1]$,
+hence invertible with $\|(D_{\varepsilon}(\sigma)-I)^{-1}\|\le 1/\delta_{\mathrm{cert}}(\sigma_0)$.
+\par\endgroup

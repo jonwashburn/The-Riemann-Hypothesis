@@ -1,0 +1,38 @@
+GPT5-1: Exactly 8 ticks — completed proof (text summary)
+
+Model and parities
+- Define V_real := (Fin 3 → Bool) (3-bit vertices of the cube).
+- Define coordinate parities φ : Fin 3 → V_real → Bool by φ i v := v i.
+- Parity extensionality: if ∀ i, φ i v = φ i w then v = w (by function extensionality).
+- Cardinality: |V_real| = 2^3 = 8 (by Fintype.card_fun).
+
+Bridge to abstract state space V
+- Let V be a finite type with three boolean observables par : Fin 3 → V → Bool.
+- Let π : V_real → V be a structure map preserving parities: hπ: ∀ v i, par i (π v) = φ i v.
+- Separation: sep: ∀ v w, (∀ i, par i v = par i w) → v = w.
+
+Embedding and surjection
+- Define κ : V → V_real by κ(v)(i) := par i v.
+- sep ⇒ κ is injective: if κ v = κ w then par i v = par i w for all i, hence v = w.
+- Assume π is surjective (π_surj). Then card squeeze yields |V| = |V_real| = 8:
+  * From π_surj: |V_real| ≤ |V|.
+  * From κ_injective: |V| ≤ |V_real|.
+  * Hence |V| = |V_real| = 8.
+
+Minimality and existence
+- Minimality (option A): eight_min lemma (lattice-independent) gives: for any T < 8,
+  no surjection Fin T → V; thus any covering pass requires at least 8 ticks.
+- Existence (option A): Gray code on V_real gives a surjective pass Fin 8 → V_real.
+  Lifting via π (or using V = V_real) gives a pass on V; conclude exactly 8.
+
+Concrete instantiations
+- Baseline: take V = V_real, par = φ, π = id. Then |V| = 8 tautologically;
+  Gray existence is immediate; minimality via eight_min or cardinality argument.
+- Labeled 8-state: take V = Fin 8, e : V_real ≃ Fin 8 (canonical equivalence).
+  Define par_8(i, n) := φ i (e.symm n), π := e. Then hπ and sep hold; π is surjective;
+  conclude |Fin 8| = 8 (tautological) and reuse minimality.
+
+Conclusion
+- Exactly 8 ticks holds: existence (surjective pass of length 8) and minimality (no
+  cover with T < 8). The proof is complete; wiring to specific V proceeds via a parity
+  map π with parity preservation (hπ) and separation (sep).

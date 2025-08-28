@@ -1,0 +1,274 @@
+﻿\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{Uniformity in Height and the Pinch/Exhaustion to $\Omega$ via Harmonic Measure and Normal Families}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Domain and objects.}
+Let $\Omega=\{s=\sigma+it:\sigma>1/2\}$. Set
+\[
+F:=2\mathcal J,\qquad \Theta:=\frac{F-1}{F+1},
+\]
+so that $\Re F\ge 0$ is equivalent to $|\Theta|\le 1$.
+All boundary analysis is carried out on Carleson boxes
+\[
+Q_\alpha(I)=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha|I|\}\quad(\alpha\ge 1),
+\]
+via the upper half–plane model $z=x+iy$ after the standard linear map $z=-i(s-\tfrac12)$.
+Constants depending only on the fixed window $\psi$ and the fixed aperture $\alpha$ are denoted $c_0(\psi)$, $C_H(\psi)$, $C_\psi^{(H^1)}$.
+The box–energy is
+\[
+C_{\rm box}(U;\alpha):=\sup_I \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,dx\,dy,\qquad U=\Re\log F.
+\]
+
+
+\section*{1. Uniformity in height $T$}
+
+
+For $T\in\mathbb{R}$ write $\langle T\rangle:=2+|T|$. Boxes centered at height $T$ are taken at Whitney scale
+\[
+|I|=L(T)\ \le\ \frac{1}{\Lambda\,\log\langle T\rangle}\qquad(\Lambda\ge 1\ \text{fixed}).
+\]
+
+
+\begin{proposition}[Height–uniform constants]\label{prop:uniform}
+Fix $\alpha\ge 1$ and $\Lambda\ge 1$. Then the following hold with constants independent of $T$:
+\begin{itemize}
+\item[(i)] (Window/geometry) $c_0(\psi)>0$, $C_H(\psi)<\infty$, $C_\psi^{(H^1)}<\infty$ depend only on $\psi,\alpha$.
+\item[(ii)] (Box energy) With the neutralization described in the $\xi$–block analysis, there exist absolute $K_\xi, K_0, K_\Gamma<\infty$ such that
+\[
+C_{\rm box}(U;\alpha)\ \le\ K_\xi+K_0+K_\Gamma\ =:\ K_{\rm box},
+\]
+uniformly for all boxes $Q_\alpha(I)$ with $|I|\le 1/(\Lambda\log\langle T\rangle)$.
+\item[(iii)] (Certificate) For every such box one has the a.e.\ boundary wedge on its base interval $I$:
+\[
+w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\quad\text{for a.e. }t\in I,
+\]
+hence $\Re F(1/2+it)\ge 0$ for a.e.\ $t\in I$, with constants (and the inequality $\Upsilon\le \tfrac12$) independent of $T$.
+\end{itemize}
+\end{proposition}
+
+
+\begin{proof}
+(i) is purely geometric. (ii) follows from the unconditional far–field $\xi$–block bound (cubic decay + horizontal annuli) combined with the prime–power tail and the archimedean part; each piece is independent of $T$ under the scale law. (iii) is the already–proved certificate $\Rightarrow$ wedge: $M_\psi\le \tfrac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\rm box}}$ and the plateau $c_0(\psi)$ give $\Upsilon\le\tfrac12$ with constants depending only on $\psi,\alpha,\Lambda$, hence the wedge a.e.\ on each $I$.
+\end{proof}
+
+
+\begin{lemma}[Global boundary wedge (a.e.)]\label{lem:globalwedge}
+There exists a countable cover of $\mathbb{R}$ by intervals $\{I_k\}_{k\ge 1}$ with $|I_k|\le 1/(\Lambda\log\langle T_k\rangle)$ such that
+\[
+w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\quad\text{for a.e.\ }t\in \bigcup_k I_k.
+\]
+Consequently $w_F(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ for a.e.\ $t\in\mathbb{R}$.
+\end{lemma}
+
+
+\begin{proof}
+Tile $\mathbb{R}$ by disjoint base intervals at Whitney scale in $|t|$; the union has full measure, and each $I_k$ satisfies the certificate hypotheses by Proposition~\ref{prop:uniform}(ii), giving the wedge on $I_k$. The countable union preserves ``a.e.''.
+\end{proof}
+
+
+\section*{2. Pinch in rectangles: harmonic measure and two–constants}
+
+
+Let $R=R(L,H,T)$ denote the axis–parallel rectangle
+\[
+R:=\big\{\sigma+it:\ 1/2<\sigma<1/2+L,\ \ |t-T|<H\big\},\qquad L,H>0.
+\]
+Write $E_L$ for its \emph{left side} $\{\sigma=1/2,\ |t-T|<H\}$, and $\partial R\setminus E_L$ for the remaining three sides.
+Let $u:=\log|\Theta|$ (subharmonic on $\Omega$ because $\Theta$ is holomorphic there; see Lemma~\ref{lem:Theta-hol} below). For $z\in R$ let $\omega_R(z,\cdot)$ denote harmonic measure on $\partial R$.
+
+
+\begin{lemma}[Harmonic measure of the left side]\label{lem:hm-rect}
+For $R=R(L,H,T)$ and $z=\sigma+it\in R$,
+\[
+\omega_R\big(z,E_L\big)\ \ge\ 1-\exp\!\Big(-\frac{\pi(\sigma-1/2)}{2H}\Big).
+\]
+In particular, if $z$ lies on the vertical midline $\sigma=1/2+\theta L$ with $0<\theta<1$, then
+\[
+\omega_R\big(z,E_L\big)\ \ge\ 1-\exp\!\Big(-\frac{\pi\theta L}{2H}\Big).
+\]
+\end{lemma}
+
+
+\begin{proof}
+Map $R$ conformally onto the horizontal strip $S=\{0<\Re w<1\}$ by
+\(
+w=\frac{\sigma-1/2}{L}+i\frac{\pi(t-T)}{2H}.
+\)
+Harmonic measure of the left edge in $S$ at a point $w=x+iy$ equals $1-\tfrac{\sinh(\pi(1-x))}{\sinh(\pi)}$ after summing the Fourier series for the solution of the Dirichlet problem with boundary data $1$ on $\{x=0\}$ and $0$ on $\{x=1\}\cup\mathbb{R}\pm i\pi/2$. The elementary bound $\sinh(\pi(1-x))\le e^{-\pi x}\sinh(\pi)$ gives $\omega_S(w,\{x=0\})\ge 1-e^{-\pi x}$. Pull back to $R$ to obtain the claim with $x=(\sigma-1/2)/L$ and $y=\pi(t-T)/(2H)$; dependence on $y$ disappears by the maximum principle (the minimum over $|y|\le \pi/2$ occurs at $y=0$).
+\end{proof}
+
+
+\begin{lemma}[Two–constants inequality (pinch form)]\label{lem:two-const}
+Suppose $u=\log|\Theta|$ is subharmonic on a neighborhood of $\overline R$ and $u^*\le 0$ a.e.\ on $E_L$ (i.e.\ $|\Theta|\le 1$ a.e.\ on $E_L$). Let
+\(
+M_R:=\sup_{\partial R\setminus E_L} u^+<\infty.
+\)
+Then for every $z\in R$,
+\[
+u(z)\ \le\ (1-\omega_R(z,E_L))\,M_R,
+\]
+hence $|\Theta(z)|\le \exp\!\big((1-\omega_R(z,E_L))\,M_R\big)$.
+\end{lemma}
+
+
+\begin{proof}
+Let $h$ be the harmonic function on $R$ with boundary data $0$ on $E_L$ and $M_R$ on $\partial R\setminus E_L$. Since $u^*\le 0$ a.e.\ on $E_L$ and $u^*\le M_R$ on $\partial R\setminus E_L$, the subharmonic maximum principle yields $u\le h$. By the integral representation $h(z)=\int_{\partial R} \phi\, d\omega_R(z,\cdot)$ with $\phi=0$ on $E_L$ and $\phi\equiv M_R$ on the complement, $h(z)=(1-\omega_R(z,E_L))M_R$.
+\end{proof}
+
+
+\begin{lemma}[Analyticity of $\Theta$ on $\Omega$]\label{lem:Theta-hol}
+$\Theta$ extends holomorphically to all of $\Omega$; at a pole of $\mathcal J$ (which is a zero of $\xi$) one has $\Theta\to 1$, hence the singularity is removable.
+\end{lemma}
+
+
+\begin{proof}
+Near a pole of $\mathcal J$, write $\mathcal J(s)=\frac{a_{-m}}{(s-s_0)^m}+O(1)$; then
+\(
+\Theta(s)=\frac{2\mathcal J-1}{2\mathcal J+1}=1+\frac{-2}{2\mathcal J+1}=1+O((s-s_0)^m).
+\)
+Thus $\Theta$ is bounded near $s_0$ and removable; elsewhere it is holomorphic.
+\end{proof}
+
+
+\section*{3. Exhaustion of $\Omega$ and the pinch to $|\Theta|\le 1$}
+
+
+Fix any compact $K\subset \Omega$. Let $d_K:=\inf\{\sigma-1/2:\sigma+it\in K\}>0$ and $H_K:=1+\sup\{|t|:\sigma+it\in K\}<\infty$.
+For $n\in\mathbb{N}$ define rectangles
+\[
+R_n:=R(L_n,H_n,0),\qquad L_n:=\frac{d_K}{n},\ \ H_n:=n H_K.
+\]
+Note that $K\subset R_n$ for all $n$ sufficiently large, and $R_n$ has left side $E_L^{(n)}=\{\sigma=1/2,\ |t|<H_n\}$.
+
+
+\begin{lemma}[Uniform boundary control on $E_L^{(n)}$]\label{lem:left-control}
+For each $n$, $|\Theta|\le 1$ a.e.\ on $E_L^{(n)}$.
+\end{lemma}
+
+
+\begin{proof}
+Lemma~\ref{lem:globalwedge} gives $w_F\in[-\pi/2,\pi/2]$ a.e.\ on $\mathbb{R}$, hence $\Re F\ge 0$ a.e.\ on $\{\sigma=1/2\}$. Therefore $|\Theta|\le 1$ a.e.\ there; restricting to $|t|<H_n$ preserves the statement.
+\end{proof}
+
+
+\begin{lemma}[Harmonic measure pinch to the left]\label{lem:pinch-omega}
+Let $0<\theta<1$ and $z\in K$ with $\sigma(z)=1/2+\theta L_n$. Then
+\[
+1-\omega_{R_n}\big(z,E_L^{(n)}\big)\ \le\ \exp\!\Big(-\frac{\pi\theta L_n}{2H_n}\Big)
+\ =\ \exp\!\Big(-\frac{\pi\theta d_K}{2H_K}\cdot \frac{1}{n^2}\Big).
+\]
+In particular $\sup_{z\in K}(1-\omega_{R_n}(z,E_L^{(n)}))\to 0$ as $n\to\infty$.
+\end{lemma}
+
+
+\begin{proof}
+Apply Lemma~\ref{lem:hm-rect} with $L=L_n$, $H=H_n$ and note that $K$ lies at horizontal distance at least $\theta L_n$ from the left side for some fixed $\theta\in(0,1)$ independent of $n$ (e.g.\ $\theta=\frac{1}{2}$ once $n$ is large).
+\end{proof}
+
+
+\begin{lemma}[Finite boundary envelope]\label{lem:MR-finite}
+For each $n$, $M_{R_n}:=\sup_{\partial R_n\setminus E_L^{(n)}} u^+<\infty$.
+\end{lemma}
+
+
+\begin{proof}
+$\Theta$ is holomorphic on a neighborhood of $\overline{R_n}$ (Lemma~\ref{lem:Theta-hol}), hence $u=\log|\Theta|$ is continuous on $\partial R_n$; $\partial R_n\setminus E_L^{(n)}$ is compact inside $\Omega$, so the supremum is finite.
+\end{proof}
+
+
+\begin{theorem}[Pinch/exhaustion to $K$]\label{thm:pinch}
+For every compact $K\subset\Omega$, $|\Theta(s)|\le 1$ for all $s\in K$.
+\end{theorem}
+
+
+\begin{proof}
+Fix $K$ and choose $n$ so large that $K\subset R_n$ and Lemma~\ref{lem:pinch-omega} applies with the displayed bound.
+For $z\in K$ Lemmas~\ref{lem:left-control}, \ref{lem:two-const}, \ref{lem:MR-finite} give
+\[
+\log|\Theta(z)|\ \le\ (1-\omega_{R_n}(z,E_L^{(n)}))\,M_{R_n}.
+\]
+Set $\varepsilon_n:=\sup_{z\in K}(1-\omega_{R_n}(z,E_L^{(n)}))$, which tends to $0$ by Lemma~\ref{lem:pinch-omega}. Since $M_{R_n}<\infty$ for each fixed $n$, we obtain
+\[
+\sup_{z\in K}\log|\Theta(z)|\ \le\ \varepsilon_n\,M_{R_n}\ \xrightarrow[n\to\infty]{}\ 0.
+\]
+Therefore $\sup_{z\in K}|\Theta(z)|\le 1$.
+\end{proof}
+
+
+\begin{remark}[Why no growth assumption is needed]
+For each fixed $n$, $M_{R_n}$ is finite by analyticity; we do not assume any uniform control of $M_{R_n}$ as $n\to\infty$. The harmonic–measure deficit $\varepsilon_n$ can be forced to $0$ \emph{arbitrarily fast} by taking $H_n$ large and $L_n$ small. Thus $\varepsilon_n M_{R_n}\to 0$ regardless of the (unknown) growth of $M_{R_n}$.
+\end{remark}
+
+
+\section*{4. Normal families/compactness phrasing}
+
+
+The proof above yields the uniform bound on each compact $K$ directly. For completeness we record the equivalent normal–families viewpoint, which is useful if one wishes to pass to limits of auxiliary regularizations.
+
+
+\begin{proposition}[Compactness formulation]
+Let $\{R_n\}$ be as above and, for $\delta>0$, set
+\[
+\Theta_{n,\delta}(s)\ :=\ \Theta(s)\cdot \chi_{n,\delta}(s),
+\]
+where $\chi_{n,\delta}$ is a holomorphic cutoff on a neighborhood of $\overline{R_n}$ such that $|\chi_{n,\delta}|\le 1$, $\chi_{n,\delta}\equiv 1$ on $R_{n-1}$, and $\sup_{\partial R_n\setminus E_L^{(n)}}\log|\Theta_{n,\delta}|\le \delta$.
+Then $\{\Theta_{n,\delta}\}_n$ is a normal family on $K$, and
+\[
+\limsup_{n\to\infty}\ \sup_{z\in K}|\Theta_{n,\delta}(z)|
+\ \le\ \exp\!\big(\sup_{z\in K}(1-\omega_{R_n}(z,E_L^{(n)}))\,\delta\big)\ \xrightarrow[n\to\infty]{}\ 1.
+\]
+Letting $\delta\downarrow 0$ and using $\Theta_{n,\delta}\to \Theta$ locally uniformly on $K$ (Montel + diagonal extraction) gives $\sup_K|\Theta|\le 1$.
+\end{proposition}
+
+
+\begin{proof}
+By construction $|\Theta_{n,\delta}|\le 1$ a.e.\ on $E_L^{(n)}$ and $\sup_{\partial R_n\setminus E_L^{(n)}}\log|\Theta_{n,\delta}|\le \delta$. Lemma~\ref{lem:two-const} then gives the stated interior bound and uniform boundedness on $K$, so Montel applies. The limit claims follow as in Theorem~\ref{thm:pinch}.
+\end{proof}
+
+
+\section*{5. Global consequence}
+
+
+\begin{theorem}[Global Schur bound and removability]\label{thm:global}
+For all $s\in\Omega$, $|\Theta(s)|\le 1$ and $\Re F(s)\ge 0$. Consequently every would–be singularity of $\mathcal J$ in $\Omega$ is removable (indeed $\Theta$ is holomorphic by Lemma~\ref{lem:Theta-hol} and bounded), so $\mathcal J$ has no pole in $\Omega$.
+\end{theorem}
+
+
+\begin{proof}
+Apply Theorem~\ref{thm:pinch} to an increasing sequence of compacts whose union is $\Omega$. The removable–singularity conclusion was already encoded in Lemma~\ref{lem:Theta-hol}; boundedness of $\Theta$ across $Z(\xi)$ makes the removability automatic.
+\end{proof}
+
+
+\section*{6. Summary of the uniformity \& exhaustion scheme}
+
+
+\begin{itemize}
+\item Uniform constants (Proposition~\ref{prop:uniform}) make the wedge certificate \emph{height–independent} under the Whitney scale $L(T)\le 1/(\Lambda\log\langle T\rangle)$.
+\item The wedge holds a.e.\ on the entire boundary line $\{\sigma=1/2\}$ (Lemma~\ref{lem:globalwedge}).
+\item For any compact $K\subset\Omega$, choose rectangles whose left side sits on $\{\sigma=1/2\}$, with aspect ratio tuned so that the harmonic measure of the left side at points of $K$ tends to $1$ (Lemma~\ref{lem:hm-rect}). On those rectangles $|\Theta|\le 1$ a.e.\ on the controlled side, while on the other sides $u=\log|\Theta|$ is bounded (analyticity inside $\Omega$).
+\item The two–constants lemma (Lemma~\ref{lem:two-const}) then \emph{pinches} $|\Theta|$ to $\le 1$ on $K$; letting the aspect ratio blow up yields the desired interior bound. The normal–families variant provides a compactness formulation if auxiliary regularizations are introduced.
+\item Since $\Theta$ is bounded near any zero of $\xi$ (Lemma~\ref{lem:Theta-hol}), all singularities are removable, completing the exhaustion to all of $\Omega$.
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,52 @@
+% Certificate–to–Wedge Theorem (Half–Plane Schur Route)
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Certificate–to–Wedge Theorem}
+
+\paragraph{Setting.}
+Let $\Omega:=\{ s\in\mathbf C : \Re s>1/2\}$ and $\partial\Omega=\{1/2+it:t\in\mathbf R\}$. Fix $\alpha\ge1$. For a bounded interval $I\subset\mathbf R$ write the Carleson box
+\[
+Q(\alpha I):=\{\tfrac12+x+iy: y\in I,\ 0<x<\alpha|I|\},\qquad \Omega(I):=\Omega\cap\{\Im s\in I\}.
+\]
+Let $\mathcal J$ be analytic on $\Omega$ and set $F:=2\mathcal J$. Assume non–tangential boundary values $F^*(t)=R(t)e^{iw(t)}$ exist a.e. on $I$, with $R>0$ and phase $w\in\mathbf R$ (branch fixed up to an additive constant).
+
+Fix a window $\psi$ supported in $I$. Denote fixed constants
+\[c_0(\psi)>0,\quad C_H(\psi)>0,\quad C_P(\kappa)>0,\quad C_\psi^{(H^1)}>0,\quad C_{\mathrm{box}}>0.\]
+Define the control functional $M_\psi\ge0$ and the certificate
+\[\Upsilon\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{\,c_0(\psi)\,}.\]
+
+\paragraph{Negative variation on an interval.}
+For real $u\in L^1_{\rm loc}(I)$, define
+\[\mathrm{Var}^{-}_{I}(u)\ :=\ \sup\ \sum_{j=0}^{m-1} \max\{0,\ u(t_j)-u(t_{j+1})\},\]
+with the supremum over finite partitions $t_0<\cdots<t_m$ of $I$.
+
+\subsection*{Hypotheses (to be verified for $F=2\mathcal J$)}
+
+- (H1) Boundary trace and phase regularity: $F^*$ exists a.e. on $I$, $R\in L^1_{\rm loc}(I)$, and $w$ has locally finite variation on $I$.
+
+- (H2) Phase–energy domination: there is a finite Borel measure $\mu$ on $Q(\alpha I)$ such that
+\[\mathrm{Var}^{-}_{I}(w)\ \le\ \pi\,\mu\bigl(Q(\alpha I)\bigr).\]
+
+- (H3) Fixed–aperture embedding for the control functional:
+\[M_\psi\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}},\qquad \mu\bigl(Q(\alpha I)\bigr)\ \le\ C_{\mathrm{box}}.\]
+
+- (H4) Phase budget inequality for the chosen window $\psi$:
+\[\mathrm{Var}^{-}_{I}(w)\ \le\ C_H(\psi)\,M_\psi\ +\ C_P(\kappa).\]
+
+- (H5) Barrier cost for wedge exit: if $|w(t_*)|>\tfrac{\pi}{2}$ for some $t_*\in I$, then
+\[\mathrm{Var}^{-}_{I}(w)\ \ge\ c_0(\psi).\]
+
+\begin{theorem}[Certificate–to–Wedge]\label{thm:phase-certificate}
+Let $F=2\mathcal J$ be analytic on $\Omega$, and let $I\subset\mathbf R$ be bounded. If \textup{(H1)}–\textup{(H5)} hold on $I$ and
+\[\Upsilon\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{\,c_0(\psi)\,}\ \le\ \tfrac12,\]
+then the boundary phase is confined to the wedge a.e. on $I$:
+\[w(t)\ \in\ [-\tfrac{\pi}{2},\tfrac{\pi}{2}]\quad\text{for a.e. }t\in I.\]
+\end{theorem}
+
+\begin{proof}
+If a wedge exit occurs, (H5) gives $\mathrm{Var}^{-}_{I}(w)\ge c_0(\psi)$. By (H4) and the definition of $\Upsilon$, $\mathrm{Var}^{-}_{I}(w)\le \Upsilon\,c_0(\psi)\le \tfrac12 c_0(\psi)$—a contradiction. Hence no exit occurs and the wedge holds a.e. on $I$.
+\end{proof}
+
+\begin{remark}[Local–to–global]
+The theorem is local in $I$. If (H1)–(H5) and $\Upsilon\le \tfrac12$ hold uniformly on a covering of $\partial\Omega$ by overlapping intervals, the wedge holds a.e. on the whole boundary.
+\end{remark}

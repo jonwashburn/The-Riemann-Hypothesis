@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Attempt: Direct boundary accretivity for $J_N$ on $\partial R$ when $N$ is large}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega=\{\ReS s>\tfrac12\}$ and $R\Subset\Omega$ be a rectangle with $\xi\ne0$ on a collar of $\overline R$. For a prime cutoff $P_N$, define $\det{}_2^N(s)=\prod_{p\le P_N}(1-p^{-s})e^{p^{-s}}$ and
+\[
+J_N(s):=\frac{\det{}_2^N(s)}{\xi(s)},\qquad \widetilde J_N(s):=\frac{\det{}_2^N(s)}{O_R(s)\,\xi(s)},
+\]
+where $O_R$ is the outer factor built from $\log|\det_2/\xi|$ on $\partial R$ so that $\log|\widetilde J_N|$ has mean zero on each side.
+
+\section*{Target}
+Prove that there exists $N_0(R)$ such that for all $N\ge N_0(R)$,
+\begin{equation}\label{eq:acc}
+\ReS\,\widetilde J_N(s)\ \ge\ 0\quad \text{for all }s\in\partial R,\qquad \text{and}\qquad 2\widetilde J_N(s)+1\ne 0\text{ on }\partial R.
+\end{equation}
+Then NP--PSD on $\partial R$ follows by Proposition~\ref{prop:accretivity_psd} (see companion lemma file), yielding Schur interpolation on $R$.
+
+\section*{Outline of proof strategy}
+\begin{itemize}
+  \item \textbf{Gamma/polynomial control.} Using Stirling on vertical lines and compactness of $\partial R$, obtain explicit uniform bounds for $\log\Gamma(s/2)$ and its derivative, hence for $\log\xi$ on $\partial R$.
+  \item \textbf{Finite Euler numerator.} For $\det{}_2^N(s)$, write
+  \[\log\det{}_2^N(s)= -\sum_{p\le P_N}\sum_{m\ge2} \frac{p^{-ms}}{m}\ =\ -\sum_{p\le P_N} \log(1-p^{-s}) - \sum_{p\le P_N} p^{-s},\]
+  so that along $\partial R$ both magnitude and argument are controlled by finite sums.
+  \item \textbf{Outer normalization.} Choose $O_R$ from the sidewise Poisson integral of $\log|\det_2/\xi|$ so that $\log|\widetilde J_N|$ has zero mean on each side and its Hilbert transform cancels the smooth drift.
+  \item \textbf{Accretivity via phase cone.} Show that the normalized boundary phase $\arg \widetilde J_N - \mathcal H\log|\widetilde J_N|$ stays within $[-\tfrac\pi2,\tfrac\pi2]$ for large $N$ uniformly on $\partial R$. This reduces to bounding finite prime sums against the (outer-cancelled) $\xi$ contribution; compactness of $\partial R$ and absolute convergence away from $\ReS s=1$ allow an $N_0(R)$.
+  \item \textbf{Non-vanishing of $2\widetilde J_N+1$.} By uniform convergence $\widetilde J_N\to \widetilde J$ on $\overline R$ (as $N\to\infty$), and continuity of $\widetilde J$ with compact $\partial R$, the quantity $|2\widetilde J+1|$ has a positive minimum on $\partial R$; for large $N$ this transfers to $\widetilde J_N$.
+\end{itemize}
+
+\section*{Gap to close}
+The phase-cone bound requires a uniform inequality tracking the sum of prime-phase increments against the (outer-cancelled) $\xi$ drift on $\partial R$. Providing this inequality (even with a small slack) completes \eqref{eq:acc}.
+
+\end{document}
+

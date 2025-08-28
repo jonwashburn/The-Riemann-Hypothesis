@@ -1,0 +1,45 @@
+[INIT]
+[DOC_TYPE: AI_SHORTHAND]
+[DATE: 2025-08-11]
+
+[TRACK: GPT5-1_EIGHT_TICK]
+[STATE]
+- MODEL: V_real := (Fin 3 → Bool), φ i v := v i.
+- BRIDGE: κ(v)=parities, π: V_real → V, hπ: par(π v)=φ v, sep: parities separate.
+- LEMMAS: κ_injective, π_surjective.
+- THEOREM: card(V)=8 via squeeze |V_real|=8.
+- OPTIONAL: Gray code exists on V_real; lift via π. Minimality via `eight_min` ⇒ exactly 8.
+[STATUS] COMPLETE; only wiring to concrete V_real if needed.
+
+[TRACK: GPT5-2_RH_OPERATOR]
+[UNCONDITIONAL]
+- H(s)=Σ(s)=∑_p p^{-2}/(1−p^{-s}) is Herglotz on Re s>0.
+- Cayley: ˜Θ=(H−1)/(H+1) Schur; kernel ˜K=(1−˜Θ ˜Θ̄)/(H+H̄)=2/((H+1)(H̄+1)) is rank‑one PSD.
+- FOT: finite truncations preserve PSD and converge locally uniformly.
+- A(s)=diag(p^{−s}) ∈ S_2 on Re s>1/2; ‖A(s)‖≤2^{−σ}.
+- Schur–det identity (★): log det₂(I−T)=log det₂(I−A)+log det(I−S). M1–M3 bookkeeping: k≥2 in log det₂(I−A); k=1 + archimedean/pole go in log det(I−S).
+
+[GOAL]
+- Construct passive colligation T(s) on Re s>1/2 with strict contractivity off the line and det₂(I−T(s))=ξ(s) EXACTLY.
+
+[REDUCTION]
+- Set E(s):=log ξ(s)+∑_{k≥2}(1/k) tr A(s)^k.
+- Target scalar transfer Θ(s)=D+C(I−A)^{-1}B, enforce 1−Θ=ξ/ det₂(I−A).
+- BRF form: H₀(s)=(1+Θ)/(1−Θ)=2 det₂(I−A)/ξ − 1.
+- LEMMA (equiv): Θ Schur + exact det ⇔ H₀ Herglotz on Re s>1/2.
+
+[BLOCKER]
+- Single inequality (BRF): Re(2·det₂(I−A(s))/ξ(s) − 1) ≥ 0 on Re s>1/2.
+- RH‑strength; this is the known wall.
+
+[DO_NOT]
+- No modified zeta Z_RS(s)=ζ·R8(s).
+- No Lambert‑W “eigenvalue solving”.
+- No “up to a factor”.
+
+[NEXT_ACTION]
+- Package (★) + M1–M3 micro‑proofs (done in proofs/appendix_det2_passive_blocks.tex).
+- Keep passive node template from Herglotz meter (done); pursue only BRF inequality.
+- Any unconditional progress must prove BRF on Re s>1/2.
+
+[END]

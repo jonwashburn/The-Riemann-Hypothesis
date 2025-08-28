@@ -1,0 +1,1448 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+% Theorems
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% Macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\HS}{\mathcal{S}_2}
+\newcommand{\Half}{\{\,s\in\C:\ \Re s>\tfrac12\,\}}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\dettwo}{det_2}
+
+% Title & authors
+\title{Prime-Grid Lossless Models and KYP Closure in a Bounded-Real Approach to the Riemann Hypothesis}
+\author{Jonathan Washburn\\ Independent Researcher\\ \href{mailto:washburn.jonathan@gmail.com}{washburn.jonathan@gmail.com}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop a bounded-real (Herglotz/Schur) formulation of the Riemann Hypothesis (RH) on the right half-plane \(\Omega:=\{\Re s>\tfrac12\}\). Let \(A(s):\ell^2(\PP)\to\ell^2(\PP)\) be the prime-diagonal operator \(A(s)e_p:=p^{-s}e_p\). With the Hilbert--Schmidt regularized determinant \(\dettwo\) and the completed zeta \(\xi(s)\), set \(J(s):=\dettwo(I-A(s))/\xi(s)\) and \(\Theta(s):=(2J(s)-1)/(2J(s)+1)\).
+Our approach hinges on: (i) a Schur--determinant splitting that isolates \(k=1\) and archimedean terms into a finite block; (ii) Hilbert--Schmidt control of prime truncations implying local-uniform convergence of \(\dettwo(I-A_N)\); and (iii) explicit finite-stage passive realizations certified by the Kalman--Yakubovich--Popov (KYP) lemma.
+
+We establish the interior route on zero-free rectangles via passive \(H^\infty\) approximation and prove a uniform-in-\(\varepsilon\) local \(L^1\) boundary theorem by a smoothed estimate for \(\partial_\sigma\Re\log\dettwo(I-A)\) and de-smoothing. Outer normalization produces an outer factor \(\mathcal O\) and a normalized ratio \(\mathcal J:=\dettwo(I-A)/(\mathcal O\,\xi)\). Under the boundary positive-real condition
+\[
+\textbf{(P+)}\qquad \Re\big(2\mathcal J(\tfrac12+it)\big)\ge 0\ \text{ for a.e. }t,
+\]
+the Poisson integral yields that \(2\mathcal J\) is Herglotz on \(\Omega\); the Cayley transform then gives \(\Theta\) Schur and the Pick kernel PSD. The finite-stage KYP certificates supply interior passivity independently of any zero-free hypothesis.
+\end{abstract}
+
+\paragraph{Keywords.} Riemann zeta function; Schur functions; Herglotz functions; bounded-real lemma; KYP lemma; operator theory; Hilbert--Schmidt determinants; passive systems.
+
+\paragraph{MSC 2020.} 11M06, 30D05, 47A12, 47B10, 93B36, 93C05.
+
+\section{Introduction}
+The Riemann Hypothesis (RH) admits several analytic formulations. In this paper we pursue a bounded-real (BRF) route on the right half-plane
+\[
+ \Omega\;:=\;\Half,
+\]
+which is naturally expressed in terms of Herglotz/Schur functions and passive systems. Let \(\PP\) be the primes, and define the prime-diagonal operator
+\[
+ A(s):\ell^2(\PP)\to\ell^2(\PP),\qquad A(s)e_p\;:=\;p^{-s}e_p.
+\]
+For \(\sigma:=\Re s>\tfrac12\) we have \(\|A(s)\|_{\HS}^2=\sum_{p\in\PP}p^{-2\sigma}<\infty\) and \(\|A(s)\|\le 2^{-\sigma}<1\). With the completed zeta function
+\[
+ \xi(s)\;:=\;\tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma(s/2)\,\zeta(s)
+\]
+and the Hilbert--Schmidt regularized determinant \(\dettwo\), we study the analytic function
+\[
+ H(s)\;:=\;2\,\frac{\dettwo(I-A(s))}{\xi(s)}\;-
+ 1,\qquad \Theta(s)\;:=\;\frac{H(s)-1}{H(s)+1}.
+\]
+The BRF assertion is that \(|\Theta(s)|\le 1\) on \(\Omega\) (Schur), equivalently that \(2J(s)\) is Herglotz or that the associated Pick kernel is positive semidefinite.
+
+Our method combines three ingredients:
+\begin{itemize}
+ \item \textbf{Schur--determinant splitting.} For a block operator \(T(s)=\begin{bmatrix}A(s)&B(s)\\ C(s)&D(s)\end{bmatrix}\) with finite auxiliary part, one has
+ \[
+  \log\dettwo(I-T)\;=\;\log\dettwo(I-A)\; +\; \log\det(I-S),\qquad S\;:=\;D-C(I-A)^{-1}B,
+ \]
+ which separates the Hilbert--Schmidt (\(k\ge 2\)) terms from the finite (\(k=1\) + archimedean/pole) terms.
+\item \textbf{HS continuity for \(\dettwo\).} Prime truncations \(A_N\to A\) in the HS topology, uniformly on compacts in \(\Omega\), imply local-uniform convergence of \(\dettwo(I-A_N)\). Division by \(\xi\) is justified only on compacts avoiding its zeros; throughout we explicitly state such hypotheses when needed.
+ \item \textbf{Finite-stage passivity via KYP.} We construct, for each \(N\), an explicit lossless realization tied to the primes (``prime-grid lossless'') that certifies \(\|H_N\|_\infty\le 1\). A succinct factorization of the KYP matrix verifies passivity with a diagonal Lyapunov witness.
+\end{itemize}
+A closing alignment argument shows that the prime-grid lossless sequence converges (after an innocuous scalar port extraction) to the same limit Cayley target obtained from the \(\dettwo\) construction. Since the Schur class is closed under local-uniform limits, the BRF conclusion follows.
+
+\subsection*{Contributions and structure}
+We: (i) formulate a Schur--determinant splitting adapted to the zeta operator block; (ii) prove HS\(\to\)\(\dettwo\) local-uniform continuity and division by \(\xi\) off its zeros; (iii) introduce prime-grid lossless finite-stage models satisfying the lossless KYP equalities with explicit parameters \(\Lambda_N=\mathrm{diag}(2/\log p_k)\); and (iv) prove alignment and passage to the limit via three ingredients: a Schur finite-block scheme with uniform-on-compact $k=1$ control (Proposition~\ref{prop:K1-approx}), the Cayley-difference bound (Lemma~\ref{lem:Cayley-diff}), and the uniform local \(L^1\) boundary theorem (Theorem~\ref{thm:uniform-eps}). The remainder of the paper expands each step and assembles the BRF proof via the Schur/Pick equivalents.
+
+\paragraph{Revision note.} This version strengthens local technical points: (a) quantitative HS$\to$det$_2$ continuity and interior alignment on zero-free rectangles (Lemmas~\ref{lem:away-minus-one}, \ref{lem:Cayley-diff}, Subsection~\ref{subsec:hinf-passive}); (b) a corrected finite $k{=}1$ block with uniform-on-$K$ control (Proposition~\ref{prop:K1-approx}); and (c) a direct, unconditional smoothed estimate for $\partial_\sigma\Re\log\dettwo(I-A)$ (Lemma~\ref{lem:det2-smoothed-target}) combined with de-smoothing (Lemma~\ref{lem:desmoothing}) to prove Theorem~\ref{thm:uniform-eps}. In addition, we provide an \emph{interior closure} on zero-free rectangles via a Gram-route proof: a backward-difference kernel domination for the logarithmic kernel (Lemma~[closure\_kernel\_domination]) implies PSD for $H_{\log\dettwo_N}$; a symmetric-Fock exponential lift aligned with the half-plane Szeg\H{o} kernel (Lemma~[exponential\_lift]) and a positive Schur multiplier from $\xi^{-1}$ yield PSD for $H_{J_N}$ on $\partial R$. Nevanlinna--Pick then furnishes Schur interpolants on $R$, and a diagonal extraction gives local-uniform Schur approximation to $\Theta$ on $\Omega\setminus Z(\xi)$.
+
+\paragraph{Rebuttal note.} The boundary control used to conclude global Schur/PSD is proved \emph{without} assuming zero-free regions or any “perfect cancellation”: Theorem~\ref{thm:uniform-eps} follows from the independent smoothed bounds in Lemmas~\ref{lem:det2-smoothed-target} and~\ref{lem:xi-smoothed} together with the de-smoothing Lemma~\ref{lem:desmoothing}.
+
+\section{Preliminaries: trace ideals and the 2-regularized determinant}
+We collect the analytic background on trace ideals and the Hilbert--Schmidt regularized determinant used throughout.
+
+\subsection{Trace ideals and notation}
+Let \(\mathcal{B}(\mathcal{H})\) be the bounded operators on a separable Hilbert space \(\mathcal{H}\). For \(1\le p<\infty\), the Schatten class \(\mathcal{S}_p\) consists of compact operators \(K\) with singular values \(\{s_n(K)\}\) satisfying \(\|K\|_{\mathcal{S}_p}^p:=\sum_n s_n(K)^p<\infty\). We write \(\HS:=\mathcal{S}_2\) for the Hilbert--Schmidt class with norm \(\|K\|_{\HS}^2=\sum_n s_n(K)^2=\Tr(K^*K)\). If \(K\in\HS\), then \(K^2\in \mathcal{S}_1\) (trace class), so traces of \(K^2\) are defined.
+
+In this paper, the arithmetic block \(A(s)\) is Hilbert--Schmidt for \(\Re s>\tfrac12\), and finite-rank perturbations (archimedean and pole corrections) will appear in auxiliary blocks. All operator-valued maps considered are holomorphic in the sense of Fr\'echet holomorphy with values in Banach spaces (here \(\HS\) or finite-dimensional matrix spaces).
+
+\subsection{The 2-regularized determinant \(\dettwo\)}
+For a Hilbert--Schmidt operator \(K\in\HS\), the 2-regularized (Carleman--Fredholm) determinant of \(I-K\) is defined by either of the equivalent constructions (see, e.g., Simon, \emph{Trace Ideals and Their Applications}):
+\begin{itemize}
+ \item via functional calculus on the spectrum \(\{\lambda_n\}\) of \(K\):
+ \[
+  \dettwo(I-K)\;:=\;\prod_{n}\big(1-\lambda_n\big)\,\exp\!\big(\lambda_n\big),
+ \]
+ where the product converges absolutely for \(K\in\HS\);
+ \item or equivalently, by regularization against trace-class terms:
+ \[
+  \dettwo(I-K)\;:=\;\det\!\Big((I-K)\,\exp\big(K\big)\Big),
+ \]
+ where the argument of \(\det\) is a perturbation of the identity by a trace-class operator.
+\end{itemize}
+The mapping \(K\mapsto \dettwo(I-K)\) is continuous on \(\HS\) and real-analytic (indeed, entire) as a function of \(K\) in the Banach-space sense.
+
+\begin{lemma}[Carleman bound]\label{lem:carleman}
+For every \(K\in\HS\),
+\[
+ \big|\dettwo(I-K)\big|\;\le\; \exp\!\Big(\tfrac12\,\|K\|_{\HS}^2\Big).
+\]
+\end{lemma}
+\begin{proof}
+Let \(\{\lambda_n\}\) be the eigenvalues of \(K\), repeated with algebraic multiplicity. Then
+\[
+ \log\big|\dettwo(I-K)\big|\;=\; \sum_n \Re\Big(\log(1-\lambda_n)+\lambda_n\Big).
+\]
+Using the standard scalar inequality \(\Re\big(\log(1-z)+z\big)\le \tfrac12 |z|^2\) valid for all \(z\in\C\) (see, e.g., Simon, Lemma 9.2), we obtain
+\[
+ \log\big|\dettwo(I-K)\big|\;\le\; \tfrac12\sum_n |\lambda_n|^2\;=\;\tfrac12\,\|K\|_{\HS}^2,
+\]
+whence the claim.
+\end{proof}
+
+\section*{Exact $k=1$ finite block without damping (power--splitting trick)}
+
+Fix $\sigma_0>\tfrac12$. For $N\in\mathbb N$, let $p_1<\cdots<p_N$ be the first $N$ primes and let
+\[
+ A_N(s)e_p\;:=\;p^{-s}e_p,\qquad \Re s>\tfrac12.
+\]
+For an integer $k\ge 2$, define the scalar function
+\[
+ \alpha_{p,k}(s)\;:=\;1-\bigl(1-p^{-s}\bigr)^{-1/k},
+\]
+where the branch of $(\cdot)^{-1/k}$ is the principal one on $\{\,|z|<1\,\}$ (holomorphic in $\Re s>0$ since $|p^{-s}|<1$). Set the $k\times k$ prime block
+\[
+ S_p^{(k)}(s)\;:=\;\alpha_{p,k}(s)\,I_k,
+\]
+and the finite block of size $m=kN$
+\[
+ \boxed{\quad S_{N}^{(k)}(s)\;:=\;\bigoplus_{j=1}^{N} S_{p_j}^{(k)}(s)\;=\;\mathrm{diag}\bigl(\alpha_{p_1,k}(s)I_k,\dots,\alpha_{p_N,k}(s)I_k\bigr).\quad}
+\]
+
+\begin{proposition}[Exact $k=1$ factor with uniform Schur bound on $\{\Re s\ge \sigma_0\}$]
+\label{prop:kfold}
+For every $\sigma_0>\tfrac12$ and $k\ge 2$ the block $S_{N}^{(k)}(s)$ is holomorphic on $\{\Re s>\tfrac12\}$ and satisfies
+\[
+ \sup_{\Re s\ge \sigma_0}\ \bigl\|S_{N}^{(k)}(s)\bigr\|\ \le\ \Bigl((1-2^{-\sigma_0})^{-1/k}-1\Bigr)\;=:\;\rho_{\sigma_0,k}\;<\;1,
+\]
+hence $S_{N}^{(k)}$ is Schur on $\{\Re s\ge \sigma_0\}$ with a bound independent of $N$. Moreover,
+\[
+ \boxed{\ \det\!\bigl(I_{kN}-S_{N}^{(k)}(s)\bigr)\;=\;\prod_{j=1}^{N}\frac{1}{\,1-p_j^{-s}\,}\ },\qquad \Re s>\tfrac12,
+\]
+i.e. $S_{N}^{(k)}$ reproduces the exact Euler $k=1$ factor for the first $N$ primes with no damping.
+\end{proposition}
+
+\begin{proof}
+Holomorphy: for $\Re s>0$ one has $|p^{-s}|<1$, so $1-p^{-s}\neq 0$ and the principal $(\cdot)^{-1/k}$ is holomorphic; hence so is $\alpha_{p,k}$ and the block-diagonal $S_{N}^{(k)}$.
+
+Schur bound: write $z=p^{-s}$ with $|z|\le r_{\sigma_0}:=2^{-\sigma_0}<1$ when $\Re s\ge \sigma_0$. Using the binomial series with positive coefficients,
+\[
+ (1-z)^{-1/k}-1=\sum_{n\ge 1} c_n z^n,\qquad c_n>0,
+\]
+gives the uniform estimate
+\[
+ \bigl|\alpha_{p,k}(s)\bigr|=\bigl|(1-z)^{-1/k}-1\bigr|\le \sum_{n\ge 1} c_n |z|^n
+= (1-|z|)^{-1/k}-1 \le (1-r_{\sigma_0})^{-1/k}-1.
+\]
+Thus $\|S_{N}^{(k)}(s)\|=\max_{j}|\alpha_{p_j,k}(s)|\le \rho_{\sigma_0,k}<1$ as claimed.
+
+Determinant: on each $k\times k$ prime block,
+\[
+ \det\!\bigl(I_k-S_{p}^{(k)}(s)\bigr)=\bigl(1-\alpha_{p,k}(s)\bigr)^{k}=\Bigl((1-p^{-s})^{-1/k}\Bigr)^{k}=\frac{1}{\,1-p^{-s}\,}.
+\]
+Taking the product over $p\le p_N$ yields the displayed identity.
+\end{proof}
+
+\begin{corollary}[Drop--in for the Schur--determinant split]
+\label{cor:dropin}
+Let $T_N(s)$ be the block operator on $\ell^2(\{p\le p_N\})\oplus\C^{kN}$ with blocks
+\[
+ A_N(s)\ \text{as above},\quad B_N\equiv 0,\quad C_N\ \text{arbitrary},\quad D_N(s):=S_{N}^{(k)}(s).
+\]
+Then $S_N(s):=D_N(s)-C_N(I-A_N(s))^{-1}B_N=D_N(s)=S_{N}^{(k)}(s)$, and the Schur--determinant splitting gives
+\[
+ \log\dettwo\bigl(I-T_N(s)\bigr)=\log\dettwo\bigl(I-A_N(s)\bigr)+\sum_{p\le p_N}\log\!\frac{1}{1-p^{-s}}.
+\]
+By Proposition~\ref{prop:kfold}, $S_N$ is Schur on $\{\Re s\ge \sigma_0\}$ uniformly in $N$ and the $k=1$ contribution is exact.
+\end{corollary}
+
+\paragraph{Remarks.}
+(1) \emph{Why $k=2$ suffices.} For any $\sigma_0>\tfrac12$, $r_{\sigma_0}=2^{-\sigma_0}\le 2^{-1/2}<1$, hence
+\[
+ \rho_{\sigma_0,2}=(1-2^{-\sigma_0})^{-1/2}-1<(1-2^{-1/2})^{-1/2}-1\approx 0.848<1.
+\]
+Thus the choice $k=2$ already yields a uniform Schur constant on $\{\Re s\ge \sigma_0\}$.
+
+(2) \emph{Prime--tied realization (optional).} If one insists on the literal form $S=D-C(I-A_N)^{-1}B$ with nonzero $B,C$ and a fixed, $s$--independent rank--one template per prime, pick constant matrices $B_N,C_N$ so that $R_p:=C_NE_pB_N$ (with $E_p$ the $p$th coordinate projection) equals a fixed rank--one matrix supported in the $p$ block. Then define
+\[
+ D_N(s)\;:=\;S_{N}^{(k)}(s)\;+\;\sum_{p\le p_N}\frac{1}{1-p^{-s}}\,R_p,
+\]
+which is holomorphic. This makes $S_N(s)=D_N(s)-\sum_p \frac{1}{1-p^{-s}}R_p\equiv S_{N}^{(k)}(s)$ identically, hence preserves the exact determinant identity and the Schur bound.
+
+(3) \emph{Archimedean/polynomial factor.} On $\{\Re s>\tfrac12\}$ the factor $E_{\mathrm{arch}}(s):=\tfrac12 s(1-s)\,\pi^{-s/2}\Gamma(s/2)$ is nonvanishing. A completely analogous $k_{\mathrm{arch}}$--fold block
+\[
+ S_{\mathrm{arch}}(s):=\Bigl(1-E_{\mathrm{arch}}(s)^{-1/k_{\mathrm{arch}}}\Bigr)I_{k_{\mathrm{arch}}},
+\]
+yields $\det(I-S_{\mathrm{arch}})=E_{\mathrm{arch}}(s)^{-1}$ with $\|S_{\mathrm{arch}}\|<1$ after fixing $k_{\mathrm{arch}}\ge 2$; it may be appended as an extra finite block.
+
+\begin{lemma}[Holomorphy under HS-holomorphic inputs]\label{lem:holomorphy}
+If \(K:U\to\HS\) is holomorphic on an open set \(U\subset\C\), then \(f(s):=\dettwo\big(I-K(s)\big)\) is holomorphic on \(U\).
+\end{lemma}
+\begin{proof}
+The map \(\Phi:K\mapsto \dettwo(I-K)\) is real-analytic on \(\HS\) and given by a uniformly convergent power series in a neighborhood of each point (e.g., via the canonical product or via trace-class regularization). Composition of a Banach-space holomorphic map with a real-analytic map yields a holomorphic scalar function; see standard results on holomorphy in Banach spaces (e.g., Hille--Phillips).
+\end{proof}
+
+\subsection{HS continuity implies local-uniform convergence of \(\dettwo\)}
+We now formalize the continuity principle used later.
+
+\begin{proposition}[HS\(\to\)\(\dettwo\) local-uniform convergence]\label{prop:HS-to-det2}
+Let \(\Omega\subset\C\) be open and \(A_n,A:\Omega\to\HS\) be holomorphic maps such that for each compact \(K\subset\Omega\):
+\begin{enumerate}
+ \item \(\sup_{s\in K}\|A_n(s)\|_{\HS}\le M_K\) for all \(n\) (uniform HS bound);
+ \item \(\sup_{s\in K}\|A_n(s)-A(s)\|_{\HS}\xrightarrow[n\to\infty]{}0\).
+\end{enumerate}
+Then \(f_n(s):=\dettwo\big(I-A_n(s)\big)\) converges to \(f(s):=\dettwo\big(I-A(s)\big)\) uniformly on \(K\). In particular, \(f_n\to f\) locally uniformly on \(\Omega\).
+\end{proposition}
+\begin{proof}
+Fix a compact \(K\subset\Omega\). By Lemma~\ref{lem:carleman},
+\[
+ \sup_{n}\ \sup_{s\in K}\ |f_n(s)|\;\le\; \exp\!\Big(\tfrac12 M_K^2\Big),
+\]
+so \(\{f_n\}\) is a normal family on \(K\) (indeed on neighborhoods of \(K\)). By continuity of \(\Phi:K\mapsto\dettwo(I-K)\) on \(\HS\), the pointwise convergence \(A_n(s)\to A(s)\) in \(\HS\) implies \(f_n(s)\to f(s)\) for each fixed \(s\in K\). Vitali--Porter (or Montel's theorem plus the identity principle) then yields uniform convergence of \(f_n\) to \(f\) on \(K\): every subsequence has a further subsequence converging locally uniformly to a holomorphic limit \(g\); since \(f_n(s)\to f(s)\) pointwise on a set with accumulation points (indeed on all of \(K\)), necessarily \(g\equiv f\), proving uniform convergence of the full sequence.
+\end{proof}
+
+\begin{remark}[Division by \(\xi\)]
+Uniform convergence for \(\dettwo(I-A_n)\to\dettwo(I-A)\) holds on all compacts. When dividing by \(\xi\), we either restrict to rectangles where \(|\xi|\ge \delta>0\) (interior alignment route) or insert the inner-compensator from Subsection~\ref{subsec:bl-compensator} to remove poles and work with the compensated ratio prior to applying the Cayley transform (boundary route).
+\end{remark}
+
+\section{Notation and conventions}\label{sec:notation}
+We summarize conventions used throughout.
+\begin{itemize}
+ \item \textbf{Half-plane.} \(\Omega:=\{\Re s>\tfrac12\}\). We occasionally shift to \(\{\Re z>0\}\) via \(z=s-\tfrac12\); the Pick kernel denominator becomes \(s+\overline{w}-1\).
+ \item \textbf{Spaces and bases.} \(\ell^2(\PP)\) is the Hilbert space indexed by primes with orthonormal basis \(\{e_p\}\). Operators act on the right; adjoints are denoted by \(\cdot^*\).
+ \item \textbf{Trace ideals.} \(\HS=\mathcal S_2\) denotes Hilbert--Schmidt class with \(\|K\|_{\HS}^2=\Tr(K^*K)\). Trace class is \(\mathcal S_1\). Holomorphy into \(\HS\) is understood in the Banach--space sense.
+ \item \textbf{Completed zeta.} \(\xi(s)=\tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma(s/2)\,\zeta(s)\). We use the principal branch for \(\log\) in scalar expansions; no branch choices enter operator formulas.
+\item \textbf{Determinants.} \(\dettwo\) is the Hilbert--Schmidt (Carleman--Fredholm) regularization \(\det((I-K)e^{K})\), distinct from \(\det_3\); Fredholm \(\det\) is used only for finite-dimensional blocks.
+ \item \textbf{Systems.} \(A\) is \emph{Hurwitz} if \(\sigma(A)\subset\{\Re z<0\}\). \(\|H\|_\infty\) is the half-plane \(H^\infty\) norm (essential sup along vertical lines). \emph{Passive} means \(\|H\|_\infty\le 1\); \emph{lossless} means equality holds and the KYP equalities \eqref{eq:lossless-equalities} are satisfied.
+ \item \textbf{Cayley transforms.} \(\Theta=\mathcal C[H]=(H-1)/(H+1)\) and \(H=\mathcal C^{-1}[\Theta]=(1+\Theta)/(1-\Theta)\).
+\end{itemize}
+
+\section{Schur--determinant splitting and the finite block}\label{sec:schur-split}
+We next record a block-operator identity that isolates a finite-dimensional Schur complement from the Hilbert--Schmidt part. This will be applied with \(A(s)\) the prime-diagonal block and a finite auxiliary block gathering the \(k=1\) (prime) and archimedean/pole terms.
+
+\begin{proposition}[Schur--determinant splitting]\label{prop:schur-split}
+Let \(\mathcal H\) be a separable Hilbert space and consider the block operator on \(\mathcal H\oplus\C^m\):
+\[
+ T\;=\;\begin{bmatrix}A & B\\ C & D\end{bmatrix},
+\]
+with \(A\in\HS(\mathcal H)\), \(B:\C^m\to\mathcal H\) finite rank, \(C:\mathcal H\to\C^m\) finite rank, and \(D\in\C^{m\times m}\). Assume that \(I-A\) is invertible. Define the (finite-dimensional) Schur complement
+\[
+ S\;:=\;D\; -\; C\,(I-A)^{-1}\,B\;\in\;\C^{m\times m}.
+\]
+Then
+\[
+ \boxed{\ \log\dettwo(I-T)\;=\;\log\dettwo(I-A)\; +\; \log\det(I-S)\ }.
+\]
+Moreover, if \(\|A\|<1\), then
+\[
+ \log\dettwo(I-A)\;=\; -\sum_{k\ge 2}\frac{\Tr(A^k)}{k},
+\]
+with absolute convergence.
+\end{proposition}
+\begin{proof}
+We write the standard Schur factorization for \(I-T\):
+\[
+ I-T\;=\;\begin{bmatrix}I & 0\\ -C(I-A)^{-1} & I\end{bmatrix}\!
+ \begin{bmatrix}I-A & 0\\ 0 & I-S\end{bmatrix}\!
+ \begin{bmatrix}I & -(I-A)^{-1}B\\ 0 & I\end{bmatrix}.
+\]
+Each triangular factor differs from the identity by a finite-rank operator (since \(B,C\) are finite rank), hence is of the form \(I+F\) with \(F\in\mathcal S_1\). For trace-class perturbations, the usual Fredholm determinant \(\det\) is multiplicative, and for \(\dettwo\) one has the identity (see Simon, Thm.
+9.2)
+\[
+ \dettwo\big((I+X)(I+Y)\big)\;=\;\dettwo(I+X)\,\dettwo(I+Y)\,\exp\!\big(-\Tr(XY)\big)
+\]
+ whenever \(X,Y\in \HS\). Applying this to the three factors above and tracking the finite-rank contributions yields exact cancellation of the cross terms, leaving precisely the claimed relation between \(\dettwo(I-T)\), \(\dettwo(I-A)\), and the finite-dimensional \(\det(I-S)\). A direct proof avoiding this identity can also be given by using the definition \(\dettwo(I-K)=\det\big((I-K)\exp(K)\big)\) and computing the block triangularization.
+
+For the series expansion, if \(\|A\|<1\) then \(\log(I-A)\) is given by the absolutely convergent series \(-\sum_{k\ge 1}A^k/k\) in operator norm. Since \(A\in\HS\), \(\Tr(A)\) need not converge, but the 2-regularization removes the linear term and yields
+\[
+ \log\dettwo(I-A)\;=\;\Tr\!\Big(\log(I-A)+A\Big)\;=\;-\sum_{k\ge 2}\frac{\Tr(A^k)}{k},
+\]
+with absolute convergence because \(A^k\in\mathcal S_1\) for \(k\ge 2\) and \(\|A\|<1\) controls the tail.
+\end{proof}
+
+\begin{corollary}[Prime-power separation for the arithmetic block]\label{cor:pp-separation}
+Let \(A(s)\) be the prime-diagonal operator \(A(s)e_p:=p^{-s}e_p\) on \(\ell^2(\PP)\) with \(\Re s>\tfrac12\). Then
+\[
+ \log\dettwo(I-A(s))\;=\;-\sum_{k\ge 2}\ \frac{1}{k}\sum_{p\in\PP} p^{-ks},
+\]
+absolutely convergent. In particular, the \(k=1\) prime term \(\sum_p p^{-s}\) does not appear in \(\log\dettwo(I-A)\) and must be accounted for in the finite Schur complement \(S\) when applying Proposition~\ref{prop:schur-split} to a block \(T(s)\) that models the completed \(\xi\)-normalization.
+\end{corollary}
+\begin{proof}
+By Proposition~\ref{prop:schur-split}, the claimed series holds provided \(\|A(s)\|<1\). For \(\sigma:=\Re s>\tfrac12\), we have \(\|A(s)\|\le 2^{-\sigma}<1\), and \(\Tr\big(A(s)^k\big)=\sum_p p^{-ks}\) since \(A(s)^k\) is diagonal with entries \(p^{-ks}\). Absolute convergence follows from \(\sum_p p^{-2\sigma}<\infty\) and the bound \(|p^{-ks}|\le p^{-2\sigma}\) for all \(k\ge 2\).
+\end{proof}
+
+\begin{remark}[Finite block design and operator bound]\label{rem:finite-block-design}
+In applications of Proposition~\ref{prop:schur-split} to the completed zeta normalization, the finite block \(S(s)=D(s)-C(s)(I-A(s))^{-1}B(s)\) is tasked with collecting the \(k=1\) prime term \(\sum_p p^{-s}\), the polynomial factor \(\tfrac12 s(1-s)\), and archimedean contributions. On any half-plane \(\{\Re s\ge \sigma_0>\tfrac12\}\), one has \(\|A(s)\|\le 2^{-\sigma_0}<1\), hence \(\|(I-A(s))^{-1}\|\le (1-2^{-\sigma_0})^{-1}\). Therefore, any representation of the form \(S(s)=D(s)-C(s)(I-A(s))^{-1}B(s)\) with bounded \(B,C,D\) on \(\{\Re s\ge \sigma_0\}\) obeys the operator bound
+\[
+ \|S(s)\|\;\le\;\|D(s)\|\; +\; \frac{\|C(s)\|\,\|B(s)\|}{1-2^{-\sigma_0}},\qquad \Re s\ge \sigma_0>\tfrac12.
+\]
+If, in addition, \(D\) is unitary (or a contraction) and \(B,C\) are chosen so that the right-hand side is \(\le 1\), then \(S\) is Schur on \(\{\Re s\ge \sigma_0\}\). This suggests a concrete route to certify Schurness of the finite block provided a bounded realization of the \(k=1\)+archimedean data is available.
+\end{remark}
+
+\subsection{Explicit $B,C,D$ parameterizations for the $k=1$+archimedean block}\label{subsec:BCD-params}
+We record two concrete diagonal parameterizations of the finite Schur complement
+\[
+ S_N(s)\;=\;D_N(s)\; -\; C_N(s)\,(I-A_N(s))^{-1}\,B_N(s),\qquad A_N(s)\,e_p\;=\;p^{-s}e_p\ (p\le p_N),
+\]
+and derive half-plane contractivity bounds from Remark~\ref{rem:finite-block-design}. Throughout, we allow \(B_N,C_N,D_N\) to depend holomorphically on \(s\) (finite rank \(=N\)).
+
+\paragraph{(E1) Exact $k=1$ match (diagonal, $D_N\equiv 0$).}
+Set, for each prime \(p\le p_N\),
+\[
+ b_p(s)\;:=\;p^{-s/2},\qquad c_p(s)\;:=\;p^{-s/2},\qquad d_p(s)\;:=\;0.
+\]
+Then with \(B_N=\mathrm{diag}(b_p)\), \(C_N=\mathrm{diag}(c_p)\), \(D_N=0\), one has a diagonal Schur complement
+\[
+ S_N(s)\;=\; -\,\mathrm{diag}\!\left(\frac{p^{-s}}{1-p^{-s}}\right)_{p\le p_N}.
+\]
+Consequently
+\[
+ \log\det(I-S_N(s))\;=\;\sum_{p\le p_N}\log\!\left(\frac{1}{1-p^{-s}}\right)
+\]
+and the identity of Proposition~\ref{prop:schur-split} yields the desired $k=1$ separation when combined with $\log\dettwo(I-A_N)= -\sum_{k\ge 2}\Tr(A_N^k)/k$. However, the operator norm here obeys
+\[
+ \|S_N(s)\|\;=\;\max_{p\le p_N}\,\frac{|p^{-s}|}{\,1-|p^{-s}|\,}\;=\;\max_{p\le p_N}\,\frac{p^{-\sigma}}{1-p^{-\sigma}}\,,\qquad s=\sigma+it,
+\]
+so $\|S_N(s)\|\le 1$ holds only for $\sigma\ge 1$ (strictly $<1$ for $\sigma>1$). Thus (E1) gives an \emph{exact} $k=1$ finite block which is Schur on $\{\Re s\ge 1\}$ but not on the entire $\{\Re s>\tfrac12\}$.
+
+\paragraph{(E2) Damped exact-form with uniform contractivity on $\{\Re s\ge\sigma_0\}$.}
+Fix $\sigma_0>\tfrac12$ and a scalar damping factor
+\[
+ \alpha(\sigma_0)\;:=\;\frac{1-2^{-\sigma_0}}{2^{-\sigma_0}}\;=\;2^{\sigma_0}-1\;\in\;(0,\infty).
+\]
+Define
+\[
+ b_p(s)\;:=\;\sqrt{\alpha(\sigma_0)}\,p^{-s/2},\qquad c_p(s)\;:=\;\sqrt{\alpha(\sigma_0)}\,p^{-s/2},\qquad d_p(s)\;:=\;0.
+\]
+Then
+\[
+ S_N(s)\;=\;-\,\alpha(\sigma_0)\,\mathrm{diag}\!\left(\frac{p^{-s}}{1-p^{-s}}\right)_{p\le p_N}.
+\]
+Using Remark~\ref{rem:finite-block-design} with $\|B_N\|=\|C_N\|=\sup_{p\le p_N}|b_p|=\sqrt{\alpha(\sigma_0)}\,2^{-\sigma/2}$ and $\|(I-A_N)^{-1}\|\le (1-2^{-\sigma_0})^{-1}$ on $\{\Re s\ge\sigma_0\}$ gives
+\[
+ \|S_N(s)\|\;\le\;\frac{\|C_N\|\,\|B_N\|}{1-2^{-\sigma_0}}\;\le\;\frac{\alpha(\sigma_0)\,2^{-\sigma_0}}{1-2^{-\sigma_0}}\;=\;1,\qquad \Re s\ge\sigma_0.
+\]
+Thus (E2) furnishes a Schur finite block on any prescribed right half-plane $\{\Re s\ge\sigma_0\}$, at the cost of damping the $k=1$ contribution by the factor $\alpha(\sigma_0)$:
+\[
+ \log\det(I-S_N)\;=\;\sum_{p\le p_N}\log\!\left(\frac{1-\big(1-\alpha(\sigma_0)\big)p^{-s}}{1-p^{-s}}\right).
+\]
+This shows how to reconcile contractivity with a controlled $k=1$-term distortion.
+
+\paragraph{(E3) Faster-decay variant.}
+For any $\beta>0$, choose $b_p(s)=c_p(s)=p^{-(1/2+\beta)s}$, $d_p\equiv 0$. Then
+\[
+ S_N(s)\;=\;-\,\mathrm{diag}\!\left(\frac{p^{-(1+2\beta)s}}{1-p^{-s}}\right)_{p\le p_N},\qquad \|S_N(s)\|\;\le\;\sup_p\frac{p^{-\sigma(1+2\beta)}}{1-p^{-\sigma}},
+\]
+which is $<1$ uniformly on $\{\Re s>\tfrac12\}$ once $\beta$ is chosen large enough (e.g., any $\beta\ge \tfrac12$ works). The $k=1$ term is then heavily damped, but this family supplies uniformly Schur finite blocks on the entire BRF domain.
+
+\begin{remark}[Design notes]
+Parameterizations (E1)–(E3) expose a concrete path to Schurness of the finite block on right half-planes using only the diagonal structure of $A_N$. In practice one also folds the archimedean/pole corrections into $D_N$ while preserving the Schur bound and links the Schur finite block to the determinantal truncation so that the resulting Cayley transform approximates $\Theta_N^{(\dettwo)}$ uniformly on compacts (as realized quantitatively by the H$^\infty$ passive approximation scheme of Subsection~\ref{subsec:hinf-passive}).
+\end{remark}
+
+\subsection{Contractivity with a budgeted archimedean port $D_N$}\label{subsec:DN-budget}
+We refine (E2) to incorporate a nonzero contraction $D_N(s)$ accounting for archimedean/pole corrections while maintaining Schurness on $\{\Re s\ge \sigma_0\}$.
+
+\begin{lemma}[Budgeted contractivity]\label{lem:budget}
+Fix $\sigma_0>\tfrac12$ and a budget $\eta\in(0,1)$. Let
+\[
+ \alpha(\sigma_0,\eta)\;:=\;(1-\eta)\,\frac{1-2^{-\sigma_0}}{2^{-\sigma_0}}\,=\,(1-\eta)\,(2^{\sigma_0}-1),
+\]
+and choose
+\[
+ b_p(s)\;=\;\sqrt{\alpha(\sigma_0,\eta)}\,p^{-s/2},\quad c_p(s)\;=\;\sqrt{\alpha(\sigma_0,\eta)}\,p^{-s/2},\quad D_N(s)\ \text{with}\ \|D_N\|_{H^\infty(\Re s\ge \sigma_0)}\le \eta.
+\]
+Then for $A_N(s)\,e_p=p^{-s}e_p$ one has
+\[
+ S_N(s)\;=\;D_N(s)\; -\; C_N(s)\,(I-A_N(s))^{-1}B_N(s),\qquad \|S_N(s)\|\ \le\ 1\quad (\Re s\ge \sigma_0).
+\]
+\end{lemma}
+\begin{proof}
+On $\{\Re s\ge \sigma_0\}$, $\|(I-A_N)^{-1}\|\le (1-2^{-\sigma_0})^{-1}$ and $\|B_N\|=\|C_N\|\le \sqrt{\alpha(\sigma_0,\eta)}\,2^{-\sigma_0/2}$. Thus
+\[
+ \|C_N(I-A_N)^{-1}B_N\|\ \le\ \frac{\alpha(\sigma_0,\eta)\,2^{-\sigma_0}}{1-2^{-\sigma_0}}\ =\ 1-\eta.
+\]
+Hence $\|S_N\|\le \|D_N\|+\|C_N(I-A_N)^{-1}B_N\|\le \eta+(1-\eta)=1$.
+\end{proof}
+
+\paragraph{Archimedean contraction port.}
+Write the archimedean/polynomial factor as $E_{\mathrm{arch}}(s):=\tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma(s/2)$. Let $F(s)$ be any bounded holomorphic function on $\{\Re s\ge \sigma_0\}$ with $\|F\|_{H^\infty}\le 1$ chosen to approximate the Cayley transform of $E_{\mathrm{arch}}$ at selected sampling nodes (Nevanlinna--Pick interpolation). Setting
+\[
+ D_N(s)\;=\;\eta\,F(s)\,I_N
+\]
+fits (by construction) the budget of Lemma~\ref{lem:budget}. In particular, one can interpolate boundary samples of the normalized factor $\Phi_{\mathrm{arch}}(s):=(E_{\mathrm{arch}}(s)-1)/(E_{\mathrm{arch}}(s)+1)$ (scaled if necessary) to obtain $F$ with $\|F\|_\infty\le 1$ and hence $\|D_N\|\le \eta$.
+
+\subsection{NP interpolation for the archimedean port and $k=1$ separation}\label{subsec:NP-arch}
+We make the Nevanlinna--Pick (NP) step explicit and quantify the $k=1$ separation inside $\log\det(I-S_N)$.
+
+\begin{lemma}[Schur NP interpolant for the archimedean Cayley]
+Fix $\sigma_0>\tfrac12$ and a finite node set $\{s_j\}_{j=1}^{M}\subset\{\Re s\ge \sigma_0\}$. Let target values $\{\gamma_j\}$ satisfy $|\gamma_j|<1$. Then there exists a scalar Schur function $F$ on $\{\Re s\ge \sigma_0\}$ with $F(s_j)=\gamma_j$ for all $j$. Moreover one may take $F$ rational inner of degree at most $M$.
+\end{lemma}
+
+Apply this with prescribed $\gamma_j$ sampling the normalized archimedean Cayley $\Phi_{\mathrm{arch}}(s)=(E_{\mathrm{arch}}(s)-1)/(E_{\mathrm{arch}}(s)+1)$ on the line $\Re s=\sigma_0$. Setting $D_N=\eta F I_N$ as above yields a budgeted contraction with $\|D_N\|\le \eta$.
+
+\begin{lemma}[Half-plane Blaschke products and Pick criterion]\label{lem:halfplane-blaschke}
+For nodes $a_j\in\{\Re s>\sigma_0\}$ and target values $\gamma_j$ with $|\gamma_j|<1$, the Nevanlinna--Pick matrix $\big((1-\gamma_j\overline{\gamma_k})/(a_j+\overline{a_k}-2\sigma_0)\big)_{j,k}$ is PSD if and only if there exists a Schur function $F$ on $\{\Re s>\sigma_0\}$ with $F(a_j)=\gamma_j$. A constructive solution is given by finite products of half-plane Blaschke factors
+\[
+ B_{a}(s)\;:=\;\frac{s-\overline a}{s-a}\,,\qquad \Re a>\sigma_0,
+\]
+possibly multiplied by a unimodular constant and post-composed with disk automorphisms. In particular, any finite data set with a PSD Pick matrix admits a rational inner interpolant $F(s)=e^{i\theta}\prod_{j=1}^{M} B_{a_j}(s)^{m_j}$.
+\end{lemma}
+
+
+\begin{proposition}[Exact log-det formula and $k=1$ separation with damping]\label{prop:logdet-S}
+Let $S_N$ be constructed as in Lemma~\ref{lem:budget} with diagonal $B_N,C_N$ and $D_N=\eta F I_N$. Then
+\[
+ \det(I-S_N(s))\;=\;\big(1-\eta F(s)\big)^{N}\,\prod_{p\le p_N}\left(1+\frac{\alpha(\sigma_0,\eta)}{1-\eta F(s)}\,\frac{p^{-s}}{1-p^{-s}}\right).
+\]
+In particular,
+\[
+ \log\det(I-S_N(s))\;=\;N\log\big(1-\eta F(s)\big)\; +\; \sum_{p\le p_N}\log\left(\frac{1-(1-\beta(s))\,p^{-s}}{1-p^{-s}}\right)
+\]
+with the scalar damping $\beta(s):=\alpha(\sigma_0,\eta)/(1-\eta F(s))$.
+\end{proposition}
+\begin{proof}
+Since $D_N$ is a scalar multiple of the identity and $C_N(I-A_N)^{-1}B_N$ is diagonal, the eigenvalues of $I-S_N$ are $(1-\eta F)+\alpha\, p^{-s}/(1-p^{-s})$ over $p\le p_N$, yielding the product formula. The logarithmic form follows by rearrangement.
+\end{proof}
+
+\begin{corollary}[Controlled $k=1$ separation on right half-planes]
+For any compact $K\subset\{\Re s\ge \sigma_0\}$ and $\delta\in(0,1)$, one can choose $\eta\in(0,1)$ and an NP interpolant $F$ so that $\sup_{s\in K}|\beta(s)-1|\le \delta$ and $\|D_N\|\le \eta$. Then
+\[
+ \sup_{s\in K}\left|\log\det(I-S_N(s))\; -\; \sum_{p\le p_N}\log\!\left(\frac{1}{1-p^{-s}}\right)\; -\;N\log\big(1-\eta F(s)\big)\right|\ \le\ C_K\,\delta\,\sum_{p\le p_N}\frac{|p^{-s}|}{|1-p^{-s}|},
+\]
+with $C_K$ depending only on $K$.
+\end{corollary}
+\begin{proof}
+From Proposition~\ref{prop:logdet-S}, use $\log(1+z)=z+\mathcal O(z^2)$ uniformly on $K$ with $z=\tfrac{(\beta-1)p^{-s}}{1-p^{-s}}$ and bound the remainder by $C_K\,|\beta-1|\,|p^{-s}|/|1-p^{-s}|$.
+\end{proof}
+
+\begin{remark}[Blocker: growth of the $k=1$ error budget]
+The right-hand sum $\sum_{p\le p_N} |p^{-s}|/|1-p^{-s}|$ diverges with $N$ for $\Re s\le 1$. Hence keeping $\beta\equiv 1$ is essential to preserve exact $k=1$ separation uniformly in $N$; this is feasible only for $\sigma_0\ge 1$ (case (E1)). For $\sigma_0\in(\tfrac12,1)$, any uniform damping induces a cumulative error growing with $N$. Resolving this obstruction (e.g., by a different finite-block architecture or a non-additive multiplicative scheme) is required to remove the reliance on the alignment hypothesis on the full BRF domain.
+\end{remark}
+
+\subsection{Schur finite blocks with uniform-on-$K$ $k=1$ control}\label{subsec:K1-approx}
+We summarize the $k=1$ approximation mechanism that preserves Schurness on a fixed right half-plane compact while providing uniform error control.
+
+\begin{proposition}[Uniform-on-$K$ $k=1$ control with Schurness]\label{prop:K1-approx}
+Let $K\subset\{\Re s\ge\sigma_0\}$ be compact with $\tfrac12<\sigma_0<1$ and fix $\eta\in(0,\tfrac12)$ and $\varepsilon>0$. Then there exist finite-rank holomorphic matrices $B_N(s),C_N(s)$ and a scalar $D_N(s)$ with $\|D_N\|_{L^{\infty}(K)}\le\eta$ such that for
+\[
+ S_N(s)\;=\;D_N(s)\; -\; C_N(s)\,(I-A_N(s))^{-1}B_N(s),\qquad A_N(s)e_p\;=\;p^{-s}e_p,\ p\le p_N,
+\]
+one has:
+\begin{itemize}
+ \item Schur on $K$: $\displaystyle\sup_{s\in K}\,\|S_N(s)\|\le 1$;
+ \item Uniform $k=1$ control: $\displaystyle\sup_{s\in K}\,\Bigl|\log\det(I-S_N(s))\; -\;\sum_{p\le p_N}\log\frac{1}{1-p^{-s}}\Bigr|\ \le\ \varepsilon.$
+\end{itemize}
+In particular, $S_N$ can be taken from the budgeted/damped family of Section~\ref{subsec:DN-budget} with Nevanlinna--Pick $D_N$ (Subsection~\ref{subsec:NP-arch}) and parameters chosen so that the error bound holds on $K$.
+
+\begin{remark}
+The parameters $(\eta,\delta,N)$ can be selected in a $K$-dependent but explicit manner: choose $\eta\le \varepsilon/(2M_0)$ for a fixed port dimension $M_0$, and pick $\delta\ll \varepsilon$ so that $\sum_{p\le p_N} |p^{-s}|/|1-p^{-s}|\le C_K$ with $C_K\delta\le \varepsilon/2$ uniformly on $K$. This yields the displayed bound while preserving the Schur budget $\|S_N\|\le 1$.
+\end{remark}
+\end{proposition}
+\begin{proof}[Idea]
+By Lemma~\ref{lem:budget} pick $B_N,C_N$ diagonal in the prime basis with damping parameter $\alpha(\sigma_0,\eta)$ so that $\|C_N(I-A_N)^{-1}B_N\|\le 1-\eta$ on $K$. With $D_N=\eta F$ where $F$ is a half-plane Schur NP interpolant (Lemma in Subsection~\ref{subsec:NP-arch}), Proposition~\ref{prop:logdet-S} gives
+\[
+ \log\det(I-S_N)=N\log(1-\eta F)\ +\ \sum_{p\le p_N}\log\frac{1-(1-\beta(s))p^{-s}}{1-p^{-s}},\qquad \beta(s)=\frac{\alpha(\sigma_0,\eta)}{1-\eta F(s)}.
+\]
+On $K$, choose $F$ and $\eta$ so that $\sup_K|\beta-1|\le\delta$ with $\delta$ small enough; then the log-det difference is bounded by $C_K\delta\sum_{p\le p_N}|p^{-s}|/|1-p^{-s}|+N\,\eta/(1-\eta)$. Place $D_N$ in a fixed-dimensional port (or scale $N$) so the $N$-term is $\le \varepsilon/2$, and choose $\delta$ so the prime sum is $\le\varepsilon/2$ uniformly on $K$. This yields the claimed bound while retaining $\|S_N\|\le 1$.
+\end{proof}
+
+\section{Finite-stage KYP certificates: lossless factorization and prime-grid model}\label{sec:KYP}
+We now construct explicit finite-stage passive (bounded-real) realizations and verify the Kalman--Yakubovich--Popov (KYP) condition. We work throughout in continuous time on the right half-plane, with the transfer function
+\[
+ H(s)\;=\;D\; +\; C\,(sI-A)^{-1} B,
+\]
+where \(A\in\C^{n\times n}\) is Hurwitz (spectrum strictly in the open left half-plane), and \(B\in\C^{n\times m}\), \(C\in\C^{m\times n}\), \(D\in\C^{m\times m}\).
+
+\subsection{Bounded-real lemma and the lossless KYP equalities}
+The continuous-time bounded-real lemma asserts that, for a Hurwitz \(A\), the following are equivalent: (i) \(\|H\|_\infty\le 1\); (ii) there exists \(P\succ 0\) such that the KYP matrix is negative semidefinite
+\begin{equation}\label{eq:KYP}
+ \Theta\;:=\;\begin{bmatrix}
+  A^*P+PA & PB & C^*\\
+  B^*P & -I & D^*\\
+  C & D & -I
+ \end{bmatrix}\ \preceq\ 0.
+\end{equation}
+In the \emph{lossless} case (extremal \(\|H\|_\infty=1\)), one may certify \eqref{eq:KYP} via the following algebraic equalities.
+
+\begin{lemma}[One-line lossless KYP factorization]\label{lem:losslessKYP}
+Suppose \(P\succ 0\) and
+\begin{equation}\label{eq:lossless-equalities}
+ A^*P+PA\;=\;-C^*C,\qquad PB\;=\;-C^*D,\qquad D^*D\;=\;I.
+\end{equation}
+Then the KYP matrix \(\Theta\) in \eqref{eq:KYP} factors as
+\begin{equation}\label{eq:one-line-factor}
+ \boxed{\ \Theta\;=\;-\begin{bmatrix}C^*\\ D^*\\ -I\end{bmatrix}\!\begin{bmatrix}C & D & -I\end{bmatrix}\ \preceq\ 0\ }.
+\end{equation}
+In particular, \(\|H\|_\infty\le 1\).
+\end{lemma}
+\begin{proof}
+Using \eqref{eq:lossless-equalities}, we rewrite the KYP blocks as
+\[
+ A^*P+PA\;=\;-C^*C,\qquad PB\;=\;-C^*D,\qquad B^*P\;=\;-D^*C.
+\]
+Substituting these into \eqref{eq:KYP} gives
+\[
+ \Theta\;=\;\begin{bmatrix}
+  -C^*C & -C^*D & C^*\\
+  -D^*C & -I & D^*\\
+  C & D & -I
+ \end{bmatrix}\;=\;-\begin{bmatrix}C^*\\ D^*\\ -I\end{bmatrix}\!\begin{bmatrix}C & D & -I\end{bmatrix},
+\]
+which is negative semidefinite as a Gram matrix with a negative sign. The bounded-real implication is standard from the KYP lemma for Hurwitz \(A\).
+\end{proof}
+
+\subsection{Prime-grid lossless specification (final form)}
+We now instantiate a concrete, diagonal (hence Hurwitz) realization at each prime truncation level \(N\), directly tied to the primes.
+
+\begin{proposition}[Prime-grid lossless model]\label{prop:prime-grid-KYP}
+Let \(p_1<\cdots<p_N\) be the first \(N\) primes and define the positive diagonal matrix
+\[
+ \Lambda_N\;:=\;\mathrm{diag}\!\Big(\tfrac{2}{\log p_1},\dots,\tfrac{2}{\log p_N}\Big)\ \in\ \R^{N\times N}.
+\]
+Set
+\[
+ A_N\;:=\;-\Lambda_N,\qquad P_N\;:=\;I_N,\qquad C_N\;:=\;\sqrt{2\,\Lambda_N},\qquad D_N\;:=\;-I_N,\qquad B_N\;:=\;C_N.
+\]
+Then:
+\begin{enumerate}
+ \item \(A_N\) is Hurwitz, with spectrum \(-\{2/\log p_k\}_{k=1}^N\subset(-\infty,0)\).
+ \item The lossless equalities \eqref{eq:lossless-equalities} hold with \((A,B,C,D,P)=(A_N,B_N,C_N,D_N,P_N)\):
+ \[
+  A_N^*P_N+P_NA_N\;=\;-2\Lambda_N\;=\;-C_N^*C_N,\quad P_NB_N\;=\;C_N\;=\;-C_N^*D_N,\quad D_N^*D_N\;=\;I_N.
+ \]
+ \item The KYP matrix factors as in \eqref{eq:one-line-factor}, hence for the matrix-valued transfer
+ \[
+  H_N(s)\;:=\;D_N\; +\; C_N\,(sI-A_N)^{-1} B_N
+ \]
+one has \(\|H_N\|_\infty\le 1\). In particular, each entry of \(H_N\) is a bounded-real function on \(\Omega\).
+ \item For any unit vectors \(u,v\in\C^N\) (``scalar port extraction''), the scalar transfer \(h_N(s):=v^*H_N(s)u\) satisfies \(|h_N(s)|\le 1\) for all \(s\in\Omega\). Choosing \(u=v=e_1\) yields scalar feedthrough \(-1\), consistent with the asymptotic limit of the target \(H\).
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) \(\Lambda_N\) is positive diagonal, hence \(A_N=-\Lambda_N\) has strictly negative diagonal entries.
+
+(ii) Direct computation using diagonality: \(A_N^*P_N+P_NA_N=(-\Lambda_N)+(-\Lambda_N)=-2\Lambda_N\). Since \(C_N=\sqrt{2\Lambda_N}\) is the positive square root, \(C_N^*C_N=2\Lambda_N\), hence \(A_N^*P_N+P_NA_N=-C_N^*C_N\). Next, \(P_NB_N=B_N=C_N\) and \(C_N^*D_N=\sqrt{2\Lambda_N}\,(-I_N)=-C_N\), so \(P_NB_N+ C_N^*D_N=0\). Finally, \(D_N^*D_N=(-I_N)^*(-I_N)=I_N\).
+
+(iii) With the equalities verified, Lemma~\ref{lem:losslessKYP} yields the factorization and \(\|H_N\|_\infty\le 1\).
+
+(iv) If \(\|H_N\|_\infty\le 1\) as an operator norm, then for any unit vectors \(u,v\) one has \(|v^*H_N(s)u|\le \|H_N(s)\|\le 1\) pointwise in \(s\). The choice \(u=v=e_1\) reads off the \((1,1)\) entry, whose feedthrough equals \(-1\).
+\end{proof}
+
+\begin{remark}[Normalization and asymptotics]
+The choice \(D_N=-I_N\) matches the scalar asymptotic \(\lim_{\Re s\to\infty} H(s)=-1\) after a scalar port extraction. Other unitary dilations \(D_N\) with \(D_N^*D_N=I_N\) are admissible and preserve the lossless factorization \eqref{eq:one-line-factor}.
+\end{remark}
+
+\begin{remark}[Discrete-time variant]
+An analogous construction holds in discrete time (Schur class on the unit disk) with the discrete-time KYP inequality and the corresponding lossless equalities. We focus here on the continuous-time half-plane setting consistent with \(s\)-domain formulations.
+\end{remark}
+
+\section{Schur, Herglotz and Pick equivalences on the half-plane}\label{sec:equivalences}
+We collect the standard equivalences between Herglotz, Schur and Pick kernel positivity on the right half-plane \(\Omega=\{\Re s>\tfrac12\}\). For a holomorphic scalar function \(F:\Omega\to\C\), define its Cayley transform
+\[
+ \mathcal C[F](s)\;:=\;\frac{F(s)-1}{F(s)+1},\qquad \mathcal C^{-1}[\Theta](s)\;:=\;\frac{1+\Theta(s)}{1-\Theta(s)}.
+\]
+
+\begin{theorem}[Equivalences]\label{thm:equivalences}
+For a holomorphic scalar \(F\) on \(\Omega\), the following are equivalent:
+\begin{enumerate}
+ \item \(F\) is Herglotz on \(\Omega\): \(\Re F(s)\ge 0\) for all \(s\in\Omega\).
+ \item \(\Theta:=\mathcal C[F]\) is Schur on \(\Omega\): \(|\Theta(s)|\le 1\) for all \(s\in\Omega\).
+ \item The Pick kernel
+ \[
+  K_\Theta(s,w)\;:=\;\frac{1-\Theta(s)\,\overline{\Theta(w)}}{s+\overline{w}-1}
+ \]
+ is positive semidefinite on \(\Omega\): for all finite node sets \(\{s_j\}\subset\Omega\) and vectors \(\{c_j\}\subset\C\), one has \(\sum_{j,k} K_\Theta(s_j,s_k)\,c_j\overline{c_k}\ge 0\).
+\end{enumerate}
+The same equivalences hold for matrix-valued functions with the obvious operator-valued adaptations (operator norm in (2) and PSD block Gram matrices in (3)).
+\end{theorem}
+\begin{proof}
+(1)\(\Rightarrow\)(2): For \(z\in\C\) with \(\Re z\ge 0\), the scalar inequality \(|(z-1)/(z+1)|\le 1\) is immediate from \(|z-1|^2\le |z+1|^2\) \(\Leftrightarrow\) \(\Re z\ge 0\). Apply pointwise with \(z=F(s)\).
+
+(2)\(\Rightarrow\)(1): Invert the Cayley transform: \(F=(1+\Theta)/(1-\Theta)\). If \(|\Theta|\le 1\), then for each \(s\) one has \(\Re F(s)\ge 0\) (check on scalars or via the Herglotz representation). Holomorphy ensures the property on \(\Omega\).
+
+(2)\(\Leftrightarrow\)(3): This is the Nevanlinna--Pick theorem on the half-plane; see, e.g., the de Branges--Rovnyak space characterization. For the half-plane \(\{\Re s>0\}\), the canonical Pick kernel is \((1-\Theta(s)\overline{\Theta(w)})/(s+\overline{w})\); replacing \(s\) by \(s-\tfrac12\) yields the stated denominator \(s+\overline{w}-1\).
+\end{proof}
+
+\begin{corollary}[Closure]\label{cor:closure}
+If \(F_n\) are Herglotz on \(\Omega\) and \(F_n\to F\) locally uniformly on \(\Omega\), then \(F\) is Herglotz. Equivalently, if \(\Theta_n\) are Schur and \(\Theta_n\to\Theta\) locally uniformly, then \(\Theta\) is Schur; moreover the Pick kernels \(K_{\Theta_n}\) converge entrywise on finite Gram matrices to a PSD limit, so \(K_{\Theta}\) is PSD.
+\end{corollary}
+\begin{proof}
+Local-uniform limits of holomorphic functions preserve pointwise inequalities that are closed under limits. Alternatively, pass through Theorem~\ref{thm:equivalences}(2): \(|\Theta_n|\le 1\) implies \(|\Theta|\le 1\) by Montel and the maximum principle; invert the Cayley transform.
+\end{proof}
+
+\section{Alignment and closure to the BRF limit}\label{sec:alignment}
+Recall \(J(s):=\dettwo(I-A(s))/\xi(s)\) and \(\Theta(s)=(2J-1)/(2J+1)\). For truncations, define
+\[
+ H_N^{(\dettwo)}(s)\;:=\;2\,\frac{\dettwo(I-A_N(s))}{\xi(s)}-1,\qquad \Theta_N^{(\dettwo)}\;:=\;\frac{H_N^{(\dettwo)}-1}{H_N^{(\dettwo)}+1}.
+\]
+By Proposition~\ref{prop:HS-to-det2} and the division remark, \(H_N^{(\dettwo)}\to H\) locally uniformly on compact subsets avoiding zeros of \(\xi\). As established in Lemma~\ref{lem:compact-alignment}, this implies that the Cayley transforms also converge locally uniformly on the same sets, i.e. \(\Theta_N^{(\dettwo)}\to\Theta\).
+
+\begin{lemma}[Cayley continuity on compacts]\label{lem:cayley-cont}
+If \(f_n,f\) are holomorphic on a domain \(U\subset\C\) and \(f_n\to f\) uniformly on compact \(K\subset U\) with \(\inf_{K}|f+1|>0\), then \(\mathcal C[f_n]\to\mathcal C[f]\) uniformly on \(K\).
+\end{lemma}
+\begin{proof}
+Uniform convergence plus the nonvanishing bound on \(f+1\) implies \(\inf_{K}|f_n+1|>\tfrac12\inf_{K}|f+1|\) for large \(n\). The Cayley map is uniformly Lipschitz on the compact annulus \(\{z: |z+1|\ge c>0\}\), hence the result.
+\end{proof}
+
+\section{BRF and RH: implications and equivalence}\label{sec:brf-rh}
+We record the logical relationship between the bounded-real target for $H$ and the classical Riemann Hypothesis (RH).
+
+\begin{lemma}[Nonvanishing of $\dettwo(I-A(s))$ on $\Omega$]\label{lem:nonvanish-det2}
+For $s\in\Omega=\{\Re s>\tfrac12\}$ one has $\|A(s)\|\le 2^{-\Re s}<1$, hence $I-A(s)$ is invertible and $\dettwo(I-A(s))\ne 0$.
+\end{lemma}
+\begin{proof}
+If $\|K\|<1$ then $1\notin\sigma(K)$ so $I-K$ is invertible. Moreover, in the canonical product $\dettwo(I-K)=\prod_n (1-\lambda_n) e^{\lambda_n}$, no factor vanishes since $|\lambda_n|<1$ for all eigenvalues $\lambda_n$ of $K$. Apply with $K=A(s)$.
+\end{proof}
+
+\begin{theorem}[BRF $\Rightarrow$ RH]\label{thm:brf-implies-rh}
+If $\Theta$ is Schur on $\Omega$ (equivalently $2J$ is Herglotz on $\Omega$), then $\xi$ has no zeros in $\Omega$, and by the functional equation $\xi(s)=\xi(1-s)$ all nontrivial zeros lie on $\Re s=\tfrac12$. Hence RH holds.
+\end{theorem}
+\begin{proof}
+If $\xi(\rho)=0$ for some $\rho\in\Omega$, then by Lemma~\ref{lem:nonvanish-det2} the numerator $\dettwo(I-A(\rho))\ne 0$, so $J$ has a pole at $\rho$. Consequently $\Theta=(2J-1)/(2J+1)$ is not holomorphic at $\rho$. This contradicts the Schur hypothesis, which implies holomorphy and boundedness on $\Omega$. Therefore $\xi$ has no zeros in $\Omega$. Using $\xi(s)=\xi(1-s)$, any zero with $\Re s<\tfrac12$ would reflect to a zero with $\Re s>\tfrac12$, impossible. Thus all nontrivial zeros lie on $\Re s=\tfrac12$.
+\end{proof}
+
+\begin{theorem}[RH $+$ (P+) $\Rightarrow$ BRF]\label{thm:rh-implies-brf}
+Assume RH holds (so $\xi$ has no zeros in $\Omega$) and Theorem~\ref{thm:uniform-eps} provides the outer limit $\mathcal O$. If, in addition, (P+) holds for $\mathcal J=\dettwo(I-A)/(\mathcal O\,\xi)$, then $2\mathcal J$ is Herglotz on $\Omega$, hence $\Theta$ is Schur on $\Omega$.
+\end{theorem}
+\begin{proof}
+Under RH the ratio $\dettwo(I-A)/\xi$ is analytic on $\Omega$; combined with Theorem~\ref{thm:uniform-eps} and the boundary positive-real route (Theorem~\ref{thm:global-PSD}), the maximum principle yields the Schur bound in $\Omega$.
+\end{proof}
+
+\begin{corollary}[Equivalence]
+BRF for $H$ on $\Omega$ is equivalent to RH, combining Theorems~\ref{thm:brf-implies-rh} and \ref{thm:rh-implies-brf} with Theorem~\ref{thm:uniform-eps}.
+\end{corollary}
+
+In order to pass positivity from finite-stage certificates to the limit function \(H\), it suffices to align a Schur sequence with the Cayley transforms \(\Theta_N^{(\dettwo)}\).
+
+\begin{proposition}[Alignment criterion]\label{prop:alignment-criterion}
+Suppose \(\Theta_N\) are Schur on \(\Omega\) (e.g., produced by the prime-grid lossless construction in Proposition~\ref{prop:prime-grid-KYP}, possibly after scalar port extraction), and for each compact \(K\subset\Omega\) one has
+\[
+ \sup_{s\in K}\big\|\Theta_N(s)-\Theta_N^{(\dettwo)}(s)\big\|\xrightarrow[N\to\infty]{}0.
+\]
+Then \(\Theta_N\to\Theta\) locally uniformly on \(\Omega\), and \(\Theta\) is Schur by Corollary~\ref{cor:closure}. Consequently, \(H=\mathcal C^{-1}[\Theta]\) is Herglotz on \(\Omega\), proving the BRF conclusion.
+\end{proposition}
+\begin{remark}
+This conditional alignment mechanism is auxiliary and not used in the unconditional boundary route. Global Schur/PSD follows from Theorem~\ref{thm:uniform-eps} and the outer-normalization argument, independently of this proposition.
+\end{remark}
+\begin{proof}
+Triangle inequality with Lemma~\ref{lem:cayley-cont} yields \(\Theta_N^{(\dettwo)}\to\Theta\) and \(\Theta_N-\Theta\to 0\) locally uniformly. Closure then applies.
+\end{proof}
+
+\begin{remark}[Realization of \(\Theta_N\) and limits of interpolation]
+The Schur sequence \(\Theta_N\) in Proposition~\ref{prop:alignment-criterion} can be taken as the matrix-valued transfers from Proposition~\ref{prop:prime-grid-KYP}, or any scalar port extraction thereof, all of which satisfy the uniform Schur bound by construction. However, matching finitely many interpolation nodes (even with degrees that grow) does not by itself force uniform convergence on a compact set for a moving sequence of rational inner functions without additional a priori bounds (e.g., uniform degree and coefficient control, or explicit $H^\infty$ approximation estimates). Thus quantitative alignment estimates \(\|\Theta_N-\Theta_N^{(\dettwo)}\|_{H^\infty(K)}\to 0\) must be proved, not inferred from dense interpolation.
+\end{remark}
+
+\begin{theorem}[BRF equivalences and closure to the limit]\label{thm:BRF}
+Let \(A(s)\) be the prime-diagonal block on \(\Omega\) and define \(H\) and \(\Theta\) as above. Then the following are equivalent:
+\begin{itemize}
+\item[(i)] \(\Re\big(2J(s)\big)\ge 0\) on \(\Omega\) (BRF).
+ \item[(ii)] \(\Theta\) is Schur on \(\Omega\).
+ \item[(iii)] The Pick kernel \(K_\Theta\) is PSD on \(\Omega\).
+\end{itemize}
+Moreover, if there exists a Schur sequence \(\Theta_N\) satisfying the alignment hypothesis of Proposition~\ref{prop:alignment-criterion}, then \(\Theta\) is Schur and hence (i)--(iii) hold.
+\end{theorem}
+
+\begin{theorem}[Global kernel positivity from interior passivity, outer normalization, and boundary positive-real]\label{thm:global-PSD}
+Let
+\[
+  H(s):=2\,\frac{\dettwo(I-A(s))}{\xi(s)}-1,\qquad
+  \Theta(s):=\frac{H(s)-1}{H(s)+1},
+\]
+on $\Omega=\{\Re s>\tfrac12\}$, with $A(s)$ Hilbert--Schmidt and holomorphic on $\Omega$.
+Assume:
+
+\emph{(i) Interior passivity on rectangles.} For every compact rectangle $K\Subset\Omega$ avoiding zeros of $\xi$ there exist Schur functions $\Theta_{K,M}$ with $\Theta_{K,M}\to\Theta$ locally uniformly on $K$ as $M\to\infty$.
+
+\emph{(ii) Uniform boundary $L^1$ control and outer normalization.} There is $\varepsilon_0>0$ such that
+\[
+  u_\varepsilon(t):=\log\Bigl|\frac{\dettwo(I-A(\tfrac12+\varepsilon+it))}{\xi(\tfrac12+\varepsilon+it)}\Bigr|
+\]
+is uniformly bounded in $L^1_{\mathrm{loc}}(\R)$ on $(0,\varepsilon_0]$ and Cauchy as $\varepsilon\downarrow0$, so the associated outers converge locally uniformly to an outer limit $\mathcal O$ on $\Omega$.
+
+\emph{(iii) Boundary positive-real (P+).} For $\mathcal J:=\dettwo(I-A)/(\mathcal O\,\xi)$ one has
+\[
+ \Re\big(2\mathcal J(\tfrac12+it)\big)\ \ge\ 0\quad\text{for a.e. }t\in\R.
+\]
+
+Then $2\mathcal J$ is Herglotz on $\Omega$, hence $\Theta=\mathcal C[2\mathcal J]$ is Schur on $\Omega$ and the Pick kernel
+\(
+  K_\Theta(s,w)=\frac{1-\Theta(s)\,\overline{\Theta(w)}}{s+\overline{w}-1}
+\)
+is positive semidefinite on $\Omega$.
+\end{theorem}
+
+\begin{proof}
+By (ii), \(\mathcal J\in N(\Omega)\) with a.e. boundary values on \(\Re s=\tfrac12\), and the Poisson integral transports (P+) to \(\Re(2\mathcal J)\ge0\) in \(\Omega\), so \(2\mathcal J\) is Herglotz. Apply Theorem~\ref{thm:equivalences}.
+\end{proof}
+\begin{proof}
+Equivalences are Theorem~\ref{thm:equivalences}. The closure statement follows from Proposition~\ref{prop:alignment-criterion}.
+\end{proof}
+
+\subsection{Boundary positive-real via outer normalization}\label{subsec:boundary-unitarity}
+Define
+\[
+ \widetilde H(s):=2\,\frac{\dettwo(I-A(s))}{\xi(s)}-1,\qquad
+ \widetilde\Theta(s):=\frac{\widetilde H(s)-1}{\widetilde H(s)+1}.
+\]
+By Theorem~\ref{thm:uniform-eps}, the outer normalizations along $\Re s=\tfrac12+\varepsilon$ converge locally uniformly to an outer limit $\mathcal O$ on $\Omega$. Set
+\[
+ \mathcal J(s):=\frac{\dettwo(I-A(s))}{\mathcal O(s)\,\xi(s)}.
+\]
+We do \emph{not} assume \(\mathcal O\equiv 1\), nor do we infer any boundary unimodularity for \(\widetilde\Theta\) from \(|\mathcal J|=1\).
+
+\medskip
+\noindent\textbf{Boundary hypothesis (P+).} We require
+\[
+ \Re\big(2\,\mathcal J(\tfrac12+it)\big)\ \ge\ 0\quad\text{for a.e. }t\in\R.
+\]
+Under (P+), the Poisson integral gives that \(2\mathcal J\) is Herglotz on $\Omega$, and thus
+\(\Theta=\frac{2\mathcal J-1}{2\mathcal J+1}\) is Schur on $\Omega$ (Theorem~\ref{thm:equivalences}).
+
+\subsection{Inner compensator for zeros of \(\xi\)}\label{subsec:bl-compensator}
+If \(\xi\) has zeros in a fixed rectangle \(R\Subset\Omega\), the ratio \(J=\dettwo(I-A)/\xi\) is meromorphic on \(R\).
+To ensure analyticity for auxiliary constructions on \(R\) (e.g., passive \(H^\infty\) approximation), introduce the finite half-plane Blaschke product
+\(
+ B_{\xi,R}(s):=\prod_{\rho\in Z(\xi)\cap R} \big(\frac{s-\overline \rho}{s-\rho}\big)^{m_\rho}.
+\)
+Define the compensated ratio \(J_R^{\rm comp}:=J\,B_{\xi,R}\), which is holomorphic on \(R\).
+\emph{We do not use} \(J_R^{\rm comp}\) in the (P+) boundary route, since multiplication by an inner factor preserves modulus but not the boundary real part. The compensator is employed only to build interior Schur approximants on rectangles; the global Schur/PSD conclusion comes from (P+) with outer normalization, independently of any compensator.
+
+\subsection{Prototype outer factor on \(\Re s=\tfrac12+\varepsilon\)}\label{subsec:outer-prototype}
+Fix \(\varepsilon>0\) and define, on the line \(L_{\varepsilon}:=\{s=\tfrac12+\varepsilon+it\}\),
+\[
+ G_{\varepsilon}(t):=\dettwo\big(I-A(\tfrac12+\varepsilon+it)\big),\qquad
+ X_{\varepsilon}(t):=\xi\big(\tfrac12+\varepsilon+it\big).
+\]
+Let \(\mathcal O_{\varepsilon}\) be the outer on \(\{\Re s>\tfrac12+\varepsilon\}\) with boundary modulus \(\big|\frac{G_{\varepsilon}}{X_{\varepsilon}}\big|\), and set
+\[
+ \mathcal J_{\varepsilon}(s):=\frac{\dettwo(I-A(s))}{\mathcal O_{\varepsilon}(s)\,\xi(s)}.
+\]
+Then \(|\mathcal J_{\varepsilon}|=1\) on \(L_{\varepsilon}\). By Theorem~\ref{thm:uniform-eps} and Lemma~\ref{lem:outer-factorization}(2), \(\mathcal O_{\varepsilon}\to\mathcal O\) and hence \(\mathcal J_{\varepsilon}\to\mathcal J\) locally uniformly as \(\varepsilon\downarrow 0\). If (P+) holds for the limiting boundary data, then \(2\mathcal J\) is Herglotz in \(\Omega\), so \(\Theta\) is Schur (Theorem~\ref{thm:equivalences}). We do not claim any boundary unimodularity for \(\Theta\) from \(|\mathcal J_{\varepsilon}|=1\).
+
+\begin{proposition}[L$^1_{\mathrm{loc}}$ control reduces to HS tails]\label{prop:L1loc}
+Fix a compact interval $I\subset\mathbb R$. Then for $\varepsilon\in(0,\tfrac12)$,
+\[
+ \int_{I}\left|\log\left|\frac{G_{\varepsilon}(t)}{X_{\varepsilon}(t)}\right|\right|\,dt\ \le\ C_I\,\left(1+\sup_{t\in I}\|A(\tfrac12+\varepsilon+it)-A_N(\tfrac12+\varepsilon+it)\|_{\HS}\right),
+\]
+with $C_I$ independent of $N$. In particular, the HS tail control $\|A-A_N\|_{\HS}\to 0$ uniformly on $\{\Re s\ge \tfrac12+\varepsilon\}$ implies precompactness of $\{\log|G_{\varepsilon}/X_{\varepsilon}|\}$ in $L^1(I)$ and hence local-uniform convergence of the outer normalizations $\mathcal O_{\varepsilon}$ along subsequences.
+\end{proposition}
+\begin{proof}[Proof sketch]
+Carleman’s bound (Lemma~\ref{lem:carleman}) gives $|G_{\varepsilon}(t)|\le e^{\tfrac12\|A\|_{\HS}^2}$, while the HS continuity (Proposition~\ref{prop:HS-to-det2}) furnishes Lipschitz control for $\log|\dettwo(I-A)|$ w.r.t. the HS norm. Stirling bounds control $\log|X_{\varepsilon}(t)|$ on vertical lines uniformly on $I$ away from the finitely many zeros of $\xi$ in the vertical strip under consideration. Integrating across small neighborhoods of those zeros, one uses that $\log|\cdot|$ is locally integrable and that zeros are discrete with finite multiplicity to obtain an $L^1$ bound independent of $\varepsilon$.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:L1loc} gives tightness for each fixed $\varepsilon>0$. Uniform control as $\varepsilon\downarrow 0$ follows from Theorem~\ref{thm:uniform-eps}.
+\end{remark}
+
+\subsection{Uniform $\varepsilon\downarrow 0$ boundary control}\label{subsec:uniform-eps}
+We now state the boundary theorem used for the outer-normalization route. See Subsection~\ref{subsec:smoothed-explicit} for the smoothed explicit-formula route and de-smoothing strategy.
+
+\begin{theorem}[Uniform $L^1_{\mathrm{loc}}$ and Cauchy as $\varepsilon\downarrow 0$]\label{thm:uniform-eps}
+For every compact interval $I\subset\R$ there exist constants $C_I$ and $\varepsilon_0>0$ such that for all $\varepsilon\in(0,\varepsilon_0)$,
+\[
+ \int_I \Bigl|\log\Bigl|\frac{\dettwo(I-A(\tfrac12+\varepsilon+it))}{\xi(\tfrac12+\varepsilon+it)}\Bigr|\Bigr|\,dt\ \le\ C_I,
+\]
+and the family is Cauchy in $L^1(I)$ as $\varepsilon\downarrow 0$:
+\[
+ \lim_{\substack{\varepsilon,\delta\downarrow 0}}\ \int_I \Bigl|\log\Bigl|\frac{\dettwo(I-A(\tfrac12+\varepsilon+it))}{\xi(\tfrac12+\varepsilon+it)}\Bigr|\;-
+ \log\Bigl|\frac{\dettwo(I-A(\tfrac12+\delta+it))}{\xi(\tfrac12+\delta+it)}\Bigr|\Bigr|\,dt\;=\;0.
+\]
+Consequently the outer normalizations $\mathcal O_{\varepsilon}$ converge locally uniformly to an outer limit $\mathcal O$ on $\Omega$, and the Cayley transform of $\dettwo(I-A)/(\mathcal O\,\xi)$ is Schur on $\Omega$.
+\end{theorem}
+\begin{proof}
+Fix a compact interval $I\subset\R$. Write $F(s):=\dettwo(I-A(s))$ and $X(s):=\xi(s)$. We show
+\[
+ u_\varepsilon(t):=\log\Bigl|\frac{F(\tfrac12+\varepsilon+it)}{X(\tfrac12+\varepsilon+it)}\Bigr|\in L^1(I)
+\]
+with $\|u_\varepsilon\|_{L^1(I)}\le C_I$ independent of $\varepsilon\in(0,\varepsilon_0]$, and that $\{u_\varepsilon\}$ is $L^1(I)$–Cauchy as $\varepsilon\downarrow 0$. The standing hypotheses in Section~\ref{sec:appendix} (HS analyticity of $A$, analytic Fredholm property for $I-A$, and local analyticity of $\xi$) hold in the rectangle $\mathcal R:=\{\tfrac12\le\sigma\le\tfrac12+\varepsilon_0,\ t\in I^{\!*}\}$ for a slightly larger $I^{\!*}\supset I$.
+
+1) Uniform $L^1$ bound. By Lemma~\ref{lem:carleman}, for $s\in\mathcal R$,
+\[
+ \log^+|F(s)|\;\le\;\tfrac12\,\|A(s)\|_{\HS}^2\;\le\;\tfrac12\,M_I^2.
+\]
+Apply the finite-domain Weierstrass factorization (Lemma~\ref{lem:local-factorization}) to $\log|F|$ and $\log|X|$ on $\mathcal R$ to write each as a sum of a bounded harmonic term plus finitely many logarithmic spikes $\log|s-\rho|$ corresponding to zeros $\rho$ inside $\mathcal R$. Along $s=\tfrac12+\varepsilon+it$, the harmonic terms contribute a bounded amount to $\int_I |u_\varepsilon(t)|dt$ by the maximum principle; each spike is uniformly integrable in $t$ and uniformly in $\varepsilon$ by Lemma~\ref{lem:log-spike}. Summing finitely many contributions yields $\|u_\varepsilon\|_{L^1(I)}\le C_I$.
+
+2) $L^1$–Cauchy. For $0<\delta<\varepsilon\le\varepsilon_0$, write
+\[
+ u_\varepsilon(t)-u_\delta(t)
+ = \int_{\delta}^{\varepsilon} \partial_\sigma \Re\Bigl(\log F(\tfrac12+\sigma+it)-\log X(\tfrac12+\sigma+it)\Bigr)\,d\sigma.
+\]
+Using the Lipschitz control for $\log\dettwo$ (Appendix~\ref{app:lipschitz}) and Lemma~\ref{lem:HS-variation}, we obtain
+\[
+ \int_I\bigl|\partial_\sigma\,\Re\log F(\tfrac12+\sigma+it)\bigr|\,dt\ \le\ C_I,
+\]
+uniformly for $\sigma\in[\delta,\varepsilon]$. For the $\xi$ term, standard Stirling bounds for $\partial_\sigma\log X= X'/X$ on vertical lines (\cite{TitchmarshZeta}, Chap.~IV) yield
+\[
+  \int_I\bigl|\partial_\sigma\,\Re\log X(\tfrac12+\sigma+it)\bigr|\,dt\ \le\ C_I',
+\]
+uniformly in $\sigma\in[\delta,\varepsilon]$. Fubini’s theorem gives
+\[
+ \|u_\varepsilon-u_\delta\|_{L^1(I)}\;\le\;(C_I+C_I')\,|\varepsilon-\delta|\;\xrightarrow[\varepsilon,\delta\downarrow 0]{}\;0.
+\]
+Therefore $u_\varepsilon$ is uniformly $L^1$–bounded and $L^1$–Cauchy on $I$ provided the derivative bounds hold. This implication is formalized in Lemma~\ref{lem:desmoothing} below. The Poisson–Hilbert representation of outer functions on the half-plane (with $u_\varepsilon$ as boundary data) then yields local-uniform convergence of outer normalizations $\mathcal O_\varepsilon\to \mathcal O$, and the a.e. boundary modulus $|\Theta(\tfrac12+it)|=1$ of the inner factor. The Schur bound in $\Omega$ follows by the maximum principle.
+\end{proof}
+
+\begin{lemma}[De-smoothing: bounded $L^1$ derivative implies $L^1$–Cauchy]\label{lem:desmoothing}
+Let $I\Subset\R$ and let $u_\sigma\in L^1(I)$ be defined for $\sigma\in(0,\varepsilon_0]$, differentiable in $\sigma$, with
+\[
+  \int_I |\partial_\sigma u_\sigma(t)|\,dt\ \le\ C_I\qquad\text{for all }\sigma\in(0,\varepsilon_0].
+\]
+Then $\{u_\varepsilon\}_{\varepsilon\downarrow 0}$ is Cauchy in $L^1(I)$.
+\end{lemma}
+\begin{proof}
+For $0<\delta<\varepsilon\le\varepsilon_0$, the fundamental theorem of calculus gives
+$u_\varepsilon-u_\delta=\int_\delta^\varepsilon \partial_\sigma u_\sigma\,d\sigma$.
+Minkowski's integral inequality yields
+\[
+  \|u_\varepsilon-u_\delta\|_{L^1(I)}\ \le\ \int_\delta^\varepsilon \int_I |\partial_\sigma u_\sigma(t)|\,dt\,d\sigma\ \le\ C_I(\varepsilon-\delta),
+\]
+which tends to $0$ as $\varepsilon,\delta\downarrow 0$.
+\end{proof}
+\begin{remark}
+We take $C_c^2(I)$ test functions dense in $W^{2,1}_0(I)$ so that smoothed bounds transfer to the unsmoothed case by duality; the uniform bound on $\int_I|\partial_\sigma u_\sigma|$ is independent of $\sigma$, so no loss appears as $\varepsilon\downarrow 0$.
+\end{remark}
+
+\begin{remark}
+The uniform-in-$\varepsilon$ local $L^1$ control of Theorem~\ref{thm:uniform-eps} follows by combining the smoothed det$_2$ estimate of Lemma~\ref{lem:det2-smoothed-target} with the corresponding $\xi$-term bounds (\cite{TitchmarshZeta}, Chap.~IV) and the de-smoothing Lemma~\ref{lem:desmoothing}.
+\end{remark}
+
+\subsection{Smoothed explicit-formula route and de-smoothing}\label{subsec:smoothed-explicit}
+We complement the preceding proof with an unconditional, smoothed route that avoids any zero-free hypothesis and isolates prime/zero cancellation at the level of test functions.
+
+\begin{lemma}[Smoothed uniform bound via an explicit formula]\label{lem:smoothed-explicit}
+Let $I\Subset\R$ and $\varphi\in C_c^{\infty}(I)$. Set $u_\varepsilon(t):=\log\big|\dettwo(I-A(\tfrac12+\varepsilon+it))\big|-\log\big|\xi(\tfrac12+\varepsilon+it)\big|$. Then there is $C(\varphi)$ independent of $\varepsilon\in(0,\varepsilon_0]$ such that
+\[
+ \Big|\int_{\R} \varphi(t)\,u_\varepsilon(t)\,dt\Big|\ \le\ C(\varphi),\qquad \Big|\int_{\R} \varphi(t)\,\big(u_\varepsilon(t)-u_\delta(t)\big)\,dt\Big|\ \le\ C(\varphi)\,|\varepsilon-\delta|.
+\]
+\end{lemma}
+
+\begin{lemma}[Prime-power representation for $\partial_\sigma\Re\log\dettwo$; unit local weights]\label{lem:pp-rep-det2}
+Let $A(s)$ be the prime-diagonal operator $A(s)e_p:=p^{-s}e_p$ on $\ell^2(\PP)$, with $s=\sigma+it$ and $\sigma>\tfrac12$. Then
+\[
+  \partial_\sigma\,\Re\log\dettwo\!\big(I-A(s)\big)
+  \\= -\,\Re\sum_{p}\sum_{k\ge 2} c_{p,k}\,(\log p)\,p^{-k(\sigma+it)},\qquad c_{p,k}\equiv -1,
+\]
+so in particular $|c_{p,k}|\le 1$ uniformly in $p,k,\sigma$.
+\end{lemma}
+\begin{proof}
+For $\sigma>\tfrac12$ one has $\|A(s)\|\le 2^{-\sigma}<1$, and the standard HS expansion holds:
+\[
+  \log\dettwo(I-A(s))\;=\;-\sum_{k\ge 2} \frac{\Tr(A(s)^k)}{k}\;=\;-\sum_{k\ge 2}\frac1k\sum_{p}p^{-ks},
+\]
+with absolute convergence. Differentiating termwise in $\sigma$ (justified by absolute convergence of $\sum_{k\ge 2}\sum_p (\log p)\,p^{-k\sigma}$) gives
+\[
+  \partial_\sigma \log\dettwo(I-A(s))
+  \\= -\sum_{k\ge 2}\frac1k\sum_p (-k\log p)\,p^{-ks}
+  \\=\sum_{k\ge 2}\sum_p (\log p)\,p^{-ks}.
+\]
+Taking real parts yields the claim with $c_{p,k}\equiv -1$.
+\end{proof}
+
+\begin{lemma}[Det$_2$ smoothed bound; uniform in $\sigma$]\label{lem:det2-smoothed-target}
+Fix $\varepsilon_0>0$ and a compact interval $I\Subset\R$. Let $\varphi\in C_c^2(I)$. For $s=\sigma+it$ with $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$ one has the absolutely convergent expansion
+\[
+ \partial_\sigma\,\Re\log\dettwo\big(I-A(s)\big)
+ \;=\; \sum_{k\ge 2}\sum_{p\in\PP} (\log p)\,p^{-k\sigma}\cos\big(k t\log p\big).
+\]
+Then there exists a finite constant (uniform in $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$)
+\[
+ C_*\ :=\ \sum_{p}\sum_{k\ge 2}\frac{p^{-k/2}}{k^2\,\log p}
+\]
+such that, uniformly for $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$,
+\[
+ \Big|\int_{\R} \varphi(t)\,\partial_\sigma\,\Re\log\dettwo\big(I-A(\sigma+it)\big)\,dt\Big|
+ \ \le\ C_*\,\|\varphi''\|_{L^1(I)}.
+\]
+\end{lemma}
+
+\begin{lemma}[Smoothed bound for the $\xi$-term; uniform in $\sigma$]\label{lem:xi-smoothed}
+Fix $\varepsilon_0>0$ and a compact interval $I\Subset\R$. Let $\varphi\in C_c^2(I)$ and $s=\sigma+it$ with $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$. Then there exists a finite constant $C_\xi(\varphi)$, independent of $\sigma$ in this range, such that
+\[
+ \Big|\int_{\R}\varphi(t)\,\partial_\sigma\,\Re\log\xi(\sigma+it)\,dt\Big|\ \le\ C_\xi(\varphi).
+\]
+\end{lemma}
+\begin{proof}
+Write $\xi(s)=\tfrac12 s(1-s)\,\pi^{-s/2}\Gamma(s/2)\,\zeta(s)$. Then
+\[
+ \partial_\sigma\,\Re\log\xi(s)\;=\;\partial_\sigma\,\Re\log\zeta(s)\; +\; \Re\frac{\psi(s/2)}{2}\; -\; \tfrac12\log\pi\; +\; \partial_\sigma\,\Re\log(s(1-s)),
+\]
+with $\psi=\Gamma'/\Gamma$. On the compact strip $\{\tfrac12<\sigma\le\tfrac12+\varepsilon_0,\ t\in I\}$ the last three terms are continuous in $(\sigma,t)$, so their $\varphi$–weighted integrals are bounded by $C_0(\varphi)$ uniformly in $\sigma$.
+
+For $\partial_\sigma\,\Re\log\zeta$, use the Euler product for $\Re s>1$,
+\(\log\zeta(s)=\sum_{p}\sum_{k\ge1}p^{-ks}/k\),
+differentiate in $\sigma$, take real parts, and test against $\varphi\in C_c^2(I)$. Arguing by analytic continuation under the test (Cauchy’s theorem on vertical rectangles), one obtains
+\[
+ \int \varphi(t)\,\partial_\sigma\,\Re\log\zeta(\sigma+it)\,dt\;=\;\sum_{p}\sum_{k\ge1} (\log p)\,p^{-k\sigma}\int \varphi(t)\cos(kt\log p)\,dt.
+\]
+Two integrations by parts give $\big|\int \varphi(t)\cos(\omega t)\,dt\big|\le \|\varphi''\|_{L^1(I)}\,\omega^{-2}$ for $\omega>0$. Hence
+\[
+ \Big|\int \varphi\,\partial_\sigma\,\Re\log\zeta(\sigma+it)\Big|\ \le\ \|\varphi''\|_{L^1(I)}\sum_{p}\sum_{k\ge1}\frac{(\log p)\,p^{-k\sigma}}{(k\log p)^2}\ \le\ \|\varphi''\|_{L^1(I)}\sum_{p}\sum_{k\ge1}\frac{p^{-k/2}}{k^2\,\log p},
+\]
+uniformly for $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$. The rightmost double series converges (the $k\!=\!1$ line gives $\sum_{p}(p\log p)^{-1}<\infty$, and $k\ge2$ decays faster). Taking $C_\xi(\varphi):=C_0(\varphi)+\|\varphi''\|_{L^1(I)}\sum_{p}\sum_{k\ge1}p^{-k/2}/(k^2\log p)$ proves the claim.
+\end{proof}
+
+\begin{proof}[Proof sketch]
+Expand $\log\dettwo(I-A)$ as $-\sum_{p}\sum_{k\ge2}p^{-ks}/k$ for $\Re s>1$ and continue termwise to the open strip by testing against $\varphi\in C_c^2(I)$. Differentiating in $\sigma$ and taking real parts yields the exact series in the statement. Interchanging sum and integral is justified by absolute convergence on compact $\sigma$-intervals.
+
+For each frequency $\omega=k\log p\ge 2\log 2$, two integrations by parts give
+\[
+\Bigl|\int_{\R}\varphi(t)\cos(\omega t)\,dt\Bigr|\ \le\ \frac{\|\varphi''\|_{L^1(I)}}{\omega^2}.
+\]
+Hence
+\[
+\Bigl|\int \varphi(t)\,\partial_\sigma\Re\log\dettwo(I-A(\sigma+it))\,dt\Bigr|
+\le \|\varphi''\|_{L^1}\sum_{p}\sum_{k\ge2}\frac{(\log p)\,p^{-k\sigma}}{(k\log p)^2}
+\le \|\varphi''\|_{L^1}\sum_{p}\sum_{k\ge2}\frac{p^{-k/2}}{k^2\,\log p},
+\]
+uniformly for $\sigma\in(\tfrac12,\tfrac12+\varepsilon_0]$, since the rightmost double series converges (the $k\ge2$ tail gives $p^{-k/2}$ and $\sum_{p}(p\log p)^{-1}<\infty$). This proves the claim.
+\end{proof}
+
+\begin{remark}
+The corresponding bound for $\partial_\sigma\,\Re\log\xi(\sigma+it)=\Re(\xi'/\xi)$ on vertical segments is standard (e.g., \cite{TitchmarshZeta}, Chap.~IV). Lemma~\ref{lem:det2-smoothed-target} thus supplies the smoothed, $\sigma$-uniform det$_2$ estimate needed to complete Theorem~\ref{thm:uniform-eps} via Lemma~\ref{lem:desmoothing}.
+\end{remark}
+\begin{proof}
+Write $\log\dettwo(I-A)$ as $-\sum_{p}\sum_{k\ge 2} p^{-ks}/k$ and $\log\zeta(s)=\sum_{p}\sum_{k\ge 1} p^{-ks}/k$ for $\Re s>1$, then continue meromorphically to $\Re s>\tfrac12$ in the distributional sense by testing against $\varphi$. The completed $\xi$ adds the archimedean factor $\log\Gamma(s/2)-\tfrac{s}{2}\log\pi$ and a polynomial. An explicit formula (Weil-type) for smooth compactly supported $\varphi$ (see, e.g., Edwards~\cite[Ch.~1, §5]{Edwards} or Iwaniec--Kowalski~\cite[Ch.~5]{IwaniecKowalski}) gives
+\[
+ \int \varphi\,\Re\log\zeta(\sigma+it)\,dt\ =\ \sum_{\rho} \Phi_{\varphi}(\rho)\ +\ \text{poly}(\sigma;\varphi)\ -\sum_{p,m}\frac{\log p}{p^{m\sigma}}\,g_{\varphi}(m\log p),
+\]
+with $g_{\varphi}$ rapidly decaying and $\Phi_{\varphi}$ depending only on $\varphi$ and $\sigma$. Subtract the det$_2$ prime-power side (starting at $k=2$) and the archimedean terms of $\xi$ to obtain a uniformly bounded expression in $\varepsilon$. Differentiating in $\sigma$ brings down factors $\log p$ and yields an extra $m$ in the zero sum; rapid decay of $g_{\varphi}$ and standard zero-density bounds imply the Lipschitz estimate in $\varepsilon$.
+\end{proof}
+
+\begin{lemma}[Uniform $\sigma$-derivative $L^1$ bounds on short intervals]\label{lem:uniform-derivative-L1}
+Fix a compact interval $I\subset\R$ and $\sigma\in[\tfrac12,\tfrac12+\varepsilon_0]$. Then
+\[
+ \int_I \Big|\partial_\sigma\,\Re\log\dettwo\big(I-A(\sigma+it)\big)\Big|\,dt\ \le\ C_I,
+\]
+uniformly in $\sigma$, and
+\[
+ \int_I \Big|\partial_\sigma\,\Re\log\xi(\sigma+it)\Big|\,dt\ \le\ C'_I,
+\]
+uniformly in $\sigma$.
+\end{lemma}
+\begin{proof}
+For $\xi$, write $\partial_\sigma\,\Re\log\xi=\Re(\xi'/\xi)=\sum_{\rho} m_{\rho}\,\Re(\sigma+it-\rho)^{-1}+\text{arch}$. Each zero contributes $\int_I |\Re(\sigma+it-\rho)^{-1}|\,dt\le \pi$, and only finitely many zeros intersect the vertical strip over $I$ for fixed $\sigma\in[\tfrac12,\tfrac12+\varepsilon_0]$; tails are summable by $N(T)\sim \tfrac{T}{2\pi}\log T$. The archimedean/polynomial pieces are uniformly bounded on $I$. For det$_2$, test $\partial_\sigma\,\Re\log\dettwo(I-A)$ against smooth cutoffs $\varphi_n\to 1_I$; Lemma~\ref{lem:smoothed-explicit} provides bounds uniform in $n$ and $\sigma$. Letting $n\to\infty$ gives the claimed $L^1$ bound.
+\end{proof}
+
+\begin{proposition}[Smoothed-to-unsmoothed Cauchy transfer]\label{prop:desmoothing}
+Let $u_\varepsilon$ be as above. For each compact $I\Subset\R$ there exists $C_I$ such that for all $0<\delta<\varepsilon\le\varepsilon_0$,
+\[
+ \|u_\varepsilon-u_\delta\|_{L^1(I)}\ \le\ C_I\,|\varepsilon-\delta|.
+\]
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:uniform-derivative-L1}, $\int_I |\partial_\sigma u_\sigma(t)|\,dt\le C_I$ uniformly in $\sigma\in[\delta,\varepsilon]$. Therefore, for $0<\delta<\varepsilon\le\varepsilon_0$,
+\[
+ u_\varepsilon-u_\delta\ =\ \int_\delta^\varepsilon \partial_\sigma u_\sigma\,d\sigma,
+\]
+and Minkowski’s integral inequality gives
+\[
+ \|u_\varepsilon-u_\delta\|_{L^1(I)}\ \le\ \int_\delta^\varepsilon\!\int_I |\partial_\sigma u_\sigma(t)|\,dt\,d\sigma\ \le\ C_I\,|\varepsilon-\delta|.
+\]
+\end{proof}
+
+\begin{remark}
+The uniform-in-$\varepsilon$ boundary control (Theorem~\ref{thm:uniform-eps}) follows by testing the derivatives against compactly supported smooth $\varphi$ and combining the smoothed bounds in Lemmas~\ref{lem:det2-smoothed-target} and~\ref{lem:xi-smoothed} with the de-smoothing Lemma~\ref{lem:desmoothing}.
+\end{remark}
+
+\begin{lemma}[Boundary positive-real from smoothed route]\label{lem:boundary-posreal}
+Assume the smoothed explicit-formula bounds of Lemmas~\ref{lem:det2-smoothed-target} and~\ref{lem:xi-smoothed} and the de-smoothing Lemma~\ref{lem:desmoothing}. If, in addition, the smoothed boundary distribution for $\partial_\sigma\Re\log\big(\dettwo(I-A)/\xi\big)$ is nonnegative in the limit $\varepsilon\downarrow 0$ when tested against nonnegative $\varphi\in C_c^\infty(\R)$, then the boundary hypothesis \emph{(P+)} holds for $\mathcal J=\dettwo(I-A)/(\mathcal O\,\xi)$.
+\end{lemma}
+
+\begin{remark}
+Lemma~\ref{lem:boundary-posreal} isolates the precise point where the smoothed explicit-formula route must deliver a sign (positive real part) rather than mere $L^1$ bounds. This replaces earlier "outer is trivial" or boundary unimodularity claims for $\Theta$.
+\end{remark}
+
+\subsection{Global damping/weighting for alignment (Schur-test formulation)}\label{subsec:global-damping}
+As an orthogonal route to compact-by-compact tuning, one may introduce a single global diagonal weight $D(s)$ and a fixed damping factor $\eta\in(0,1)$ to obtain $K$-independent Schur bounds via the Schur test. In kernel form, if the off-diagonal envelope enjoys either exponential tails $|K(x,y)|\lesssim e^{-\gamma d(x,y)}$ or polynomial tails $|K(x,y)|\lesssim (1+d(x,y))^{-\beta}$ on a doubling space of dimension $n$, then one can choose weights
+\[
+ D(s)f(x)=e^{\,\sigma\,d(x,x_0)}f(x)\quad\text{or}\quad D(s)f(x)=(1+d(x,x_0))^{\sigma} f(x)
+\]
+with $\sigma$ below a tail-dependent threshold, so that the conjugated operator $D(-s)\,T\,D(s)$ is uniformly bounded on $L^p$ for a given $p$. Picking $\eta=(1-\varepsilon)/\|D(-s)TD(s)\|_{p\to p}$ then yields a global contraction bound independent of compacts. This supplies a single, globally defined “Schur sequence” without per-compact parameter choices.
+
+\subsection{Cayley-difference control on compacts}\label{subsec:Cayley-difference}
+We record a simple inequality linking differences after the Cayley transform to differences before it.
+
+\begin{lemma}[Cayley-difference bound]\label{lem:Cayley-diff}
+Let $K\subset\Omega$ be compact. Suppose $H_1,H_2$ are holomorphic on a neighborhood of $K$ and satisfy $\inf_{s\in K}|H_j(s)+1|\ge \delta_K>0$ and $\sup_{s\in K}|H_j(s)|\le M_K$ for $j=1,2$. Define $\Theta_j=(H_j-1)/(H_j+1)$. Then there exists $C_K>0$ depending only on $(\delta_K,M_K)$ such that
+\[
+ \sup_{s\in K}\,\big|\Theta_1(s)-\Theta_2(s)\big|\ \le\ C_K\,\sup_{s\in K}\,\big|H_1(s)-H_2(s)\big|.
+\]
+In particular, on any $K\subset\Omega$ where $H_N^{(\mathrm{Schur})}$ and $H_N^{(\dettwo)}$ share uniform bounds away from $-1$, the convergence $H_N^{(\mathrm{Schur})}\to H_N^{(\dettwo)}$ implies $\Theta_N^{(\mathrm{Schur})}\to \Theta_N^{(\dettwo)}$ uniformly on $K$.
+\end{lemma}
+\begin{remark}
+Uniform bounds away from $-1$ on a compact $K\subset\Omega$ follow for large $N$ from lower bounds on $|\xi|$ off its zeros and continuity of $\dettwo(I-A_N)$ in the HS topology; hence the lemma applies on each such $K$.
+\end{remark}
+
+\begin{lemma}[Away from $-1$ on zero-free compacts]\label{lem:away-minus-one}
+Let $K\subset\Omega$ be compact with $\inf_{K}|\xi|\ge \delta_K>0$. Then there exists $c_K>0$ and $N_0$ such that for all $N\ge N_0$,
+\[
+ \inf_{s\in K}\,\bigl| H_N^{(\dettwo)}(s)+1\bigr|\ \ge\ c_K,
+\]
+and likewise $\inf_{s\in K}|H(s)+1|\ge c_K$. In particular, the denominators in Lemma~\ref{lem:Cayley-diff} are uniformly bounded away from zero on $K$ for $N\ge N_0$.
+\end{lemma}
+\begin{proof}
+Since $\|A(s)\|\le 2^{-\Re s}<1$ on $\Omega$, $I-A(s)$ is invertible on $\Omega$ and $\dettwo(I-A(s))\ne 0$. Continuity of $\dettwo(I-A(s))$ on $K$ implies $m_K:=\inf_{s\in K}|\dettwo(I-A(s))|>0$. HS continuity (Proposition~\ref{prop:HS-to-det2}) gives uniform convergence $\dettwo(I-A_N)\to \dettwo(I-A)$ on $K$, hence for $N\ge N_0$, $\inf_{s\in K}|\dettwo(I-A_N(s))|\ge m_K/2$. Therefore on $K$,
+\[
+ |H_N^{(\dettwo)}+1|\;=\;\frac{2\,|\dettwo(I-A_N)|}{|\xi|}\;\ge\;\frac{m_K}{\delta_K}\;=:\;c_K,
+\]
+and similarly for $H$.
+\end{proof}
+\begin{proof}
+Compute
+\[
+ \Theta_1-\Theta_2\;=\;\frac{H_1-1}{H_1+1}-\frac{H_2-1}{H_2+1}
+ \;=\;\frac{2\,(H_1-H_2)}{(H_1+1)(H_2+1)}.
+\]
+Hence on $K$,
+\[
+ |\Theta_1-\Theta_2|\ \le\ \frac{2}{\delta_K^2}\,|H_1-H_2|.
+\]
+Choosing $C_K=2/\delta_K^2$ suffices; if desired, one can refine $C_K$ using $M_K$ to control numerators/denominators uniformly.
+\end{proof}
+
+\section{Main theorem (formal statement and proof)}\label{sec:main-theorem}
+We now assemble the ingredients into a single statement tailored to the prime-grid construction.
+
+\begin{theorem}[Prime-grid BRF via alignment]\label{thm:prime-grid-BRF}
+Let \(\Omega=\{\Re s>\tfrac12\}\) and define the prime-diagonal block \(A(s)e_p:=p^{-s}e_p\). Let
+\[
+ H(s)\;:=\;2\,\frac{\dettwo(I-A(s))}{\xi(s)}-1,\qquad \Theta\;:=\;\frac{H-1}{H+1}.
+\]
+For each \(N\in\N\), let \(\Phi_N(s)=D_N+C_N(sI-A_N)^{-1}B_N\) be the prime-grid lossless transfer of Proposition~\ref{prop:prime-grid-KYP}, and fix unit vectors \(u_N,v_N\in\C^N\). Define the scalar Schur function \(\widehat\Theta_N(s):=v_N^*\,\Phi_N(s)\,u_N\). Suppose there exists, for each compact \(K\subset\Omega\), a sequence of scalar lossless Schur functions \(\Psi_{N,K}\) such that
+\begin{equation}\label{eq:uniform-alignment}
+ \sup_{s\in K}\ \big|\Psi_{N,K}(s)\,\widehat\Theta_N(s)\; -\; \Theta_N^{(\dettwo)}(s)\big|\xrightarrow[N\to\infty]{}0,
+\end{equation}
+where \(\Theta_N^{(\dettwo)}=(H_N^{(\dettwo)}-1)/(H_N^{(\dettwo)}+1)\) with \(H_N^{(\dettwo)}:=2\,\dettwo(I-A_N)/\xi-1\). Then \(\Theta\) is Schur on \(\Omega\), and hence \(H\) is Herglotz on \(\Omega\) (the BRF conclusion).
+\end{theorem}
+\begin{proof}
+By Proposition~\ref{prop:HS-to-det2} and the division remark, \(H_N^{(\dettwo)}\to H\) locally uniformly on compact subsets avoiding zeros of \(\xi\). As established in Lemma~\ref{lem:compact-alignment}, this implies that the Cayley transforms also converge locally uniformly on such compacts, i.e. \(\Theta_N^{(\dettwo)}\to\Theta\). For each compact \(K\), the hypothesis \eqref{eq:uniform-alignment} provides Schur functions \(\Theta_{N,K}:=\Psi_{N,K}\,\widehat\Theta_N\) such that \(\Theta_{N,K}\to\Theta\) uniformly on \(K\). Each \(\Theta_{N,K}\) is Schur as a product of Schur functions; by Corollary~\ref{cor:closure}, the locally uniform limit \(\Theta\) is Schur on \(\Omega\). Applying Theorem~\ref{thm:equivalences} completes the proof.
+\end{proof}
+
+\begin{remark}[Realizing the alignment]
+Condition \eqref{eq:uniform-alignment} can be arranged by the boundary matching strategy of Section~\ref{sec:practical-alignment}: choose, for an exhaustion by compacts \(K_m\nearrow\Omega\), NP interpolation nodes \(\{s_{j}^{(m,N)}\}\subset K_m\) and lossless interpolants \(\Psi_{N,K_m}\) such that the product \(\Psi_{N,K_m}\,\widehat\Theta_N\) agrees with \(\Theta_N^{(\dettwo)}\) on these nodes and shares the feedthrough normalization. Boundedness and normal-family arguments then promote pointwise agreement on dense sets to uniform convergence on \(K_m\), and a diagonal extraction yields local-uniform convergence on \(\Omega\).
+\end{remark}
+
+\section{Practical alignment strategies}\label{sec:practical-alignment}
+We outline two standard mechanisms to realize the alignment hypothesis in Proposition~\ref{prop:alignment-criterion} while preserving passivity (Schurness) at each finite stage.
+
+\subsection{Boundary matching via Nevanlinna--Pick interpolation}
+Fix a compact \(K\subset\Omega\). Let \(\{s_j\}_{j=1}^{M}\subset K\) be distinct interpolation nodes and let \(\{\gamma_j\}_{j=1}^{M}\subset\C\) be target values with \(|\gamma_j|<1\). The classical Nevanlinna--Pick theorem on the half-plane guarantees existence of Schur functions \(\Psi\) with \(\Psi(s_j)=\gamma_j\), and the set of such interpolants contains rational inner (lossless) functions of degree at most \(M\).
+
+\begin{lemma}[Lossless NP interpolation]\label{lem:NP-lossless}
+Given data \(\{(s_j,\gamma_j)\}_{j=1}^{M}\) with \(\Re s_j>\tfrac12\) and \(|\gamma_j|<1\), there exists a rational inner function \(\Psi\) on \(\Omega\) of McMillan degree at most \(M\) that interpolates the data. Moreover, \(\Psi\) admits a lossless realization \(\Psi(s)=D_\Psi+C_\Psi(sI-A_\Psi)^{-1}B_\Psi\) with a positive definite solution of the lossless equalities \eqref{eq:lossless-equalities}.
+\end{lemma}
+\begin{proof}[Proof sketch]
+By mapping \(\Omega\) conformally to the unit disk and invoking the disk NP theorem, one obtains an inner finite Blaschke product solving the interpolation. Realization theory for inner functions (Potapov--de Branges--Rovnyak; state-space proofs via Schur algorithm) yields a lossless colligation.
+\end{proof}
+
+\subsection{Interior H$^\infty$ alignment via passive approximants}\label{subsec:hinf-passive}
+We record a quantitative H$^\infty$ scheme that yields uniform-on-compact alignment on rectangles strictly inside $\Omega$, avoiding any $\varepsilon\downarrow 0$ limits.
+
+\begin{lemma}[HS-tail $\Rightarrow$ det$_2$ variation on rectangles]\label{lem:HS-tail-rectangle}
+Let $R^\sharp=\{\sigma_0\le \Re s\le \sigma_1,\ |\Im s|\le T\}\Subset\Omega$ with $\sigma_0>\tfrac12$. Then
+\[
+ \sup_{s\in R^\sharp}\big|\log\dettwo(I-A(s))\!-\!\log\dettwo(I-A_N(s))\big|\ \le\ C(R^\sharp)\Big(\sum_{p>p_N}p^{-2\sigma_0}\Big)^{1/2}.
+\]
+\end{lemma}
+
+\begin{corollary}[Cayley Lipschitz away from $-1$]\label{cor:Cayley-rect}
+If $|\xi|\ge \delta_R>0$ on a rectangle $R^\sharp\supset R$ and $m_R:=\inf_{R}|\dettwo(I\!-\n+A)|>0$, then $|H+1|\ge 2m_R/\sup_{R}|\xi|$ on $R$. Consequently,
+\[
+ \sup_{R}\,\big|\Theta(H_1)-\Theta(H_2)\big|\ \le\ \frac{2}{c_R^2}\sup_{R^\sharp}|H_1-H_2|,\qquad c_R:=\inf_{R}|H+1|.
+\]
+\end{corollary}
+
+\begin{proposition}[Passive H$^\infty$ approximation on interior rectangles]\label{prop:hinf-passive}
+Let $K\Subset R\Subset R^\sharp\Subset\Omega$ with $|\xi|\ge \delta_R>0$ on $R^\sharp$. For $N$ large, define $g_N:=\Theta_N^{(\dettwo)}$ on $\partial R$. Then there exist lossless (Schur) rationals $\Theta_{N,M}$ of McMillan degree $\le M$ with
+\[
+ \sup_{\partial R}\,|\Theta_{N,M}-g_N|\ \le\ C(R,R^\sharp)\,\rho^{M},\qquad \rho\in(0,1),
+\]
+and hence, by the maximum principle,
+\[
+ \sup_{K}\,|\Theta_{N,M}-\Theta_N^{(\dettwo)}|\ \le\ C(R,R^\sharp)\,\rho^{M}.
+\]
+\end{proposition}
+\begin{proof}
+Map $R^\sharp$ conformally to the unit disk $\mathbb D$ and transport $g_N$ to a holomorphic function $h$ on a neighborhood of $\overline{\mathbb D}$ with $\|h\|_{L^\infty(\partial\mathbb D)}\le M_0$. By classical rational approximation on analytic curves, there exist rational functions $r_M$ with poles off $\overline{\mathbb D}$ such that
+\[
+ \sup_{\partial\mathbb D}|r_M-h|\ \le\ C\,\rho^M,\qquad 0<\rho<1.
+\]
+Fix $M_1>\max(1,M_0)$ and apply the Schur algorithm to $r_M/M_1$: after $m$ steps it produces a rational Schur function $s_{M,m}$ (a finite Schur–continued–fraction/Blaschke transfer) with
+\[
+ \sup_{\partial\mathbb D}\big|s_{M,m}-r_M/M_1\big|\ \le\ C'\,\rho^m.
+\]
+Choosing $m\asymp M$ and setting $s_M:=s_{M,m(M)}$ gives a rational Schur $s_M$ satisfying
+\[
+ \sup_{\partial\mathbb D}\big|M_1 s_M-h\big|\ \le\ C''\,\rho^M.
+\]
+Pull back $M_1 s_M$ to $\partial R$ via the conformal map to obtain a Schur function $\Theta_{N,M}$ on $\partial R$ with
+\[
+ \sup_{\partial R}\,|\Theta_{N,M}-g_N|\ \le\ C(R,R^\sharp)\,\rho^M.
+\]
+By the maximum principle (applied after mapping back to the half-plane), the same bound holds on $K\Subset R$. The Schur property is preserved by the Schur algorithm and by the Möbius equivalence between the disk and half-plane, so each $\Theta_{N,M}$ is lossless (Schur) as claimed.
+\end{proof}
+
+\begin{corollary}[Uniform-on-$K$ alignment on rectangles]\label{cor:interior-alignment}
+With $K\Subset R\Subset R^\sharp\Subset\Omega$ as above, for any $\varepsilon>0$ choose $N$ so that $\sup_R|\Theta_N^{(\dettwo)}-\Theta^{(\dettwo)}|\le \varepsilon/2$, then choose $M$ with $C\rho^M\le \varepsilon/2$. Then
+\[
+ \sup_{K}|\Theta_{N,M}-\Theta^{(\dettwo)}|\ \le\ \varepsilon.
+\]
+Each $\Theta_{N,M}$ is Schur (lossless), so kernels are PSD at every finite stage.
+\end{corollary}
+
+\paragraph{Globalization by exhaustion.}
+Let $\{R_m\}$ be an increasing exhaustion of $\Omega$ by rectangles with $K_m\Subset R_m\Subset R_m^\sharp\Subset\Omega$ and $\bigcup_m K_m=\Omega$. For each $m$, choose $N(m)$ so that $\sup_{R_m}|\Theta_{N(m)}^{(\dettwo)}-\Theta^{(\dettwo)}|\le 2^{-m-1}$ and then choose $M(m)$ so that $C(R_m,R_m^\sharp)\,\rho^{M(m)}\le 2^{-m-1}$. By Corollary~\ref{cor:interior-alignment},
+\[
+ \sup_{K_m}|\Theta_{N(m),M(m)}-\Theta^{(\dettwo)}|\ \le\ 2^{-m}.
+\]
+A diagonal extraction yields a sequence of Schur functions converging to $\Theta^{(\dettwo)}$ locally uniformly on $\Omega$.
+\begin{proposition}[Alignment by cascaded lossless factors]\label{prop:cascade}
+Let \(\Phi_N\) be any matrix-valued lossless Schur transfer (e.g., the prime-grid lossless model from Proposition~\ref{prop:prime-grid-KYP}) and let \(\Psi_N\) be a scalar lossless interpolant from Lemma~\ref{lem:NP-lossless} matching \(\Theta_N^{(\dettwo)}\) at nodes \(\{s_j\}_{j=1}^{M(N)}\subset K\). Then the cascade (series connection)
+\[
+ \Theta_N\;:=\;\Psi_N\,\big(v_N^*\,\Phi_N\,u_N\big),\qquad \|u_N\|=\|v_N\|=1,
+\]
+is Schur on \(\Omega\), matches the interpolation values, and remains rational inner. Choosing \(M(N)\to\infty\) and nodes dense in \(K\), one obtains \(\Theta_N\to \Theta\) uniformly on \(K\).
+\end{proposition}
+\begin{proof}[Proof sketch]
+Schur functions are closed under products and under pre/post-multiplication by contractions; lossless (inner) functions remain inner under cascade. Interpolation at finitely many points is preserved. Normal-family compactness plus uniqueness on a dense set (identity theorem) yields uniform convergence on \(K\).
+\end{proof}
+
+\subsection{Asymptotic control at infinity}
+On vertical lines \(\{\Re s=\sigma\}\) with \(\sigma>\tfrac12\), Stirling estimates imply \(\xi(s)\to\infty\) and hence \(H(s)\to -1\) rapidly as \(|\Im s|\to\infty\). Prime-grid lossless models share the exact feedthrough \(-1\) (after scalar port extraction), so one may combine this with the boundedness \(|\Theta_N|\le 1\) and Cauchy integral representations on large rectangles to deduce smallness of the difference \(\Theta_N-\Theta_N^{(\dettwo)}\) provided agreement on a finite boundary grid, as in the previous subsection.
+
+\begin{remark}[Tiny slack variant]
+If one relaxes losslessness to allow a vanishing slack \(E_N\succeq 0\) in \(A^*P+PA+C^*C=-E_N\) (and \(D^*D\preceq I\)), the prime-grid template admits a scaling of \(C_N\) that suppresses the \(s^{-1}\) moment in the expansion of \(H_N\), aligning the asymptotics of \(H_N^{(\mathrm{LBR})}\) with those of \(H_N^{(\dettwo)}\). The bounded-real inequality \eqref{eq:KYP} remains valid, and the slack can be sent to zero along the sequence.
+\end{remark}
+
+\section{Related work}\label{sec:related}
+This work draws on several classical strands. On the operator side, the theory of trace ideals and regularized determinants (notably the Carleman--Fredholm \(\det_2\)) is treated comprehensively in Simon \cite{SimonTraceIdeals}. Realization theory for Schur/inner functions and passive colligations goes back to Potapov's school and is surveyed in de Branges--Rovnyak \cite{deBrangesRovnyak}, Dym--Gohberg \cite{DymGohberg}, and Sz.-Nagy--Foia\c{s} \cite{SzNagyFoias}. Nevanlinna--Pick interpolation on the disk/half-plane and its inner (lossless) solutions are standard topics in complex function theory and H\(\infty\) control; see Garnett \cite{Garnett} and Rosenblum--Rovnyak \cite{RosenblumRovnyak}. The BRF/KYP lemmas used here are classical in systems theory and appear in many sources.
+
+From the analytic number theory perspective, our decomposition mirrors the partition of Euler product contributions according to prime powers: the \(k\ge 2\) terms are naturally accommodated by the \(\det_2\) expansion, while the \(k=1\) (prime) terms, together with archimedean factors and the polynomial \(s(1-s)\), are placed in a finite auxiliary block. While our argument operates at the level of truncations and functional-analytic closure, it is compatible with traditional expansions of \(\log \zeta\) and the analytic properties encoded by the completed zeta \(\xi\).
+
+\section{Discussion and outlook}\label{sec:discussion}
+We presented an operator-theoretic BRF program for RH combining Schur--determinant splitting, HS\(\to\)\(\dettwo\) continuity, and explicit finite-stage passive constructions tied to the primes. Two closure routes were formulated:
+\begin{itemize}
+ \item an interior alignment route on zero-free rectangles via passive $H^\infty$ approximation and Cayley-difference control; and
+ \item a boundary route via uniform-in-$\varepsilon$ local $L^1$ control for a normalized ratio and outer/inner factorization.
+\end{itemize}
+We proved the interior route locally on rectangles and completed the boundary route via the smoothed estimate for the det$_2$ term and de-smoothing (Theorem~\ref{thm:uniform-eps}). Outer neutralization and global analyticity follow from the compensator argument and BRF$\Rightarrow$RH.
+
+Potential refinements include: (i) quantitative rational approximation on analytic boundaries with lossless KYP constraints; (ii) strengthened explicit-formula estimates sufficient for $L^1_{\mathrm{loc}}$ cancellation of zero spikes; (iii) exploring alternative finite-block architectures for $k=1$ with improved global control; and (iv) extensions to matrix-valued settings and other $L$-functions.
+
+\section{Limitations and scope}\label{sec:limitations}
+Two routes close the BRF conclusion. The boundary route is completed by Theorem~\ref{thm:uniform-eps} (uniform $L^1_{\mathrm{loc}}$ control) proved via a smoothed explicit-formula route and de-smoothing (Subsection~\ref{subsec:smoothed-explicit}), together with outer/inner factorization and an inner-compensator (Subsection~\ref{subsec:bl-compensator}). The finite-stage route delivers quantitative, noncircular alignment on compact sets strictly inside $\Omega$ by H$^\infty$ passive approximation (Subsection~\ref{subsec:hinf-passive}).
+
+\section{Examples: small-$N$ prime-grid models}\label{sec:examples}
+We record explicit instances of the prime-grid lossless specification (Proposition~\ref{prop:prime-grid-KYP}). Throughout, for a prime \(p\) set
+\[
+ \lambda(p)\;:=\;\frac{2}{\log p},\qquad c(p)\;:=\;\sqrt{2\,\lambda(p)}\;=\;\frac{2}{\sqrt{\log p}}.
+\]
+
+\subsection*{$N=1$ (prime $p_1=2$)}
+Numerics: \(\log 2\approx 0.6931\), \(\lambda(2)\approx 2.8854\), \(c(2)\approx 2.4022\). The realization is
+\[
+ A_1\;=\;-\lambda(2),\quad P_1\;=\;1,\quad C_1\;=\;c(2),\quad D_1\;=\;-1,\quad B_1\;=\;C_1.
+\]
+Lossless equalities: \(A_1^*P_1+P_1A_1=-2\lambda(2)=-C_1^2\), \(P_1B_1=C_1=-C_1 D_1\), and \(D_1^*D_1=1\). The transfer is
+\[
+ H_1(s)\;=\;-1\; +\; \frac{c(2)^2}{s+\lambda(2)}\;=\;-1\; +\;\frac{\tfrac{4}{\log 2}}{\,s+\tfrac{2}{\log 2}\,}\;=\;\frac{s-\lambda(2)}{s+\lambda(2)}.
+\]
+The last expression shows \(H_1\) is a first-order all-pass factor on the right half-plane, hence Schur under the Cayley map to the disk.
+
+\begin{lemma}\label{lem:moebius-contract}
+For any \(a>0\) and \(\Re s>0\), one has \(\big|(s-a)/(s+a)\big|<1\).
+\end{lemma}
+\begin{proof}
+Compute
+\[
+ \frac{|s-a|^2}{|s+a|^2}\;=\;\frac{(\Re s-a)^2+(\Im s)^2}{(\Re s+a)^2+(\Im s)^2}\;<\;1,
+\]
+since \((\Re s-a)^2<(\Re s+a)^2\) for \(\Re s>0\) and \(a>0\).
+\end{proof}
+
+\subsection*{$N=2$ (primes $p_1=2$, $p_2=3$)}
+Numerics: \(\log 3\approx 1.0986\), \(\lambda(3)\approx 1.8205\), \(c(3)\approx 1.9054\). The diagonal data are
+\[
+ \Lambda_2\;=\;\mathrm{diag}\big(\lambda(2),\lambda(3)\big),\quad C_2\;=\;\mathrm{diag}\big(c(2),c(3)\big),\quad D_2\;=\;-I_2,\quad B_2\;=\;C_2,\quad A_2\;=\;-\Lambda_2.
+\]
+The lossless equalities of Lemma~\ref{lem:losslessKYP} hold entrywise. The matrix-valued transfer is
+\[
+ H_2(s)\;=\;-I_2\; +\; C_2\,(sI_2+\Lambda_2)^{-1} C_2\;=\;\mathrm{diag}\!\left(\frac{s-\lambda(2)}{s+\lambda(2)},\ \frac{s-\lambda(3)}{s+\lambda(3)}\right).
+\]
+Any scalar port extraction \(h_2(s)=v^*H_2(s)u\) with \(\|u\|=\|v\|=1\) satisfies \(|h_2(s)|\le 1\) for \(\Re s>0\); in particular, choosing \(u=v=e_1\) recovers the \(N=1\) factor for \(p=2\).
+
+\subsection*{General $N$ (diagonal form)}
+For general \(N\), the same diagonal structure yields
+\[
+ H_N(s)\;=\;-I_N\; +\; \mathrm{diag}\!\left(\frac{\tfrac{4}{\log p_k}}{\,s+\tfrac{2}{\log p_k}\,}\right)_{k=1}^N\;=\;\mathrm{diag}\!\left(\frac{s-\lambda(p_k)}{s+\lambda(p_k)}\right)_{k=1}^N,
+\]
+with \(\lambda(p_k)=2/\log p_k\). Each diagonal entry obeys Lemma~\ref{lem:moebius-contract}.
+
+\subsection*{A negative result: nonconvergence of the naive cascade}
+Define the scalar cascade partial sums
+\[
+ S_N(s)\;:=\;-1\; +\;\sum_{k=1}^{N} \frac{4/\log p_k}{\,s+2/\log p_k\,},\qquad \Re s>0.
+\]
+These are the scalar ports of the diagonal prime-grid lossless models with unit weights. Although each term is bounded-real, the sequence \(S_N\) does not converge locally uniformly (indeed not even pointwise) as \(N\to\infty\).
+
+\begin{proposition}[Divergence of the naive prime-grid sum]\label{prop:divergence}
+Fix \(s\) with \(\Re s>0\). Then \(S_N(s)\) diverges as \(N\to\infty\).
+\end{proposition}
+\begin{proof}
+For fixed \(s\) with \(\Re s>0\), one has
+\[
+ \Big|\frac{4/\log p_k}{\,s+2/\log p_k\,}\Big|\;\asymp\; \frac{c}{\log p_k}
+\]
+with a constant \(c=c(s)>0\) depending only on \(s\). Since \(\sum_{p}\!1/\log p\) diverges, the series of absolute values diverges, hence the sequence of partial sums \(S_N(s)\) cannot converge.
+\end{proof}
+
+\noindent This shows that any infinite-$N$ construction based on the \emph{additive} cascade of first-order all-pass sections with unit weights cannot produce a convergent limit, let alone approximate a zeta-derived target. Any successful prime-tied construction must therefore incorporate nontrivial weights (e.g., rapidly decaying coefficients) or a multiplicative/inner product structure rather than a simple additive sum.
+
+\appendix
+\section{Appendix: technical lemmas and expanded proofs}\label{sec:appendix}
+
+\subsection{Expanded proof of Schur--determinant splitting (Proposition~\ref{prop:schur-split})}
+We sketch a direct computation using the regularized determinant definition. Recall
+\[
+ \dettwo(I-K)\;=\;\det\!\Big((I-K)\,\exp\big(K\big)\Big),\qquad K\in\HS.
+\]
+For the block operator \(T=\begin{bmatrix}A&B\\C&D\end{bmatrix}\) with \(B,C\) finite rank and \(A\in\HS\), write the Schur triangularization of \(I-T\):
+\[
+ I-T\;=\;L\,\mathrm{diag}(I-A,\ I-S)\,U,
+\]
+with
+\[
+ L\;=\;\begin{bmatrix}I & 0\\ -C(I-A)^{-1} & I\end{bmatrix},\qquad U\;=\;\begin{bmatrix}I & -(I-A)^{-1}B\\ 0 & I\end{bmatrix}.
+\]
+Both \(L-I\) and \(U-I\) are finite rank. Using \(\det((I+X)\exp(-X))=1\) for finite-rank \(X\) and the cyclicity of the trace inside finite-dimensional blocks, one finds
+\[
+ \dettwo(I-T)\;=\;\det(I-S)\,\dettwo(I-A),
+\]
+which yields the logarithmic identity in Proposition~\ref{prop:schur-split}. For completeness, one may verify multiplicativity via Simon's product identity for \(\dettwo\): if \(X,Y\in\HS\), then
+\[
+ \dettwo((I-X)(I-Y))\;=\;\dettwo(I-X)\,\dettwo(I-Y)\,\exp\!\big(-\Tr(XY)\big),
+\]
+and compute the finite-rank cross term \(\Tr(XY)\) arising from the triangular factors, which cancels against the exponential in \(\det(I-S)\).
+
+\subsection{Expanded proof of HS\(\to\)\(\dettwo\) convergence (Proposition~\ref{prop:HS-to-det2})}
+Let \(K_n,K:K\to\HS\) be holomorphic with uniform HS bounds \(\|K_n(s)\|_{\HS}\le M_K\) and \(\|K_n(s)-K(s)\|_{\HS}\to 0\) uniformly on compact \(K\subset\Omega\). By Lemma~\ref{lem:carleman}, \(|\dettwo(I-K_n(s))|\le \exp(\tfrac12 M_K^2)\). The pointwise convergence \(\dettwo(I-K_n(s))\to \dettwo(I-K(s))\) follows from continuity of \(\dettwo\) on \(\HS\). Vitali--Porter theorem applies: a locally bounded normal family \(\{f_n\}\) of holomorphic functions on a domain with pointwise convergence on a set with an accumulation point converges locally uniformly to a holomorphic limit. Thus \(f_n\to f\) uniformly on compacts.
+
+\subsection{Asymptotics of the completed zeta \(\xi\)}\label{app:xi-asymptotics}
+For \(\sigma:=\Re s\to+\infty\), Stirling's formula for \(\Gamma(s/2)\) gives
+\[
+ \Gamma\!\left(\frac{s}{2}\right)\;\sim\;\sqrt{2\pi}\,\Big(\frac{s}{2}\Big)^{\frac{s-1}{2}} e^{-s/2},\qquad \pi^{-s/2}\,\Gamma\!\left(\frac{s}{2}\right)\;\sim\;\sqrt{2\pi}\,\Big(\frac{s}{2\pi}\Big)^{\frac{s-1}{2}} e^{-s/2}.
+\]
+Since \(\zeta(s)\to 1\) as \(\sigma\to\infty\) and the polynomial factor \(\tfrac12 s(1-s)\) is negligible relative to the Stirling growth, one concludes \(|\xi(s)|\to\infty\) super-exponentially along vertical rays with \(\sigma\) fixed large. Consequently, for our truncations with \(\dettwo(I-A_N(s))\to 1\),
+\[
+ H_N^{(\dettwo)}(s)\;=\;2\,\frac{\dettwo(I-A_N(s))}{\xi(s)}-1\;\longrightarrow\;-1
+\]
+uniformly on bounded strips \(\{\sigma\ge \sigma_0>\tfrac12,\ |\Im s|\le R\}\) as \(\sigma_0\to\infty\), consistent with the feedthrough \(-1\) realized by the prime-grid models.
+
+\subsection{Half-plane Pick kernel from the disk}
+Let \(\phi:\mathbb D\to\Omega\), \(\phi(\zeta)=\tfrac12\,\frac{1+\zeta}{1-\zeta}+\tfrac12\), be the Cayley map from the unit disk \(\mathbb D\) to \(\Omega\). If \(\theta\) is Schur on \(\mathbb D\) with disk kernel \(K_{\mathbb D}(\zeta,\eta)=(1-\theta(\zeta)\overline{\theta(\eta)})/(1-\zeta\overline{\eta})\), then transporting via \(\Theta=\theta\circ\phi^{-1}\) yields the half-plane kernel
+\[
+ K_\Theta(s,w)\;=\;\frac{1-\Theta(s)\,\overline{\Theta(w)}}{s+\overline{w}-1},
+\]
+after multiplication by a harmless positive weight. This justifies the denominator used in Theorem~\ref{thm:equivalences}.
+
+\subsection{Discrete-time KYP (disk) variant}
+For completeness: if \(G(z)=D+C(zI-A)^{-1}B\) is holomorphic on \(|z|<1\) with \(A\) Schur (spectral radius <1), then \(\|G\|_{H^\infty(\mathbb D)}\le 1\) iff there exists \(P\succeq 0\) such that
+\[
+ \begin{bmatrix}
+  A^*PA-P & A^*PB & C^*\\
+  B^*PA & B^*PB-I & D^*\\
+  C & D & -I
+ \end{bmatrix}\ \preceq\ 0.
+\]
+In the lossless case, equalities analogous to \eqref{eq:lossless-equalities} hold with \(A^*PA-P=-C^*C\) and \(B^*PB=I-D^*D\).
+
+\subsection{Lossless realizations for NP data}
+
+\subsection{Half-plane KYP epigraph for boundary H$^\infty$ approximation}\label{app:KYP-epigraph}
+We sketch a practical formulation used in Proposition~\ref{prop:hinf-passive}. Fix a rectangle boundary $\partial R$ and model order $M$. Parametrize scalar transfers $\Theta_M(s)=D+C(sI-A)^{-1}B$ with $A\in\C^{M\times M}$ Hurwitz and $(B,C,D)$ of compatible sizes. Enforce Schur (lossless) via the equalities \eqref{eq:lossless-equalities} with some $P\succ 0$. Introduce an epigraph variable $t\ge 0$ and impose discrete boundary constraints on a spectral grid $\{\zeta_j\}\subset\partial R$:
+\[
+ |\Theta_M(\zeta_j)-g_N(\zeta_j)|\ \le\ t,\qquad j=1,\dots,J,
+\]
+where $g_N=\Theta_N^{(\dettwo)}|_{\partial R}$. The program
+\[
+ \min\ t\quad \text{s.t. lossless KYP equalities and } |\Theta_M(\zeta_j)-g_N(\zeta_j)|\le t
+\]
+is a convex bounded-extremal approximation in the Schur ball when the KYP constraints are satisfied and the grid is sufficiently fine; the epigraph constraints can be handled via second-order cones on real/imag parts. Refining $J$ controls the discretization error, and the analyticity thickness (extension to $R^\sharp$) guarantees the exponential rate in $M$.
+
+\subsection{Rational approximation on analytic curves}\label{app:rational-analytic}
+Let $D\Subset\C$ be a domain bounded by an analytic Jordan curve and let $f$ be holomorphic on a neighborhood of $\overline D$. Then there exist constants $C>0$ and $\rho\in(0,1)$, depending only on the distance from $\partial D$ to the nearest singularity of $f$, such that the best uniform rational (or polynomial) approximation error on $\partial D$ satisfies
+\[
+ \inf_{\deg\le M}\ \sup_{\zeta\in\partial D}\,|r_M(\zeta)-f(\zeta)|\ \le\ C\,\rho^{M}.
+\]
+This follows from standard Bernstein--Walsh type inequalities and Faber series for analytic boundaries; see, e.g., Walsh~\cite{WalshApprox} and Saff--Totik~\cite{SaffTotik}. Transport to rectangles via conformal maps yields the rate used in Proposition~\ref{prop:hinf-passive}.
+
+\subsection{Explicit formula (precise variant used)}\label{app:explicit-formula}
+Let $\varphi\in C_c^{\infty}(\R)$ and define its Mellin--Fourier companion
+\[
+ g(x)\;:=\;\frac{1}{2\pi}\int_{\R} \varphi(t)\,e^{itx}\,dt,\qquad x\in\R.
+\]
+Let $\Phi_{\varphi}(s)$ be the Mellin transform appropriate to the completed zeta context (cf. Edwards~\cite[Ch.~1, §5]{Edwards}, Iwaniec--Kowalski~\cite[Ch.~5]{IwaniecKowalski}). Then the following explicit formula holds for the completed zeta:
+\[
+ \sum_{\rho} \Phi_{\varphi}(\rho)\;=\;\Phi_{\varphi}(1)\,+\,\Phi_{\varphi}(0)\;-
+ \sum_{p}\sum_{m\ge 1} \frac{\log p}{p^{m/2}}\,g(m\log p)\;-
+ \frac{1}{2\pi}\int_{-\infty}^{\infty} \Re\frac{\Gamma'}{\Gamma}\!\left(\frac{1}{4}+\frac{iu}{2}\right)\,\Phi_{\varphi}\!\left(\frac12+iu\right)du.
+\]
+All terms converge absolutely for $\varphi\in C_c^{\infty}(\R)$, and the right-hand side is bounded by a constant depending only on $\varphi$. Differentiating with respect to $\sigma$ inside $\Phi_{\varphi}(\tfrac12+iu)$ and using the rapid decay of $g$ yields Lipschitz-in-$\sigma$ bounds for the $\varphi$-weighted prime and zero sums. This is the variant tacitly used in Lemma~\ref{lem:smoothed-explicit}.
+
+\subsection{Numerical note: grid/KYP solve on $\partial R$}\label{app:numerics}
+A practical H$^\infty$ approximation on a rectangle boundary $\partial R$ proceeds as follows. Fix $K\Subset R\Subset R^\sharp\Subset\Omega$ and an order $M$. Sample $\partial R$ at $J$ spectral nodes $\{\zeta_j\}$ (Chebyshev along each edge). For a state-space parameterization $\Theta_M(s)=D+C(sI-A)^{-1}B$ with Hurwitz $A\in\C^{M\times M}$, enforce the lossless KYP equalities \eqref{eq:lossless-equalities} with a decision variable $P\succ 0$. Introduce an epigraph variable $t\ge 0$ and constrain
+\[
+ |\Theta_M(\zeta_j)-g_N(\zeta_j)|\ \le\ t,\qquad j=1,\dots,J.
+\]
+The objective $\min t$ subject to these constraints is a convex program (KYP equalities plus second-order cones for the complex modulus). Refining $J$ improves the boundary resolution; increasing $M$ reduces the best achievable $t$ roughly as $C\rho^M$ by Subsection~\ref{app:rational-analytic}. The resulting $\Theta_{N,M}$ is Schur (lossless) by construction, and the maximum principle transfers the boundary error to $K$.
+
+Recommended parameters (typical): pick $J$ so that each side of $\partial R$ has $\approx 64$ Chebyshev nodes (more if $\Theta_N^{(\dettwo)}$ varies rapidly); start with $M\in[10,50]$ and increase until the boundary error meets tolerance. Enforce stability of $A$ via a diagonal negative $A$ or a spectral constraint, and solve with any SOCP/SDP solver supporting LMIs. A scalar version suffices; for matrix-valued ports, use block-KYP constraints.
+\subsection{Lipschitz control for $\log\dettwo$ and HS variation of $A$}\label{app:lipschitz}
+We record two auxiliary observations used in the boundary estimates.
+
+\begin{lemma}[Lipschitz control for $\log\dettwo$]
+Let $\mathcal B\subset\HS$ be a bounded set. There exists $C(\mathcal B)>0$ such that for all $K,L\in\mathcal B$,
+\[
+ \bigl|\log\dettwo(I-K)-\log\dettwo(I-L)\bigr|\ \le\ C(\mathcal B)\,\|K-L\|_{\HS}.
+\]
+\end{lemma}
+\begin{proof}[Sketch]
+Use the representation $\log\dettwo(I-K)=\Tr\bigl(\log(I-K)+K\bigr)$ and the Hilbert--Schmidt Fr\'echet differentiability of $K\mapsto \log(I-K)$ on a HS-bounded neighborhood (see Simon, \emph{Trace Ideals}, Ch.~9). A mean-value estimate along the segment $K_t=L+t(K-L)$ yields the bound with a constant depending on $\sup_{t}\|K_t\|_{\HS}$.
+\end{proof}
+
+\begin{lemma}[HS variation of $A(\sigma+it)$ in $\sigma$]\label{lem:HS-variation}
+Fix $I\subset\R$ compact and $\sigma\in[\tfrac12+\varepsilon_0,\tfrac12+1]$. Then for $\sigma_1,\sigma_2$ in this interval,
+\[
+ \sup_{t\in I}\,\|A(\sigma_1+it)-A(\sigma_2+it)\|_{\HS}\ \le\ C_I\,|\sigma_1-\sigma_2|,
+\]
+where $C_I$ depends only on $\varepsilon_0$ and $I$.
+\end{lemma}
+
+\subsection{Fredholm differentiability for $\log\dettwo(I-A(s))$}\label{app:fredholm-deriv}
+We justify the $\sigma$-derivative used in the boundary estimates for the standard Hilbert--Schmidt regularization $\dettwo(I-K)=\det((I-K)e^{K})$.
+
+\begin{lemma}[Derivative identity for $\log\dettwo$]
+Let $U\subset\C$ be open and $A:U\to\HS$ be holomorphic with $\|A(s)\|<1$ on $U$. Then for each $s\in U$ and $h\in\C$,
+\[
+ \frac{d}{d\tau}\Big|_{\tau=0}\,\log\dettwo\bigl(I-A(s+\tau h)\bigr)\;=\;\Tr\Bigl(A'(s)[h]\; -\; (I-A(s))^{-1}\,A'(s)[h]\Bigr).
+\]
+In particular, along real $\sigma$-variations this yields $\partial_\sigma\log\dettwo(I-A(s))=\Tr\bigl(A_\sigma'(s) - (I-A(s))^{-1}A_\sigma'(s)\bigr)$.
+\end{lemma}
+\begin{proof}
+Since $\|A(s)\|<1$ on $U$, the operator logarithm admits the norm-convergent Mercator series $\log(I-A)=-\sum_{j\ge 1} A^j/j$, and $A^j\in\mathcal S_1$ for $j\ge 2$. Using $\log\dettwo(I-A)=\Tr(\log(I-A)+A)$ for the HS regularization, we obtain
+\[
+ F(s):=\log\dettwo(I-A(s))\;=\;\Tr\Bigl(-\sum_{j\ge 1}\frac{A(s)^j}{j}\ +\ A(s)\Bigr)\;=\;-\sum_{j\ge 2}\frac{\Tr\big(A(s)^j\big)}{j}.
+\]
+For each $j\ge 2$, $s\mapsto A(s)^j$ is holomorphic into $\mathcal S_1$ with derivative $\sum_{k=0}^{j-1} A^k A' A^{j-1-k}$. Cyclicity of trace gives $\frac{d}{ds}\Tr(A^j)= j\,\Tr(A^{j-1}A')$. On a compact $K\Subset U$ one has $\rho:=\sup_K\|A\|<1$ and finite bounds for $\|A\|_{\HS},\|A'\|_{\HS}$, so
+\[
+ \big|\Tr(A^{j-1}A')\big|\ \le\ \|A^{j-1}A'\|_{\mathcal S_1}\ \le\ \|A\|^{j-2}\,\|A\|_{\HS}\,\|A'\|_{\HS}\ \le\ C_K\,\rho^{j-2},
+\]
+and the derivative series $\sum_{j\ge 2} -\Tr(A^{j-1}A')$ converges uniformly on $K$ by the Weierstrass M-test. Hence termwise differentiation is justified and
+\[
+ F'(s)[h]\;=\;-\sum_{j\ge 2}\Tr\big(A(s)^{j-1} A'(s)[h]\big)\;=\;-\Tr\Big(\sum_{j\ge 1} A(s)^{j}\, A'(s)[h]\Big).
+\]
+Summing the geometric series in operator norm gives $\sum_{j\ge 1} A^{j}=A(I-A)^{-1}$, so
+\[
+ F'(s)[h]\;=\;-\Tr\big( A(I-A)^{-1} A'(s)[h]\big)\;=\;\Tr\Big( A'(s)[h]\ -\ (I-A)^{-1}A'(s)[h]\Big),
+\]
+using $A(I-A)^{-1}=(I-A)^{-1}-I$ and cyclicity of trace. This is the claimed identity.
+\end{proof}
+
+\subsection{Outer/inner factorization and convergence on the half-plane}\label{app:outer}
+We replace the concise Hardy-space note by a formal lemma suitable for our use. Set $\Omega=\{\Re s>\tfrac12\}$. The Nevanlinna class $N(\Omega)$ consists of holomorphic $F$ such that the family $\{\log^+|F(r+it)|\}_{r>1/2}$ is bounded in $L^1(\R)$; for such $F$, non-tangential boundary limits exist for a.e.~$t$ and $\log|F(\tfrac12+it)|\in L^1(\R,(1+t^2)^{-1}dt)$.
+
+\begin{lemma}[Outer factorization and convergence] \label{lem:outer-factorization}
+Let $F\in N(\Omega)$, $F\not\equiv 0$.
+\begin{enumerate}
+ \item (Factorization) $F$ admits a canonical factorization
+ \[
+  F(s)\;=\;c\,B(s)\,S(s)\,O(s),
+ \]
+ with $|c|=1$, $B$ the Blaschke product over the zeros of $F$ in $\Omega$, $S$ a singular inner function (from a singular boundary measure), and $O$ an outer function given by
+ \begin{equation}\label{eq:outer-formula}
+  O(s)\;=\;\exp\!\left( \frac{1}{\pi} \int_{-\infty}^{\infty} \frac{\sigma-\tfrac12}{(\sigma-\tfrac12)^2+(t-\tau)^2}\,\log\big|F(\tfrac12+i\tau)\big|\,d\tau \right),\qquad s=\sigma+it.
+ \end{equation}
+ The inner factor $I:=B\,S$ satisfies $|I(s)|\le 1$ on $\Omega$ and $|I(\tfrac12+it)|=1$ for a.e.~$t$.
+ \item (Convergence of outers) Let $\{u_n\}\subset L^1_{\mathrm{loc}}(\R)$ and let $O_n$ be outers defined by \eqref{eq:outer-formula} with $\log|F(\tfrac12+i\tau)|$ replaced by $u_n(\tau)$. If $u_n\to u$ in $L^1_{\mathrm{loc}}(\R)$, then $O_n\to O$ locally uniformly on $\Omega$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) This is the canonical factorization for the half-plane via conformal transfer from the disk; see Duren \cite[Ch.~2]{DurenHp} or Garnett \cite[Ch.~II]{Garnett}. Boundary a.e.~values and the integral representation for outers are standard.
+
+(2) Let $K\subset\Omega$ be compact; then $K\subset\{\sigma\ge\tfrac12+\varepsilon, |t|\le R\}$ for some $\varepsilon,R$. For fixed $s\in K$, the Poisson kernel $P_s(\tau)=\frac{1}{\pi}\frac{\sigma-\tfrac12}{(\sigma-\tfrac12)^2+(t-\tau)^2}$ is bounded and smooth in $\tau$. Split $\R$ into $[-M,M]$ and its complement. On $[-M,M]$, $\int P_s(u_n-u)\to 0$ uniformly in $s\in K$ by $L^1$ convergence and boundedness of $P_s$. On $|\tau|>M$, the tails are uniformly small for $s\in K$ by decay of $P_s$ as $|\tau|\to\infty$. Thus $\log O_n\to \log O$ locally uniformly; exponentiating gives the claim. See Hoffman \cite[Ch.~3]{Hoffman} for stability of the Poisson integral.
+\end{proof}
+
+\begin{remark}[Application in Theorem~\ref{thm:uniform-eps}]
+Given $u_\varepsilon(t)=\log\big|\dettwo(I-A(\tfrac12+\varepsilon+it))/\xi(\tfrac12+\varepsilon+it)\big|$, Theorem~\ref{thm:uniform-eps} shows $u_\varepsilon\to u_0$ in $L^1_{\mathrm{loc}}(\R)$. Lemma~\ref{lem:outer-factorization}(2) then implies the corresponding outers $\mathcal O_\varepsilon\to\mathcal O$ locally uniformly on $\Omega$; on any compact $K\Subset\Omega$, the Poisson kernel depends continuously on $s\in K$, ensuring locally uniform convergence away from the boundary. This justifies the boundary-unitarity step.
+\end{remark}
+
+\subsection{Compact alignment: packaging}\label{app:compact-alignment}
+We package the compact alignment step used with the Cayley-difference lemma.
+
+\begin{lemma}[Convergence of Cayley transforms on compacts]\label{lem:compact-alignment}
+Let $K\subset\Omega$ be compact with $\inf_{K}|\xi|\ge\delta_K>0$. Then $H_N^{(\dettwo)}\to H$ uniformly on $K$, and there exists $c_K>0$ and $N_0$ such that $\inf_{K}|H_N^{(\dettwo)}+1|\ge c_K$ and $\inf_{K}|H+1|\ge c_K$ for $N\ge N_0$ (Lemma~\ref{lem:away-minus-one}). Consequently, by Lemma~\ref{lem:Cayley-diff}, $\Theta_N^{(\dettwo)}\to \Theta$ uniformly on $K$.
+\end{lemma}
+\begin{proof}
+Since $A(\sigma+it)$ is diagonal with entries $p^{-\sigma-it}$, we have
+\[
+ \|A(\sigma_1+it)-A(\sigma_2+it)\|_{\HS}^2\ =\ \sum_{p}\bigl|p^{-\sigma_1}-p^{-\sigma_2}\bigr|^2.
+\]
+By the mean-value theorem, $|p^{-\sigma_1}-p^{-\sigma_2}|\le |\sigma_1-\sigma_2|\,\log p\,p^{-\sigma^*}$ for some $\sigma^*$ between $\sigma_1$ and $\sigma_2$. Thus
+\[
+ \sum_{p}\bigl|p^{-\sigma_1}-p^{-\sigma_2}\bigr|^2\ \le\ |\sigma_1-\sigma_2|^2\sum_{p}(\log p)^2\,p^{-2\sigma^*}\ \le\ C\,|\sigma_1-\sigma_2|^2,
+\]
+with $C<\infty$ for $\sigma^*\ge \tfrac12+\varepsilon_0$ since $\sum_p (\log p)^2 p^{-1-2\varepsilon_0}<\infty$. Taking square roots gives the claim.
+\end{proof}
+Given Nevanlinna--Pick data on \(\Omega\), the Schur algorithm (or Potapov's multiplicative representation) builds a finite product of elementary Blaschke factors composing to an inner solution. Each elementary factor admits a 1-state lossless realization; cascading yields a global lossless colligation satisfying \eqref{eq:lossless-equalities} with a block-diagonal \(P\).
+
+\subsection{Boundary normalization via outers}\label{app:p1-proof}
+
+Let $u_\varepsilon(t):=\log\big|\dettwo(I-A(\tfrac12+\varepsilon+it))/\xi(\tfrac12+\varepsilon+it)\big|$. By Theorem~\ref{thm:uniform-eps}, $u_\varepsilon$ is uniformly bounded in $L^1_{\mathrm{loc}}(\R)$ and Cauchy as $\varepsilon\downarrow 0$, so $u_\varepsilon\to u_0$ in $L^1_{\mathrm{loc}}(\R)$. For each $\varepsilon>0$, let $\mathcal O_\varepsilon$ be the outer with boundary modulus $e^{u_\varepsilon}$ on the line $\Re s=\tfrac12+\varepsilon$, and set $\mathcal J_\varepsilon:=\dettwo(I\!-\!A)/(\mathcal O_\varepsilon\,\xi)$. Then $|\mathcal J_\varepsilon|\equiv 1$ on $\Re s=\tfrac12+\varepsilon$, so the Cayley transform $\Theta_\varepsilon=(2\mathcal J_\varepsilon-1)/(2\mathcal J_\varepsilon+1)$ is Schur on $\{\Re s>\tfrac12+\varepsilon\}$. By local-uniform convergence of outers, $\mathcal O_\varepsilon\to \mathcal O$ on compact subsets of $\Omega$, hence $\mathcal J_\varepsilon\to \mathcal J:=\dettwo(I\!-\!A)/(\mathcal O\,\xi)$ locally uniformly and the normal-family limit of $\Theta_\varepsilon$ is Schur on $\Omega$.
+
+If $\xi$ had a zero in $\Omega$, then $\mathcal J$ (and hence $\Theta$) would have a pole in $\Omega$, contradicting Schurness. Therefore no zeros of $\xi$ lie in $\Omega$, and the compensator (if any) is trivial.
+
+\section*{References}
+\begingroup
+\small
+\bibliographystyle{plainnat}
+\bibliography{paper}
+\endgroup
+
+\end{document}

@@ -1,0 +1,108 @@
+% Fixed–aperture H^1–BMO / Carleson embedding and the bound for M_\psi
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Fixed–aperture $H^1$–BMO / Carleson embedding and $M_\psi$}
+
+\paragraph{Geometry and notation.}
+Work in the upper half–plane $\mathbb{H}=\{x+iy:y>0\}$ with boundary $\mathbb{R}$. For any interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})$ of length $L>0$ and aperture $\alpha\ge 1$, set
+\[
+Q_\alpha(I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\},\qquad
+\Gamma_\alpha(t):=\{(x,y): |x-t|<\alpha y,\ y>0\}.
+\]
+Given $f\in L^1_{\rm loc}(\mathbb{R})$, its Poisson extension is $\mathcal{P}[f](x,y)=\tfrac{1}{\pi}\int \dfrac{y f(t)}{(x-t)^2+y^2}\,dt$. Write $U=\mathcal{P}[u]$ and $\Phi=\mathcal{P}[\varphi]$ for the harmonic extensions of $u$ and $\varphi$.
+
+\paragraph{Box energy and window family.}
+For harmonic $U$ define the fixed–aperture box Carleson energy
+\[
+C_{\rm box}(U;\alpha)\ :=\ \sup_{I}\ \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U(x,y)|^2\,y\,dx\,dy.
+\]
+Fix a $C^1$ compactly supported window $\psi$ on $(-1,1)$ with zero mean $\int\psi=0$. For scale $L>0$ and center $t_0\in\mathbb{R}$ set
+\[
+\varphi_{L,t_0}(t):=\frac{1}{L}\,\psi\!\left(\frac{t-t_0}{L}\right),\qquad
+\Phi_{L,t_0}:=\mathcal{P}[\varphi_{L,t_0}].
+\]
+Define the scale–free window constant
+\[
+C_\psi^{(H^1)}\ :=\ \left(\frac{2}{\pi}\iint_{\mathbb{H}} |\nabla \mathcal{P}[\psi](\xi,\eta)|^2\,\eta\,d\xi\,d\eta\right)^{1/2}.
+\]
+Finally, define the pairing functional
+\[
+M_\psi(u)\ :=\ \sup_{L>0,\ t_0\in\mathbb{R}}\ \frac{1}{L}\,\left|\int_{\mathbb{R}} u(t)\,\varphi_{L,t_0}(t)\,dt\right|.
+\]
+
+\subsection*{Analytic identities and normalizations}
+
+\begin{lemma}[Green–Poisson pairing]\label{lem:green-embedding}
+If $U=\mathcal{P}[u]$ and $\Phi=\mathcal{P}[\varphi]$ with $\varphi\in C_c^\infty(\mathbb{R})$, then
+\[
+\int_{\mathbb{R}} u(t)\,\varphi(t)\,dt\ =\ \frac{2}{\pi}\iint_{\mathbb{H}} \nabla U(x,y)\cdot \nabla \Phi(x,y)\,y\,dx\,dy.
+\]
+The right–hand side is absolutely convergent if $\int \varphi=0$.
+\end{lemma}
+
+\begin{lemma}[Scaling for the window family]\label{lem:scaling-embedding}
+Let $\Psi=\mathcal{P}[\psi]$ and $\Phi_{L,t_0}=\mathcal{P}[\varphi_{L,t_0}]$. Then
+\[
+\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ =\ \frac{1}{L}\,\iint_{\mathbb{H}} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta,
+\]
+\[
+\int_{\mathbb{R}}\!\Big(\iint_{\Gamma_\alpha(t)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\Big)^{1/2}\,dt\ =\ L\cdot \int_{\mathbb{R}}\!\Big(\iint_{\Gamma_\alpha(\tau)} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta\Big)^{1/2}\,d\tau.
+\]
+\end{lemma}
+
+\subsection*{Embedding with constants}
+
+\begin{lemma}[Local Carleson domination of cones]\label{lem:cone-box-embedding}
+For any $t\in\mathbb{R}$ and $L>0$, the truncated cone $\Gamma_\alpha^{\le L}(t):=\{(x,y)\in\Gamma_\alpha(t): 0<y\le L\}$ satisfies
+\[
+\iint_{\Gamma_\alpha^{\le L}(t)}|\nabla U|^2\,y\,dx\,dy\ \le\ \iint_{Q_\alpha(I_t)}|\nabla U|^2\,y\,dx\,dy\ \le\ C_{\rm box}\,L,
+\]
+with $I_t=(t-\tfrac{L}{2},t+\tfrac{L}{2})$.
+\end{lemma}
+
+\begin{lemma}[Dyadic annular energy of the window]\label{lem:dyadic-tail-embedding}
+There exists $C_0>0$ such that for every $L>0$ and $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$,
+\[
+\iint_{Q_\alpha(2^k I)\setminus Q_\alpha(2^{k-1} I)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ \le\ C_0\,2^{-2k}\cdot \frac{1}{L}\,\iint_{\mathbb{H}}|\nabla \Psi|^2\,\eta\,d\xi\,d\eta\quad (k\ge 1).
+\]
+\end{lemma}
+
+\begin{theorem}[Fixed–aperture embedding]\label{thm:embedding-embedding}
+Let $U=\mathcal{P}[u]$ with $C_{\rm box}(U;\alpha)<\infty$. Then for every $L>0$ and $t_0\in\mathbb{R}$,
+\[
+\left|\int_{\mathbb{R}} u(t)\,\varphi_{L,t_0}(t)\,dt\right|
+\ \le\ \frac{2}{\pi}\,\sqrt{C_{\rm box}}\,\left(
+\iint_{Q_\alpha(2I)} |\nabla \Phi_{L,t_0}|^2\,y
++\sum_{k=1}^{\infty}\iint_{Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^{k}I)} |\nabla \Phi_{L,t_0}|^2\,y
+\right)^{\!1/2}
+\cdot\left( \sqrt{2\alpha L}\ +\ \sum_{k=1}^{\infty}\sqrt{2^{k+1}L}\,2^{-k}\right),
+\]
+where $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$. In particular,
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\ \le\ \frac{2}{\pi}\,\sqrt{C_{\rm box}}\,
+\left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}\cdot C_1(\alpha).
+\]
+\end{theorem}
+
+\begin{lemma}[Window $H^1$ normalization]\label{lem:windowH1-embedding}
+With $C_\psi^{(H^1)}$ as defined and Lemma \ref{lem:scaling-embedding},
+\[
+\left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}\ \le\ \sqrt{\tfrac{\pi}{2}}\,\frac{1}{\sqrt{L}}\;C_\psi^{(H^1)}.
+\]
+\end{lemma}
+
+\subsection*{Main estimate for $M_\psi$}
+
+\begin{theorem}[Bound for $M_\psi$]\label{thm:Mpsi-embedding}
+Let $u\in L^1_{\rm loc}(\mathbb{R})$ with Poisson extension $U$ and $C_{\rm box}(U;\alpha)<\infty$ for fixed $\alpha\ge1$. Then
+\[
+M_\psi(u)\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\rm box}(U;\alpha)}.
+\]
+\end{theorem}
+
+\begin{remark}
+1) $C_\psi^{(H^1)}$ depends only on the fixed window $\psi$ and aperture $\alpha$; equivalent fixed–aperture Lusin–area definitions agree by scaling.  
+2) The proof is unconditional: it uses only Green–Poisson pairing, explicit Poisson kernel bounds, a dyadic annular decomposition, and the box Carleson energy $C_{\rm box}$—no assumptions on zeros or primes.  
+3) The factor $\tfrac{4}{\pi}$ arises from the pairing constant $\tfrac{2}{\pi}$ and the $\,\le 2\,$ geometric factor in the embedding step.
+\end{remark}

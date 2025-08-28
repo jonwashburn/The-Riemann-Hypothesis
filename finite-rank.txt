@@ -1,0 +1,126 @@
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Exact k=1 neutralization by ζ–normalized outer (replaces finite Schur port)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{lemma}[ζ–normalized outer neutralizes the $k=1$ prime layer]\label{lem:k1-outer-neutralization}
+Work on $\Omega=\{\Re s>\tfrac12\}$. Let $A(s)$ be the prime–diagonal operator used to define
+\[
+\mathcal J(s)\ :=\ \frac{\det_2\!\big(I-A(s)\big)}{\mathcal O(s)\,\xi(s)},\qquad
+F(s):=2\mathcal J(s),\qquad \Theta(s):=\frac{F(s)-1}{F(s)+1}.
+\]
+Assume $A$ is chosen so that for $\Re s>1$ one has 
+\[
+\Tr\!\big(A(s)^k\big)\ =\ \sum_{p}p^{-ks}\qquad(k\ge1).
+\]
+Then on the half–plane $\Re s>1$,
+\begin{equation}\label{eq:det2-zeta-k1}
+\log\!\Big(\det_2(I-A(s))\,\zeta(s)\Big)\ =\ \sum_{p}p^{-s},
+\end{equation}
+and hence $\det_2(I-A)/\zeta$ is the exponential of a holomorphic function with no zeros on $\{\Re s>1\}$.
+
+
+Let $u_p(t)$ denote the boundary datum
+\[
+u_p(t)\ :=\ \lim_{Y\to\infty}\ \sum_{p\le Y}p^{-1/2}\cos\!\big(t\log p\big)\ -\ c(Y),
+\]
+where $c(Y)$ is any real normalization making the Cesàro limit finite on compact $t$–intervals.\footnote{The choice of $c(Y)$ only shifts $\log|O_p|$ by a constant and does not affect derivatives or the certificate.}
+
+
+Define $O_p$ to be the outer function on $\Omega$ with boundary modulus $|O_p(\tfrac12+it)|=e^{u_p(t)}$, i.e.
+\[
+O_p(s)\ :=\ \exp\!\big( \mathsf P[u_p](s)\ +\ i\,\mathsf H[u_p](s)\big),
+\]
+where $\mathsf P$ is Poisson extension on $\Omega$ and $\mathsf H$ is the harmonic conjugation (Hilbert transform on the boundary).
+
+
+Then the following hold:
+\begin{enumerate}
+\item[(i)] $O_p$ is holomorphic, zero–free, and outer on $\Omega$. Its boundary phase satisfies
+\[
+\frac{d}{dt}\Arg O_p\!\big(\tfrac12+it\big)\ =\ \mathsf H\!\big[u_p'\big](t)\ =\ \mathsf H\!\Big[-\sum_p(\log p)\,p^{-1/2}\sin\!\big(t\log p\big)\Big]
+\]
+in the sense of tempered distributions.
+\item[(ii)] If we choose the global outer factor as
+\[
+\mathcal O(s)\ =\ O_p(s)\,O_{\mathrm{rest}}(s),
+\]
+where $O_{\mathrm{rest}}$ is the outer determined by the remaining boundary modulus of $\det_2(I-A)/\xi$, then the $k=1$ prime layer contributes \emph{only} through $O_p$ and hence vanishes \emph{identically} from the post–outer phase–velocity identity for $F=2\mathcal J$.
+\end{enumerate}
+Consequently, in the windowed certificate for $F$ the prime $k=1$ budget is
+\[
+C_P\ =\ 0.
+\]
+\end{lemma}
+
+
+\begin{proof}
+For $\Re s>1$, expand $\log\det(I-A)= -\sum_{k\ge1}\Tr(A^k)/k$ and use the definition of $\det_2$:
+\[
+\log\det_2(I-A)\ =\ \Tr\!\big(\log(I-A)+A\big)\ =\ -\sum_{k\ge2}\frac{1}{k}\,\Tr\!\big(A^k\big).
+\]
+Since $\log\zeta(s)=\sum_{k\ge1}\frac{1}{k}\sum_p p^{-ks}$, we obtain
+\[
+\log\!\Big(\det_2(I-A)\,\zeta\Big)
+=\ -\sum_{k\ge2}\frac{1}{k}\sum_p p^{-ks}\ +\ \sum_{k\ge1}\frac{1}{k}\sum_p p^{-ks}
+=\ \sum_{p}p^{-s},
+\]
+which is \eqref{eq:det2-zeta-k1}. Thus $\det_2(I-A)/\zeta=\exp\!\big(\sum_pp^{-s}\big)$ is holomorphic and zero–free for $\Re s>1$.
+
+
+On $\sigma=\tfrac12$, the real part of $\sum_pp^{-s}$ is the (Cesàro-regularized) boundary function $u_p(t)$. By construction of $O_p$ we have on the boundary
+\[
+\log\big|O_p(\tfrac12+it)\big|=u_p(t),\qquad 
+\frac{d}{dt}\Arg O_p(\tfrac12+it)=\mathsf H[u_p'](t),
+\]
+with equalities holding distributionally (standard outer/Herglotz theory on half–planes). Hence $O_p$ is outer and zero–free on $\Omega$.
+
+
+Now write
+\[
+G(s):=\frac{\det_2(I-A(s))}{\xi(s)}.
+\]
+Its boundary logarithmic modulus splits as
+\[
+\log|G(\tfrac12+it)|\ =\ u_p(t)\ +\ u_{\mathrm{rest}}(t),
+\]
+where $u_{\mathrm{rest}}$ collects the $k\ge2$ prime powers (from $\det_2$) and the archimedean $\Gamma$–part (from $\xi$). Let $O_{\mathrm{rest}}$ be the outer with boundary modulus $e^{u_{\mathrm{rest}}}$ and set $\mathcal O:=O_pO_{\mathrm{rest}}$. Then
+\[
+F(s)\ :=\ 2\,\frac{G(s)}{\mathcal O(s)}\quad \text{satisfies}\quad |F(\tfrac12+it)|=1\ \text{ a.e.,}
+\]
+and its boundary phase derivative obeys the standard phase–velocity law
+\[
+\int (-w'_F)\,\varphi_I
+\ =\ c_0(\psi)\,\mu\big(Q(I)\big)\ +\ \big\langle \mathsf H[u_F'],\ \varphi_I\big\rangle,
+\]
+with $u_F=\log|F|=0$. Using $w'_F=w'_G-(d/dt)\Arg \mathcal O$ and the outer–phase identity
+\[
+\frac{d}{dt}\Arg \mathcal O\ =\ \mathsf H\!\big[(u_p+u_{\mathrm{rest}})'\big]
+=\mathsf H[u_p']+\mathsf H[u_{\mathrm{rest}}'],
+\]
+we see that \emph{all} boundary–Hilbert contributions from $u_p$ (the $k=1$ layer) sit inside $(d/dt)\Arg O_p$ and are thus removed in passing from $G$ to $F$. Therefore the windowed certificate for $F$ has no $k=1$ prime term:
+\[
+C_P=0.
+\]
+\end{proof}
+
+
+\begin{corollary}[Certificate upper bound is tail\,+\,analytic only]\label{cor:CP-zero}
+With $\mathcal O=O_pO_{\mathrm{rest}}$ as in Lemma~\ref{lem:k1-outer-neutralization}, the windowed upper bound in the product certificate reads
+\[
+\int(-w'_F)\,\varphi_{L,t_0}\ \le\ \frac{2}{\pi}\,M_\psi\big(C_{\rm box}^{(\zeta)}\big),
+\]
+where $M_\psi$ depends only on the Whitney box energy from the prime–power tail ($k\ge2$) and the $\xi$–part. In particular, the prime $k=1$ budget satisfies $C_P=0$ and does not enter the right–hand side.
+\end{corollary}
+
+
+\begin{proof}
+By the lemma, the $k=1$ layer is carried entirely by the outer $O_p$ and thus absent from the post–outer Hilbert pairing. The standard $H^1$–BMO duality estimate then gives
+$\big|\langle \mathsf H[u_F'],\varphi_{L,t_0}\rangle\big|
+\le \frac{2}{\pi} C_\psi^{(H^1)}\sqrt{C_{\rm box}^{(\zeta)}}$, with $C_{\rm box}^{(\zeta)}=K_0+K_\xi$ from the tail and $\xi$ energies. This is exactly the displayed bound.
+\end{proof}
+
+
+\begin{remark}[Why the finite port was flawed and is unnecessary]
+A finite Schur complement cannot annihilate the infinitely many Fourier modes $\{t\mapsto \sin(t\log p)\}_{p}$ uniformly on all Whitney boxes; attempting to do so leaves an uncontrolled remainder and makes $C_P$ ill-defined. The ζ–normalized \emph{outer} absorbs the entire $k=1$ boundary modulus at once, and its boundary phase is precisely the Hilbert transform of that layer. Dividing by this canonical outer removes the $k=1$ contribution \emph{exactly}, so $C_P=0$ holds identically in the certificate.
+\end{remark}

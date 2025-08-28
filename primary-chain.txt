@@ -1,0 +1,90 @@
+﻿% ---------- Primary Chain (One-Page Roadmap to RH) ----------
+% Self-contained, no external refs/cites/URLs, no extra packages.
+% This page lists the exact sequence of statements that, taken together,
+% imply the Riemann Hypothesis (RH). Proofs of each statement are given later.
+
+
+\section*{Primary Chain: Statements Whose Combination Implies RH}
+
+
+\subsection*{Setup and Notation}
+Let \(\Omega:=\{\,s=\tfrac12+\sigma+it:\ \sigma>0\,\}\). On \(\ell^2(\mathcal P)\) define \(A(s)e_p:=p^{-s}e_p\). For \(\sigma>0\), \(A(s)\) is Hilbert–Schmidt and \(\det_{2}(I-A(s))\) is analytic on \(\Omega\).
+Let \(\xi(s)\) be the completed zeta function. Let \(\mathcal O(s)\) be a fixed outer/normalizing factor (explicitly defined later) so that
+\[
+\mathcal J(s):=\frac{\det_{2}(I-A(s))}{\mathcal O(s)\,\xi(s)}
+\quad\text{and}\quad
+\Theta(s):=\frac{2\mathcal J(s)-1}{2\mathcal J(s)+1}
+\]
+are well-defined and analytic on \(\Omega\setminus Z(\xi)\). Boundary values are always taken nontangentially.
+
+
+\subsection*{P1. Analyticity and Boundary Regularity}
+\emph{Statement.} \(2\mathcal J\) is analytic on \(\Omega\setminus Z(\xi)\) with nontangential boundary values almost everywhere on \(\partial\Omega\). The Cayley transform \(\Theta\) is analytic there as well. Growth is controlled by the outer normalization \(\mathcal O\).
+
+
+\subsection*{P2. Local Carleson Energy Bound and \(H^1\)–BMO Embedding}
+\emph{Statement.} For every Whitney box \(Q(\alpha I)\subset\Omega\) (fixed aperture \(\alpha\in[1,2]\)), the neutralized potential associated to the \(\xi\)–\(\det_2\)–\(\mathcal O\) field has area energy
+\[
+\iint_{Q(\alpha I)}|\nabla U|^2\,\sigma\,dt\,d\sigma \ \le\ C_{\mathrm{box}}\ |I|
+\]
+with a uniform constant \(C_{\mathrm{box}}\) (locked by printed inequalities). Consequently, the boundary control quantity \(M_\psi\) satisfies
+\[
+M_\psi \ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}}
+\]
+for a fixed window \(\psi\) and an \(H^1\) constant \(C_\psi^{(H^1)}\) (both locked).
+
+
+\subsection*{P3. Certificate (AAB) \(\Rightarrow\) Phase Corridor (P+)}
+\emph{Statement.} If the scalar certificate
+\[
+\Upsilon:=\frac{C_H(\psi)\,M_\psi + C_P(\kappa(T))}{c_0(\psi)}\ \le\ \tfrac12,\qquad C_P(\kappa(T))\le C_P^*,\ C_{\mathrm{far}}\le 0.05,\ C_{\mathrm{line}}\le 0.10,
+\]
+or equivalently the zero-side Carleson mass satisfies \(\mu(Q(I))\le(\pi/2)|I|\) for all relevant \(I\), then the boundary phase corridor holds:
+\[
+\text{(P+)}\qquad w(t)\in\big[-\tfrac{\pi}{2},\tfrac{\pi}{2}\big]\quad\text{for a.e. }t\text{ on }\partial\Omega.
+\]
+(All constants in \(\Upsilon\) are the printed, locked values; the implication is a purely analytic lemma.)
+
+
+\subsection*{P4. Poisson--Herglotz Transfer to Positive Real Part}
+\emph{Statement.} Under \textnormal{(P+)}, the Poisson representation yields
+\[
+\Re\big(2\mathcal J(s)\big)\ \ge\ 0\quad \text{for all } s\in\Omega.
+\]
+Equivalently, \(\Theta\) is Schur on \(\Omega\setminus Z(\xi)\): \(|\Theta(s)|\le 1\).
+
+
+\subsection*{P5. Strict Interior Margin}
+\emph{Statement.} On each compact \(K\subset\Omega\) there exist \(\delta(K)>0\) and \(\varepsilon(K)>0\) such that
+\[
+\Re\big(2\mathcal J(s)\big)\ \ge\ \delta(K)\quad\text{and hence}\quad |\Theta(s)|\ \le\ 1-\varepsilon(K)\qquad (s\in K).
+\]
+(This follows from \textnormal{(P+)} plus the local energy bounds; it prevents interior unimodular hits of \(\Theta\).)
+
+
+\subsection*{P6. Removability Across Zeros of \(\xi\)}
+\emph{Statement.} Let \(\rho\in Z(\xi)\cap\overline{\Omega}\). If \(\Theta\) is bounded by \(1-\varepsilon\) on a punctured disc around \(\rho\), then \(\Theta\) extends holomorphically across \(\rho\), and so does \(2\mathcal J=\frac{1+\Theta}{1-\Theta}\). Thus \(2\mathcal J\) has no poles in \(\Omega\).
+
+
+\subsection*{P7. Globalization by Overlapping Boxes}
+\emph{Statement.} The local Schur property \(|\Theta|\le 1\) on each \(\Omega(I)\) with uniform constants and the removability from \textnormal{P6} propagate across an overlapping Whitney cover of \(\Omega\) with no loss. Hence \(|\Theta|\le1\) on all of \(\Omega\) and \(\Re(2\mathcal J)\ge 0\) on \(\Omega\).
+
+
+\subsection*{P8. Canonical Intertwining (PSC) \(\Rightarrow\) RH}
+\emph{Statement.} If \(2\mathcal J\) is Herglotz (equivalently, \(\Theta\) is Schur) on \(\Omega\), then \(\xi\) has no zeros in \(\Omega\). Therefore every nontrivial zero of \(\zeta\) lies on \(\Re s=\tfrac12\). Hence the Riemann Hypothesis holds.
+
+
+\subsection*{Conclusion}
+P2 (with locked constants) and the AAB inputs (adaptive prime budget and upper phase bound) give the certificate in P3 with $C_P^*$ and additive $(C_{\mathrm{far}},C_{\mathrm{line}})$. P3 \(\Rightarrow\) P4. P4 and P5 give the strict interior margin needed for P6. P6 and P7 globalize Schur/Herglotz to all of \(\Omega\). P8 then yields RH. \(\square\)
+
+
+% ---- Minimal gap disclosures (for reader orientation; proofs supplied later) ----
+\medskip
+\noindent\textbf{Gap Disclosures (addressed later in the paper).}
+\begin{itemize}
+  \item \textit{BLOCKER:} The analytic implication ``certificate or Carleson mass bound \(\Rightarrow\) (P+)'' in P3 must be proved in full detail for the present normalization.
+  \item \textit{BLOCKER:} The strict interior margin in P5 must be quantified from \textnormal{(P+)} and the local energy bounds.
+  \item \textit{BLOCKER:} The removability step P6 must rule out \(\Theta(\rho)=1\) using the margin from P5.
+  \item \textit{BLOCKER:} The no-loss globalization in P7 must be stated and proved for the specific Whitney cover used here.
+\end{itemize}
+% ---------- End Primary Chain ----------

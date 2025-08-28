@@ -1,0 +1,119 @@
+﻿Here is a complete, self‑contained LaTeX snippet that states and proves the requested Oscillation ⇒ Wedge lemma with precise regularity hypotheses. I give both a BV (distributional) version—natural for boundary phases—and an absolutely‑continuous corollary in the exact “∫I(−w′)\int_I(-w')” form you asked for.
+Note on hypotheses. A one‑sided bound on the phase drop alone cannot pin the phase into a symmetric wedge: it prevents large decreases but allows unbounded increases. The wedge conclusion therefore requires the same oscillation bound for ww and for −w-w (equivalently, uniform bounds on both negative and positive variation). In the proof map this “other side” is obtained by applying the same certificate to the reciprocal/rotated Cayley transform; here we take it as an explicit assumption.
+________________
+
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,amsthm}
+
+
+\title{An Oscillation $\Rightarrow$ Wedge Lemma for Boundary Phases}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Notation.}
+For a real function $w$ on $\mathbb{R}$ of locally bounded variation (BV), let $Dw$ denote its distributional derivative, a finite signed Radon measure on compact intervals, with Jordan decomposition
+\[
+Dw = \mu^+ - \mu^- , \qquad \mu^\pm \ \text{finite positive measures.}
+\]
+For a bounded open interval $I\subset\mathbb{R}$ we write
+$\mu^\pm(I)$ for the positive/negative variation of $w$ on $I$.
+
+
+\begin{lemma}[Oscillation $\Rightarrow$ Wedge (BV form)]
+\label{lem:OscToWedgeBV}
+Let $w:\mathbb{R}\to\mathbb{R}$ be locally of bounded variation. Assume:
+
+
+\medskip
+\noindent\emph{(A) Two-sided oscillation bound.} For every bounded open interval $I\subset\mathbb{R}$,
+\[
+\mu^-(I)\ \le\ \frac{\pi}{2}
+\qquad\text{and}\qquad
+\mu^+(I)\ \le\ \frac{\pi}{2}.
+\]
+
+
+\noindent\emph{(B) Anchor.} There exists a Lebesgue point $t_\star\in\mathbb{R}$ at which $w$ is approximately continuous and
+\[
+w(t_\star)=0.
+\]
+
+
+Then $w(t)\in[-\tfrac{\pi}{2},\,\tfrac{\pi}{2}]$ for almost every $t\in\mathbb{R}$.
+\end{lemma}
+
+
+\begin{proof}
+Let $J=(a,b)$ be any bounded open interval with $a<b$ such that $a,b$ are points of approximate continuity of $w$ (this holds for almost every choice of endpoints because BV functions are approximately continuous a.e.). The fundamental theorem for BV functions gives
+\[
+w(b)-w(a)\ =\ Dw((a,b))\ =\ \mu^+((a,b))\ -\ \mu^-((a,b)).
+\]
+By (A), $0\le \mu^\pm((a,b))\le \pi/2$, hence
+\[
+-\frac{\pi}{2}\ \le\ w(b)-w(a)\ \le\ \frac{\pi}{2}.
+\]
+Fix the anchored point $t_\star$ from (B), and take any $t\in\mathbb{R}$ which is a point of approximate continuity. Apply the previous inequality to the interval whose endpoints are $t_\star$ and $t$ (choosing the order so that it is $(\min\{t,t_\star\},\max\{t,t_\star\})$). We obtain
+\[
+-\frac{\pi}{2}\ \le\ w(t)-w(t_\star)\ \le\ \frac{\pi}{2}.
+\]
+Because $w(t_\star)=0$ by (B), this simplifies to
+$|w(t)|\le \pi/2$ for almost every $t$. This is precisely the desired wedge inclusion.
+\end{proof}
+
+
+\begin{remark}
+The anchor $w(t_\star)=0$ pins the absolute phase. Without it, (A) still implies that the essential range of $w$ has diameter at most $\pi/2$, i.e., $|w(t)-w(s)|\le \pi/2$ for a.e.\ $s,t$, but this only localizes $w$ to some (a priori unknown) interval of length $\pi/2$. In applications one fixes the branch of the argument so that $w$ vanishes at a designated reference ordinate (e.g., the center of a Carleson box), which is exactly hypothesis (B).
+\end{remark}
+
+
+\begin{corollary}[Absolutely continuous form]
+\label{cor:AC}
+Let $w\in W^{1,1}_{\mathrm{loc}}(\mathbb{R})$ be real-valued and suppose that for every bounded open interval $I\subset\mathbb{R}$
+\[
+\int_I (-w'(t))\,dt\ \le\ \frac{\pi}{2}
+\qquad\text{and}\qquad
+\int_I (\,w'(t)\,)\,dt\ \le\ \frac{\pi}{2}.
+\]
+Assume also that there is $t_\star$ with $w(t_\star)=0$. Then $w(t)\in[-\tfrac{\pi}{2},\,\tfrac{\pi}{2}]$ for almost every $t\in\mathbb{R}$.
+\end{corollary}
+
+
+\begin{proof}
+For $w\in W^{1,1}_{\mathrm{loc}}$, the BV measures are absolutely continuous:
+$\mu^+(I)=\int_I (w')_+\,dt$ and $\mu^-(I)=\int_I (w')_-\,dt$,
+and $w(b)-w(a)=\int_a^b w'$. The two integral hypotheses are equivalent to
+$\mu^\pm(I)\le \pi/2$ for all bounded $I$, so Lemma~\ref{lem:OscToWedgeBV}
+applies.
+\end{proof}
+
+
+\begin{remark}[How the hypotheses are met in the proof map]
+In the proof map, $w$ is the boundary phase (argument) of a neutralized analytic function on a Carleson box; such $w$ is locally BV away from a null set. The ``certificate'' bounds give a uniform estimate on the phase drop; applying the same mechanism to the reciprocal/rotated Cayley transform yields the matching estimate for the phase rise, which is assumption (A). The phase branch is fixed so that $w=0$ at the box center (assumption (B)). Lemma~\ref{lem:OscToWedgeBV} then delivers the boundary wedge $w\in[-\pi/2,\pi/2]$ a.e.\ on the box.
+\end{remark}
+
+
+\end{document}
+
+
+What this accomplishes
+* It isolates the exact mathematical mechanism: uniform two‑sided local variation bounds + a single anchor point ⇒ pointwise wedge a.e.
+
+* It is robust to jumps and purely singular parts (BV), which is appropriate for boundary traces.
+
+* It makes explicit why a strictly one‑sided bound is insufficient and how the “other side” is supplied in the RH framework (by symmetry via the reciprocal/rotated transform).

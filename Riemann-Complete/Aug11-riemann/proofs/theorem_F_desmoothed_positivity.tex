@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{De-smoothed positivity (Theorem F): from Poisson smoothing to boundary accretivity and NP--PSD}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+\paragraph{TL;DR.} If for the boundary phase functional $w$ built from $J=\det_{2}/\xi$ you already have the Poisson--smoothed bound
+\[
+(P_\varepsilon * w)(t)\ \le\ \frac{\pi}{2} \quad \text{for all }\varepsilon>0\ \text{ and a.e. }t,
+\]
+then, on every boundary side of a zero--free rectangle $R\subset\{ \ReS s> \tfrac12\}$, the \emph{unsmoothed} a.e. bound $w(t)\le\pi/2$ holds. The proof uses only Fatou--Privalov and approximate identities.
+
+\section*{Setting and objects}
+Let $\Omega=\{\ReS s>\tfrac12\}$ and $R\Subset\Omega$ with $\xi\ne0$ on $\overline R$. Define
+\[
+J(s):=\frac{\det_2(s)}{\xi(s)},\qquad \det_2(s):=\prod_{p}(1-p^{-s})\,e^{p^{-s}},
+\]
+whose logarithm $\sum_{p,\,m\ge2} p^{-ms}/m$ converges absolutely and uniformly on $\overline R$. Fix a side $\partial R_*$ and parametrize it by $t\mapsto s(t)$ (vertical: $s=\sigma_*+it$; horizontal: analogous on a compact interval).
+
+Set
+\[
+f(t):=\log|J(s(t))|,\qquad \theta(t):=\arg J(s(t))
+\]
+with a continuous branch on $\partial R_*$. Define the boundary phase functional
+\[
+w(t):=\theta(t)-\mathcal H[f](t),
+\]
+where $\mathcal H$ is the Hilbert transform adapted to the side (via the affine pullback). For $\varepsilon>0$, let $P_\varepsilon$ be the Poisson kernel on the side; \emph{convolution} is along the boundary parameter $t$.
+
+\section*{Hypothesis (smoothed positivity)}
+For the side $\partial R_*$, assume
+\begin{equation}\label{H}
+(P_\varepsilon * w)(t)\ \le\ \frac{\pi}{2}\quad \text{for every }\varepsilon>0\ \text{and a.e. }t.
+\end{equation}
+
+\section*{Theorem F and proof}
+\begin{theorem}[De--smoothed positivity]\label{thm:F}
+Under \eqref{H}, one has $w(t)\le\pi/2$ for a.e. $t$ on $\partial R_*$. Consequently $\ReS J\ge0$ a.e. on $\partial R_*$, hence (by continuity of $J$ on the side) everywhere on that side. The same holds for all four sides of $R$.
+\end{theorem}
+
+\noindent\textit{Proof.} On $\partial R_*$, $\log\det_2$ is an absolutely convergent series of smooth terms and $\log\xi$ is holomorphic on a collar of $\overline R$, so $f,\theta\in L^1_{\mathrm{loc}}$ and $w\in L^1_{\mathrm{loc}}$. The family $\{P_\varepsilon\}$ is an approximate identity on the side; hence $P_\varepsilon*w\to w$ a.e. as $\varepsilon\downarrow0$ (Fatou--Privalov). Taking $\limsup_{\varepsilon\downarrow0}$ in \eqref{H} gives $w\le\pi/2$ a.e. Interpreting $w$ as the boundary phase excess for $\log J$ yields $\ReS J\ge0$ a.e.; continuity upgrades to pointwise. $\square$
+
+\section*{Robustness}
+\begin{itemize}
+  \item \emph{Edge/pole terms.} Smooth contributions from the $\Gamma$- and polynomial factors yield a uniform $o_{\varepsilon\downarrow0}(1)$ in the smoothed bound and are absorbed by uniform convergence of $P_\varepsilon$.
+  \item \emph{Truncation.} Uniform convergence $\log\det_{2,N}\to\log\det_2$ on $\overline R$ implies $w_N\to w$ a.e.; the same de--smoothed conclusion holds for each $N$.
+\end{itemize}
+
+\section*{From de--smoothed positivity to PSD kernels}
+Once $\ReS J\ge0$ on each side of $\partial R$ (and $2J+1\ne0$ there for large $N$ on a fixed zero--free $\overline R$), classical boundary integral representation on rectangles gives
+\[
+J(s)=\int_{\partial R} P_R(s,\zeta)\,d\mu(\zeta),
+\]
+with $\mu\ge0$ finite and $P_R$ the Poisson kernel of $R$. For any finite node set $\{s_j\}\subset\partial R$,
+\[
+H_J(s_i,\overline{s_j})=\frac{J(s_i)+\overline{J(s_j)}}{s_i+\overline{s_j}-1}
+=\int_{\partial R} \frac{P_R(s_i,\zeta)+P_R(s_j,\zeta)}{s_i+\overline{s_j}-1}\, d\mu(\zeta),
+\]
+an average (with positive weights) of positive kernels, hence PSD. Equivalently, with $g=(2J-1)/(2J+1)$, Schur--Pick on $R$ yields PSD Pick matrices on $\partial R$.
+
+\paragraph{Gram factorization.} Defining $F_\zeta(s):=\sqrt{P_R(s,\zeta)}/\sqrt{s+\overline{\zeta}-1}$, one gets
+\[
+H_J(s,t)=\int_{\partial R} F_\zeta(s)\,\overline{F_\zeta(t)}\,d\mu(\zeta),
+\]
+locally finite after discretizing $\mu$. Uniform boundedness of $P_R$ on $\overline R\times\partial R$ justifies interchanges.
+
+\section*{Checklist}
+\begin{enumerate}
+  \item Zero--free collar for $\xi$ around $\overline R$.
+  \item Uniform control of $\det_{2,N}$ on $\overline R$.
+  \item Smoothed positivity $(P_\varepsilon*w)(t)\le\pi/2$ available on each side.
+  \item Nonvanishing $|2J+1|$ on $\partial R$ for large $N$.
+\end{enumerate}
+
+\end{document}
+

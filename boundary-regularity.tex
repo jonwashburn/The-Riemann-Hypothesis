@@ -1,0 +1,51 @@
+% Boundary regularity & outer normalization; phase–velocity identity and certificate (distributional form)
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Boundary regularity, outer normalization, and phase–velocity}
+
+\paragraph{Geometry.}
+Work in the upper half–plane $\mathbb{H}=\{z=x+iy:y>0\}$ with boundary $\mathbb{R}$. For a bounded interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})$ and aperture $\alpha>1$ define
+\[
+Q_\alpha(I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\},\qquad
+\Gamma_\alpha(t):=\{(x,y): |x-t|<\alpha y,\ y>0\}.
+\]
+If $U=\mathcal P[u]$ is harmonic, its fixed–aperture box energy is
+\[C_{\rm box}(U;\alpha):=\sup_{I}\ \frac{1}{|I|}\iint_{Q_\alpha(I)}|\nabla U|^2\,y\,dx\,dy\in[0,\infty).\]
+
+\subsection*{Boundary regularity and local outer normalization}
+
+\begin{lemma}[Carleson $\Rightarrow$ BMO and $L^1_{\rm loc}$]\label{lem:BMO-outer}
+Let $U=\mathcal P[u]$ with $C_{\rm box}(U;\alpha)<\infty$. Then $u$ has a.e. non–tangential boundary values and $u\in{\rm BMO}_{\rm loc}(\mathbb{R})$ with
+\[\sup_{I}\frac{1}{|I|}\int_I |u(t)-u_I|\,dt\ \le\ C_\alpha\,\sqrt{C_{\rm box}(U;\alpha)},\qquad u_I:=|I|^{-1}\int_I u.\]
+In particular $u\in L^1_{\rm loc}(\mathbb{R})$.
+\end{lemma}
+
+\begin{lemma}[Local outer normalization on a box]\label{lem:outer-local}
+Fix a bounded interval $I$ and let $U=\mathcal P[u]$ with $u\in L^1(I)$. There exists a holomorphic, zero–free $\mathcal O_I$ on $Q_\alpha(I)$ such that
+\[\log|\mathcal O_I|=U\ \text{ on }Q_\alpha(I),\qquad |\mathcal O_I^*(t)|=e^{u(t)}\ \text{ for a.e. }t\in I,\]
+uniquely determined by $\mathcal O_I(z_I)\in(0,\infty)$ at a fixed interior $z_I\in Q_\alpha(I)$.
+\end{lemma}
+
+\subsection*{Phase–velocity identity (distributional form) and certificate}
+
+Let $F$ be meromorphic of bounded type on $\mathbb{H}$, and write $u=\log|F^*|$, $w=\arg(F^*)$. Denote the signed zero–pole measure by
+\[\mu\ :=\ \sum_{p\in P(F)} m(p)\,\delta_p\ -\ \sum_{a\in Z(F)} m(a)\,\delta_a.\]
+For a bounded open interval $J=(a,b)$ define $\mathrm{Bal}(x+iy;J):=\int_a^b\tfrac{2y}{(t-x)^2+y^2}\,dt\in[0,2\pi]$.
+
+\begin{proposition}[Phase–velocity identity]\label{prop:phase-velocity}
+For $\varphi\in C_c^\infty(\mathbb{R})$,
+\[\int_{\mathbb{R}} (-w'(t))\,\varphi(t)\,dt\ =\ 2\pi\int_{\mathbb{H}} \mathcal{P}[\varphi](z)\,d\mu(z)\ -\ \int_{\mathbb{R}}\mathcal{H}[u'](t)\,\varphi(t)\,dt.\]
+Consequently, for any bounded open $J=(a,b)$ with endpoints of approximate continuity,
+\[\int_{J} (-w'(t))\,dt\ =\ \int_{\mathbb{H}}\mathrm{Bal}(z;J)\,d\mu(z)\ -\ \big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big).\]
+\end{proposition}
+
+\begin{theorem}[Certificate inequality on boxes]\label{thm:certificate-distribution}
+Let $F$ be meromorphic of bounded type, $u=\log|F^*|$, $U=\mathcal P[u]$, and fix $\alpha>1$ with $C_{\rm box}(U;\alpha)<\infty$. For every $L,t_0$,
+\[\int_{\mathbb{R}} (-w'(t))\,\varphi_{L,t_0}(t)\,dt\ \le\ C_H(\psi)\,L\,M_\psi(u)\ \le\ \frac{4}{\pi}\,C_H(\psi)\,C_\psi^{(H^1)}\,L\,\sqrt{C_{\rm box}},\]
+and
+\[\int_{\mathbb{H}}\Phi_{L,t_0}(z)\,d\mu(z)\ \ge\ c_0(\psi)\,\mu\!\left(Q_\alpha(I)\right).\]
+\end{theorem}
+
+\begin{remark}
+The far–field tail in the last inequality is nonnegative for Poisson kernels; if a neutralization is inserted, the same conclusion holds since $\Phi_{L,t_0}\ge 0$.
+\end{remark}

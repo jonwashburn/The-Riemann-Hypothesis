@@ -1,0 +1,22 @@
+# Golden ratio & logs
+phi: 1.6180339887498948482
+ln_phi: 0.48121182505960347
+
+# Fine-structure constant (decomposition)
+seed_4pi11: 138.23007675795088
+f_gap: 1.19737744
+delta_kappa: -0.0032998005415146936  # -103/(102*pi**5)
+alpha_inv: 137.0359991184924          # = seed_4pi11 - f_gap - delta_kappa
+alpha: 0.0072973525693002             # 1/alpha_inv
+
+# Cohesion / IR scales
+E_coh_eV: 0.0901699
+lambda_IR_um: 13.750064977337226       # (hc)/E_coh in microns
+tau0_fs: 7.33
+tick_length_um: 2.198997                # c*tau0
+
+# Fundamental length choice (set ONE and use consistently)
+planck_length_m: 1.616255e-35
+# recognition_length_m: 1.616255e-35     # if you equate to Planck, alias here
+
+

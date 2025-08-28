@@ -1,0 +1,58 @@
+﻿Here’s a clean LaTeX snippet you can drop into your document. It uses only standard theorem environments and amsmath (which your preamble already defines). I’ve preserved your intent (Grönwall-style bound + schedule generator + “why it helps”).
+% 4) Bridge C as a differential propagation bound
+% Source/context: diagonal covering discussion in the manuscript. :contentReference[oaicite:0]{index=0}
+
+
+\paragraph*{4) Turn Bridge C into a differential propagation bound.}
+
+
+\begin{proposition}[Bridge C, differential form]
+Assume $\delta_{\mathrm{Schur}}:(\tfrac12,1]\to(0,\infty)$ is locally absolutely continuous and that there exists a locally integrable function $K(\sigma)\ge 0$ with
+\begin{equation}\label{eq:diff-bridgeC}
+  \frac{d}{d\sigma}\,\log \delta_{\mathrm{Schur}}(\sigma)\ \ge\ -\,K(\sigma)
+  \qquad\text{for a.e.\ }\sigma\in[\sigma,\,\sigma_0].
+\end{equation}
+Then for every $\sigma\le \sigma_0$,
+\begin{equation}\label{eq:gronwall-bridgeC}
+  \delta_{\mathrm{Schur}}(\sigma)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,
+  \exp\!\Big(-\int_{\sigma_0}^{\sigma} K(u)\,du\Big).
+\end{equation}
+\end{proposition}
+
+
+\begin{proof}
+Integrate \eqref{eq:diff-bridgeC} from $\sigma_0$ to $\sigma$ and exponentiate (Grönwall).
+\end{proof}
+
+
+\begin{definition}[Admissible schedule generator]
+Fix $h_{\max}>0$ and $\varepsilon\in(0,1]$. Define the step-size
+\[
+  h(\sigma):=\min\!\Big\{\,h_{\max},\ \frac{\varepsilon}{1+K(\sigma)}\,\Big\},
+  \qquad \sigma_{n+1}:=\sigma_n-h(\sigma_n),\quad \sigma_0>\tfrac12.
+\]
+Run the schedule until $\sigma_N\le \tfrac12+\eta$. If \eqref{eq:diff-bridgeC} holds, then
+\[
+  \delta_{\mathrm{Schur}}(\sigma_N)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,
+  \exp\!\Big(-\int_{\sigma_N}^{\sigma_0} K(u)\,du\Big).
+\]
+In particular, any a priori bound
+\[
+  \int_{\tfrac12+\eta}^{\sigma_0} K(u)\,du\ \le\ \Lambda
+\]
+guarantees the end-line margin
+\[
+  \delta_{\mathrm{Schur}}(\tfrac12+\eta)\ \ge\ \delta_{\mathrm{Schur}}(\sigma_0)\,e^{-\Lambda}.
+\]
+Moreover, choosing $\varepsilon\le \tfrac12$ enforces the discrete safety condition
+\[
+  \theta_n:=K(\sigma_n)\,h(\sigma_n)\ \le\ \frac{\varepsilon\,K(\sigma_n)}{1+K(\sigma_n)}
+  \ \le\ \varepsilon\ \le\ \tfrac12,
+\]
+so one may fall back on per-step Neumann/Gershgorin audits when desired.
+\end{definition}
+
+
+\begin{remark}[Why this helps]
+The integral estimate \eqref{eq:gronwall-bridgeC} replaces stepwise products $\prod_k(1-\theta_k)$ by a single path integral that is easier to audit and typically permits longer, fewer steps for the same safety margin. The discrete “diagonal covering’’ theorem is a corollary via Riemann sums (e.g.\ using $1-x\ge e^{-x/(1-x)}$ for $x\in[0,\tfrac12]$).
+\end{remark}

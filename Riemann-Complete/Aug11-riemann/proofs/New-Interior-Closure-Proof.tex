@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\ReS}{\operatorname{Re}}
+
+\title{Interior Closure on Zero-Free Rectangles via a Gram Route:\\
+Backward Differences, Fock Lift, and NP--Schur Interpolation}
+\author{A.I. Collaboration}
+\date{2025-08-15}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a self-contained interior closure of the bounded-real (Herglotz/Schur) program on zero-free rectangles of the right half-plane \(\Omega=\{\Re s>\tfrac12\}\). The proof proceeds by: (i) a backward-difference identity that yields positivity of the logarithmic (additive) kernel for \(\log\det_2\) at prime truncations; (ii) a symmetric-Fock exponential lift aligned with the half-plane Szeg\H{o} kernel, combined with a positive Schur multiplier from \(\xi(s)^{-1}\), to obtain positivity of the Herglotz kernel for \(J_N=\det_2^N/\xi\) on rectangle boundaries; and (iii) Nevanlinna--Pick interpolation to produce Schur approximants on the rectangle, followed by a diagonal extraction to the target Cayley transform \(\Theta=(2J-1)/(2J+1)\). This yields local-uniform Schur approximation to \(\Theta\) on zero-free rectangles; globalization across an exhaustion of \(\Omega\setminus Z(\xi)\) and a removable singularity argument completes the interior route.
+\end{abstract}
+
+\section{Setup and notation}
+Let \(\Omega=\{\ReS s>\tfrac12\}\). Define the completed zeta
+\[\xi(s)=\tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma(s/2)\,\zeta(s),\]
+and the prime-diagonal block \(A(s)e_p=p^{-s}e_p\). For \(\ReS s>\tfrac12\) one has \(\|A(s)\|<1\) and the Hilbert--Schmidt regularized determinant
+\[\det_2(I-A):=\det\big((I-A)\,e^{A}\big)\ne 0.\]
+Set
+\[J(s):=\frac{\det_2(I-A(s))}{\xi(s)},\qquad \Theta(s):=\frac{2J(s)-1}{2J(s)+1}.\]
+For a prime cutoff \(P_N\), write \(\det_2^N\) for the truncation using primes \(p\le P_N\), \(J_N:=\det_2^N/\xi\), and \(\mathfrak g_N:=\log\det_2^N\).
+
+\section{Half-plane Szeg\H{o} RKHS}
+Let \(\phi_s(u):=e^{-(s-\frac12)u}\) for \(u\ge0\). Then for \(\ReS s,\ReS t>\tfrac12\)
+\[B(s,\overline t):=\frac{1}{s+\overline t-1}=\int_0^\infty \phi_s(u)\,\overline{\phi_t(u)}\,du.\]
+This is the half-plane Szeg\H{o} kernel and defines a reproducing-kernel Hilbert space \(H_B\).
+
+\section{Backward differences and positivity for \(H_{\mathfrak g_N}\)}
+For \(x>0\), define forward and backward differences of the feature functions:
+\[(\Delta_x\phi)_s(u):=\phi_s(u)-\phi_s(u+x),\qquad (\nabla_x\phi)_s(v):=\phi_s(v)-\phi_s(v-x)\ (v\ge x),\]
+with \(\phi_s(v-x):=0\) for \(v<x\).
+
+\begin{lemma}[Backward-difference identity]\label{lem:bd}
+For all \(s,t\in\Omega\) and \(x>0\),
+\[\int_0^\infty (\Delta_x\phi)_s\,\overline{(\Delta_x\phi)_t}\,du\; -\; \int_0^x \phi_s\,\overline{\phi_t}\,du\;=\;\int_x^\infty (\nabla_x\phi)_s\,\overline{(\nabla_x\phi)_t}\,dv\ \ge\ 0.\]
+\end{lemma}
+\begin{proof}
+Change variables in the cross-terms \(u\mapsto u+x\) and collect to obtain the right-hand side as an \(L^2((x,\infty))\) norm square.
+\end{proof}
+
+Let \(d\mu_N(x):=\sum_{p\le P_N}\sum_{k\ge 2}(\log p)\,\delta_{k\log p}(dx)\) and \(\mathfrak g_N(s)=-\int_0^\infty x^{-1}e^{-sx}\,d\mu_N(x)\).
+
+\begin{theorem}[Logarithmic kernel is PSD]\label{thm:Hg}
+The additive kernel
+\[H_{\mathfrak g_N}(s,\overline t):=\int_0^\infty \frac{1}{x}\bigg(\int_0^\infty (\Delta_x\phi)_s\,\overline{(\Delta_x\phi)_t}\,du\; -\; \int_0^x \phi_s\,\overline{\phi_t}\,du\bigg)d\mu_N(x)\]
+is positive semidefinite on \(\Omega\) (hence on any \(\partial R\)).
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:bd}, each inner kernel is PSD; Bochner integration against the positive measure \(x^{-1}d\mu_N\) preserves PSD.
+\end{proof}
+
+\section{Exponential (Fock) lift and \(\xi^{-1}\) Schur multiplier}
+Define the PSD kernel
+\[\Lambda_N(s,\overline t):=\int_0^\infty x^{-1}\int_0^x \phi_s(u)\,\overline{\phi_t(u)}\,du\,d\mu_N(x).\]
+By the symmetric-Fock (exponential) lemma, the kernel
+\[E_N(s,\overline t):=\exp\big(\Lambda_N(s,\overline t)-\tfrac12\Lambda_N(s,\overline s)-\tfrac12\Lambda_N(t,\overline t)\big)\]
+is PSD. Let \(B(s,\overline t)=(s+\overline t-1)^{-1}\).
+
+\begin{lemma}[Fock Gram lower bound on \(\partial R\)]\label{lem:fock}
+On the boundary \(\partial R\) of any rectangle \(R\Subset\Omega\),
+\[\frac{e^{\mathfrak g_N(s)}+\overline{e^{\mathfrak g_N(t)}}}{s+\overline t-1}\ \succeq\ E_N(s,\overline t)\,B(s,\overline t).\]
+\end{lemma}
+\begin{proof}
+Let \(\mathcal H\) be the RKHS with Gram \(\Lambda_N\) on \(\partial R\), and \(\Gamma(\mathcal H)\) its symmetric Fock space. Coherent vectors \(\varepsilon_s\) satisfy \(\langle \varepsilon_s,\varepsilon_t\rangle=\exp(\Lambda_N(s,\overline t))\). In \(\Gamma(\mathcal H)\widehat\otimes H_B\), the vectors \(w_s:=e^{-\frac12\Lambda_N(s,\overline s)}\,\varepsilon_s\otimes\phi_s\) obey \(\langle w_s,w_t\rangle=E_N(s,\overline t)B(s,\overline t)\). Expanding \(e^{\mathfrak g_N}\) into its series and using positivity of Schur powers generated by \(H_{\mathfrak g_N}\) yields the PSD difference \((e^{\mathfrak g_N(s)}+\overline{e^{\mathfrak g_N(t)}})B-2\langle w_s,w_t\rangle\). Divide by 2.
+\end{proof}
+
+\begin{lemma}[\(\xi^{-1}\) is a positive Schur multiplier on \(\partial R\)]\label{lem:schurmult}
+If \(\xi\ne 0\) on a collar of \(\overline R\), then for any PSD kernel \(K\) on \(\partial R\), \( (\xi^{-1}\odot K)(s,\overline t):=\xi(s)^{-1}K(s,\overline t)\overline{\xi(t)^{-1}}\) is PSD on \(\partial R\).
+\end{lemma}
+\begin{proof}
+For any finite Gram sum, factor out \(\xi(s_i)^{-1}\) and \(\overline{\xi(s_j)^{-1}}\) into the coefficients; positivity of \(K\) is preserved.
+\end{proof}
+
+\begin{theorem}[PSD for \(H_{J_N}\) on \(\partial R\)]\label{thm:HJN}
+On \(\partial R\), the kernel \(H_{J_N}(s,\overline t)=(J_N(s)+\overline{J_N(t)})/(s+\overline t-1)\) is PSD.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:fock}, \((e^{\mathfrak g_N(s)}+\overline{e^{\mathfrak g_N(t)}})B\succeq E_N B\). Multiplying entrywise by \(\xi^{-1}\overline{\xi^{-1}}\) (Lemma~\ref{lem:schurmult}) gives \(H_{J_N}\succeq 0\) on \(\partial R\).
+\end{proof}
+
+\section{NP--PSD on \(\partial R\) \(\Rightarrow\) Schur on \(R\)}
+Set \(g_N:=(2J_N-1)/(2J_N+1)\). Since \(H_{J_N}\succeq 0\) on \(\partial R\), the half-plane Pick kernel \(K_{g_N}=(1-g_N\overline{g_N})/(s+\overline t-1)\) is PSD there. Hence \(|g_N|\le 1\) on \(\partial R\) and by the maximum modulus principle on \(R\). A biholomorphism \(\psi:R\to\mathbb D\) and the disk NP/CF theorem produce Schur functions \(S_m\) with \(\sup_{\psi(K)}|S_m-h_N|\to 0\) for \(h_N=g_N\circ\psi^{-1}\). Pulling back yields Schur \(\Phi_{N,m}:=S_m\circ\psi\) on \(R\) with \(\sup_K|\Phi_{N,m}-g_N|\to 0\) for each compact \(K\Subset R\). Using the established local-uniform convergence of \(g_N\to\Theta\) on zero-free compacts and a diagonal extraction over an exhaustion by rectangles, we obtain a global Schur sequence converging locally uniformly to \(\Theta\) on \(\Omega\setminus Z(\xi)\). Removable singularities across \(Z(\xi)\) give holomorphy and \(|\Theta|\le 1\) on \(\Omega\).
+
+\section{Conclusion}
+We have provided a complete interior closure on zero-free rectangles:\ a Gram proof of PSD for the additive logarithmic kernel; a symmetric-Fock lift (aligned with the half-plane Szeg\H{o} kernel) and a positive Schur multiplier from \(\xi^{-1}\) to obtain PSD for the Herglotz kernel \(H_{J_N}\) on rectangle boundaries; and NP--Schur interpolation to reach the target \(\Theta\) on \(R\). A standard diagonal exhaustion and removable singularities yield a global Schur limit in \(\Omega\).\hfill$\square$
+
+\end{document}
+

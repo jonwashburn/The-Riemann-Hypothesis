@@ -1,0 +1,36 @@
+% Overlapping boxes: coverage and no-loss propagation
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Overlapping boxes: coverage and no–loss propagation}
+
+\paragraph{Whitney cover of the boundary.}
+There exists a countable family of intervals $\{I_k\}_{k\ge1}$ with
+\[|I_k|\ \le\ \frac{1}{\Lambda\log\langle T_k\rangle}\qquad(\Lambda\ge1\ \text{fixed})\]
+that covers $\mathbb{R}$ up to a null set and has uniformly bounded overlap. The associated Carleson boxes $Q_\alpha(I_k)$ cover a full–measure subset of the boundary line $\{\Re s=1/2\}$ and admit cones $\Gamma_\alpha(t)$ with $\Gamma_\alpha^{\le |I_k|}(t)\subset Q_\alpha(I_k)$.
+
+\begin{lemma}[Boundary wedge on overlaps]\label{lem:wedge-overlap}
+If $w\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ a.e. on each $I_k$, then $w\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ a.e. on $\bigcup_k I_k$.
+\end{lemma}
+
+\begin{proof}
+Immediate by a.e. inclusion and countable union.
+\end{proof}
+
+\paragraph{Rectangles and no–loss union.}
+Let $R_k:=\{\sigma+it:1/2<\sigma<1/2+L_k,\ |t-T_k|<H_k\}$ be rectangles with left side on $\{\Re s=1/2\}$ and chosen so that $Q_\alpha(I_k)\subset R_k$ and the ratio $H_k/L_k$ is large enough that the harmonic measure of the left side at interior points is arbitrarily close to $1$ (cf. Lemma~\ref{lem:hm-rect-unif}).
+
+\begin{lemma}[No–loss on overlaps of rectangles]\label{lem:union-rectangles}
+If $\Theta$ is holomorphic on $R_i\cup R_j$ and $|\Theta|\le 1$ on each $R_i$ and $R_j$, then $|\Theta|\le1$ on $R_i\cup R_j$.
+\end{lemma}
+
+\begin{proof}
+Since $\Theta$ is the same holomorphic function on the overlap and bounded by $1$ on each set, the bound holds pointwise on the union.
+\end{proof}
+
+\begin{proposition}[Propagation across an overlapping cover]\label{prop:overlap-propagation}
+Assume the height–uniform constants of Proposition~\ref{prop:uniform-unif}. Then there exists a family $\{R_k\}$ covering every compact $K\subset\Omega$ such that $|\Theta|\le1$ on each $R_k$ and therefore on $\bigcup_k R_k$. In particular, $|\Theta|\le1$ on $K$.
+\end{proposition}
+
+\begin{proof}
+Choose $R_k$ with aspect ratio making the two–constants (pinch) Lemma~\ref{lem:two-const-unif} arbitrarily tight; boundary wedge on $I_k$ yields $|\Theta|\le 1$ on each $R_k$. Bounded overlap and Lemma~\ref{lem:union-rectangles} imply the bound on the union; exhaustion of $K$ by finitely many $R_k$ yields the claim.
+\end{proof}

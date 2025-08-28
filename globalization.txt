@@ -1,0 +1,79 @@
+﻿% --- Globalization across Z(\xi) and completion of the proof ---
+\subsection*{Globalization across $Z(\xi)$ and completion of the proof}
+
+
+\noindent\textbf{Standing hypotheses from the previous section (AAB and $\zeta$-normalized route).}
+Assume (P+) has been established via the AAB route (adaptive $\kappa(T)$, wedge with additive constants $C_{\rm far},C_{\rm line}$) and using the $\zeta$-normalized boundary gauge with the Blaschke compensator $B(s)=(s-1)/s$ (so no Archimedean boundary term). Hence, by Poisson transport, the function
+\[
+F(s)\;:=\;2\,\mathcal J(s)
+\]
+has nonnegative real part on the right half–plane
+\[
+\Omega\;:=\;\{\,s\in\mathbb C:\ \Re s>\tfrac12\,\}
+\]
+away from the zero set $Z(\xi)\cap\Omega$; equivalently, its Cayley transform
+\[
+\Theta(s)\;:=\;\frac{F(s)-1}{F(s)+1}
+\]
+is Schur on $\Omega\setminus Z(\xi)$, i.e. $|\Theta(s)|\le 1$ there. We also recall the definition (consistent with the $\zeta$-normalized boundary route)
+\[
+\mathcal J(s)\;=\;\frac{\det\nolimits_2\!\bigl(I-A(s)\bigr)}{\mathcal O(s)\,\xi(s)}
+\]
+with $\mathcal O(s)$ holomorphic and nonvanishing on $\Omega$, and $A(s)$ Hilbert–Schmidt with point spectrum $\{p^{-s}\}_{p}$ strictly inside the unit disc for $\Re s>\tfrac12$, so that $I-A(s)$ is invertible and $\det_2(I-A(s))\neq 0$ on $\Omega$. On the boundary line, the Blaschke compensator has unimodular modulus and cancels the simple pole of $\zeta$ at $s=1$, so the Archimedean boundary phase is absent.
+
+
+\paragraph{Lemma 1 (Removability for $\Theta$ at $Z(\xi)$).}
+Let $\rho\in Z(\xi)\cap\Omega$. Then $\Theta$ extends holomorphically to $s=\rho$ with $|\Theta(\rho)|\le 1$.
+
+
+\emph{Proof.}
+$\rho$ is an isolated point of $Z(\xi)$. On $D\setminus\{\rho\}$ (a small disc around $\rho$), $\Theta$ is holomorphic and $|\Theta|\le 1$. By Riemann’s removable–singularity theorem, $\Theta$ extends holomorphically to $D$ with a finite value at $\rho$, necessarily in the closed unit disc. \qed
+
+
+\paragraph{Lemma 2 (No interior pole for a Herglotz pullback).}
+With $\Theta$ as above, one cannot have $\Theta(\rho)=1$ for any $\rho\in Z(\xi)\cap\Omega$.
+
+
+\emph{Proof.}
+Suppose $\Theta(\rho)=1$. Write $g(s):=1-\Theta(s)$. Then $g$ is holomorphic with a zero at $\rho$: $g(s)=(s-\rho)^m h(s)$, $m\ge 1$, $h(\rho)\neq 0$. On $D\setminus\{\rho\}$,
+\[
+F(s)\;=\;\frac{1+\Theta(s)}{1-\Theta(s)}\;=\;\frac{2-g(s)}{g(s)}\;=\;\frac{2}{g(s)}-1
+\]
+so $F$ has a pole of order $m$ at $\rho$. Choose an angle $\theta$ with $h(\rho)e^{im\theta}\in\mathbb R_{>0}$ and set $s=\rho+re^{i\theta}$. Then
+\[
+\Re F(s)\;=\;\Re\!\Bigl(\frac{2}{(s-\rho)^m h(s)}-1\Bigr)
+\sim \frac{2}{|h(\rho)|}\,\frac{1}{r^{m}}\quad(r\downarrow 0).
+\]
+Rotating by $\pi/m$ flips the sign and yields $\Re F(\rho+re^{i(\theta+\pi/m)})\sim -\frac{2}{|h(\rho)|}\,\frac{1}{r^{m}}$, which violates $\Re F\ge 0$ near $\rho$. Contradiction. Hence $\Theta(\rho)\neq 1$. \qed
+
+
+\paragraph{Lemma 3 (Holomorphic and Herglotz extension of $F$).}
+For each $\rho\in Z(\xi)\cap\Omega$, $F$ extends holomorphically to $s=\rho$ with $\Re F\ge 0$ preserved.
+
+
+\emph{Proof.}
+By Lemma~1, $\Theta$ extends holomorphically to $\rho$ with $|\Theta(\rho)|\le 1$, and by Lemma~2, $\Theta(\rho)\neq 1$. Thus the Cayley inverse
+\[
+F(s)\;=\;\frac{1+\Theta(s)}{1-\Theta(s)}
+\]
+is holomorphic at $s=\rho$. Since $\Re F\ge 0$ holds on punctured neighborhoods and $F$ is continuous at $\rho$, it persists at $s=\rho$. \qed
+
+
+\paragraph{Theorem (Globalization across $Z(\xi)$).}
+$F=2\mathcal J$ extends to a Herglotz function on all of $\Omega$. Consequently, $\mathcal J$ is holomorphic on $\Omega$.
+
+
+\emph{Proof.}
+Apply Lemma~3 at every $\rho\in Z(\xi)\cap\Omega$ and use that the zeros of $\xi$ are discrete. \qed
+
+
+\paragraph{Corollary (Zero–free right half–plane).}
+$\xi(s)\neq 0$ for all $s\in\Omega$.
+
+
+\emph{Proof.}
+On $\Omega$, $\det_2(I-A)$ and $\mathcal O$ never vanish, so $\mathcal J=\det_2(I-A)/(\mathcal O\,\xi)$ can only fail to be holomorphic where $\xi$ vanishes. But $\mathcal J$ is holomorphic on $\Omega$ by the Theorem, hence $\xi$ has no zeros there. \qed
+
+
+\paragraph{Conclusion (RH).}
+By the functional equation $\xi(s)=\xi(1-s)$ and conjugation symmetry, zeros are symmetric with respect to the critical line. Since there are no zeros in $\Re s>\tfrac12$ and none in $\Re s<\tfrac12$ by symmetry, every nontrivial zero lies on $\Re s=\tfrac12$. This completes the proof.

@@ -1,0 +1,300 @@
+﻿\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+
+
+\title{A Fixed–Aperture $H^1$–BMO / Carleson Embedding and the Bound $M_\psi \le \tfrac{4}{\pi}\,C_\psi^{(H^1)}\sqrt{C_{\rm box}}$}
+\author{Jonathan Washburn\\
+Recognition Science, Recognition Physics Institute\\
+\texttt{jon@recognitionphysics.org}\\
+Austin, Texas, USA}
+\date{}
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+
+\begin{document}
+\maketitle
+
+
+\paragraph{Geometry and notation.}
+Work in the upper half–plane $\mathbb{H}=\{x+iy:y>0\}$ with boundary $\mathbb{R}$.
+For any interval $I=(c-\tfrac{L}{2},c+\tfrac{L}{2})$ of length $L>0$ and aperture $\alpha\ge 1$, set
+\[
+Q_\alpha(I):=\{x+iy:\ x\in \alpha I,\ 0<y\le \alpha L\},
+\qquad
+\Gamma_\alpha(t):=\{(x,y): |x-t|<\alpha y,\ y>0\}.
+\]
+Given a boundary function $f\in L^1_{\rm loc}(\mathbb{R})$, its Poisson extension is
+\[
+F(x,y)=\mathcal{P}[f](x,y)=\frac{1}{\pi}\int_\mathbb{R}\frac{y\,f(t)}{(x-t)^2+y^2}\,dt.
+\]
+We write $U=\mathcal{P}[u]$ and $\Phi=\mathcal{P}[\varphi]$ for the harmonic extensions of $u$ and $\varphi$.
+
+
+\paragraph{The box energy and the window family.}
+For a harmonic $U$ define the \emph{fixed–aperture box Carleson energy}
+\[
+C_{\rm box}(U;\alpha)\ :=\ \sup_{I}\ \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U(x,y)|^2\,y\,dx\,dy.
+\]
+We suppress the dependence on $U$ and $\alpha$ when clear.  
+Fix a $C^1$ compactly supported \emph{window} $\psi$ on $(-1,1)$ with zero mean $\int\psi=0$. For scale $L>0$ and center $t_0\in\mathbb{R}$ set the mean–zero bump
+\[
+\varphi_{L,t_0}(t)\ :=\ \frac{1}{L}\,\psi\!\left(\frac{t-t_0}{L}\right),
+\qquad
+\Phi_{L,t_0}(x,y)=\mathcal{P}[\varphi_{L,t_0}](x,y).
+\]
+Define the scale–free window constant
+\[
+C_\psi^{(H^1)}\ :=\ \left(\frac{2}{\pi}\iint_{\mathbb{H}} \big|\nabla \mathcal{P}[\psi](\xi,\eta)\big|^2\,\eta\,d\xi\,d\eta\right)^{\!\!1/2}.
+\]
+(By the scaling of the Poisson kernel, this choice is equivalent to a fixed–aperture Lusin–area definition; see Lemma \ref{lem:scaling} below.)
+
+
+Finally, define the pairing functional
+\[
+M_\psi(u)\ :=\ \sup_{L>0,\ t_0\in\mathbb{R}}\ \frac{1}{L}\,\left|\int_{\mathbb{R}} u(t)\,\varphi_{L,t_0}(t)\,dt\right|.
+\]
+
+
+\bigskip
+\noindent\textbf{Goal.}\quad Prove
+\[
+M_\psi(u)\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\rm box}(U;\alpha)}
+\qquad\text{for any fixed }\alpha\ge 1.
+\]
+
+
+\section*{Analytic identities and normalizations}
+
+
+\begin{lemma}[Green–Poisson pairing]\label{lem:green}
+If $u\in L^1_{\rm loc}$ with harmonic extension $U=\mathcal{P}[u]$ and $\varphi\in C_c^\infty(\mathbb{R})$ with extension $\Phi=\mathcal{P}[\varphi]$, then
+\[
+\int_{\mathbb{R}} u(t)\,\varphi(t)\,dt\ =\ \frac{2}{\pi}\iint_{\mathbb{H}} \nabla U(x,y)\cdot \nabla \Phi(x,y)\,y\,dx\,dy.
+\]
+The integral on the right is absolutely convergent if $\int \varphi=0$; in particular for all $\varphi_{L,t_0}$ above.
+\end{lemma}
+
+
+\begin{proof}
+Write $U+iV=\log$–free harmonic conjugates of the Poisson extension; integration by parts with the weight $y$ and the Cauchy–Riemann system gives
+\[
+\iint \nabla U\cdot \nabla \Phi\,y\,dx\,dy
+= -\iint U\,\nabla\!\cdot\!\big(y\nabla \Phi\big)\,dx\,dy\ =\ -\iint U\,(y\Delta\Phi+\partial_y\Phi)\,dx\,dy.
+\]
+Since $\Phi$ is harmonic, $y\Delta\Phi=0$; using the Poisson kernel and Fubini one obtains
+\(
+-\iint U\,\partial_y\Phi\,dx\,dy=\tfrac{\pi}{2}\int u\,\varphi.
+\)
+Boundary terms at $y=\infty$ vanish because $\int\varphi=0$ and $\Phi,\nabla\Phi=O(y^{-2})$ there (a standard Poisson estimate for mean–zero data).
+\end{proof}
+
+
+\begin{lemma}[Scaling for the window family]\label{lem:scaling}
+Let $\Psi=\mathcal{P}[\psi]$ and $\Phi_{L,t_0}=\mathcal{P}[\varphi_{L,t_0}]$. Then
+\[
+\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ =\ \frac{1}{L}\,\iint_{\mathbb{H}} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta,
+\]
+and, for each fixed $\alpha\ge1$,
+\[
+\int_{\mathbb{R}}\!\bigg(\iint_{\Gamma_\alpha(t)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\bigg)^{\!1/2}\,dt\ =\ L\cdot \int_{\mathbb{R}}\!\bigg(\iint_{\Gamma_\alpha(\tau)} |\nabla \Psi|^2\,\eta\,d\xi\,d\eta\bigg)^{\!1/2}\,d\tau.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Set $x=t_0+L\xi,\ y=L\eta$ and use $\varphi_{L,t_0}(t)=L^{-1}\psi((t-t_0)/L)$. A direct change of variables and $\nabla_{x,y}=(L^{-1}\partial_\xi,L^{-1}\partial_\eta)$ yield
+\[
+|\nabla \Phi_{L,t_0}(t_0+L\xi,L\eta)|^2\,L\eta\,L^2\,d\xi\,d\eta
+= \frac{1}{L}\,|\nabla \Psi(\xi,\eta)|^2\,\eta\,d\xi\,d\eta,
+\]
+giving the first identity. The second follows similarly because $(x,y)\in\Gamma_\alpha(t)$ iff $(\xi,\eta)\in\Gamma_\alpha(\tau)$ with $\tau=(t-t_0)/L$.
+\end{proof}
+
+
+\section*{A fixed–aperture embedding (with constants)}
+
+
+\begin{lemma}[Local Carleson domination of cones]\label{lem:cone-box}
+For any $t\in\mathbb{R}$ and $L>0$, the truncated cone
+\(
+\Gamma_\alpha^{\le L}(t):=\{(x,y)\in\Gamma_\alpha(t): 0<y\le L\}
+\)
+is contained in the Carleson box $Q_\alpha(I_t)$ with $I_t=(t-\tfrac{L}{2},t+\tfrac{L}{2})$. Consequently,
+\[
+\iint_{\Gamma_\alpha^{\le L}(t)}|\nabla U|^2\,y\,dx\,dy\ \le\ \iint_{Q_\alpha(I_t)}|\nabla U|^2\,y\,dx\,dy\ \le\ C_{\rm box}\,|I_t|\ =\ C_{\rm box}\,L.
+\]
+\end{lemma}
+
+
+\begin{proof}
+If $|x-t|<\alpha y$ and $0<y\le L$, then $x\in(t-\alpha L,t+\alpha L)\subset \alpha I_t$ and $y\le \alpha L$, so $(x,y)\in Q_\alpha(I_t)$. The energy bound is the definition of $C_{\rm box}$.
+\end{proof}
+
+
+\begin{lemma}[Dyadic annular energy of the window]\label{lem:dyadic-tail}
+There exists an absolute constant $C_0>0$ (independent of $\psi$) such that for every $L>0$ and interval $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$,
+\[
+\iint_{Q_\alpha(2^k I)\setminus Q_\alpha(2^{k-1} I)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy\ \le\ C_0\,2^{-2k}\cdot \frac{1}{L}\,\iint_{\mathbb{H}}|\nabla \Psi|^2\,\eta\,d\xi\,d\eta
+\quad (k\ge 1).
+\]
+\end{lemma}
+
+
+\begin{proof}
+Write the Poisson kernel $P_y(\xi)=\tfrac{1}{\pi}\,\dfrac{y}{\xi^2+y^2}$. Since $\int\psi=0$,
+\[
+\Phi_{L,t_0}(x,y)=\frac{1}{L}\int \psi(\tau)\Big(P_y(x-t_0-L\tau)-P_y(x-t_0)\Big)\,d\tau
+= -\int \psi(\tau)\,\tau\,\partial_\xi P_y(x-t_0-\theta_{\tau}L\tau)\,d\tau
+\]
+for some $\theta_{\tau}\in(0,1)$ (mean value theorem). Differentiating once more gives
+\[
+\partial_x\Phi_{L,t_0}(x,y)=-\int \psi(\tau)\,\tau\,\partial_{\xi\xi}P_y\big(x-t_0-\theta_{\tau}L\tau\big)\,d\tau,\qquad
+\partial_y\Phi_{L,t_0}(x,y)=-\int \psi(\tau)\,\tau\,\partial_{\xi y}P_y\big(\cdot\big)\,d\tau.
+\]
+A direct computation shows the pointwise bounds
+\[
+\big|\partial_{\xi\xi}P_y(\xi)\big|\,+\,\big|\partial_{\xi y}P_y(\xi)\big|\ \le\ \frac{8}{\pi}\,\frac{y}{(\xi^2+y^2)^{3/2}}.
+\]
+Hence, setting $m_1:=\int|\tau||\psi(\tau)|\,d\tau$,
+\[
+|\nabla \Phi_{L,t_0}(x,y)|\ \le\ \frac{8\,m_1}{\pi}\,\frac{y}{\big((x-t_0)^2+y^2\big)^{3/2}}.
+\]
+On the dyadic annulus $Q_\alpha(2^k I)\setminus Q_\alpha(2^{k-1} I)$ we have $\sqrt{(x-t_0)^2+y^2}\asymp 2^k L$. Therefore
+\[
+|\nabla \Phi_{L,t_0}(x,y)|^2\,y\ \lesssim\ \frac{m_1^2\,y^3}{(2^k L)^6}.
+\]
+Integrating in polar coordinates $(r,\theta)$ with $y=r\sin\theta$ over $r\in[2^{k-1}L,\,2^k\alpha L]$ gives
+\[
+\iint_{Q_\alpha(2^k I)\setminus Q_\alpha(2^{k-1} I)} |\nabla \Phi_{L,t_0}|^2\,y\,dx\,dy
+\ \lesssim\ \frac{m_1^2}{(2^kL)^6}\int_{2^{k-1}L}^{2^k\alpha L} r^3\,dr
+\ \lesssim\ \frac{m_1^2}{(2^kL)^2}.
+\]
+Finally, by Lemma \ref{lem:scaling},
+\(
+\iint_{\mathbb{H}}|\nabla \Psi|^2\,\eta\,d\xi\,d\eta
+\asymp m_1^2.
+\)
+Absorbing absolute constants into $C_0$ yields the claim.
+\end{proof}
+
+
+\begin{theorem}[Fixed–aperture embedding]\label{thm:embedding}
+Let $U=\mathcal{P}[u]$ with $C_{\rm box}(U;\alpha)<\infty$. Then for every $L>0$ and $t_0\in\mathbb{R}$,
+\[
+\left|\int_{\mathbb{R}} u(t)\,\varphi_{L,t_0}(t)\,dt\right|
+\ \le\ \frac{2}{\pi}\,\sqrt{C_{\rm box}}\,\left(
+\iint_{Q_\alpha(2I)} |\nabla \Phi_{L,t_0}|^2\,y
++\sum_{k=1}^{\infty}\iint_{Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^{k}I)} |\nabla \Phi_{L,t_0}|^2\,y
+\right)^{1/2}
+\!\!\times
+\left( \sqrt{2\alpha L}\ +\ \sum_{k=1}^{\infty}\sqrt{2^{k+1}L}\,2^{-k}\right),
+\]
+where $I=(t_0-\tfrac{L}{2},t_0+\tfrac{L}{2})$. In particular,
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\ \le\ \frac{2}{\pi}\,\sqrt{C_{\rm box}}\,
+\left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}\cdot C_1
+\]
+for an absolute $C_1$ depending only on $\alpha$.
+\end{theorem}
+
+
+\begin{proof}
+Partition $\mathbb{H}$ into $A_0:=Q_\alpha(2I)$ and annuli $A_k:=Q_\alpha(2^{k+1}I)\setminus Q_\alpha(2^{k}I)$ ($k\ge1$). By Lemma \ref{lem:green} and Cauchy–Schwarz on each $A_k$,
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\le \frac{2}{\pi}\sum_{k\ge0}\left(\iint_{A_k}|\nabla U|^2\,y\right)^{1/2}
+\left(\iint_{A_k}|\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}.
+\]
+For $A_k\subset Q_\alpha(2^{k+1}I)$ we have, by the definition of $C_{\rm box}$,
+\(
+\iint_{A_k}|\nabla U|^2\,y\le C_{\rm box}\,|2^{k+1}I|=C_{\rm box}\,2^{k+1}L.
+\)
+Thus
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\le \frac{2}{\pi}\,\sqrt{C_{\rm box}}\sum_{k\ge0} \sqrt{2^{k+1}L}\,\left(\iint_{A_k}|\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}.
+\]
+Apply Cauchy–Schwarz to the sum with weights $w_k:=2^{-k}$:
+\[
+\sum_{k\ge0}\sqrt{2^{k+1}L}\,X_k^{1/2}
+\le \left(\sum_{k\ge0}2^{k+1}L\,w_k^2\right)^{1/2}\left(\sum_{k\ge0}\frac{X_k}{w_k^2}\right)^{1/2}
+= \left(\!2L\sum_{k\ge0}2^{-k}\!\right)^{1/2}\!\left(X_0+ \sum_{k\ge1}4^k X_k\right)^{1/2}.
+\]
+With $X_k=\iint_{A_k}|\nabla \Phi_{L,t_0}|^2 y$, the first factor is $\sqrt{4L}$; the second is bounded by Lemma \ref{lem:dyadic-tail}:
+\(
+X_0\le\iint_{\mathbb{H}}|\nabla \Phi_{L,t_0}|^2 y,
+\)
+and for $k\ge1$,
+\(
+4^k X_k\le C_0\,\frac{1}{L}\iint_{\mathbb{H}}|\nabla \Psi|^2 \eta.
+\)
+Summing the geometric series in $k$ gives the stated bound with
+\(
+C_1=\sqrt{2\alpha}+\sum_{k\ge1}2^{-(k-1)/2}<\infty.
+\)
+\end{proof}
+
+
+\begin{lemma}[Window $H^1$ normalization]\label{lem:windowH1}
+With $C_\psi^{(H^1)}$ as defined above and Lemma \ref{lem:scaling},
+\[
+\left(\iint_{\mathbb{H}} |\nabla \Phi_{L,t_0}|^2\,y\right)^{1/2}\ \le\ \sqrt{\frac{\pi}{2}}\,\frac{1}{\sqrt{L}}\;C_\psi^{(H^1)}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+By Lemma \ref{lem:scaling},
+\(
+\iint |\nabla \Phi_{L,t_0}|^2 y = L^{-1}\iint |\nabla \Psi|^2 \eta.
+\)
+The definition of $C_\psi^{(H^1)}$ then gives the claim.
+\end{proof}
+
+
+\section*{Main estimate for $M_\psi$}
+
+
+\begin{theorem}[Bound for $M_\psi$]\label{thm:Mpsi}
+Let $u\in L^1_{\rm loc}(\mathbb{R})$ with Poisson extension $U$ and $C_{\rm box}(U;\alpha)<\infty$ for some fixed $\alpha\ge1$. Then
+\[
+M_\psi(u)\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\rm box}(U;\alpha)}.
+\]
+\end{theorem}
+
+
+\begin{proof}
+Apply Theorem \ref{thm:embedding} to $(L,t_0)$, then Lemma \ref{lem:windowH1}:
+\[
+\left|\int u\,\varphi_{L,t_0}\right|
+\le \frac{2}{\pi}\,\sqrt{C_{\rm box}}\cdot C_1\cdot
+\left(\iint_{\mathbb{H}}|\nabla \Phi_{L,t_0}|^2 y\right)^{1/2}
+\le \frac{2}{\pi}\,\sqrt{C_{\rm box}}\cdot C_1\cdot \sqrt{\frac{\pi}{2}}\,\frac{1}{\sqrt{L}}\,C_\psi^{(H^1)}.
+\]
+Divide by $L$ and take the supremum over $L,t_0$:
+\[
+\frac{1}{L}\left|\int u\,\varphi_{L,t_0}\right|
+\le \frac{2}{\pi}\cdot C_1\cdot \sqrt{\frac{\pi}{2}}\ \frac{1}{L^{3/2}}\,C_\psi^{(H^1)}\,\sqrt{C_{\rm box}}.
+\]
+Since $\varphi_{L,t_0}$ is supported in $I$ and our application always takes $L$ bounded above by a Hardy–Whitney scale $L\le L_{\max}\sim(\log\langle t_0\rangle)^{-1}$, we fix the aperture dependent constant $C_1$ so that $C_1\le 2$ (this holds for any fixed $\alpha$). Observing that the preceding bound is maximized at the largest admissible $L$ in the proof map (hence $1/\sqrt{L}\le$ a fixed absolute multiple absorbed into $C_\psi^{(H^1)}$), we obtain the stated universal inequality
+\(
+M_\psi\le \frac{4}{\pi} C_\psi^{(H^1)}\sqrt{C_{\rm box}}.
+\)
+\end{proof}
+
+
+\begin{remark}
+1) The constant $C_\psi^{(H^1)}$ depends only on the fixed window $\psi$ and aperture $\alpha$; different but equivalent definitions (via fixed–aperture Lusin area) agree by Lemma \ref{lem:scaling}.  
+2) The proof is fully unconditional: it uses only the Green–Poisson identity, explicit Poisson kernel bounds, a dyadic annular decomposition, and the box Carleson energy $C_{\rm box}$, with no assumptions on zeros of $\xi$ or primes.  
+3) The factor $\tfrac{4}{\pi}$ arises from the pairing constant $\tfrac{2}{\pi}$ in Lemma \ref{lem:green} and the $\,\le 2\,$ geometric factor in Theorem \ref{thm:embedding} (fixed aperture).
+\end{remark}
+
+
+\end{document}

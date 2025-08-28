@@ -1,0 +1,90 @@
+% ------------------------------------------------------------
+% Unconditional xi-block bound: corrected statements and proof
+% with explicit BLOCKER for the only remaining analytic lemma.
+% ------------------------------------------------------------
+
+\section*{Unconditional Bound on the $\xi$-Block Energy (Corrected)}
+
+\subsection*{Setup}
+Let $Q(\alpha I)=\{\tfrac12+\sigma+it:\ t\in [T-L,T+L],\ 0<\sigma<\alpha L\}$ with $\alpha\in[1,2]$ and Whitney scaling $L=c/\log\langle T\rangle$.
+For a zero $\rho=\beta+i\gamma$ of $\xi$ set
+\[
+ a:=|\beta-\tfrac12|\in[0,\tfrac12],\qquad r:=|\gamma-T|,\qquad R:=r/L,\qquad
+ u_\rho(s):=\Re\log\frac{s-\rho}{s-\rho^\ast}.
+\]
+Let $\Pi_I$ be the Dirichlet–orthogonal projection onto affine functions on $Q(\alpha I)$, and define the neutralized kernels $K_\rho:=u_\rho-\Pi_I u_\rho$.
+
+\subsection*{Per–zero energy (unconditional and corrected)}
+\begin{lemma}[Single far zero]\label{lem:single}
+If $r\ge L$ then
+\[
+ \iint_{Q(\alpha I)} |\nabla u_\rho|^2\,\sigma\,dt\,d\sigma
+ \ \le\ C_\alpha\,a^2\,\frac{L}{(R-1)^3}.
+\]
+\end{lemma}
+
+\begin{proof}
+Using the exact identity
+\[
+ |\nabla u_\rho|^2=\frac{4a^2}{\big((\sigma-a)^2+(t-\gamma)^2\big)\big((\sigma+a)^2+(t-\gamma)^2\big)}
+ \ \le\ \frac{4a^2}{(t-\gamma)^4},
+\]
+we integrate $\sigma$ first to get $\int_0^{\alpha L}\sigma\,d\sigma=\tfrac12\alpha L^2$, and then
+\[
+ \int_{T-L}^{T+L}\frac{dt}{(t-\gamma)^4}
+ \ =\ \frac{1}{3}\Big[\frac{1}{(t-\gamma)^3}\Big]_{T-L}^{T+L}
+ \ \le\ \frac{2}{3}\,\frac{1}{(r-L)^3}.
+\]
+Combine and absorb constants into $C_\alpha$.
+\end{proof}
+
+\subsection*{Cross–term decay after affine neutralization}
+\begin{lemma}[Third–order off–diagonal decay]\label{lem:offdiag}
+For distinct far zeros $\rho,\rho'$ with parameters $(a,R)$ and $(a',R')$ and ordinate gap $D_\gamma:=|\gamma-\gamma'|$, one has
+\[
+ |\langle K_\rho,K_{\rho'}\rangle_{Q(\alpha I)}|
+ \ \le\ C_\alpha\, a a'\, L\,
+ \frac{1}{(R-1)^{3/2}(R'-1)^{3/2}}\,
+ \frac{1}{\big(1+D_\gamma/L\big)^{3}}.
+\]
+\end{lemma}
+
+\noindent\textbf{BLOCKER:} A complete proof is required here. Sketch: expand $u_\rho$ to second order in $(t{-}T,\sigma)$ on $Q(\alpha I)$ (since $r\ge L$), identify and remove the affine part via $\Pi_I$, and show the remainder obeys pointwise bounds
+\[
+ |\partial_t K_\rho|\ \lesssim\ a\,\frac{L}{(r-L)^2}\,\frac{1}{(1+|t-\gamma|/L)^2},\qquad
+ |\nabla K_\rho|\ \lesssim\ a\,\frac{\sqrt{L}}{(r-L)^{3/2}}\,\frac{1}{(1+|t-\gamma|/L)^{3/2}},
+\]
+uniform in $\sigma\in(0,\alpha L)$. Integrate against the corresponding bound for $K_{\rho'}$ with weight $\sigma$ and use Cauchy–Schwarz in $t$ to obtain the stated $D_\gamma^{-3}$ decay.
+
+\subsection*{Summation by shells and Schur/Cotlar}
+Fix $\rho$ and group zeros by vertical shells $\mathcal S_m(\rho):=\{\rho':\ mL\le |\gamma'-\gamma|<(m{+}1)L\}$. Unconditionally,
+\[
+ \#\mathcal S_m(\rho)\ \le\ C\big(L\log\langle \gamma+mL\rangle +1\big)\ \le\ C'(c+1)\quad(\text{Whitney }L\log\langle\cdot\rangle\le c),
+\]
+so each shell has $O(1)$ zeros uniformly in $m$. By Lemmas~\ref{lem:single}–\ref{lem:offdiag} and the choice
+\[
+ b_\rho\ :=\ a\,\sqrt{L}\,(R-1)^{-3/2}\quad\text{ so that }\quad
+ \|K_\rho\|^2\ \lesssim\ b_\rho^2,
+\]
+we obtain the normalized kernel bound
+\[
+ \frac{|\langle K_\rho,K_{\rho'}\rangle|}{b_\rho b_{\rho'}}\ \le\ \frac{C_\alpha}{(1+m)^3}\qquad
+ (\rho'\in \mathcal S_m(\rho)).
+\]
+Hence the Schur (Cotlar–Stein) row sum is uniformly bounded:
+\[
+ \sum_{\rho'\ne \rho}\frac{|\langle K_\rho,K_{\rho'}\rangle|}{b_\rho b_{\rho'}}
+ \ \le\ C_\alpha\sum_{m\ge 0}\frac{\#\mathcal S_m(\rho)}{(1+m)^3}
+ \ \le\ C_\alpha''\sum_{m\ge 0}\frac{1}{(1+m)^3}\ <\ \infty.
+\]
+Consequently,
+\[
+ \Big\|\sum_{\rho\in S} K_\rho\Big\|^2\ \le\ C_\alpha'''\sum_{\rho\in S} b_\rho^2
+ \ \lesssim\ \sum_{\rho\in S} a^2\,\frac{L}{(R-1)^{3}}
+ \ \lesssim\ |I|,
+\]
+by the same shelling (linear in $m$ numerator disappears; denominator is cubic). Adding the analytic remainder (from the canonical factorization) yields
+\[
+ \iint_{Q(\alpha I)} |\nabla \widetilde U|^2\,\sigma\,dt\,d\sigma\ \le\ K_\xi\,|I|,
+\]
+with $K_\xi$ absolute (depends only on $\alpha$ and the Whitney constant $c$). 

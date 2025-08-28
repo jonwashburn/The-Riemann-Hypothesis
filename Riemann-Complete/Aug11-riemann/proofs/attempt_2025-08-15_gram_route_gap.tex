@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{claim}{Claim}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{Interior NP--PSD target and the Gram-route gap}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $\Omega := \{ s\in\mathbb C : \Re s > \tfrac12 \}$ and fix a zero-free rectangle $R \Subset \Omega$ for $\xi(s)$. For a prime cutoff $P_N$, define
+\[\det{}_2^N(s) := \prod_{p\le P_N} (1-p^{-s})\,e^{p^{-s}},\qquad J_N(s):= \frac{\det{}_2^N(s)}{\xi(s)},\qquad g_N(s):=\frac{2J_N(s)-1}{2J_N(s)+1}.\]
+The half-plane Szeg\H{o} kernel is $B(s,\bar t):= (s+\bar t -1)^{-1}$.
+
+\paragraph{Exact NP--Herglotz equivalence.} For all $s,t\in\Omega$,
+\begin{equation}\label{eq:NP-factor}
+ K_{g_N}(s,\bar t) 
+ \,=\, \frac{1-g_N(s)\overline{g_N(t)}}{s+\overline t -1}
+ \,=\, \frac{2}{2J_N(s)+1}\,\underbrace{\frac{J_N(s)+\overline{J_N(t)}}{s+\overline t -1}}_{H_{J_N}(s,\bar t)}\,\overline{\frac{2}{2J_N(t)+1}}\,.
+\end{equation}
+Thus $K_{g_N}$ is PSD on any finite node set iff $H_{J_N}$ is PSD on that set.
+
+\paragraph{Naive linear Gram fails.} Define $f_N(s):= \partial_s \log \det{}_2^N(s) 
+ = \sum_{p\le P_N}\sum_{k\ge 2} (\log p)\,p^{-ks}$.
+It is tempting to assert that $H_{f_N}(s,\bar t):= (f_N(s)+\overline{f_N(t)})/(s+\overline t-1)$ is PSD by a Laplace/Gram argument. This is false in general: even for a single atom $f(s)=e^{-xs}$ with $x>0$, the matrix $\big[H_f(s_i,\bar s_j)\big]$ on Chebyshev nodes of $\partial R$ can have negative eigenvalues (numerically observed; the obstruction is that $\Re f$ need not be nonnegative on $\Omega$).
+
+\begin{remark}
+The half-plane Herglotz theorem says $(F(s)+\overline{F(t)})/(s+\overline t)$ is PSD iff $\Re F\ge 0$ on $\Re s>0$. We do not have $\Re f_N\ge 0$ on $\Omega$, hence no direct PSD.
+\end{remark}
+
+\paragraph{What must be proved (minimal statement).}
+\begin{theorem}[Interior NP--PSD on $\partial R$]\label{thm:NP-PSD}
+For the fixed rectangle $R\Subset\Omega$, there exists $N_0(R)$ such that for all $N\ge N_0(R)$ and all finite node sets $\{s_j\}\subset \partial R$, the Herglotz kernel
+\[ H_{J_N}(s_i,\bar s_j) \,=\, \frac{J_N(s_i)+\overline{J_N(s_j)}}{s_i+\overline{s_j}-1} \]
+is positive semidefinite.
+Equivalently, the Pick matrix of $g_N$ is PSD on $\partial R$.
+\end{theorem}
+
+\noindent
+This single theorem yields contractive Schur interpolants on $\Omega$ approximating $g_N$ on $R$; combined with the already-proved local uniform convergence $g_N\to \Theta$ on zero-free compacta, a diagonal extraction finishes the interior route.
+
+\paragraph{Sufficient condition.}
+\begin{proposition}[Boundary accretivity suffices]\label{prop:accretive}
+If there exists $N_0(R)$ so that for all $N\ge N_0(R)$ one has $\Re J_N(s)\ge 0$ and $2J_N(s)+1\ne 0$ for all $s\in \partial R$, then $H_{J_N}$ is PSD on $\partial R$.
+\end{proposition}
+
+\paragraph{Remarks on closure attempts.} Two previously sketched lifts (square-completion per prime-power and normalized exponential/Fock kernels) require additional uniform inequalities on $\partial R$ to become \emph{exact} Gram representations for $H_{J_N}$. Without such inequalities, they do not presently produce PSD for arbitrary node sets.
+
+\paragraph{Actionable target for contributors.}
+Provide a complete analytic proof of either Theorem~\ref{thm:NP-PSD} or Proposition~\ref{prop:accretive} for each $R\Subset\Omega$ (with $\xi\ne 0$ on $\overline R$), with $N_0(R)$ explicit or effectively bounded. No use of RH, no assumption $|\Theta|\le 1$, no post hoc scaling of Schur functions.
+
+\end{document}
+

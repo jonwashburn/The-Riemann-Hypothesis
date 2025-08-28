@@ -1,0 +1,162 @@
+﻿\ocumentclass[11pt]{article}
+
+
+% No new packages introduced.
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newenvironment{proof}{\par\noindent\textit{Proof.}\ }{\hfill$\square$\par}
+
+
+\title{Removability Across \texorpdfstring{$Z(\xi)$}{Z(xi)} for the Schur Transform \texorpdfstring{$\Theta$}{Theta} and the Ratio \texorpdfstring{$\mathcal J$}{J}}
+\author{Jonathan Washburn \\ Recognition Science, Recognition Physics Institute \\ \texttt{jon@recognitionphysics.org} \\ Austin, Texas, USA}
+\date{August 24, 2025}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{Setup}
+
+
+Let
+\[
+\Omega\ :=\ \{\,s\in\mathbb{C}:\ \Re s>\tfrac12\,\},\qquad
+\partial\Omega\ :=\ \{\,\tfrac12+it:\ t\in\mathbb{R}\,\}.
+\]
+Let \(\mathcal J\) be analytic on \(\Omega\setminus Z(\xi)\) and define
+\[
+F(s)\ :=\ 2\,\mathcal J(s),\qquad
+\Theta(s)\ :=\ \frac{F(s)-1}{F(s)+1}\ =\ \frac{2\mathcal J(s)-1}{2\mathcal J(s)+1}.
+\]
+Assume that on a punctured neighborhood of each \(\rho\in Z(\xi)\cap\Omega\) the function \(\Theta\) is analytic and \emph{Schur}:
+\[
+\exists\,r_\rho>0:\quad \Theta\ \text{analytic on}\ D^\ast(\rho,r_\rho):=\{\,|s-\rho|<r_\rho\,\}\setminus\{\rho\},\quad
+|\Theta(s)|\le 1\ \text{on}\ D^\ast(\rho,r_\rho).
+\]
+We isolate two nondegeneracy hypotheses that each suffice to conclude removability for \(\Theta\) and hence for \(\mathcal J\).
+
+
+\medskip
+\noindent\textbf{(ND\(_1\)) Local strictness at one point.}
+There exists \(s_\ast\in D^\ast(\rho,r_\rho)\) such that \(|\Theta(s_\ast)|<1\).
+
+
+\noindent\textbf{(ND\(_2\)) Strict positive--real margin for \(F\).}
+There exists \(\delta>0\) such that \(\Re F(s)\ge \delta\) for all \(s\in D^\ast(\rho,r_\rho)\).
+
+
+\begin{remark}
+In applications, (ND\(_2\)) follows from a \emph{strict} boundary wedge (and Poisson transport) or any other mechanism yielding \(\Re F\ge\delta>0\) in the box around \(\rho\). When only a nonstrict wedge is available, (ND\(_1\)) is enough: it merely certifies that \(\Theta\) is not identically unimodular in that neighborhood.
+\end{remark}
+
+
+\section*{Two Basic Lemmas}
+
+
+\begin{lemma}[Removable singularity for bounded analytic data]
+\label{lem:removable}
+If \(g\) is analytic and bounded on a punctured disc \(D^\ast(\rho,r)\), then \(g\) extends holomorphically to the full disc \(D(\rho,r)\).
+\end{lemma}
+
+
+\begin{proof}
+The standard proof applies: the Cauchy integral over \(|s-\rho|=\eta\) defines the extension for \(0<\eta<r\), and boundedness ensures the principal part vanishes. Equivalently, Riemann’s removable singularity theorem.
+\end{proof}
+
+
+\begin{lemma}[Unimodular saturation forces constancy]
+\label{lem:unimodular-const}
+Let \(g\) be analytic on a connected open set \(U\) with \(|g|\le 1\) on \(U\). If there exists \(s_0\in U\) with \(|g(s_0)|=1\), then \(g\) is constant on \(U\) and \(g(s)\equiv e^{i\theta}\) for some \(\theta\in\mathbb{R}\).
+\end{lemma}
+
+
+\begin{proof}
+If \(|g(s_0)|\) attains the maximum of \(|g|\) in the interior, the maximum modulus principle implies \(g\) is constant. The bound \(|g|\le 1\) forces the constant to be unimodular.
+\end{proof}
+
+
+\section*{Removability for \texorpdfstring{$\Theta$}{Theta} and \texorpdfstring{$\mathcal J$}{J}}
+
+
+\begin{theorem}[Local removability for \(\Theta\) at \(\rho\)]
+\label{thm:theta-removable}
+Under the Schur hypothesis for \(\Theta\) on \(D^\ast(\rho,r_\rho)\), assume either \textup{(ND\(_1\))} or \textup{(ND\(_2\))}. Then:
+\begin{enumerate}
+  \item \(\Theta\) extends holomorphically to \(D(\rho,r_\rho)\).
+  \item \(|\Theta(\rho)|<1\).
+\end{enumerate}
+\end{theorem}
+
+
+\begin{proof}
+(1) Since \(|\Theta|\le 1\) on \(D^\ast(\rho,r_\rho)\), Lemma~\ref{lem:removable} gives a holomorphic extension of \(\Theta\) to \(D(\rho,r_\rho)\).
+
+
+(2a) Under \textup{(ND\(_1\))}, choose \(s_\ast\) with \(|\Theta(s_\ast)|<1\). If \(|\Theta(\rho)|=1\), then by Lemma~\ref{lem:unimodular-const} (applied to the connected disc) \(\Theta\) would be constant unimodular on \(D(\rho,r_\rho)\), contradicting \(|\Theta(s_\ast)|<1\). Hence \(|\Theta(\rho)|<1\).
+
+
+(2b) Under \textup{(ND\(_2\))}, write \(F=u+iv\) with \(u=\Re F\ge \delta>0\). Then for all \(s\in D^\ast(\rho,r_\rho)\),
+\[
+|\Theta(s)|^2\ =\ \frac{|F-1|^2}{|F+1|^2}\ =\ \frac{(u-1)^2+v^2}{(u+1)^2+v^2}
+\ =\ 1\ -\ \frac{4u}{(u+1)^2+v^2}\ \le\ 1\ -\ \frac{4\delta}{(u+1)^2+v^2}\ <\ 1.
+\]
+Thus \(|\Theta|\) is strictly \(<1\) on the punctured disc; continuity of the holomorphic extension implies \(|\Theta(\rho)|\le \sup_{D^\ast}|\Theta|<1\).
+\end{proof}
+
+
+\begin{theorem}[Removability for \(\mathcal J\) at \(\rho\)]
+\label{thm:J-removable}
+Under the hypotheses of Theorem~\ref{thm:theta-removable}, the ratio \(\mathcal J\) extends holomorphically across \(\rho\).
+\end{theorem}
+
+
+\begin{proof}
+From Theorem~\ref{thm:theta-removable}, \(\Theta\) is holomorphic on \(D(\rho,r_\rho)\) and \(|\Theta(\rho)|<1\).
+Define
+\[
+\mathcal J(s)\ =\ \frac{1+\Theta(s)}{2\bigl(1-\Theta(s)\bigr)}.
+\]
+Since \(1-\Theta(\rho)\ne 0\), the denominator does not vanish at \(s=\rho\), hence \(\mathcal J\) is holomorphic at \(s=\rho\).
+\end{proof}
+
+
+\section*{Global Version}
+
+
+\begin{theorem}[Global removability across \(Z(\xi)\) in \(\Omega\)]
+\label{thm:global}
+Assume:
+\begin{itemize}
+  \item \(\Theta\) is analytic and Schur on \(\Omega\setminus Z(\xi)\);
+  \item For each \(\rho\in Z(\xi)\cap\Omega\) there exists \(r_\rho>0\) such that either \textup{(ND\(_1\))} or \textup{(ND\(_2\))} holds on \(D^\ast(\rho,r_\rho)\);
+  \item The discs \(D(\rho,r_\rho)\) can be chosen pairwise disjoint.
+\end{itemize}
+Then \(\Theta\) and \(\mathcal J\) extend holomorphically to all of \(\Omega\). In particular, \(\mathcal J\) has no poles at \(Z(\xi)\cap\Omega\).
+\end{theorem}
+
+
+\begin{proof}
+Apply Theorems~\ref{thm:theta-removable} and \ref{thm:J-removable} independently on each disc \(D(\rho,r_\rho)\); disjointness ensures compatibility. The resulting extensions patch with the original definitions on \(\Omega\setminus \bigcup_\rho D(\rho,r_\rho)\), yielding holomorphy on the entire \(\Omega\).
+\end{proof}
+
+
+\begin{remark}[How to certify (ND)]
+\hfill
+\begin{itemize}
+  \item To certify \textup{(ND\(_2\))}, it suffices to prove a \emph{strict} positive--real bound \(\Re F\ge \delta>0\) on each local box; this follows, for example, from a strictly inside boundary wedge transported by Poisson.
+  \item To certify \textup{(ND\(_1\))}, it suffices to exhibit any point in the box where \(|\Theta|<1\) (e.g., by evaluation at a single interior point, or by a strict estimate far enough to the right in \(\Re s\)).
+\end{itemize}
+\end{remark}
+
+
+\bigskip
+\noindent\textbf{BLOCKER:} Provide, for each local box around \(\rho\in Z(\xi)\cap\Omega\), either a verified strict positive--real margin \(\Re(2\mathcal J)\ge \delta>0\) (guaranteeing \textup{(ND\(_2\))}) or a certified point \(s_\ast\) with \(|\Theta(s_\ast)|<1\) (guaranteeing \textup{(ND\(_1\))}). This nondegeneracy is necessary to exclude \(\Theta(\rho)=1\) and hence to conclude holomorphy of \(\mathcal J\) across \(\rho\).
+
+
+\end{document}
+re

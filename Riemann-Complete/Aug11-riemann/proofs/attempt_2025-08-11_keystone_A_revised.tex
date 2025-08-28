@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{A Complete Operator-Theoretic Program for the Riemann Hypothesis (Keystone A, Revised)}
+\author{A.I. Collaboration}
+\date{\today}
+
+% --- Macros ---
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\Th}{\Theta}
+\newcommand{\Ths}{\Theta_*}
+\newcommand{\Si}{\Sigma}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\kN}{K_N}
+\newcommand{\detTwo}{\det\nolimits_{2}}
+\newcommand{\xiFun}{\xi}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+
+\begin{document}
+\maketitle
+
+\section{Definitions}
+Let $s=\sigma+it$ with $\sigma,t\in\mathbb{R}$ and $\Pset$ the set of primes.
+\[
+\Si(s):=\sum_{p\in\Pset}\frac{p^{-2}}{1-p^{-s}},\qquad
+E2(s):=\exp\Big(\sum_{p} p^{-s}+\tfrac12 \sum_{p} p^{-2s}\Big),\qquad
+\Ths(s):=\zeta(s)^2\,E2(s)^{-1}.
+\]
+For $P_N=\{p_1,\dots,p_N\}$ define
+\[
+\SiN(s):=\sum_{p\in P_N}\frac{p^{-2}}{1-p^{-s}},\quad
+E_{2,N}(s):=\exp\Big(\sum_{p\in P_N} p^{-s}+\tfrac12\sum_{p\in P_N} p^{-2s}\Big),\quad
+\ThN(s):=\prod_{p\in P_N}(1-p^{-s})^{-2}\,E_{2,N}(s)^{-1}.
+\]
+Set the kernels
+\[
+K(s,w):=\frac{1-\Ths(s)\overline{\Ths(w)}}{\Si(s)+\overline{\Si(w)}},\qquad
+\kN(s,w):=\frac{1-\ThN(s)\overline{\ThN(w)}}{\SiN(s)+\overline{\SiN(w)}}.
+\]
+
+\section{Corrections and scope}
+We record what is provable unconditionally and isolate the genuinely open steps.
+
+\subsection*{(A) $\Si$ and $\SiN$ are Herglotz (closed)}
+\begin{lemma}\label{lem:herglotz}
+For $\ReS s>0$ and any prime $p$,
+\[\Re\,\frac{p^{-2}}{1-p^{-s}}=\frac{p^{-2}\big(1-p^{-\sigma}\cos(t\log p)\big)}{\,|1-p^{-\sigma}e^{-it\log p}|^2\,}>0.\]
+Hence $\Re \Si(s)>0$ on $\{\ReS s>0\}$ and $\Re \SiN(s)>0$ for each finite $N$.
+\end{lemma}
+\begin{proof}
+Write $p^{-s}=p^{-\sigma}e^{-it\log p}$ with $p^{-\sigma}\in(0,1)$. Then $\Re(1- p^{-s})^{-1}=(1-p^{-\sigma}\cos(t\log p))/(1+p^{-2\sigma}-2p^{-\sigma}\cos(t\log p))>0$; multiply by $p^{-2}>0$ and sum.
+\end{proof}
+
+\subsection*{(B) $\ThN$ is analytic (closed) but not proven Schur (open)}
+\begin{proposition}\label{prop:thetaN-analytic}
+For each $N$, $\ThN$ is analytic on $\{\ReS s>1/2\}$ and locally bounded. No uniform bound $|\ThN(s)|\le 1$ on $\{\ReS s>1/2\}$ is claimed or used here.
+\end{proposition}
+
+\begin{remark}
+Schur-class (contractive) boundedness of $\ThN$ relative to $\SiN$ is \emph{not} established and generally false without additional structure. Any conclusion relying on it must be stated as a hypothesis.
+\end{remark}
+
+\section{Finite kernel positivity: what is true}
+\begin{proposition}[Equivalence]\label{prop:equivalence}
+For fixed $N$, the following are equivalent on $\{\ReS s>1/2\}$:
+\begin{itemize}
+  \item[(i)] $\kN$ is positive semidefinite.
+  \item[(ii)] $\ThN$ is a Schur multiplier relative to $\SiN$, i.e., the de Branges--Rovnyak kernel $\kN$ is PSD.
+\end{itemize}
+\end{proposition}
+
+\begin{remark}
+Thus, proving $\kN\succeq 0$ is\,\emph{equivalent}\,to proving $\ThN\in \mathrm{Schur}(\SiN)$. This is the correct finite-$N$ keystone statement; it was previously asserted without proof and is now recorded as an \textbf{open hypothesis}.
+\end{remark}
+
+\begin{hypothesis}[Keystone A (finite Schur)]\label{hyp:finite-schur}
+For each $N$, $\ThN$ is a Schur multiplier relative to $\SiN$; equivalently, $\kN\succeq 0$.
+\end{hypothesis}
+
+\section{Limit passage}
+Under Hypothesis~\ref{hyp:finite-schur}, standard Dirichlet tail bounds give local uniform convergence $\SiN\to\Si$ and $\ThN\to\Ths$ on $\ReS s\ge 1/2+\varepsilon$, whence $\kN\to K$ locally uniformly; closure of the PSD cone yields $K\succeq 0$.
+
+\section{Consequences (conditional)}
+If $K\succeq 0$, de Branges--Rovnyak realization gives a $J$-inner node with characteristic $\Ths$ and a strict spectral gap off $\ReS s=1/2$. Combined with determinant bookkeeping and normalization, this implies $\detTwo(I-\widehat{T}(s))=\xiFun(s)$ and RH. All of these depend \emph{only} on the positivity $K\succeq 0$ and are thus conditional on Hypothesis~\ref{hyp:finite-schur} (or directly on $K\succeq 0$).
+
+\section{Summary of corrections}
+- The prior claim that $\SiN$ is Herglotz is now proved (Lemma~\ref{lem:herglotz}).
+- The prior claim that $\ThN$ is Schur (bounded by 1) is \emph{withdrawn}. Only analyticity is asserted (Proposition~\ref{prop:thetaN-analytic}).
+- Finite kernel positivity is correctly framed as Hypothesis~\ref{hyp:finite-schur}, equivalent to $\ThN\in \mathrm{Schur}(\SiN)$.
+- All downstream results are stated as conditional on positivity (or equivalently, the Schur property) and no longer rely on unproven assertions.
+
+\end{document}

@@ -1,0 +1,37 @@
+% Height–uniform results (all heights): constants and globalization
+% Ready to \input into the manuscript; assumes theorem environments exist.
+
+\section*{Uniformity in height and globalization}
+
+\begin{proposition}[Height–uniform constants]\label{prop:height-uniform}
+Fix $\alpha\ge 1$ and $\Lambda\ge 1$.
+Let $U=\Re\log F$ for the field $F$ used in the PSC analysis (with local neutralization in each Whitney box).
+Then there exist absolute constants $K_0,K_\xi,K_\Gamma<\infty$ such that for every box $Q_\alpha(I)$ with $|I|\le 1/(\Lambda\log\langle T\rangle)$ located at height $T$,
+\[
+  \frac{1}{|I|}\iint_{Q_\alpha(I)} |\nabla U|^2\,y\,dx\,dy\ \le\ K_0+K_\xi+K_\Gamma\ =:\ K_{\rm box},
+\]
+with all constants independent of $T$.
+Moreover, the window constants from the fixed–aperture setup satisfy
+\[
+  c_0(\psi)>0,\qquad C_H(\psi)<\infty,\qquad C_\psi^{(H^1)}<\infty,
+\]
+depending only on $\psi$ and $\alpha$ (and not on $T$).
+\end{proposition}
+
+\begin{theorem}[Certificate on every Whitney box]\label{thm:cw-allheights}
+Let $I$ be any Whitney interval at height $T$ with $|I|\le 1/(\Lambda\log\langle T\rangle)$.
+Assume the PSC budgets are taken from the height–uniform bounds in Proposition~\ref{prop:height-uniform} and the fixed–aperture normalizations.
+Then the boundary phase of $F$ satisfies the a.e. wedge on $I$:
+\[
+  w_F(t)\in\bigl[-\tfrac{\pi}{2},\tfrac{\pi}{2}\bigr]\quad\text{for a.e. }t\in I,
+\]
+equivalently $\Re F(\tfrac12+it)\ge 0$ a.e. on $I$.
+\end{theorem}
+
+\begin{theorem}[Global Schur bound and removability]\label{thm:schur-global}
+Let $\Theta=\mathrm{Cayley}(2\mathcal J-1)$ be the Cayley transform of the Herglotz field $2\mathcal J$.
+If Theorem~\ref{thm:cw-allheights} holds on every Whitney interval, then $|\Theta(s)|\le 1$ for all $s\in\Omega$.
+Consequently, $\Theta$ is analytic and bounded on $\Omega$, and every would–be singularity of $\mathcal J$ in $\Omega$ is removable.
+\end{theorem}
+
+

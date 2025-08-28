@@ -1,0 +1,28 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{lemma}{Lemma}
+
+\title{Lemma: $\xi^{-1}$ is a positive Schur multiplier on $\partial R$}
+\date{2025-08-15}
+\begin{document}
+\maketitle
+
+Let $R\Subset\{\Re s>\tfrac12\}$. Write $\Sigma_R:=\{s\in\partial R:\ \xi(s)=0\}$ (a finite set by analyticity). Define $M(s):=\xi(s)^{-1}$ on $\partial R\setminus\Sigma_R$.
+
+\begin{lemma}
+For any positive semidefinite kernel $K$ on $(\partial R\setminus\Sigma_R)\times(\partial R\setminus\Sigma_R)$, the Schur (entrywise) product
+\[ (M\odot K)(s,\overline t):= M(s)\,K(s,\overline t)\,\overline{M(t)}\]
+is positive semidefinite on $\partial R\setminus\Sigma_R$. In particular, for any finite node set $\{s_j\}\subset\partial R$ with $\xi(s_j)\ne0$, the Gram matrix $\big(M(s_i)K(s_i,\overline{s_j})\overline{M(s_j)}\big)_{i,j}$ is PSD. If desired, include nodes approaching $\Sigma_R$ by a limiting argument.
+\end{lemma}
+
+\begin{proof}
+Fix a finite node set $\{s_j\}\subset\partial R$ with $\xi(s_j)\ne0$. Let $D=\mathrm{diag}(M(s_1),\dots,M(s_n))$. Then the Gram matrix of the Schur product on these nodes is
+\[
+\big(M(s_i)K(s_i,\overline{s_j})\overline{M(s_j)}\big)_{i,j}\ =\ D\,K\,D^*,
+\]
+which is PSD because $K$ is PSD and congruences by arbitrary diagonal (indeed any) matrices preserve PSD. No holomorphy or collar assumption is needed. If nodes approach $\Sigma_R$, pass to the limit along subsequences; PSD is closed under entrywise limits of Gram matrices.
+\end{proof}
+
+\end{document}
+

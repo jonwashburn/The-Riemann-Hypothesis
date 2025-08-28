@@ -1,0 +1,210 @@
+﻿Below is a drop‑in LaTeX section that (i) moves the trace–lock and det⁡2\det_2 invariance under strictly upper‑triangular padding into a short “Operator Ideals Primer,” and (ii) hardens Bridge A by reproving
+ξ(s)  =  eL(s) det⁡2 ⁣(I−Tnew(s)) \xi(s)\;=\;e^{L(s)}\,\det\nolimits_2\!\big(I-T_{\rm new}(s)\big)
+using only the Hilbert–Schmidt power–trace lock for n≥2n\ge 2 together with the Carleman–Fredholm definition of det⁡2\det_2 (no use of Euler products outside ℜs>1\Re s>1). It also spells out the branch fixing L(2)∈RL(2)\in\mathbb{R} and why eLe^{L} is zero‑free on ℜs>12\Re s>\tfrac12 by analytic continuation from ℜs>1\Re s>1 without feeding any ζ\zeta‑information back into the determinant leg. The statements match and streamline what you already sketched (Bridge A, triangular padding, and the “normalizer eLe^{L}” remark).
+________________
+
+
+% =========================================================
+% Bridge A (Hardened): Operator Ideals Primer and zero-free normalizer e^{L}
+% =========================================================
+
+
+\section{Operator Ideals Primer (HS, trace class, det$_2$) and the trace--lock}
+We record the Schatten-class facts used in Bridge~A and fix notation.
+Let $\HS:=\mathcal S_2$ denote the Hilbert--Schmidt operators on a complex
+Hilbert space $H$ and $\mathcal S_1$ the trace class.
+Recall: $\HS\cdot\HS\subset \mathcal S_1$, and if $A\in\mathcal S_1$ and
+$B$ is bounded, then $\Tr(AB)=\Tr(BA)$.
+
+
+\begin{definition}[Carleman--Fredholm determinant on $\HS$]
+For $A\in \HS$ the \emph{regularized determinant} is
+\[
+  \dettwo(I-A)\ :=\ \det\big((I-A)\,e^{A}\big),
+\]
+where the right-hand side is the usual Fredholm determinant of the
+trace-class operator $(I-A)e^A-I=\sum_{n\ge 2}\frac{(-1)^{n-1}}{n!}(n-1)A^n$.
+Equivalently,
+\[
+  \log\dettwo(I-A)\ =\ -\sum_{n\ge 2}\frac{\Tr(A^n)}{n},
+\]
+with absolute convergence whenever $\|A\|<1$ and, in general, local uniform
+convergence on $\HS$-balls via the standard trace-ideal estimates.
+\end{definition}
+
+
+\begin{setup}[Prime basis, diagonal $T(s)$, and triangular padding]
+Let $H=\ell^2(\PP)$ with the prime-ordered ONB $\{e_p\}_{p\in\PP}$.
+For $s\in\C$ set
+\[
+  T(s)e_p := p^{-s}e_p,\qquad
+  A(s):=T(s),\qquad (\Re s>\tfrac12\Rightarrow T(s)\in\HS).
+\]
+Fix an $s$-independent $K\in\HS$ that is \emph{strictly upper-triangular}
+in the prime basis:
+$\langle Ke_p,e_q\rangle=0$ whenever $q\le p$ (in particular, $\langle Ke_p,e_p\rangle=0$).
+Define the padded operator $T_{\rm new}(s):=T(s)+K$.
+\end{setup}
+
+
+\begin{lemma}[Power--trace lock for $n\ge 2$]\label{lem:power-trace-lock}
+With $T(s)$ and strictly upper-triangular $K$ as above, for every integer $n\ge 2$
+and every $s$ with $\Re s>\tfrac12$ one has
+\[
+  \Tr\!\big(T_{\rm new}(s)^n\big)\ =\ \Tr\!\big(T(s)^n\big)\ =\ \sum_{p\in\PP}p^{-ns}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+Expand $(T+K)^n$ as a sum of words in $T$ and $K$. Any word containing at least one $K$
+is strictly upper-triangular (products of diagonal and strictly upper-triangular
+operators are strictly upper-triangular), hence has zero diagonal and zero trace.
+Thus only the diagonal word $T^n$ contributes.
+\end{proof}
+
+
+\begin{corollary}[det$_2$ invariance under strictly upper-triangular padding]
+\label{cor:det2-invariance}
+For all $s$ with $\Re s>\tfrac12$,
+\[
+  \log\dettwo\!\big(I-T_{\rm new}(s)\big)\ =\ -\sum_{n\ge 2}\frac{\Tr(T_{\rm new}(s)^n)}{n}
+  \stackrel{\text{Lemma }\ref{lem:power-trace-lock}}{=}
+  -\sum_{n\ge 2}\frac{\Tr(T(s)^n)}{n}\ =\
+  \log\dettwo\!\big(I-T(s)\big).
+\]
+Hence $\dettwo(I-T_{\rm new}(s))\equiv \dettwo(I-T(s))$ on $\{\Re s>\tfrac12\}$.
+\end{corollary}
+
+
+\section{Hardened Bridge A: factorization with a zero-free normalizer}
+We write the completed zeta
+\[
+  \xi(s)\ :=\ \tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma\!\big(\tfrac{s}{2}\big)\,\zeta(s)
+  \qquad(\text{entire, order }1).
+\]
+On the half-plane $\Re s>1$ we introduce the explicit
+\[
+  L_0(s)\ :=\ \log\!\Big(\tfrac12 s(1-s)\,\pi^{-s/2}\,\Gamma\!\big(\tfrac{s}{2}\big)\Big)
+             \ +\ \sum_{p\in\PP} p^{-s}.
+\]
+Here the Archimedean term is analytic on $\Re s>0$ and the prime sum converges
+absolutely on $\Re s>1$. Set $e^{L_0}:=\exp(L_0)$; then $e^{L_0}$ is holomorphic and
+nowhere zero on $\{\Re s>1\}$.
+
+
+\begin{proposition}[Bridge A on $\Re s>1$ without using Euler products beyond $\Re s>1$]\label{prop:bridgeA-re>1}
+For $\Re s>1$ one has
+\[
+  \log\xi(s)\ =\ L_0(s)\ +\ \log\dettwo\!\big(I-T_{\rm new}(s)\big).
+\]
+Equivalently,
+\[
+  \xi(s)\ =\ e^{L_0(s)}\,\dettwo\!\big(I-T_{\rm new}(s)\big),\qquad (\Re s>1).
+\]
+\end{proposition}
+
+
+\begin{proof}
+Since $\Re s>1$, $T(s)$ is trace class and
+\(
+  \log\zeta(s)=\sum_{m\ge 1}\sum_{p} \tfrac{p^{-ms}}{m}
+\)
+by the classical Dirichlet series for $\log\zeta$ on its domain of absolute
+convergence (no Euler product is invoked beyond $\Re s>1$).
+By the Carleman--Fredholm series and Lemma~\ref{lem:power-trace-lock},
+\[
+  \log\dettwo(I-T_{\rm new}(s))\ =\ -\sum_{n\ge 2}\frac{\sum_{p}p^{-ns}}{n}
+  \ =\ \sum_{p}\sum_{n\ge 2}\frac{p^{-ns}}{n}.
+\]
+Thus
+\[
+  \log\xi(s)=\underbrace{\log\!\Big(\tfrac12 s(1-s)\pi^{-s/2}\Gamma(\tfrac s2)\Big)}_{\text{Archimedean}}
+             \ +\ \underbrace{\sum_{p}\frac{p^{-s}}{1}}_{m=1}
+             \ +\ \underbrace{\sum_{p}\sum_{n\ge 2}\frac{p^{-ns}}{n}}_{m\ge 2}
+  \ =\ L_0(s)+\log\dettwo(I-T_{\rm new}(s)).
+\]
+\end{proof}
+
+
+\begin{theorem}[Hardened Bridge A on $\Re s>\tfrac12$ with a zero-free normalizer]\label{thm:hardened-bridgeA}
+There exists a holomorphic function $L$ on $\{\,\Re s>\tfrac12\,\}$,
+uniquely determined by the anchor
+\[
+  L(2)\ :=\ L_0(2)\ \in\mathbb{R},
+\]
+such that for all $s$ with $\Re s>\tfrac12$ the identity
+\begin{equation}\label{eq:hardened-A}
+  \xi(s)\ =\ e^{L(s)}\,\dettwo\!\big(I-T_{\rm new}(s)\big)
+\end{equation}
+holds. Moreover, $e^{L}$ is holomorphic and \emph{zero‑free} on $\{\,\Re s>\tfrac12\,\}$.
+\end{theorem}
+
+
+\begin{proof}
+By Proposition~\ref{prop:bridgeA-re>1} the identity holds on $\Re s>1$ with
+$L=L_0$, and $e^{L_0}$ is nonvanishing there. Both $\xi$ and
+$\dettwo(I-T_{\rm new}(\cdot))$ are holomorphic on $\Re s>\tfrac12$;
+indeed $\xi$ is entire and $s\mapsto T_{\rm new}(s)\in\HS$ is holomorphic on
+$\Re s>\tfrac12$, so $\dettwo(I-T_{\rm new}(s))$ is holomorphic.
+Define a holomorphic function on $\{\Re s>\tfrac12\}$ by
+\[
+  F(s)\ :=\ \xi(s)\ -\ e^{L_0(s)}\,\dettwo\!\big(I-T_{\rm new}(s)\big)\qquad(\Re s>1).
+\]
+By the identity on $\Re s>1$, $F\equiv 0$ there. The uniqueness of analytic
+continuation implies that there is a \emph{unique} holomorphic extension
+$e^{L}$ of $e^{L_0}$ to $\{\Re s>\tfrac12\}$ for which \eqref{eq:hardened-A}
+holds; the branch is fixed by the real anchor $L(2)=L_0(2)$.
+Since $e^{L}$ is by definition the exponential of a holomorphic function,
+it is zero‑free on its domain. No information about zeros of $\xi$ or of
+$\dettwo(I-T_{\rm new})$ is used to construct or continue $e^{L}$.
+\end{proof}
+
+
+\begin{remark}[What “zero‑free by analytic continuation” means here]
+The normalizer $e^{L}$ is \emph{defined} on $\{\Re s>\tfrac12\}$ as the
+holomorphic continuation of the nonvanishing function $e^{L_0}$ from
+$\{\Re s>1\}$, with the branch singled out by $L(2)\in\R$.
+We never set $e^{L}:=\xi/\dettwo(\cdot)$ as a quotient to infer its zeros;
+instead, \eqref{eq:hardened-A} is an identity of holomorphic functions
+obtained by continuation of the equality on $\Re s>1$.
+Consequently, $e^{L}$ is zero‑free for the elementary reason that it is
+the exponential of a holomorphic function.
+\end{remark}
+
+
+\begin{corollary}[Padding robustness]\label{cor:padding-robust}
+For any fixed, $s$-independent strictly upper-triangular $K\in\HS$
+the factorization \eqref{eq:hardened-A} holds with $T_{\rm new}=T+K$ and
+is independent of the choice of such $K$:
+\[
+  \xi(s)\ =\ e^{L(s)}\,\dettwo\!\big(I-T_{\rm new}(s)\big)
+  \ \equiv\ e^{L(s)}\,\dettwo\!\big(I-T(s)\big),\qquad \Re s>\tfrac12,
+\]
+by Corollary~\ref{cor:det2-invariance}. In particular, triangular padding
+introduces no new $\det_2$ zeros and carries no “far–far” budget.
+\end{corollary}
+
+
+\paragraph{Summary (Bridge A, hardened).}
+\begin{itemize}
+  \item The HS power–trace lock (Lemma~\ref{lem:power-trace-lock}) shows that
+  triangular HS padding leaves all $n\ge 2$ traces unchanged; hence
+  $\dettwo$ is invariant under such padding.
+  \item On $\Re s>1$ one has
+  $\xi=e^{L_0}\dettwo(I-T_{\rm new})$ with $L_0$ explicit (Archimedean
+  plus the $m=1$ prime term).
+  \item The identity extends to $\Re s>\tfrac12$ by analytic continuation,
+  defining the \emph{zero‑free} normalizer $e^{L}$ via the anchored branch
+  $L(2)=L_0(2)\in\R$. No $\zeta$‑zero information is fed back into the
+  determinant leg at any point.
+\end{itemize}
+
+
+________________
+
+
+Notes on integration into your manuscript.
+* The statements above align with (and compress) the trace–lock and padding lemmas you already use, and they formalize the “normalizer eLe^{L}” remark into a self-contained theorem with an anchored branch.
+
+* You can drop this section in before your Bridges B–C section. It makes Bridge A stand fully on operator‑ideal calculus (Carleman–Fredholm + HS traces) and a purely analytic continuation step for eLe^{L}, keeping Euler‑product inputs strictly within ℜs>1\Re s>1.

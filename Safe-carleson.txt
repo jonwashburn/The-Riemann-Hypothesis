@@ -1,0 +1,35 @@
+﻿% --- Begin: Safe Carleson energy sum inequality and closure ---
+\begin{lemma}[Carleson box energy: stable sum bound]\label{lem:carleson-sum}
+For harmonic potentials $U_1,U_2$ on $\Omega$,
+\[
+\sqrt{C_{\mathrm{box}}(U_1+U_2)}\ \le\
+\sqrt{C_{\mathrm{box}}(U_1)}\ +\ \sqrt{C_{\mathrm{box}}(U_2)}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+For any Carleson box $B$, by Cauchy–Schwarz,
+\[
+\int_{B} |\nabla(U_1+U_2)|^2
+\le \bigl(\sqrt{\int_B |\nabla U_1|^2}+\sqrt{\int_B |\nabla U_2|^2}\bigr)^2.
+\]
+Taking the supremum over $B$ gives the claim.
+\end{proof}
+
+
+\begin{corollary}[Numerical closure under \Cref{lem:carleson-sum}]
+With the locked constants $c_0(\psi)=0.17620819$, $C_\psi^{(H^1)}=0.2400$,
+$C_H(\psi)\le 2/\pi$, $K_0=0.03486808$, $K_\xi=0.02035$, we obtain
+\[
+\sqrt{C_{\mathrm{box}}}\ \le\ \sqrt{K_0}+\sqrt{K_\xi}\ \approx\ 0.32938,
+\qquad
+M_\psi \le \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}}\ \approx\ 0.10065,
+\]
+and therefore
+\[
+\Upsilon=\frac{(2/\pi)\,M_\psi}{c_0(\psi)} \approx 0.364\ <\ \tfrac12,
+\]
+which suffices for (P+).
+\end{corollary}
+% --- End: Safe Carleson energy sum inequality and closure ---

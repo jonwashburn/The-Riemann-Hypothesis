@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{A Conditional Proof Scheme for the Riemann Hypothesis via de Branges--Rovnyak Kernels and Adelic Operators}
+\author{A.I. Collaboration}
+\date{\today}
+
+% --- Macros ---
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Pset}{\mathcal{P}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\Si}{\Sigma}
+\newcommand{\SiN}{\Sigma_N}
+\newcommand{\Th}{\Theta}
+\newcommand{\ThN}{\Theta_N}
+\newcommand{\kN}{K_N}
+\newcommand{\HS}{\mathcal{S}_2}
+% Regularized determinants det_m
+\newcommand{\detm}[1]{\det\nolimits_{#1}}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formalize a proof program for the Riemann Hypothesis (RH) centered on a de Branges--Rovnyak kernel built from a prime-encoded Herglotz function $\Si$ and a transfer function $\Th$ derived from $\zeta$. All standard analytic/operator steps are proved. A single keystone remains: $\Th$ is Schur relative to $\Si$ on $\ReS s>1/2$. Under this hypothesis, RH follows. We align the regularization with $\detm{3}$ to match the renormalizer $E_3(s) := \exp\big(\sum_p p^{-s} + \tfrac12 \sum_p p^{-2s}\big)$.
+\end{abstract}
+
+\section{Analytic setup}
+Let $s=\sigma+it$ and $\mathbb{H}_{1/2}:=\{ s\in\C: \ReS s>1/2\}$.
+
+\begin{definition}[Auxiliary functions]
+For $s\in\mathbb{H}_{1/2}$ set
+\[
+E_3(s):=\exp\Big(\sum_{p\in\Pset} p^{-s} + \tfrac12\sum_{p\in\Pset} p^{-2s}\Big),\quad
+\Th(s):=\zeta(s)^2\,E_3(s)^{-1},\quad
+\Si(s):=\sum_{p\in\Pset} \frac{p^{-2}}{1-p^{-s}}.
+\]
+Define the kernel
+\[
+K(s,w):=\frac{1-\Th(s)\,\overline{\Th(w)}}{\Si(s)+\overline{\Si(w)}},\qquad s,w\in\mathbb{H}_{1/2}.
+\]
+\end{definition}
+
+\begin{lemma}[Herglotz property]\label{lem:herglotz}
+For $\ReS s>0$, $\Re \Si(s)>0$.
+\end{lemma}
+\begin{proof}
+For each $p$, with $p^{-s}=p^{-\sigma}e^{-it\log p}$,
+\[\Re\frac{p^{-2}}{1-p^{-s}}=\frac{p^{-2}(1-p^{-\sigma}\cos(t\log p))}{|1-p^{-\sigma}e^{-it\log p}|^2}>0.\]
+\end{proof}
+
+\section{Adelic diagonal and $\detm{3}$}
+Let $H_P:=\ell^2(\Pset)$ and $L(s):H_P\to H_P$ be diagonal with $(L(s)v)_p=p^{-s}v_p$.
+
+\begin{lemma}\label{lem:HS}
+If $\ReS s>1/2$ then $L(s)\in \HS$ and $\|L(s)\|=2^{-\sigma}$.
+\end{lemma}
+
+\begin{proposition}[Regularized Euler product]\label{prop:det3}
+For $\ReS s>1/2$,
+\[
+\detm{3}(I-L(s))=\prod_{p}\Big((1-p^{-s})\,e^{\,p^{-s}+\tfrac12 p^{-2s}}\Big)=\zeta(s)^{-1}E_3(s).
+\]
+\end{proposition}
+
+\section{Approximation and convergence}
+\begin{definition}[Finite truncations]
+For $P_N=\{p_1,\dots,p_N\}$, define
+\[
+\SiN(s):=\sum_{p\in P_N}\frac{p^{-2}}{1-p^{-s}},\quad
+E_{3,N}(s):=\exp\Big(\sum_{p\in P_N}p^{-s}+\tfrac12\sum_{p\in P_N}p^{-2s}\Big),\quad
+\ThN(s):=\prod_{p\in P_N}(1-p^{-s})^{-2}\,E_{3,N}(s)^{-1}.
+\]
+Set $\kN(s,w):=\dfrac{1-\ThN(s)\overline{\ThN(w)}}{\SiN(s)+\overline{\SiN(w)}}$.
+\end{definition}
+
+\begin{lemma}[Tail bounds]\label{lem:tails}
+For $\sigma\ge \tfrac12+\varepsilon$, $\SiN\to \Si$ and $\ThN\to \Th$ locally uniformly; hence $\kN\to K$ locally uniformly on $\mathbb{H}_{1/2}\times\mathbb{H}_{1/2}$.
+\end{lemma}
+
+\section{Finite positivity and PSD limit}
+\begin{definition}[PSD kernels]
+A kernel $Q$ on $U$ is PSD if $\sum_{i,j}\overline{z_i}z_j Q(w_j,w_i)\ge 0$ for all finite choices.
+\end{definition}
+
+\begin{lemma}[Closure]\label{lem:psd-closed}
+If $Q_N$ are PSD and $Q_N\to Q$ locally uniformly, then $Q$ is PSD.
+\end{lemma}
+
+\begin{hypothesis}[Finite PSD]\label{hyp:finite}
+For each $N$, $\kN$ is PSD on $\mathbb{H}_{1/2}\times\mathbb{H}_{1/2}$.
+\end{hypothesis}
+
+\begin{theorem}[PSD of $K$ from Hyp.~\ref{hyp:finite}]\label{thm:limit-psd}
+Assuming Hyp.~\ref{hyp:finite}, $\ K$ is PSD on $\mathbb{H}_{1/2}\times\mathbb{H}_{1/2}$.
+\end{theorem}
+\begin{proof}
+By Lemma~\ref{lem:tails} and Lemma~\ref{lem:psd-closed}.
+\end{proof}
+
+\section{Realization and conditional RH}
+\begin{theorem}[de Branges--Rovnyak realization]
+If $K$ is PSD then there exists a conservative colligation realizing $\Th$ over the Herglotz base $\Si$, and $\Th$ is strictly contractive on $\mathbb{H}_{1/2}$.
+\end{theorem}
+
+\begin{hypothesis}[Core inequality]\label{hyp:core}
+$K$ is PSD on $\mathbb{H}_{1/2}\times\mathbb{H}_{1/2}$, equivalently $\Th$ is Schur relative to $\Si$.
+\end{hypothesis}
+
+\begin{theorem}[Conditional RH]
+Assume Hyp.~\ref{hyp:core}. Then an analytic family $T(s)$ exists with $\detm{3}(I-T(s))=\xi(s)$ up to normalization and a strict spectral gap off $\ReS s=1/2$, implying RH.
+\end{theorem}
+
+\bigskip
+\noindent\textbf{References.} Ball--Bolotnikov; Agler--McCarthy; Simon.
+
+\end{document}

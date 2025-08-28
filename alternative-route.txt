@@ -1,0 +1,62 @@
+﻿________________
+
+
+What I labeled as Alternative Route
+These are parallel proof pathways or scaffolds that are not part of the single Primary Chain:
+* Section: Closure of Stage 2: Product certificate ⇒ (P+) and PSC (archived density)
+* Section: Examples: small-N prime-grid models
+* Section: Finite-stage KYP certificates: lossless factorization and prime-grid model
+* Section: PSC route (certificate with locked constants)
+* Section: Route A (Optional/Model): Bridges A–C and Certified Schur Covering
+* Section: Schur–determinant splitting and the finite block
+* Subsection: Bounded-real lemma and the lossless KYP equalities
+* Subsection: Carleson self-correction and a direct route to (P+) and RH
+* Subsection: Contractivity with a budgeted port DN
+* Subsection: Inner compensator for zeros of ξ
+* Subsection: Interior Closure on Zero-Free Rectangles (formal statements)
+* Subsection: Interior closure on rectangles via Gram/Fock and NP–Schur
+* Subsection: NP interpolation for the archimedean port and k=1 separation
+* Subsection: Phase–balayage (density form; archived)
+* Subsection: Prime-grid lossless model
+* Subsection: Prototype outer factor on ℜs=12+ε
+* Subsection: Schur finite blocks with uniform-on-K k=1 control
+* Subsection: Smoothed Cauchy and outer limit (A2)
+* Subsection: Smoothed explicit-formula route and de-smoothing
+* Subsection: Unsmoothing det2: routed through smoothed testing (A1)
+* Subsection: Zero-free verticals and boundary push
+________________
+
+
+What I labeled as Numerical Audit—Not Used in Main Proof
+These are audits, evidence dumps, and numeric provenance not required to follow the single Primary Chain:
+* Section: Appendix B. Prime–power tail K0: identity, truncation, and tail
+* Section: Appendix C. Archimedean part ∥UΓ∥area
+* Section: Appendix D. Neutralized zeros term Kξ: cubic far–field and annuli count
+* Section: Appendix E. The window constant Cψ(H1)
+* Section: Appendix F. The mean–oscillation constant Mψ
+* Section: Appendix G. Final aggregation (for convenient reference)
+* Section: Appendix H. Poisson plateau constant c0(ψ) (closed form and digits)
+* Section: Appendix X: Prime-tail bounds (PT–0/PT–1) and certified parameters
+* Section: Appendix: Archived numerical audits (fully expanded)
+* Section: Appendix: Carleson embedding constant for fixed aperture
+* Section: Appendix: Constants and definitions used in certification
+* Section: Appendix: Evidence — certified covering outputs
+* Section: Appendix: Numerical evaluation of Cψ(H1)
+* Subsection: Audit of certificate constants (printed window)
+* Subsection: Certificate Sheet (audit–ready)
+* Subsection: Executable certificate instance (calibrated; illustrative)
+* Subsection: Executable finite-block certificate (model; weighted p-adaptive; not used)
+* Subsection: No-hidden-knobs audit (P6)
+________________
+
+
+Transparency
+* The banners are defined in the file just before \begin{document}:
+% === Auto-inserted banners for Alternative Routes and Numerical Audits ===
+\newcommand{\AltRouteBanner}{\par\medskip\noindent\textbf{\fbox{Alternative Route}}\par\medskip}
+\newcommand{\AuditBanner}{\par\medskip\noindent\textbf{\fbox{Numerical Audit—Not Used in Main Proof}}\par\medskip}
+% === End auto-inserted banners ===
+
+
+* Each labeled heading now has one of these lines immediately after it, so the PDF visually flags what’s outside the Primary Chain.
+If you want me to apply the same labeling to riemann-proof-map.tex or any other variant, say the word and I’ll generate a patched file the same way.

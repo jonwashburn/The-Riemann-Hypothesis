@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\ReS}{\operatorname{Re}}
+
+\begin{document}
+
+\section*{Boundary accretivity implies NP--PSD on $\partial R$}
+
+Let $\Omega=\{\ReS s>\tfrac12\}$ and $R\Subset\Omega$ be a rectangle. Suppose $F$ is holomorphic on a neighborhood of $\overline R$ and $\ReS F\ge0$ on $\partial R$.
+
+\begin{proposition}\label{prop:accretivity_psd}
+With the notation above, for any finite node set $\{s_j\}\subset\partial R$, the matrix
+\[
+H_F(s_i,\overline{s_j})\ :=\ \frac{F(s_i)+\overline{F(s_j)}}{s_i+\overline{s_j}-1}
+\]
+is positive semidefinite.
+\end{proposition}
+
+\begin{proof}
+By the maximum principle for harmonic functions and the Poisson representation on rectangles, there exists a finite positive measure $\mu$ on $\partial R$ such that
+\[
+F(s)\ =\ \int_{\partial R} P_R(s,\zeta)\, d\mu(\zeta),
+\]
+where $P_R$ is the Poisson kernel of $R$. Then
+\[
+H_F(s,\overline t)
+\ =\ \int_{\partial R} \frac{P_R(s,\zeta)+P_R(t,\zeta)}{s+\overline t-1}\, d\mu(\zeta)
+\ =\ \int_{\partial R} \langle G_\zeta(s), G_\zeta(t)\rangle\, d\mu(\zeta),
+\]
+with $G_\zeta(s):=\sqrt{\tfrac{P_R(s,\zeta)}{s+\overline{\zeta}-1}}$. This is a (Bochner) integral of rank--one positive kernels, hence PSD on any finite set of nodes.
+\end{proof}
+
+\begin{remark}
+Applying this to $F=J_N$ (or an outer-normalized variant) yields the desired NP--PSD once boundary accretivity $\ReS J_N\ge0$ holds on $\partial R$ and $2J_N+1\ne0$ there.
+\end{remark}
+
+\end{document}
+

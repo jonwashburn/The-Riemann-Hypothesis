@@ -1,0 +1,71 @@
+\begin{thebibliography}{11}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[de~Branges and Rovnyak(1966)]{deBrangesRovnyak}
+Louis de~Branges and James Rovnyak.
+\newblock \emph{Square Summable Power Series}.
+\newblock Holt, Rinehart and Winston, New York, 1966.
+
+\bibitem[Dym and Gohberg(1980)]{DymGohberg}
+Harry Dym and Israel Gohberg.
+\newblock \emph{Extensions of Linear Operators and Related Topics}.
+\newblock Birkh{"a}user, Basel, 1980.
+
+\bibitem[Edwards(2001)]{Edwards}
+Harold~M. Edwards.
+\newblock \emph{Riemann's Zeta Function}.
+\newblock Dover Publications, 2001.
+\newblock Originally published by Academic Press, 1974.
+
+\bibitem[Garnett(2007)]{Garnett}
+John~B. Garnett.
+\newblock \emph{Bounded Analytic Functions}, volume 236 of \emph{Graduate Texts
+  in Mathematics}.
+\newblock Springer, revised 1st edition, 2007.
+
+\bibitem[Iwaniec and Kowalski(2004)]{IwaniecKowalski}
+Henryk Iwaniec and Emmanuel Kowalski.
+\newblock \emph{Analytic Number Theory}, volume~53 of \emph{Colloquium
+  Publications}.
+\newblock American Mathematical Society, 2004.
+
+\bibitem[Rosenblum and Rovnyak(1985)]{RosenblumRovnyak}
+Marvin Rosenblum and James Rovnyak.
+\newblock \emph{Hardy Classes and Operator Theory}.
+\newblock Oxford Mathematical Monographs. Oxford University Press, New York,
+  1985.
+
+\bibitem[Saff and Totik(1997)]{SaffTotik}
+Edward~B. Saff and Vilmos Totik.
+\newblock \emph{Logarithmic Potentials with External Fields}, volume 316 of
+  \emph{Grundlehren der Mathematischen Wissenschaften}.
+\newblock Springer, 1997.
+
+\bibitem[Simon(2005)]{SimonTraceIdeals}
+Barry Simon.
+\newblock \emph{Trace Ideals and Their Applications}, volume 120 of
+  \emph{Mathematical Surveys and Monographs}.
+\newblock American Mathematical Society, 2005.
+
+\bibitem[Sz.-Nagy and Foia{\c{s}}(1970)]{SzNagyFoias}
+B{\'e}la Sz.-Nagy and Ciprian Foia{\c{s}}.
+\newblock \emph{Harmonic Analysis of Operators on Hilbert Space}.
+\newblock North-Holland, Amsterdam, 1970.
+
+\bibitem[Titchmarsh(1986)]{TitchmarshZeta}
+E.~C. Titchmarsh.
+\newblock \emph{The Theory of the Riemann Zeta-Function}.
+\newblock Oxford University Press, 2nd edition, 1986.
+\newblock Revised by D. R. Heath-Brown.
+
+\bibitem[Walsh(1965)]{WalshApprox}
+J.~L. Walsh.
+\newblock \emph{Interpolation and Approximation by Rational Functions in the
+  Complex Domain}, volume~20 of \emph{Colloquium Publications}.
+\newblock American Mathematical Society, 5th edition, 1965.
+
+\end{thebibliography}

@@ -1,0 +1,121 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+% --- Custom Commands ---
+\newcommand{\status}[2]{\textcolor{#1}{\textbf{#2}}}
+\newcommand{\dettwo}{\operatorname{det}_2}
+
+\begin{document}
+
+\title{\textbf{Punchlist to Unconditional Closure}}
+\author{Analysis of Bounded-Real Approach to RH}
+\date{\today}
+\maketitle
+
+\begin{center}
+\rule{0.8\textwidth}{0.4pt}
+\end{center}
+
+\setlist[description]{
+    font=\normalfont\bfseries,
+    style=nextline,
+    labelwidth=1.5cm,
+    leftmargin=2cm
+}
+
+\begin{description}
+    % --- P1 ---
+    \item[P1. Prove Boundary Unimodularity for Original $\Theta$]
+    \textit{Task:} Prove $|\Theta(\frac{1}{2}+it)| = 1$ a.e. for the original, unnormalized $\Theta$. This is equivalent to showing the outer factor $\mathcal{O}$ for $J = \dettwo(I-A)/\xi$ is identically 1 on the boundary.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{Why it matters:} Our boundary corollary currently proves Schurness for the normalized quotient $J/\mathcal{O}$, not $\Theta$ itself. To conclude $\Theta$ is Schur on $\Omega = \{\Re s > 1/2\}$, we need $\mathcal{O} \equiv 1$ or a direct proof of boundary innerness for $J$.
+        \item \textbf{Status:} \status{red!80!black}{Open (blocking)}
+    \end{itemize}
+
+    % --- P2 ---
+    \item[P2. Alignment on Zero-Free Interior Rectangles]
+    \textit{Task:} Align Schur approximants on zero-free interior rectangles $K \subset R \subset \Omega$ via H$^\infty$ passive approximants, with an exponential rate and a single diagonal sequence that converges locally uniformly on $\Omega$.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we added:} A quantitative interior H$^\infty$ scheme (Subsection \texttt{hinf-passive}) with exponential-in-order boundary error, and a "Globalization by exhaustion" paragraph that picks $N(m), M(m)$ on an exhaustion $R_m \uparrow \Omega$ to form a single Schur sequence converging locally uniformly on $\Omega$.
+        \item \textbf{Limitation:} This alignment is valid on rectangles where $|\xi| \ge \delta_R > 0$. If $\xi$ has zeros in $\Omega$, the target $\Theta^{(\dettwo)}$ has poles, so global Schurness cannot be deduced without removing zeros (it’s equivalent to RH).
+        \item \textbf{Status:} \status{green!60!black}{Closed for zero-free interior compacts; global closure blocked by P1.}
+    \end{itemize}
+
+    % --- P3 ---
+    \item[P3. $k=1$ Separation without Divergence]
+    \textit{Task:} Separate the $k=1$ Euler product terms without the divergence issues of an additive cascade.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we added:} An exact, uniformly Schur, multiplicative "power-splitting" block that reproduces the Euler $k=1$ factor on rectangles with $\Re s > 1/2$ (Proposition \texttt{kfold}). We sidelined the additive cascade (shown divergent) and use the multiplicative/inner route.
+        \item \textbf{Status:} \status{green!60!black}{Closed (for interior rectangles)}
+    \end{itemize}
+
+    % --- P4 ---
+    \item[P4. Explicit-Formula Details for Boundary Argument]
+    \textit{Task:} Provide full details for the smoothed boundary argument.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we added:} A precise explicit-formula statement (Appendix \texttt{app:explicit-formula}) with citations (Edwards; Iwaniec--Kowalski) and an expanded proof for the smoothed lemmas; a de-smoothing transfer is provided.
+        \item \textbf{Status:} \status{green!60!black}{Closed at the level of a standard lemma with references; can add constants if desired.}
+    \end{itemize}
+
+    % --- P5 ---
+    \item[P5. Handling Division by $\xi$]
+    \textit{Task:} Formalize the procedure for division by $\xi(s)$ and maintain analyticity when $\xi$ may have zeros.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we added:} A clear two-pronged treatment—divide directly on rectangles where $|\xi| \ge \delta$ (interior route), or use the inner-compensator (Blaschke product) prior to the Cayley transform (boundary route). This avoids assuming zero-freeness in $\Omega$.
+        \item \textbf{Status:} \status{green!60!black}{Closed as a structural remedy; but deducing global Schurness of $\Theta$ still depends on P1.}
+    \end{itemize}
+
+    % --- P6 ---
+    \item[P6. Clarify Equivalence Statements]
+    \textit{Task:} Remove any residual "conditional" or "target" phrasing from equivalence theorems.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we changed:} "Conditional equivalence" $\to$ "Equivalence," relying on BRF $\Rightarrow$ RH, RH $\Rightarrow$ BRF (under the uniform boundary theorem), and the now-unconditional Theorem \texttt{uniform-eps}. We also corrected the boundary corollary to the normalized statement.
+        \item \textbf{Status:} \status{green!60!black}{Closed}
+    \end{itemize}
+    
+    % --- P7 ---
+    \item[P7. Numerical/Solver Details]
+    \textit{Task:} Provide details for the boundary-grid KYP epigraph program.
+    \begin{itemize}[leftmargin=*, label={--}]
+        \item \textbf{What we added:} An appendix note with grid parameters, order scaling, and solver guidance; references to rational approximation rates.
+        \item \textbf{Status:} \status{green!60!black}{Closed (expository)}
+    \end{itemize}
+
+\end{description}
+
+\hrulefill
+
+\section*{Path to Close P1}
+The primary remaining task is to fully close P1. A viable path forward is:
+\begin{itemize}
+    \item \textbf{Strengthen the smoothed boundary result to show $\log|J(\frac{1}{2}+it)| = 0$ a.e.}
+    \begin{itemize}
+        \item Prove that $\int_{-\infty}^{\infty} \varphi(t) \log|J(\frac{1}{2}+it)| dt = 0$ for a dense set of test functions $\varphi \in C_c^\infty(\mathbb{R})$.
+        \item Pass to $L^1_{\text{loc}}$ limits to conclude that $\log|J|=0$ almost everywhere.
+        \item This requires a precise cancellation identity between the $\dettwo$ prime-power side and the $\xi$ zero/archimedean side at the boundary, moving beyond the current boundedness/Cauchy results.
+    \end{itemize}
+\end{itemize}
+
+\hrulefill
+
+\section*{Summary}
+\begin{itemize}
+    \item[$\checkmark$] Interior compact alignment and $k=1$ handling are complete and quantitative.
+    \item[$\checkmark$] The boundary route is precise for the normalized quotient $J/\mathcal{O}$.
+    \item[$\blacksquare$] The final blocking item is proving $\mathcal{O} \equiv 1$ (or an equivalent direct boundary-innerness for the original $J$). This would upgrade Schurness from the normalized quotient to $\Theta$ and complete the proof of the Riemann Hypothesis.
+\end{itemize}
+
+\end{document}
+
+

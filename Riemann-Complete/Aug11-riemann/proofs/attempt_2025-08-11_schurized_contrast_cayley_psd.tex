@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\title{Unconditional PSD via Schurized Contrast on a Herglotz Meter}
+\author{A.I. Collaboration}
+\date{\today}
+
+% Macros
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ReS}{\operatorname{Re}}
+\newcommand{\Hhp}{\{\ReS s>1/2\}}
+\newcommand{\Si}{\Sigma}
+\newcommand{\HN}{H_N}
+\newcommand{\Th}{\Theta}
+
+% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a minimal, unconditional route to a positive semidefinite (PSD) de Branges--Rovnyak kernel on $\ReS s>1/2$ by \emph{Schurizing} the contrast through a Cayley transform of a Herglotz meter. This aligns with recognition-theoretic Gram kernels (Born-type covariances) and yields PSD at every finite stage and in the limit. This note does not assert a determinant identity matching $\xi(s)$; it isolates the positivity mechanism.
+\end{abstract}
+
+\section{Setup}
+Let $H$ be any Herglotz function on $\{\ReS s>0\}$, so $\Re H(s)>0$ for $\ReS s>0$. For concreteness one may take $H=\Si$ with $\Si(s):=\sum_p \dfrac{p^{-2}}{1-p^{-s}}$, which is Herglotz on $\ReS s>0$.
+
+Define the \emph{Schurized} contrast via the Cayley transform
+\[
+\widetilde{\Th}(s):=\frac{H(s)-1}{H(s)+1} \quad (\ReS s>1/2).
+\]
+Then $|\widetilde{\Th}(s)|<1$ on $\ReS s>0$ (strict inside the half-plane).
+
+\section{PSD kernel}
+Define the kernel
+\[
+\widetilde{K}(s,w):=\frac{1-\widetilde{\Th}(s)\,\overline{\widetilde{\Th}(w)}}{H(s)+\overline{H(w)}},\qquad \ReS s,\ReS w>1/2.
+\]
+\begin{theorem}
+$\widetilde{K}$ is positive semidefinite on $\{\ReS s>1/2\}\times\{\ReS w>1/2\}$.
+\end{theorem}
+\begin{proof}
+Since $\Re H>0$, the base kernel $(H(s)+\overline{H(w)})^{-1}$ is Carath\'eodory/Gram and PSD. The Cayley transform ensures $\|\widetilde{\Th}\|_{\infty}\le 1$ in the half-plane, so multiplication by $\widetilde{\Th}$ is a contraction on the associated de Branges--Rovnyak space. Hence the de Branges--Rovnyak kernel $\widetilde{K}$ is PSD.
+\end{proof}
+
+\section{Finite truncations and limit}
+Let $\HN$ be Herglotz on $\ReS s>0$ with $\HN\to H$ locally uniformly on $\{\ReS s\ge 1/2+\varepsilon\}$ and set $\widetilde{\Th}_N:=(\HN-1)/(\HN+1)$. Then
+\[
+\widetilde{K}_N(s,w):=\frac{1-\widetilde{\Th}_N(s)\,\overline{\widetilde{\Th}_N(w)}}{\HN(s)+\overline{\HN(w)}}
+\]
+are PSD for each $N$, and $\widetilde{K}_N\to\widetilde{K}$ locally uniformly; PSD passes to the limit.
+
+\begin{remark}
+This construction is independent of any specific arithmetic target and provides an unconditional PSD kernel consistent with Gram/covariance origins (e.g., from a positive ledger weight). To connect to number-theoretic targets one must additionally match a transfer/determinant identity; that is not addressed here.
+\end{remark}
+
+\end{document}

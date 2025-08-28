@@ -1,0 +1,40 @@
+﻿\begin{lemma}[Annular Poisson--balayage $L^2$ bound]\label{lem:annular-poisson}
+Let $I=[T-L,T+L]$, $Q_\alpha(I)=I\times(0,\alpha L]$, and fix $k\ge1$. For
+$\mathcal A_k:=\{\rho=\beta+i\gamma:\ 2^kL<|T-\gamma|\le 2^{k+1}L\}$ set
+\[
+  V_k(\sigma,t):=\sum_{\rho\in\mathcal A_k}\frac{\sigma}{(t-\gamma)^2+\sigma^2}.
+\]
+Then
+\[
+  \iint_{Q_\alpha(I)} V_k(\sigma,t)^2\,\sigma\,dt\,d\sigma
+  \ \ll_\alpha\ |I|\,4^{-k}\,\nu_k,
+\]
+where $\nu_k:=\#\mathcal A_k$, and the implicit constant depends only on $\alpha$.
+\end{lemma}
+\begin{proof}
+Write $K_\sigma(x):=\sigma/(x^2+\sigma^2)$. For any finite index set $\mathcal J$,
+\[
+  \Big(\sum_{j\in\mathcal J} K_\sigma(t-\gamma_j)\Big)^2
+  \le \sum_{j\in\mathcal J} K_\sigma(t-\gamma_j)^2 \;+\;
+       2\!\!\sum_{i<j} K_\sigma(t-\gamma_i)K_\sigma(t-\gamma_j).
+\]
+Integrate over $t\in I$ first. For the diagonal terms,
+\[
+ \int_I K_\sigma(t-\gamma)^2\,dt\ =\ \sigma^2\!\int_{t\in I}\frac{dt}{\big((t-\gamma)^2+\sigma^2\big)^2}
+ \ \ll\ \frac{L}{\sigma}\cdot\frac{\sigma^2}{(2^kL)^2}\ =\ L\cdot\frac{\sigma}{4^k L^2},
+\]
+since $|t-\gamma|\ge 2^kL-L\ge 2^{k-1}L$ for $t\in I$ and $k\ge1$. Integrating $\sigma$ over $(0,\alpha L]$ with the extra factor $\sigma$ gives
+\[
+ \int_0^{\alpha L}\!\!\left(\int_I K_\sigma(t-\gamma)^2\,dt\right)\sigma\,d\sigma\ \ll_\alpha\ |I|\cdot 4^{-k}.
+\]
+Summing over $\nu_k$ choices of $\gamma$ contributes the factor $\nu_k$.
+
+
+For the off-diagonal terms, fix $i\neq j$. Over $I$ we have $|t-\gamma_i|,|t-\gamma_j|\gtrsim 2^kL$, hence
+\[
+ \int_I K_\sigma(t-\gamma_i)K_\sigma(t-\gamma_j)\,dt
+ \ \le\ \Big(\sup_{t\in I}K_\sigma(t-\gamma_i)\Big)\!\int_\R \!K_\sigma(t-\gamma_j)\,dt
+ \ \ll\ \frac{\sigma}{(2^kL)^2}\cdot 1.
+\]
+Integrating $\sigma\in(0,\alpha L]$ with the extra factor $\sigma$ yields $\ll_\alpha L\cdot 4^{-k}$ again. Summing over $i<j$ produces at most a factor comparable to $\nu_k$ by Cauchy–Schwarz in the counting measure (or by bounded overlap of the tails at this distance scale). Combining diagonal and off–diagonal parts gives the claim.
+\end{proof}

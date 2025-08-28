@@ -1,0 +1,56 @@
+﻿Short answers first, with the reasons pulled straight from your current TeX:
+1) Is there exactly one clear proof chain?
+Not yet. The intended spine is clear—Bridge A → Bridge B → Bridge C → “Bridges A–C imply RH”—but the manuscript still exposes side‑routes and duplication inside the compiled flow:
+* An included unnumbered subsection “Executable finite‑block certificate (model; weighted p-adaptive; not used)” sits in the main text. It’s explicitly marked “model‑only / not used”, but its presence breaks the single‑tract feel.
+* Several theorems are restated later (e.g., “Bridge C: diagonal covering,” “Diagonal covering to lines; corrected Bridge C,” and “Bridges A–C imply RH”)—one copy is behind \iffalse, another is live. That duplication reads as multiple routes rather than one chain.
+* There are two \end{document} tokens outside any \iffalse; TeX will stop at the first, silently dropping trailing material. That undercuts “one chain” by leaving some orientation material orphaned.
+2) Are all new/nonstandard claims stated as lemmas or theorems, even if the proofs are sketched?
+Not in this file as it stands. You do a good job packaging results (≈36 theorems, 78 lemmas, 23 propositions, 22 corollaries), but several nonstandard results are referenced without a live statement in this file—they are only present in external \input{...} files (or not present at all in the build that would run from this single .tex). Examples of labels referenced with no corresponding definition in the live text include:
+* lem:hilbert-H1BMO
+* lem:hilbert
+* lem:fock-gram-formal
+* lem:smoothed-explicit
+* prop:hinf-passive
+* prop:phase-velocity-identity
+* prop:schur-split
+* cor:det2-boundary
+* thm:psc-certificate-stage2
+* thm:brf-rh-final
+* thm:global-PSD
+* thm:unsmoothed-Cauchy
+* subsec:Pplus-Carleson, sec:bridge-C, app:Cpsi-compute (section/app labels)
+Net: 18 undefined \ref{...} targets remain live in the compiled path. That means some new claims are not actually stated anywhere the referee will see.
+3) Could an expert referee, with time, check the argument without needing extra documents from you?
+No—not yet. Three blockers:
+* The build depends on many external \input{...} files that are not in this single source. These include, e.g.:
+certificate_snippet.tex, certificate_covering.tex, certificate_covering_per_sigma.tex, prime_tail_certificate_table.tex, covering_summary.tex, oscillation-wedge, boundary-regularity, phase-balayage, half-plane, wedge-lemma, phase-certificate-theorem, upper-bound, fixed-aperture, removability-across, overlapping-boxes, box-energy, carleson-boxes, kxi-trace, kxi-trace-full, all-heights, carleson-embedding, uniformity-in-T, proof-map-snippet.
+An outsider compiling only the provided .tex won’t see the statements/proofs contained there.
+* The undefined references listed above produce “??” in the PDF, so key steps cannot be located or verified from the manuscript alone.
+* You explicitly mention external numerics (“full CSV is available in the supplementary files”) while asserting “No external inputs are required.” If the CSV is merely archival, great—then the decisive values must be fully reproduced in the appendix (some are, via macros like \deltaStar and \sigmaEnd), and the manuscript should not require any artifact beyond what’s embedded.
+________________
+
+
+What to change to flip all three answers to “Yes”
+I’m keeping this surgical and minimal:
+   1. Enforce a single tract in the compiled flow
+   * Move “Executable finite‑block certificate (model; …; not used)” behind \iffalse or into a labeled appendix that the body never depends on.
+   * Keep exactly one live copy of each “Bridge” theorem and of the “Bridges A–C imply RH” theorem; remove or \iffalse the duplicates.
+   * Ensure exactly one \end{document} outside any \iffalse.
+   2. Make every referenced nonstandard step appear as a stated result
+   * Either inline the statements (as Lemma/Proposition/Theorem environments) or include the defining \input{...}files in the submission package. After this, there should be zero “??” in the PDF.
+   * If any of those items are standard and cited to books (e.g., Titchmarsh, Simon, de Branges–Rovnyak), replace the dangling \ref{...} with a precise citation and, if you use a nonstandard normalization, add a one‑line “we use the following exact form” lemma.
+   3. Make the numerics refereeing‑complete inside the PDF
+   * Keep the “Appendix: Evidence—certified covering outputs,” but embed the minimal certified tables actually used by Bridge C (per‑step schedule summary, end‑row margins, locked constants). It’s fine to say “the full CSV archive is available upon request”; the appendix must already contain what the proof uses.
+   * Remove every occurrence that implies external files are required to reproduce the logical argument. If something is only “for curiosity,” keep it labeled that way and nonessential.
+________________
+
+
+Quick diagnostics I ran on your current file
+   * Structural env counts: theorem 36, lemma 78, proposition 23, corollary 22, definition 8, proof 115.
+   * Live undefined references (18): app:Cpsi-compute, cor:det2-boundary, lem:Mpsi-correct, lem:carleman, lem:fock-gram-formal, lem:hilbert, lem:hilbert-H1BMO, lem:smoothed-explicit, prop:HS-to-det2, prop:hinf-passive, prop:phase-velocity-identity, prop:schur-split, sec:bridge-C, subsec:Pplus-Carleson, thm:brf-rh-final, thm:global-PSD, thm:psc-certificate-stage2, thm:unsmoothed-Cauchy.
+   * Multiple \end{document} tokens outside \iffalse.
+   * Numerous external \input{...} dependencies (list above).
+If you apply the three fixes above (gate the off‑ramp, eliminate dangling refs, and embed the minimal numeric evidence), the answers become:
+   1. Yes — one crisp chain A→B→C→RH.
+   2. Yes — every nonstandard step is a stated result.
+   3. Yes — a referee can check everything from the PDF alone.

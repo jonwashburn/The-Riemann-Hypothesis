@@ -1,0 +1,127 @@
+% Phase–Balayage on the Half–Plane: Measure, Kernel, Bounds, and Neutralization
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Phase--balayage on the half--plane (identity and neutralization)}
+
+\paragraph{Setting and notation.}
+Work in the upper half--plane $\mathbb{H}=\{z=x+iy:y>0\}$ with boundary $\mathbb{R}$. Let $F$ be meromorphic in $\mathbb{H}$, of bounded type, with non--tangential boundary values a.e. on $\mathbb{R}$. Write
+\[
+\log F = U+iV \qquad (U=\log|F|,\; V=\arg F)
+\]
+on simply connected subsets of $\mathbb{H}$ that avoid zeros and poles. For $\varphi\in C_c^\infty(\mathbb{R})$, let $\mathcal{P}[\varphi]$ denote its Poisson extension and $\mathcal H[\varphi]$ its Hilbert transform. Write $w(t):=\Arg F(t)$ and $u(t):=\log|F(t)|$.
+
+\paragraph{Zero--pole measure and Bal kernel.}
+Let $Z(F)$ (resp. $P(F)$) be the multisets of zeros (resp. poles) with multiplicities. Define the signed atomic measure
+\[
+\mu\;:=\;\sum_{p\in P(F)} m(p)\,\delta_p\;-
+\;\sum_{a\in Z(F)} m(a)\,\delta_a\qquad\text{on }\mathbb{H},
+\]
+so poles contribute positively and zeros negatively. For a bounded interval $I=(a,b)\subset\mathbb{R}$ and $z=x+iy\in\mathbb{H}$, define
+\[
+\mathrm{Bal}(z;I)\;:=\;2\pi\,\mathcal{P}[\mathbf{1}_I](z)
+\;=\;\int_{a}^{b}\frac{2y}{(t-x)^2+y^2}\,dt
+\;=\;2\Big(\arctan\tfrac{b-x}{y}-\arctan\tfrac{a-x}{y}\Big),
+\]
+with $0\le \mathrm{Bal}\le 2\pi$, increasing in $I$, and $\mathrm{Bal}(z;\mathbb{R})=2\pi$.
+
+\begin{lemma}[Far--field bound for the Bal kernel]\label{lem:farfield}
+Let $I=(a,b)$ with length $L=b-a$ and center $c=\tfrac{a+b}{2}$. Then, for $z=x+iy\in\mathbb{H}$,
+\[
+\mathrm{Bal}(z;I)\ \le\ \frac{4Ly}{(x-c)^2+y^2-\tfrac{L^2}{4}}\quad\text{whenever }(x-c)^2+y^2>\tfrac{L^2}{4}.
+\]
+In particular, if $z\notin Q(\alpha I):=\{x+iy: x\in \alpha I,\ 0<y\le \alpha L\}$ with $\alpha>1$, then
+\[
+\mathrm{Bal}(z;I)\ \le\ \frac{C_\alpha\,L\,y}{\mathrm{dist}(z,I)^2+y^2},
+\]
+with $C_\alpha$ depending only on $\alpha$.
+\end{lemma}
+
+\begin{theorem}[Phase--balayage, test--function form]\label{thm:balayage-test}
+Assume $F$ is meromorphic in $\mathbb{H}$ of bounded type and $u=\log|F|\in L^1_{\mathrm{loc}}(\mathbb{R})$. Then for every $\varphi\in C_c^\infty(\mathbb{R})$,
+\[
+\boxed{\quad
+\int_{\mathbb{R}} (-w'(t))\,\varphi(t)\,dt
+\;=\;
+2\pi\int_{\mathbb{H}} \mathcal{P}[\varphi](z)\,d\mu(z)\;-
+\;\int_{\mathbb{R}}\mathcal{H}[u'](t)\,\varphi(t)\,dt.
+\quad}
+\]
+Equivalently, $\langle -w',\varphi\rangle=\int_{\mathbb{H}} 2\pi\,\mathcal{P}[\varphi]\,d\mu-\langle \mathcal{H}[u'],\varphi\rangle$.
+\end{theorem}
+
+\begin{proof}
+Use Poisson--Jensen for $U$, take harmonic conjugates for $V$, differentiate tangentially, and pass to non--tangential boundary limits. The Poisson identity
+$\int \tfrac{2y}{(t-x)^2+y^2}\,\varphi(t)\,dt=2\pi\,\mathcal P[\varphi](x+iy)$ converts each atom to the Poisson balayage. Summing with signs yields the identity.
+\end{proof}
+
+\begin{corollary}[Phase--balayage, interval form]\label{cor:balayage-interval}
+Under the hypotheses of Theorem~\ref{thm:balayage-test}, for any bounded open interval $I=(a,b)$ whose endpoints are points of approximate continuity for $u$ and $w$,
+\[
+\boxed{\quad
+\int_{I} (-w'(t))\,dt
+\;=\;\int_{\mathbb{H}}\mathrm{Bal}(z;I)\,d\mu(z)
+\;-
+\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big).
+\quad}
+\]
+\end{corollary}
+
+\begin{proof}
+Approximate $\mathbf{1}_I$ by smooth $\varphi_n$ and pass to the limit in Theorem~\ref{thm:balayage-test} using dominated convergence for the Poisson term and a.e. boundary values for $\mathcal H[u]$ at the endpoints.
+\end{proof}
+
+\paragraph{Neutralization on a Carleson box.}
+For a bounded interval $I$ and aperture $\alpha>1$, set
+\[
+Q(I)=\{x+iy : x\in I,\ 0<y\le |I|\},\qquad Q(\alpha I)=\{x+iy : x\in \alpha I,\ 0<y\le \alpha|I|\}.
+\]
+Define the local Blaschke neutralizer on $Q(\alpha I)$ by
+\[
+B_I(z):=\prod_{a\in Z(F)\cap Q(\alpha I)} \Big(\tfrac{z-a}{z-\overline{a}}\Big)^{m(a)}\,
+\prod_{p\in P(F)\cap Q(\alpha I)} \Big(\tfrac{z-\overline{p}}{z-p}\Big)^{m(p)}.
+\]
+Then $B_I$ is inner: $|B_I(t)|=1$ for a.e. $t\in\mathbb{R}$. Let $\widetilde F:=F/B_I$. By construction, $\widetilde F$ has no zeros or poles in $Q(\alpha I)$ and $\mathcal H[\log|\widetilde F|]=\mathcal H[\log|F|]$ a.e.
+
+\begin{corollary}[Neutralized phase--balayage on $I$]\label{cor:neutralized}
+With the above notation,
+\[
+\int_I (-w_F')\,dt
+\;=\; \int_{Q(\alpha I)} \mathrm{Bal}(z;I)\,d\mu(z)
+\;+
+\int_{\mathbb{H}\setminus Q(\alpha I)} \mathrm{Bal}(z;I)\,d\mu(z)
+\;-
+\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big),
+\]
+so that
+\[
+\int_I (-w_{\widetilde F}')\,dt
+\;=\;\int_{\mathbb{H}\setminus Q(\alpha I)} \mathrm{Bal}(z;I)\,d\mu_{\mathrm{far}}(z)
+\;-
+\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big).
+\]
+Moreover,
+\[
+\int_I(-w_{B_I}')\,dt\;=\;\int_{Q(\alpha I)} \mathrm{Bal}(z;I)\,d\mu_{\mathrm{near}}(z).
+\]
+\end{corollary}
+
+\begin{lemma}[Uniform bounds after neutralization]\label{lem:uniform-bounds}
+For $z\notin Q(\alpha I)$,
+\[
+0\ \le\ \mathrm{Bal}(z;I)\ \le\ 2\pi\ \min\!\left\{1,\ \frac{C_\alpha\,|I|\,\Im z}{\mathrm{dist}(z,I)^2+(\Im z)^2}\right\}.
+\]
+Consequently,
+\[
+\left|\int_{\mathbb{H}\setminus Q(\alpha I)} \mathrm{Bal}(z;I)\,d\mu(z)\right|
+\;\le\; 2\pi\,|\mu|(\mathbb{H}\setminus Q(\alpha I)),
+\]
+with refined decay available from Lemma~\ref{lem:farfield} when $\mathrm{dist}(z,I)\gg |I|$.
+\end{lemma}
+
+\begin{remark}
+The identity separates two mechanisms:
+\[
+\int_I (-w')= \underbrace{\int \mathrm{Bal}\,d\mu}_{\text{discrete interior data: poles $-$ zeros}} - \underbrace{\big(\mathcal{H}[u](b)-\mathcal{H}[u](a)\big)}_{\text{outer (boundary--driven) term}}.
+\]
+The Bal term is purely geometric ($0\le \mathrm{Bal}\le 2\pi$); after neutralization it becomes a controlled far--field sum. The outer term depends only on the boundary modulus and is the only source of sign changes unrelated to zeros/poles; it is handled by fixed-aperture $H^1$–BMO/Carleson control against smooth windows.
+\end{remark}

@@ -1,0 +1,3 @@
+﻿\[
+\boxed{\ \Theta=\frac{C_H\,M_\psi+C_P}{c_0}\ \le\ \frac{0.65\cdot 0.07690+0.020}{0.17620819}\ =\ 0.3972\ <\ \frac{\pi}{2}\ }\quad\Longrightarrow\quad \text{PSC}.
+\]

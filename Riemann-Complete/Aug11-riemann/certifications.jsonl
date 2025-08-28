@@ -1,0 +1,5 @@
+{"meta": {"timestamp": "2025-08-14T14:37:41.548160Z", "Pmax": 50000, "kwargs": {"sigmas": [0.01, 0.005, 0.001], "ns": [64, 128, 192], "eps_factors": [1.0, 0.5], "build_outer": true}}}
+{"interval": [0.0, 10.0], "certified": false, "min_eigs": [-4106.254480853848]}
+{"interval": [10.0, 20.0], "certified": false, "min_eigs": [-441.35136682213937]}
+{"interval": [20.0, 30.0], "certified": false, "min_eigs": [-1085.1239730800698]}
+{"interval": [30.0, 40.0], "certified": false, "min_eigs": [-570.591140026658]}

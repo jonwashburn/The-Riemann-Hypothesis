@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+# covering_schedule.py — explicit, unconditional covering with integer-tail bounds
+import math, csv, argparse, os
+from prime_tail import (
+    S_gamma_leq_Q,
+    prime_tail_sum_upper as R0_upper,  # sum p^{-gamma} tail
+    delta_FF as FF_budget,
+    delta_FS_far_row as FS_far_budget,
+    delta_SF_small_row as SF_small_budget,
+    delta_SS as SS_budget,
+    choose_pmin_for_targets,
+)
+
+try:
+    from sympy import primerange
+    HAVE_SYMPY = True
+except Exception:
+    HAVE_SYMPY = False
+
+
+def primes_up_to(N: int):
+    if HAVE_SYMPY:
+        return list(primerange(2, int(N) + 1))
+    # tiny sieve good enough for N <= ~1e6
+    N = int(N)
+    sieve = bytearray(b"\x01") * (N + 1)
+    sieve[:2] = b"\x00\x00"
+    p = 2
+    while p * p <= N:
+        if sieve[p]:
+            step = p
+            start = p * p
+            sieve[start:N + 1:step] = b"\x00" * (((N - start) // step) + 1)
+        p += 1
+    return [i for i in range(2, N + 1) if sieve[i]]
+
+
+def S_small(Q: int, gamma: float):
+    return S_gamma_leq_Q(gamma, Q)
+
+
+def tail_R0(P: int, gamma: float, Cpi: float) -> float:
+    return R0_upper(gamma, P, Cpi)
+
+
+def schedule_pmin(gamma: float, Cwin: float, tauFF: float, pmin_cap: int) -> int:
+    # enforce Δ_FF <= tauFF using Δ_FF <= (Cwin/4) * p^{-γ} Sγ^{≥p} <= (Cwin/4)*((p-1)^{-2σ})/(γ-1)
+    rhs = (Cwin / 4.0) / ((gamma - 1.0) * tauFF)
+    power = 1.0 / (2.0 * gamma - 1.0)  # = 1/(2σ)
+    pmin = 1.0 + rhs ** power
+    pmin = int(math.ceil(pmin))
+    if pmin > pmin_cap:
+        pmin = pmin_cap
+    return pmin
+
+
+def mu_small_min_fallback(sigma: float, pmin: int) -> float:
+    # μ^L_far ≥ 1 - (1/6)*(1-σ)*log pmin * pmin^{-σ}
+    return 1.0 - (1.0 / 6.0) * (1.0 - sigma) * math.log(max(pmin, 2)) * (pmin ** (-sigma))
+
+
+def build_covering(args):
+    sigma = args.sigma_start
+    rows = []
+    L_cum = 0.0
+    mu_table = {}
+    if args.mu_csv and os.path.exists(args.mu_csv):
+        with open(args.mu_csv, 'r', newline='') as f:
+            rdr = csv.DictReader(f)
+            for row in rdr:
+                p = int(row['p'])
+                mu = float(row['muL'])
+                mu_table[p] = mu
+
+    while sigma > args.sigma_end + 1e-15:
+        gamma = sigma + 0.5
+        Ssm = S_small(args.Q, gamma)
+
+        # choose p_min(σ)
+        # choose pmin to meet Δ targets
+        pmin = choose_pmin_for_targets(sigma, args.Q, args.tauFF, args.tauFS, args.pmin_cap, args.Cwin, args.Cpi)
+
+        # budgets (prime-tail)
+        Delta_SS = SS_budget(sigma, args.Q, args.Cwin)
+        Delta_SF = SF_small_budget(sigma, args.Q, pmin, args.Cwin, args.Cpi)
+        Delta_FS = FS_far_budget(sigma, args.Q, pmin, args.Cwin)
+        Delta_FF = FF_budget(sigma, pmin, args.Cwin, args.Cpi)
+
+        # small-block μ_min
+        if mu_table:
+            mu_small_min = min(mu for p, mu in mu_table.items() if p <= args.Q)
+        else:
+            mu_small_min = mu_small_min_fallback(sigma, pmin)
+
+        # certified gap at this σ
+        delta_cert = mu_small_min - (Delta_SS + Delta_SF + Delta_FS + Delta_FF)
+
+        # Lipschitz K(σ): small-block derivative avg + tail part via R0/R1 majorant
+        # Use conservative: K_tail <= κ*(Cwin/4)*pmin^{-γ}*( R1 + (log pmin) R0 ); approximate R1 by R0
+        R0 = tail_R0(pmin, gamma, args.Cpi)
+        K_tail = (args.kappa) * (args.Cwin / 4.0) * (pmin ** (-gamma)) * (R0 + math.log(max(pmin, 2)) * R0)
+        # small-block derivative-of-log: average log over small primes
+        # compute S_small_log quickly
+        ps = primes_up_to(args.Q)
+        Ssm_log = sum((p ** (-gamma)) * math.log(p) for p in ps)
+        K_small_loc = (Ssm_log / Ssm) if Ssm > 0.0 else 0.0
+        K_sigma = K_small_loc + K_tail
+
+        # step choice
+        h = min(args.h_max, args.theta_max / max(K_sigma, 1e-16))
+        theta = K_sigma * h
+        L_cum += theta
+
+        rows.append({
+            'sigma': sigma,
+            'Q': args.Q,
+            'pmin': pmin,
+            'S_small': Ssm,
+            'Delta_SS': Delta_SS,
+            'Delta_SF': Delta_SF,
+            'Delta_FS': Delta_FS,
+            'Delta_FF': Delta_FF,
+            'mu_small_min': mu_small_min,
+            'delta_cert': delta_cert,
+            'K_sigma': K_sigma,
+            'h': h,
+            'theta': theta,
+            'L_cum': L_cum,
+            'target_rhs': math.exp(-L_cum - args.L_seed),
+            'margin': delta_cert - math.exp(-L_cum - args.L_seed),
+        })
+
+        sigma = max(args.sigma_end, sigma - h)
+
+    return rows
+
+
+def write_csv(rows, path):
+    if not rows:
+        return
+    cols = list(rows[0].keys())
+    with open(path, 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=cols)
+        w.writeheader()
+        for r in rows:
+            w.writerow(r)
+
+
+def write_tex(rows, path, title="Certificate—Covering Summary (integer-tail, p-adaptive)"):
+    with open(path, 'w') as f:
+        f.write(r"% Auto-generated by covering_schedule.py" + "\n")
+        f.write(r"\begin{table}[h]" + "\n")
+        f.write(r"\centering" + "\n")
+        f.write(r"\caption{" + title + r"}" + "\n")
+        f.write(r"\small" + "\n")
+        f.write(r"\begin{tabular}{r r r r r r r}" + "\n")
+        f.write(r"\toprule" + "\n")
+        f.write(r"$\sigma_k$ & $p_{\min}(\sigma_k)$ & $\sum_{p\le Q}p^{-(\sigma_k+\tfrac12)}$ & $\Delta_{\rm tot}$ & $\mu_{\rm small}^{\min}$ & $L$ & $\delta_{\rm cert}-e^{-L}$\\" + "\n")
+        f.write(r"\midrule" + "\n")
+        for r in rows:
+            Delta_tot = r['Delta_SS'] + r['Delta_SF'] + r['Delta_FS'] + r['Delta_FF']
+            f.write(f"{r['sigma']:.6f} & {int(r['pmin'])} & {r['S_small']:.6f} & {Delta_tot:.6e} & {r['mu_small_min']:.6f} & {r['L_cum']:.6f} & {r['margin']:.6e}\\\n")
+        f.write(r"\bottomrule" + "\n")
+        f.write(r"\end{tabular}" + "\n")
+        f.write(r"\end{table}" + "\n")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sigma-start", type=float, required=True)
+    ap.add_argument("--sigma-end", type=float, required=True, help="= 0.5 + eta")
+    ap.add_argument("--Q", type=int, default=53)
+    ap.add_argument("--theta-max", type=float, default=0.30)
+    ap.add_argument("--h-max", type=float, default=0.015)
+    ap.add_argument("--Cwin", type=float, default=0.25)
+    ap.add_argument("--pmin-cap", type=int, default=1000000)
+    ap.add_argument("--tauFF", type=float, default=1e-3)
+    ap.add_argument("--tauFS", type=float, default=1e-3)
+    ap.add_argument("--Cpi", type=float, default=1.26)
+    ap.add_argument("--kappa", type=float, default=2.0, help="Bridge C prefactor for K_tail")
+    ap.add_argument("--L-seed", type=float, default=0.0, dest="L_seed")
+    ap.add_argument("--mu-csv", type=str, default="", help="optional CSV with columns p,muL for small-block μ^L")
+    ap.add_argument("--emit-tex", type=str, required=True)
+    ap.add_argument("--emit-csv", type=str, required=True)
+    args = ap.parse_args()
+
+    rows = build_covering(args)
+    write_csv(rows, args.emit_csv)
+    write_tex(rows, args.emit_tex)
+
+
+if __name__ == "__main__":
+    main()
+
+

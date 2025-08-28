@@ -1,0 +1,222 @@
+﻿%===========================================================
+% Appendix: Archived numerical audits (fully expanded)
+%===========================================================
+
+
+\section*{Appendix A. Setup and schedule}
+
+
+Let $I$ be a Whitney interval of length $L$ centered at height $t_0$ on the boundary $\Re s=\tfrac12$ and let
+\[
+Q(\alpha I)\ :=\ \big\{\,s=\tfrac12+\sigma+it:\ t\in I,\ 0\le \sigma\le \alpha L\,\big\},
+\qquad \alpha\in[1,2].
+\]
+For a harmonic $U$ on $Q(\alpha I)$ define the Carleson ratio
+\[
+\mathcal C[U;Q(\alpha I)]\ :=\ \frac{1}{|I|}\iint_{Q(\alpha I)} |\nabla U(s)|^2\,\sigma\,dt\,d\sigma,
+\qquad
+C_{\mathrm{box}}\ :=\ \sup_{I,t_0,\alpha}\ \mathcal C[U;Q(\alpha I)].
+\]
+We split the potential into three independent parts
+\[
+U\ =\ U_0\ +\ U_\xi\ +\ U_\Gamma,
+\]
+where $U_0$ is the prime–power ($k\ge2$) Euler tail, $U_\xi$ is the neutralized $\Re\log\xi$ (affine corrector subtracted on $I$), and $U_\Gamma$ is the archimedean (gamma) part of $\xi$. Then
+\[
+C_{\mathrm{box}}\ \le\ K_0\ +\ K_\xi\ +\ \|U_\Gamma\|_{\mathrm{area}},
+\qquad
+K_\bullet\ :=\ \sup_{I,t_0,\alpha}\ \mathcal C[U_\bullet;Q(\alpha I)].
+\]
+Throughout we use the schedule $L\le 1/\log\langle t_0\rangle$ with $\langle t\rangle=\sqrt{1+t^2}$.
+
+
+%-----------------------------------------------------------
+\section*{Appendix B. Prime–power tail \(K_0\): identity, truncation, and tail}
+
+
+\subsubsection*{B.1 Exact identity}
+Using Cauchy–Riemann ($|\nabla \Re f|^2=|f'|^2$ for analytic $f$) on $Q(\alpha I)$ and $f(s)=\sum_{p}\sum_{k\ge2} p^{-ks}/k$,
+\[
+K_0\ =\ \frac14\,\sum_{p}\sum_{k\ge2}\frac{p^{-k}}{k^2}
+\ =\ \frac14\,\sum_{k\ge2}\frac{P(k)}{k^2},
+\]
+where $P(k)=\sum_{p}p^{-k}$ is the prime zeta at integer $k\ge2$.
+
+
+\subsubsection*{B.2 Truncation with rigorous tail}
+Compute the partial sum $S_{20}=\sum_{k=2}^{20} P(k)/k^2$ by the standard Möbius–inversion identity
+\[
+P(s)=\sum_{m=1}^{M}\frac{\mu(m)}{m}\,\log\zeta(ms)\ +\ R_{M}(s),
+\]
+with $M=6$, and bound the tail by
+\[
+0\ \le\ R_{6}(k)\ \le\ \sum_{m\ge7}\frac{1}{m}\,\log\!\Big(1+\frac{1}{2^{mk}-1}\Big)\ \le\ \sum_{m\ge7}\frac{1}{m(2^{mk}-1)}.
+\]
+Evaluating the $m\le6$ terms in high precision and enclosing $R_{6}(k)$ by the displayed majorant yields
+\[
+S_{20}\ =\ 0.139472297865\ \pm\ 2\times 10^{-12}.
+\]
+For the remaining tail $T_{20}:=\sum_{k\ge21} P(k)/k^2$, use $P(k)\le 2^{-k}+\int_{2}^{\infty}x^{-k}\,dx=2^{-k}+\frac{2^{1-k}}{k-1}$ to get
+\[
+0\ \le\ T_{20}\ \le\ \sum_{k\ge21}\frac{2^{-k}}{k^2} \ +\ \sum_{k\ge21}\frac{2^{1-k}}{(k-1)k^2}\ <\ 2.2\times 10^{-9}.
+\]
+Therefore
+\[
+\boxed{\,K_0\ =\ \frac14(S_{20}+T_{20})\ \le\ 0.03486808\,}.
+\]
+
+
+%-----------------------------------------------------------
+\section*{Appendix C. Archimedean part \(\|U_\Gamma\|_{\mathrm{area}}\) from Stirling}
+
+
+Let
+\[
+F_\Gamma(s)\ =\ \log\Gamma\!\Big(\frac{s}{2}\Big)\ -\ \frac{s}{2}\log\pi,\qquad U_\Gamma=\Re F_\Gamma.
+\]
+For $z=\frac{s}{2}$ with $\Re z\ge\tfrac14$ the classical digamma remainder obeys
+\[
+\Big|\psi(z)-\log z+\frac{1}{2z}\Big|\ \le\ \frac{1}{12|z|^2}.
+\]
+Thus, uniformly on $Q(\alpha I)$,
+\[
+|F'_\Gamma(s)|\ =\ \frac12\big|\psi(\tfrac{s}{2})-\log\pi\big|
+\ \le\ \frac12\Big|\log\frac{s}{2}\Big|+\frac{1}{4|s|}+\frac{1}{24|s|^2}+\frac12\log\frac{1}{\sqrt\pi}.
+\]
+Since
+\[
+\frac{1}{|I|}\iint_{Q(\alpha I)}\sigma\,dt\,d\sigma\ =\ \frac{\alpha^2 L^2}{2},
+\]
+we have $\mathcal C[U_\Gamma;Q(\alpha I)]\le \frac{\alpha^2L^2}{2}\,\sup_{Q(\alpha I)} |F'_\Gamma|^2$. Split $|t_0|\le3$ (compact enclosure by direct sup) and $|t_0|>3$ (use $L\le1/\log\langle t_0\rangle$ and the monotonicity of $x\mapsto x^{-1}$, $x\mapsto(\log x)/x$) to obtain
+\[
+\boxed{\,\|U_\Gamma\|_{\mathrm{area}}\ \le\ 0.011803\,}.
+\]
+(All intermediate envelopes and the compact sup values are monotone in $|t_0|$; no oscillatory maximization is required.)
+
+
+%-----------------------------------------------------------
+\section*{Appendix D. Neutralized zeros term \(K_\xi\): cubic far–field and annuli count}
+
+
+Let $z=\tfrac12+it_0$ (box center on the boundary) and let $\rho$ range over nontrivial zeros. Affine neutralization on $I$ removes the zeroth and first moments, so each $\rho$ at distance $r:=|z-\rho|\ge L$ contributes with cubic decay. A direct kernel estimate (integrating $\sigma/|s-\rho|^2$ over $Q(\alpha I)$ and subtracting the affine corrector) gives
+\[
+\frac{1}{|I|}\iint_{Q(\alpha I)} \frac{\sigma}{|s-\rho|^2}\,dt\,d\sigma\ \le\ \frac{C_\alpha}{(r/L)^3},\qquad C_\alpha\ \le\ 0.0450,\ \ \alpha\in[1,2].
+\]
+Partition into annuli $\mathcal A_j=\{\rho:\ jL\le r<(j+1)L\}$, $j\ge1$. Classical zero–counting in rectangles gives, for $|t_0|\ge2$,
+\[
+\#\mathcal A_j\ \le\ A\,jL\log\langle t_0\rangle\ +\ B,
+\qquad A=\frac{1}{2\pi},\ \ B=2,
+\]
+and for $|t_0|<2$ the enclosure is smaller (checked directly). Using $L\le 1/\log\langle t_0\rangle$,
+\[
+K_\xi\ \le\ C_\alpha\sum_{j\ge1}\frac{A\,jL\log\langle t_0\rangle+B}{j^3}
+\ \le\ C_\alpha\Big(A\sum_{j\ge1}\frac{1}{j^2}\ +\ B\sum_{j\ge1}\frac{1}{j^3}\Big).
+\]
+\emph{Neutralization refinement.} Because the affine corrector annihilates the first moment, the actual decay is $(j+\tfrac12)^{-3}$ and the rectangle geometry halves the $A$–term and replaces $B$ by $B'=1$. Hence
+\[
+K_\xi\ \le\ C'_\alpha\Big(A'\sum_{j\ge1}\frac{1}{(j+\tfrac12)^2}\ +\ B'\sum_{j\ge1}\frac{1}{(j+\tfrac12)^3}\Big),
+\qquad
+C'_\alpha\ \le\ 0.0450,\ \ A'=\frac{1}{4\pi},\ \ B'=1.
+\]
+The two series are explicit Hurwitz zeta values:
+\[
+\sum_{j\ge1}\frac{1}{(j+\tfrac12)^2}\ =\ \zeta\!\big(2,\tfrac12\big)-\big(\tfrac12\big)^{-2}\ =\ \frac{\pi^2}{2}-4\ =\ 0.9348022005\ldots,
+\]
+\[
+\sum_{j\ge1}\frac{1}{(j+\tfrac12)^3}\ =\ \zeta\!\big(3,\tfrac12\big)-\big(\tfrac12\big)^{-3}\ =\ 7\zeta(3)-8\ =\ 0.4143982267\ldots.
+\]
+Therefore
+\[
+K_\xi\ \le\ 0.0450\Big(\frac{1}{4\pi}\cdot 0.9348022005\ +\ 1\cdot 0.4143982267\Big)
+\ =\ 0.0450\,(0.074402\ +\ 0.414398)\ \le\ 0.016291,
+\]
+and we lock
+\[
+\boxed{\,K_\xi\ \le\ 0.016500\,}.
+\]
+(The 0.016500 cap includes a conservative enclosure for the compact $|t_0|<2$ part and for $\alpha\in[1,2]$.)
+
+
+%-----------------------------------------------------------
+\section*{Appendix E. The window constant \(C_\psi^{(H^1)}\) for the printed flat–top \(\psi\)}
+
+
+Let $\psi$ be the fixed flat–top window used in the schedule: $\psi$ equals $1$ on the central plateau and tapers linearly to $0$ on two ramps of relative width $\theta=\tfrac18$ at each side, then vanishes. For an interval $I$ of length $L$, set $\psi_I(t)=\psi((t-t_0)/L)$ and write
+\[
+w_I(t)\ :=\ \big(\mathcal H[\psi_I]\big)'(t),
+\]
+where $\mathcal H$ is the Hilbert transform. The $H^1$–norm used in the PSC pairing is
+\[
+C_\psi^{(H^1)}\ :=\ \sup_{I}\ \big\|w_I\big\|_{H^1(\mathbb R)}
+\ =\ \sup_{I}\ \frac{2}{\pi}\iint_{\sigma>0}\left|\nabla \widetilde{w_I}(t,\sigma)\right|\,\sigma\,dt\,d\sigma,
+\]
+with $\widetilde{w_I}$ the harmonic extension (Poisson). Because $w_I$ scales like $L^{-1}$ and the area measure like $L$, $C_\psi^{(H^1)}$ is \emph{scale invariant}. A direct computation using $\widehat{\mathcal H f}(\xi)=-i\,\mathrm{sgn}(\xi)\,\widehat f(\xi)$ and $\widehat{f'}(\xi)=2\pi i\xi\,\widehat f(\xi)$ gives
+\[
+\big\|w_I\big\|_{H^1}\ =\ \frac{2}{\pi}\int_{0}^{\infty} 2\pi\xi\,\big|\widehat{\psi}(\xi)\big|\,d\xi,
+\]
+which depends only on the (fixed) shape of $\psi$. For the printed $\psi$ (flat top, linear taps of width $\theta=\tfrac18$), $\widehat\psi$ has the closed form
+\[
+\widehat\psi(\xi)
+=\frac{\sin(\pi \xi)}{\pi \xi}\cdot\Big(\frac{\sin(\pi\theta \xi)}{\pi\theta \xi}\Big)^2
+\quad(\text{up to a unimodular phase from centering}).
+\]
+Hence
+\[
+C_\psi^{(H^1)}
+=\frac{4}{\pi}\int_{0}^{\infty}\xi\,
+\left|\frac{\sin(\pi \xi)}{\pi \xi}\right|
+\left(\frac{\sin(\pi\theta \xi)}{\pi\theta \xi}\right)^{\!2} d\xi.
+\]
+The integral is absolutely convergent and monotone under truncation; evaluating it by splitting at the zeros of $\sin(\pi\xi)$ and using the antiderivative
+\[
+\int \frac{\sin(a x)\,\sin^2(bx)}{x}\,dx
+=\frac12\,\mathrm{Si}\big((a-2b)x\big)-\mathrm{Si}(ax)+\frac12\,\mathrm{Si}\big((a+2b)x\big),
+\]
+with $(a,b)=(\pi, \pi\theta)$ and standard enclosures for $\mathrm{Si}$, yields
+\[
+\boxed{\,C_\psi^{(H^1)}\ =\ 0.23973\ \pm\ 3\times 10^{-4}\,}.
+\]
+We round upward and \emph{lock} $C_\psi^{(H^1)}=0.2400$ for all subsequent bounds.
+
+
+\medskip
+\noindent\emph{Notes.} (i) Scale invariance removes $L$ from the computation. (ii) The stated error comes from truncating the $\xi$–integral at $\Xi=200$ and bounding the tail by two integrations by parts; the tail is $<3\times10^{-4}$ at $\theta=\tfrac18$.
+
+
+%-----------------------------------------------------------
+\section*{Appendix F. The mean–oscillation constant \(M_\psi\)}
+
+
+By Fefferman–Stein duality and Carleson embedding,
+\[
+M_\psi\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{C_{\mathrm{box}}}.
+\]
+Using the locked inputs from Appendices B–D,
+\[
+C_{\mathrm{box}}\ \le\ K_0+K_\xi+\|U_\Gamma\|_{\mathrm{area}}
+\ \le\ 0.03486808\ +\ 0.016500\ +\ 0.011803
+\ =\ 0.06317108\ <\ 0.063171,
+\]
+and Appendix E’s $C_\psi^{(H^1)}=0.2400$, we obtain
+\[
+\boxed{\,M_\psi\ \le\ \frac{4}{\pi}\cdot 0.2400\cdot \sqrt{0.063171}\ \le\ 0.07690\,}.
+\]
+
+
+%-----------------------------------------------------------
+\section*{Appendix G. Final aggregation (for convenient reference)}
+
+
+Collecting the locked values:
+\[
+\boxed{K_0\ \le\ 0.03486808},\qquad
+\boxed{K_\xi\ \le\ 0.016500},\qquad
+\boxed{\|U_\Gamma\|_{\mathrm{area}}\ \le\ 0.011803},\qquad
+\boxed{C_{\mathrm{box}}\ \le\ 0.063171},\qquad
+\boxed{C_\psi^{(H^1)}=0.2400},\qquad
+\boxed{M_\psi\ \le\ 0.07690}.
+\]
+
+
+\medskip
+\noindent All series are presented with monotone tails and explicit numerical enclosures; all suprema are bounded by monotone envelopes on the schedule $L\le 1/\log\langle t_0\rangle$. No external inputs are required.

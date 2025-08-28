@@ -1,0 +1,215 @@
+﻿\documentclass[11pt]{article}
+
+
+% No new packages are introduced. Minimal macros and environments only.
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\newenvironment{proof}{\par\noindent\textit{Proof.}\ }{\hfill$\square$\par}
+
+
+\title{Certificate--to--Wedge Theorem (Half--Plane Schur Route)}
+\author{Jonathan Washburn \\ Recognition Science, Recognition Physics Institute \\ \texttt{jon@recognitionphysics.org} \\ Austin, Texas, USA}
+\date{August 23, 2025}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{abstract}
+This note states the central \emph{certificate--to--wedge} theorem used in the bounded--real (\emph{Schur}) route to the Riemann Hypothesis. The result asserts: once a scalar \emph{certificate} \(\Upsilon\) (assembled from a boundary control functional \(M_\psi\) and fixed geometric/prime constants) satisfies \(\Upsilon\le \tfrac12\), the boundary phase \(w\) of the normalized analytic object \(2\mathcal{J}\) is automatically confined to the wedge \([-\tfrac{\pi}{2},\tfrac{\pi}{2}]\) almost everywhere on the critical boundary. The hypotheses are stated so they can be verified locally on Carleson boxes abutting \(\Re s=\tfrac12\).
+\end{abstract}
+
+
+\section*{Setting and Notation}
+
+
+Let
+\[
+\Omega \ :=\ \{\, s\in\mathbf{C} : \Re s > \tfrac12 \,\},\qquad
+\partial\Omega \ :=\ \{\, \tfrac12+it : t\in\mathbf{R} \,\}.
+\]
+Fix a dilation parameter \(\alpha\ge 1\). For a bounded interval \(I\subset\mathbf{R}\) write the \emph{Carleson box}
+\[
+Q(\alpha I)\ :=\ \bigl\{\, \tfrac12+x+iy : y\in I,\ 0< x < \alpha |I| \,\bigr\},\qquad
+\Omega(I)\ :=\Omega\cap\{\, \Im s\in I \,\}.
+\]
+
+
+Let \(\mathcal{J}\) be a complex--valued function analytic on \(\Omega\), and define
+\[
+F(s)\ :=\ 2\,\mathcal{J}(s).
+\]
+Assume that \(F\) admits non--tangential boundary values \(F^\ast(t)\) for almost every \(t\in\mathbf{R}\), with a polar form
+\[
+F^\ast(t)\ =\ R(t)\,e^{\,i\,w(t)}\quad\text{for a.e.\ }t,\qquad R(t)>0,\ w(t)\in\mathbf{R}.
+\]
+(The phase \(w\) is normalized by subtracting an arbitrary constant, immaterial for the assertions below.)
+
+
+We will use a fixed admissible window \(\psi\) supported in an interval \(I\) (no smoothness beyond what is required below is assumed). The numerical constants
+\[
+c_0(\psi)>0,\quad C_H(\psi)>0,\quad C_P(\kappa)>0,\quad C_\psi^{(H^1)}>0,\quad C_{\mathrm{box}}>0
+\]
+are abstracted as follows:
+\begin{itemize}
+  \item \(c_0(\psi)\): a fixed aperture/geometry constant tied to \(\psi\) and the non--tangential approach in \(\Omega\);
+  \item \(C_H(\psi)\): a Hardy/phase coupling constant converting the boundary control \(M_\psi\) into a phase budget on \(I\);
+  \item \(C_P(\kappa)\): a prime--tail constant (with truncation parameter \(\kappa>0\)) accounting for finite Euler/product truncation;
+  \item \(C_\psi^{(H^1)}\): the window--dependent \(H^1\)--constant appearing in a fixed--aperture \(H^1\)–BMO/Carleson embedding;
+  \item \(C_{\mathrm{box}}\): a Carleson/area budget for the neutralized potential on \(Q(\alpha I)\).
+\end{itemize}
+
+
+Define the \emph{boundary control functional} \(M_\psi\ge 0\) (depending on \(F\) and \(\psi\)) and the \emph{certificate}
+\[
+\Upsilon\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{\,c_0(\psi)\,}.
+\]
+
+
+\begin{definition}[Negative variation on an interval]
+For a real, locally integrable function \(u\) on an interval \(I\), its negative variation is
+\[
+\mathrm{Var}^{-}_{I}(u)\ :=\ \sup\ \sum_{j=0}^{m-1} \max\{\,0,\ u(t_j)-u(t_{j+1})\,\},
+\]
+where the supremum runs over all finite partitions \(t_0<\cdots<t_m\) of \(I\).
+\end{definition}
+
+
+\section*{Hypotheses (to be verified for \(F=2\mathcal{J}\))}
+Fix a bounded interval \(I\subset\mathbf{R}\). Assume:
+
+
+\medskip
+\noindent\textbf{(H1) Boundary trace and phase regularity.}
+The non--tangential boundary values \(F^\ast\) exist a.e.\ on \(I\), with \(R=\lvert F^\ast\rvert\in L^1_{\mathrm{loc}}(I)\) and \(w=\arg F^\ast\) having locally finite variation on \(I\).
+
+
+\medskip
+\noindent\textbf{(H2) Phase--energy domination.}
+There is a finite Borel measure \(\mu\) on \(Q(\alpha I)\) such that
+\[
+\mathrm{Var}^{-}_{I}(w)\ \le\ \pi\,\mu\bigl(Q(\alpha I)\bigr).
+\]
+
+
+\medskip
+\noindent\textbf{(H3) Fixed--aperture embedding for the control functional.}
+The boundary control satisfies
+\[
+M_\psi\ \le\ \frac{4}{\pi}\,C_\psi^{(H^1)}\,\sqrt{\,C_{\mathrm{box}}\,},
+\]
+and the Carleson budget is admissible for \(Q(\alpha I)\):
+\[
+\mu\bigl(Q(\alpha I)\bigr)\ \le\ C_{\mathrm{box}}.
+\]
+
+
+\medskip
+\noindent\textbf{(H4) Phase budget inequality.}
+For the chosen window \(\psi\), the phase drop on \(I\) obeys
+\[
+\mathrm{Var}^{-}_{I}(w)\ \le\ C_H(\psi)\,M_\psi\ +\ C_P(\kappa).
+\]
+
+
+\medskip
+\noindent\textbf{(H5) Barrier cost for wedge exit.}
+If \(w\) leaves the corridor \([-\tfrac{\pi}{2},\tfrac{\pi}{2}]\) on \(I\) (that is, if \(|w(t_\ast)|>\tfrac{\pi}{2}\) for some \(t_\ast\in I\)), then necessarily
+\[
+\mathrm{Var}^{-}_{I}(w)\ \ge\ c_0(\psi).
+\]
+
+
+\begin{remark}
+Hypothesis \textbf{(H5)} is the quantitative ``barrier'' statement: any corridor exit forces a phase--drop cost no smaller than the geometric constant \(c_0(\psi)\). In applications, \(c_0(\psi)\) arises from a fixed non--tangential aperture and an outer normalization; the value is absolute once \(\psi\) and the approach geometry are fixed.
+\end{remark}
+
+
+\section*{The Certificate--to--Wedge Theorem}
+
+
+\begin{theorem}[Certificate--to--Wedge]
+\label{thm:cw}
+Let \(F=2\mathcal{J}\) be analytic on \(\Omega\), and let \(I\subset\mathbf{R}\) be a bounded interval. Assume \textbf{(H1)}--\textbf{(H5)} hold on \(I\) with the constants listed above, and define
+\[
+\Upsilon\ :=\ \frac{C_H(\psi)\,M_\psi + C_P(\kappa)}{\,c_0(\psi)\,}.
+\]
+If \(\Upsilon\ \le\ \tfrac12\), then the boundary phase of \(F\) is a.e.\ confined to the wedge on \(I\):
+\[
+w(t)\ \in\ \left[-\tfrac{\pi}{2},\,\tfrac{\pi}{2}\right]\quad\text{for almost every }t\in I.
+\]
+\end{theorem}
+
+
+\begin{proof}
+Assume, to the contrary, that there exists \(t_\ast\in I\) with \(|w(t_\ast)|>\tfrac{\pi}{2}\). By \textbf{(H5)} (the barrier cost), this implies
+\[
+\mathrm{Var}^{-}_{I}(w)\ \ge\ c_0(\psi).
+\]
+On the other hand, \textbf{(H4)} (the phase budget) yields
+\[
+\mathrm{Var}^{-}_{I}(w)\ \le\ C_H(\psi)\,M_\psi + C_P(\kappa)\ =\ \Upsilon\,c_0(\psi)\ \le\ \tfrac12\,c_0(\psi).
+\]
+This is a contradiction. Therefore no wedge exit occurs on \(I\), and hence \(w(t)\in[-\tfrac{\pi}{2},\tfrac{\pi}{2}]\) for almost every \(t\in I\).
+\end{proof}
+
+
+\begin{remark}[Local--to--global usage]
+The theorem is local in \(I\). If the hypotheses \textbf{(H1)}--\textbf{(H5)} and the bound \(\Upsilon\le \tfrac12\) hold uniformly on a covering of \(\partial\Omega\) by overlapping intervals \(I\), the wedge confinement holds a.e.\ on the whole boundary.
+\end{remark}
+
+
+\section*{Proof Obligations for Application to \(F=2\mathcal{J}\)}
+
+
+To use the theorem in the Riemann setting, the following items must be supplied:
+
+
+\medskip
+\noindent\textbf{(O1) Verification of \textbf{(H1)}.}
+Establish the existence of non--tangential boundary values of \(2\mathcal{J}\) on \(\partial\Omega\) with \(w\) of locally finite variation on each bounded \(I\).
+\medskip
+
+
+\noindent\textbf{(O2) Construction of \(\mu\) and \textbf{(H2)}.}
+Construct the neutralized potential and its Carleson measure \(\mu\) on \(Q(\alpha I)\) and prove
+\(\mathrm{Var}^{-}_{I}(w)\le \pi\,\mu(Q(\alpha I))\).
+\medskip
+
+
+\noindent\textbf{(O3) Fixed--aperture embedding \textbf{(H3)}.}
+Prove \(M_\psi\le \tfrac{4}{\pi}C_\psi^{(H^1)}\sqrt{C_{\mathrm{box}}}\) and \(\mu(Q(\alpha I))\le C_{\mathrm{box}}\), with constants independent of the height of \(I\).
+\medskip
+
+
+\noindent\textbf{(O4) Phase budget \textbf{(H4)}.}
+Derive \(\mathrm{Var}^{-}_{I}(w)\le C_H(\psi)M_\psi + C_P(\kappa)\) with explicit dependence on \(\psi\) and \(\kappa\).
+\medskip
+
+
+\noindent\textbf{(O5) Barrier cost \textbf{(H5)}.}
+Prove that any a.e.\ wedge exit on \(I\) forces \(\mathrm{Var}^{-}_{I}(w)\ge c_0(\psi)\) (aperture/geometry barrier).
+
+
+\bigskip
+\noindent\textbf{BLOCKER:} Provide a complete proof of \textbf{(H1)} for \(F=2\mathcal{J}\) in the stated geometry, including the boundary class and the finite--variation property of \(w\) on bounded \(I\).
+
+
+\noindent\textbf{BLOCKER:} Construct \(\mu\) and prove \textbf{(H2)} with explicit constants in the half--plane box \(Q(\alpha I)\).
+
+
+\noindent\textbf{BLOCKER:} Prove the fixed--aperture \(H^1\)–BMO/Carleson embedding and the bound in \textbf{(H3)} with constants independent of the height.
+
+
+\noindent\textbf{BLOCKER:} Derive the phase budget inequality \textbf{(H4)} from the neutralized potential and prime--tail analysis.
+
+
+\noindent\textbf{BLOCKER:} Prove the barrier lemma \textbf{(H5)} and compute \(c_0(\psi)\) for the chosen aperture/window.
+
+
+\end{document}

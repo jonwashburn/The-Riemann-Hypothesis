@@ -1,0 +1,32 @@
+﻿% --- Begin: Schur globalization with removability at ξ-zeros ---
+\begin{lemma}[Schur pinch across $Z(\xi)$]\label{lem:schur-pinch}
+Assume (P+): $\Re\bigl(2\mathcal J(1/2+it)\bigr)\ge 0$ a.e. on $\partial\Omega$.
+Let $F:=1+\mathcal J$ and $\Theta:=\frac{F-1}{F+1}$.
+Then $|\Theta(1/2+it)|\le 1$ a.e.\ on $\partial\Omega$ and $|\Theta|\le 1$ in $\Omega\setminus Z(\xi)$.
+If moreover (N2) holds (non-cancellation at $\xi$-zeros), then $\Theta$ extends holomorphically
+to all of $\Omega$ with $\|\Theta\|_\infty\le 1$.
+\end{lemma}
+
+
+\begin{proof}
+From (P+), $\Re F\ge 1$ a.e.\ on $\partial\Omega$, hence $|\Theta|\le 1$ a.e.\ there.
+Standard Smirnov/Nevanlinna boundary uniqueness yields $|\Theta|\le 1$ wherever $\Theta$ is analytic, i.e.\ on $\Omega\setminus Z(\xi)$.
+
+
+If $\rho\in Z(\xi)\cap\Omega$, then by (N2) we have $\det_2(I-A(\rho))\neq 0$ and $\mathcal O(\rho)\neq 0$, so $\mathcal J$ has a pole at $\rho$ and
+\[
+\lim_{s\to\rho}\Theta(s)
+=\lim_{s\to\rho}\frac{F(s)-1}{F(s)+1}
+=\lim_{s\to\rho}\frac{\infty}{\infty}=1.
+\]
+Thus $\Theta$ is bounded in a punctured neighborhood of $\rho$, hence the singularity is removable by Riemann’s theorem, and the extension preserves the bound $|\Theta|\le 1$.
+\end{proof}
+
+
+\begin{theorem}[Schur globalization; exclusion of off-critical zeros]\label{thm:schur-global}
+Under (P+) and (N2), $\Theta\in H^\infty(\Omega)$ with $\|\Theta\|_\infty\le 1$.
+If there were $\rho\in\Omega$ with $\xi(\rho)=0$, then the holomorphic $\Theta$ would attain the unimodular value $1$ at $\rho$.
+By the maximum modulus principle, $\Theta$ would have to be constant unimodular on $\Omega$, contradicting the right-edge normalization $\Theta(\sigma+it)\to -1$ as $\sigma\to+\infty$.
+Hence $\xi$ has no zeros in $\Omega$.
+\end{theorem}
+% --- End: Schur globalization with removability at ξ-zeros ---

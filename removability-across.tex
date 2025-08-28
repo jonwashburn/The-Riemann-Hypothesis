@@ -1,0 +1,32 @@
+% Removability across zeros of \xi via bounded \Theta and inverse Cayley
+% Ready to \input into the manuscript; assumes theorem environments are defined.
+
+\section*{Removability across $Z(\xi)$}
+
+Let $\Omega=\{\Re s>1/2\}$ and set $F:=2\mathcal J$ and $\Theta:=\dfrac{F-1}{F+1}$. Suppose $\mathcal J$ is meromorphic on $\Omega$ and $\Theta$ is holomorphic on $\Omega\setminus Z$, where $Z\subset \Omega$ is a discrete set (typically $Z=Z(\xi)\cap\Omega$).
+
+\begin{lemma}[Removable singularity for bounded $\Theta$]\label{lem:removable-Theta}
+Let $z_0\in Z$ and assume $\Theta$ is holomorphic on $(\Omega\cap B(z_0,r))\setminus\{z_0\}$ and bounded there: $|\Theta|\le 1$. Then $\Theta$ extends holomorphically to $z_0$ with $|\Theta(z_0)|\le 1$.
+\end{lemma}
+
+\begin{proof}
+By the Riemann removable singularity theorem, any bounded holomorphic function on a punctured neighborhood extends holomorphically at the puncture. The bound persists by continuity.
+\end{proof}
+
+\begin{lemma}[Excluding $\Theta(z_0)=1$ unless constant]\label{lem:no-one-Theta}
+If $\Theta$ is holomorphic on a domain $D\subset\Omega$ and $|\Theta|\le1$ on $D$, then either $\Theta\equiv e^{i\theta}$ is unimodular constant on the component containing $z_0$, or else $|\Theta(z_0)|<1$. In particular, $\Theta(z_0)\ne1$ unless $\Theta\equiv1$ locally.
+\end{lemma}
+
+\begin{proof}
+If $|\Theta|$ attains its supremum $1$ at an interior point, the maximum modulus principle forces $\Theta$ to be locally constant with $|\Theta|\equiv1$. Otherwise $|\Theta(z_0)|<1$.
+\end{proof}
+
+\begin{theorem}[Removability for $\mathcal J$ at $Z(\xi)$]\label{thm:rem-J-across}
+Assume $\Theta$ is holomorphic on $\Omega\setminus Z$ with $|\Theta|\le 1$ there, and let $z_0\in Z$. Then $\Theta$ extends holomorphically to $z_0$ with $\Theta(z_0)\ne 1$. Consequently, $\mathcal J$ extends holomorphically to $z_0$ via the inverse Cayley transform
+\[\mathcal J\ =\ \frac{1+\Theta}{2(1-\Theta)}.\]
+In particular, $\mathcal J$ has no pole at $z_0$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:removable-Theta}, $\Theta$ extends holomorphically to $z_0$ with $|\Theta(z_0)|\le1$. Lemma~\ref{lem:no-one-Theta} excludes $\Theta(z_0)=1$ unless $\Theta\equiv 1$ locally, which is impossible if $\mathcal J$ is nonconstant. Hence $1-\Theta(z_0)\ne0$, so the inverse Cayley formula defines a holomorphic extension of $\mathcal J$ at $z_0$.
+\end{proof}
